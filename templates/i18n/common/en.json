@@ -1,0 +1,98 @@
+{
+  "brand": {
+    "name": "IMG2GRID",
+    "logo_prefix": "IMG",
+    "logo_highlight": "2",
+    "logo_suffix": "GRID",
+    "icon_alt": "IMG2GRID Logo",
+    "home_aria": "IMG2GRID home"
+  },
+  "seo": {
+    "default_title": "Tomodachi Life Image Converter | Tomodachi Pixel Art Maker",
+    "default_description": "Use this Tomodachi Life image converter and Tomodachi pixel converter to turn photos, screenshots, and img files into pixel grids, palettes, and guides.",
+    "author": "IMG2GRID"
+  },
+  "site": {
+    "domain": "img2grid.com",
+    "support_email": "support@img2grid.com",
+    "copyright_year": "2026"
+  },
+  "aria": {
+    "primary_navigation": "Primary navigation",
+    "footer_navigation": "Footer navigation",
+    "support_email": "Email support@img2grid.com"
+  },
+  "common": {
+    "english": "English"
+  },
+  "schema": {
+    "website": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "IMG2GRID",
+      "description": "Tomodachi Life Image Converter for pixel grids, color palettes, and paint-by-number guides.",
+      "url": "https://img2grid.com/"
+    },
+    "faq": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a Tomodachi Life Image Converter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Tomodachi Life image converter turns images, photos, screenshots, and img files into pixel grids, color palettes, and paint-by-number guides."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I import images directly into Tomodachi Life?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "IMG2GRID does not promise direct import. It creates a readable pixel grid guide that can be recreated manually in Palette House."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is IMG2GRID official?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. IMG2GRID is a fan-made Tomodachi Life image converter and is not affiliated with Nintendo, Tomodachi Life, or any official game publisher."
+          }
+        }
+      ]
+    }
+  },
+  "guidance": {
+    "title": "Guidance",
+    "draggable_pick_up": "To pick up a draggable item, press the space bar.",
+    "draggable_move": "While dragging, use the arrow keys to move the item.",
+    "draggable_drop_or_cancel": "Press space again to drop the item in its new position, or press escape to cancel."
+  },
+  "navigation": {
+    "wiki": "Converter",
+    "guide": "How It Works",
+    "database": "Examples",
+    "progression": "Palette Guide",
+    "steam": "Upload Image",
+    "faq": "FAQ"
+  },
+  "footer": {
+    "description": "IMG2GRID turns images, photos, screenshots, and img files into Tomodachi Life pixel grids, color palettes, and paint-by-number guides you can recreate by hand.",
+    "section_game": "Tool",
+    "section_legal": "Company",
+    "about_us": "About Us",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "copyright": "Tomodachi Life image converter and pixel grid guide.",
+    "disclaimer": "IMG2GRID is not affiliated with Nintendo, Tomodachi Life, or any official game publisher."
+  },
+  "error_404": {
+    "code": "404",
+    "title": "Page Not Found",
+    "description": "The requested page could not be found.",
+    "keywords": "404, page not found, error",
+    "home_cta": "Go Home"
+  }
+}

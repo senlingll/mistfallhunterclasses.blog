@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "About IMG2GRID - Tomodachi Life Image Converter",
+    "description": "Learn about IMG2GRID, a fan-made Tomodachi Life image converter for pixel grids, palettes, and guide exports.",
+    "keywords": "about img2grid, Tomodachi Life image converter"
+  },
+  "legal": {
+    "eyebrow": "Fan-made converter",
+    "title": "About IMG2GRID",
+    "description": "IMG2GRID helps Tomodachi Life players turn images into clean pixel grids, compact color palettes, and paint-by-number guides for manual Palette House recreation.",
+    "sections": [
+      {
+        "heading": "Our Mission",
+        "paragraphs": [
+          "Our goal is to make image-to-grid planning easier for life-sim players. The homepage is built around a simple workflow: upload an image, choose a grid size, reduce colors, preview the pixel output, and download a guide that is easier to follow by hand."
+        ]
+      },
+      {
+        "heading": "What We Cover",
+        "bullets": [
+          "Tomodachi Life image converter workflows for photos, screenshots, pictures, and img files.",
+          "Pixel grid previews for 32x32, 64x64, and 128x128 layouts.",
+          "Color palette reduction for cleaner Palette House-style painting.",
+          "Paint-by-number guide outputs for row-by-row recreation."
+        ]
+      },
+      {
+        "heading": "Independence",
+        "paragraphs": [
+          "IMG2GRID is a fan-made tool and is not affiliated with Nintendo, Tomodachi Life, or any official game publisher. Game names and trademarks belong to their respective owners."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "paragraphs": [
+          "Questions, corrections, or tool suggestions can be sent to <a href=\"mailto:support@img2grid.com\">support@img2grid.com</a>."
+        ]
+      }
+    ]
+  }
+}

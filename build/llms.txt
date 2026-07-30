@@ -1,0 +1,18 @@
+﻿# Mistfall Hunter Classes
+
+> Mistfall Hunter Classes is a fan-made class guide and build planner for the Steam game Mistfall Hunter. It helps players compare class roles, choose a starting build direction, and verify official Steam availability details.
+
+## Core Content
+- [Class planner](https://mistfallhunterclasses.blog/): Interactive class recommendation tool for solo, duo, and squad extraction runs.
+- [Mistfall Hunter classes guide](https://mistfallhunterclasses.blog/classes/): Role summaries for Mercenary, Blackarrow, Shadowstrix, Sorcerer, Seer, and Withered Knight.
+- [Build planner](https://mistfallhunterclasses.blog/build-planner/): A focused page for matching play style, risk tolerance, and experience level to class choices.
+- [Steam info](https://mistfallhunterclasses.blog/steam/): Official Steam facts, platform notes, release date, developer, and publisher details.
+
+## Common Resources
+- [About](https://mistfallhunterclasses.blog/about/): Editorial policy and correction process for this fan guide.
+- [Contact](https://mistfallhunterclasses.blog/contact/): Support and source-correction email.
+- [Privacy Policy](https://mistfallhunterclasses.blog/privacy-policy/): Privacy notes for the static planner site.
+- [Terms of Service](https://mistfallhunterclasses.blog/terms-of-service/): Fan-site disclaimer and recommendation limitations.
+
+## Latest Updates
+- [Class planner](https://mistfallhunterclasses.blog/): Updated in July 2026 with Steam release facts and an initial class-fit scoring model.

@@ -1,0 +1,6 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://mistfallhunterclasses.blog/sitemap.xml
+LLM-Content: https://mistfallhunterclasses.blog/llms.txt
+LLM-Full-Content: https://mistfallhunterclasses.blog/llms-full.txt

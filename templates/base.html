@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:image" content="{{ base_url }}/static/images/mistfall/mistfall-hunter-steam-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }}">
+  <meta name="twitter:description" content="{{ page.description }}">
+  <meta name="twitter:image" content="{{ base_url }}/static/images/mistfall/mistfall-hunter-steam-hero.webp">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mistfall.css') }}">
+  {% block schema %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="" width="64" height="64">
+      <span>Mistfall <strong>Classes</strong></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="/">Planner</a>
+      <a href="/classes/">Classes</a>
+      <a href="/build-planner/">Build Planner</a>
+      <a href="/steam/">Steam Info</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="header-cta" href="{{ official_steam_url }}" rel="nofollow noopener" target="_blank">Steam</a>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer class="site-footer">
+    <div>
+      <a class="footer-brand" href="/">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="" width="48" height="48">
+        <span>{{ site_name }}</span>
+      </a>
+      <p>Fan-made Mistfall Hunter class guide and build planner. Not affiliated with Bellring Games, Skystone Games, Steam, or Valve.</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms-of-service/">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+  </footer>
+  <script src="{{ url_for('static', filename='js/mistfall-planner.js') }}"></script>
+</body>
+</html>
