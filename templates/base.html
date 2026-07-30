@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ locale_meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,9 @@
   <meta name="description" content="{{ page.description }}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="{{ canonical_url }}">
+  {% for alt_locale, alt_url in alternate_urls.items() %}
+  <link rel="alternate" hreflang="{{ alt_locale }}" href="{{ alt_url }}">
+  {% endfor %}
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.description }}">
   <meta property="og:url" content="{{ canonical_url }}">
@@ -23,38 +26,49 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="/">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="" width="64" height="64">
-      <span>Mistfall <strong>Classes</strong></span>
+    <a class="brand" href="{{ language_links | selectattr('code', 'equalto', locale) | map(attribute='url') | first }}">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="{{ site_name }}" width="64" height="64">
+      <span>{{ text.brand }}</span>
     </a>
-    <nav aria-label="Primary navigation">
-      <a href="/">Planner</a>
-      <a href="/classes/">Classes</a>
-      <a href="/build-planner/">Build Planner</a>
-      <a href="/steam/">Steam Info</a>
-      <a href="/contact/">Contact</a>
+    <nav aria-label="{{ text.nav_aria }}">
+      <a href="{{ '/' if locale == 'en' else '/' ~ locale ~ '/' }}">{{ text.nav.home }}</a>
+      <a href="{{ '/classes/' if locale == 'en' else '/' ~ locale ~ '/classes/' }}">{{ text.nav.classes }}</a>
+      <a href="{{ '/build-planner/' if locale == 'en' else '/' ~ locale ~ '/build-planner/' }}">{{ text.nav['build-planner'] }}</a>
+      <a href="{{ '/steam/' if locale == 'en' else '/' ~ locale ~ '/steam/' }}">{{ text.nav.steam }}</a>
+      <a href="{{ '/contact/' if locale == 'en' else '/' ~ locale ~ '/contact/' }}">{{ text.nav.contact }}</a>
     </nav>
-    <a class="header-cta" href="{{ official_steam_url }}" rel="nofollow noopener" target="_blank">Steam</a>
+    <div class="header-tools">
+      <details class="language-switcher">
+        <summary aria-label="{{ text.language_aria }}">{{ locale_meta.name }}</summary>
+        <div class="language-menu">
+          {% for link in language_links %}
+          <a href="{{ link.url }}" hreflang="{{ link.code }}" lang="{{ locales[link.code].html_lang }}">{{ link.name }}</a>
+          {% endfor %}
+        </div>
+      </details>
+      <a class="header-cta" href="{{ official_steam_url }}" rel="nofollow noopener" target="_blank">{{ text.steam_cta }}</a>
+    </div>
   </header>
 
   {% block content %}{% endblock %}
 
   <footer class="site-footer">
     <div>
-      <a class="footer-brand" href="/">
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="" width="48" height="48">
+      <a class="footer-brand" href="{{ '/' if locale == 'en' else '/' ~ locale ~ '/' }}">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="{{ site_name }}" width="48" height="48">
         <span>{{ site_name }}</span>
       </a>
-      <p>Fan-made Mistfall Hunter class guide and build planner. Not affiliated with Bellring Games, Skystone Games, Steam, or Valve.</p>
+      <p>{{ text.footer.disclaimer }}</p>
     </div>
-    <nav aria-label="Footer navigation">
-      <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
-      <a href="/privacy-policy/">Privacy</a>
-      <a href="/terms-of-service/">Terms</a>
-      <a href="/sitemap.xml">Sitemap</a>
+    <nav aria-label="{{ text.footer_aria }}">
+      <a href="{{ '/about/' if locale == 'en' else '/' ~ locale ~ '/about/' }}">{{ text.footer.about }}</a>
+      <a href="{{ '/contact/' if locale == 'en' else '/' ~ locale ~ '/contact/' }}">{{ text.footer.contact }}</a>
+      <a href="{{ '/privacy-policy/' if locale == 'en' else '/' ~ locale ~ '/privacy-policy/' }}">{{ text.footer['privacy-policy'] }}</a>
+      <a href="{{ '/terms-of-service/' if locale == 'en' else '/' ~ locale ~ '/terms-of-service/' }}">{{ text.footer['terms-of-service'] }}</a>
+      <a href="/sitemap.xml">{{ text.footer.sitemap }}</a>
     </nav>
   </footer>
+  <script id="planner-config" type="application/json">{{ planner_config | tojson }}</script>
   <script src="{{ url_for('static', filename='js/mistfall-planner.js') }}"></script>
 </body>
 </html>

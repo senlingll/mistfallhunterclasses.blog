@@ -1,0 +1,38 @@
+{
+  "official_entities": [
+    "Mistfall Hunter",
+    "Mistfall Hunter Classes",
+    "Steam",
+    "Mistfall Hunter Steam",
+    "Valve",
+    "Bellring Games",
+    "Skystone Games",
+    "Mercenary",
+    "Blackarrow",
+    "Shadowstrix",
+    "Sorcerer",
+    "Seer",
+    "Withered Knight",
+    "Windows",
+    "ARPG",
+    "PvPvE",
+    "Seer / Withered Knight",
+    "Seer, Sorcerer, Withered Knight",
+    "Shadowstrix / Sorcerer",
+    "Bellring Games, Skystone Games",
+    "Bellring Games, Skystone Games, Steam, Valve",
+    "Mistfall Hunter, Steam, Valve"
+  ],
+  "localized_entities": {
+    "ja": {
+      "Mistfall Hunter": "Mistfall Hunter",
+      "Mercenary": "Mercenary",
+      "Withered Knight": "Withered Knight"
+    },
+    "ko": {
+      "Mistfall Hunter": "Mistfall Hunter",
+      "Mercenary": "Mercenary",
+      "Withered Knight": "Withered Knight"
+    }
+  }
+}

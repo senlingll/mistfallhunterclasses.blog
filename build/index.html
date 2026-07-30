@@ -7,6 +7,25 @@
   <meta name="description" content="Compare Mistfall Hunter classes, plan solo or squad builds, and check role recommendations with a fan-made class planner.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://mistfallhunterclasses.blog/">
+
+  <link rel="alternate" hreflang="en" href="https://mistfallhunterclasses.blog/">
+
+  <link rel="alternate" hreflang="es" href="https://mistfallhunterclasses.blog/es/">
+
+  <link rel="alternate" hreflang="ja" href="https://mistfallhunterclasses.blog/ja/">
+
+  <link rel="alternate" hreflang="fr" href="https://mistfallhunterclasses.blog/fr/">
+
+  <link rel="alternate" hreflang="de" href="https://mistfallhunterclasses.blog/de/">
+
+  <link rel="alternate" hreflang="pt" href="https://mistfallhunterclasses.blog/pt/">
+
+  <link rel="alternate" hreflang="ko" href="https://mistfallhunterclasses.blog/ko/">
+
+  <link rel="alternate" hreflang="it" href="https://mistfallhunterclasses.blog/it/">
+
+  <link rel="alternate" hreflang="x-default" href="https://mistfallhunterclasses.blog/">
+
   <meta property="og:title" content="Mistfall Hunter Classes &amp; Build Planner">
   <meta property="og:description" content="Compare Mistfall Hunter classes, plan solo or squad builds, and check role recommendations with a fan-made class planner.">
   <meta property="og:url" content="https://mistfallhunterclasses.blog/">
@@ -19,12 +38,12 @@
   <meta name="twitter:image" content="https://mistfallhunterclasses.blog/static/images/mistfall/mistfall-hunter-steam-hero.webp">
   <link rel="icon" href="/static/favicon.ico">
   <link rel="stylesheet" href="/static/css/mistfall.css">
-  
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Mistfall Hunter Classes & Build Planner",
+  "name": "Mistfall Hunter Classes \u0026 Build Planner",
   "url": "https://mistfallhunterclasses.blog/",
   "applicationCategory": "GameApplication",
   "operatingSystem": "Web",
@@ -37,9 +56,17 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"What is the best Mistfall Hunter class for beginners?","acceptedAnswer":{"@type":"Answer","text":"Mercenary and Withered Knight are the safest beginner picks in this planner because they offer more forgiving frontline decisions than high-risk burst classes."}},
-    {"@type":"Question","name":"Does this Mistfall Hunter build planner use official data?","acceptedAnswer":{"@type":"Answer","text":"The site uses official Steam facts for game availability and a transparent editorial scoring model for class matching. Class recommendations should be rechecked as patches change the game."}},
-    {"@type":"Question","name":"Is this an official Mistfall Hunter site?","acceptedAnswer":{"@type":"Answer","text":"No. Mistfall Hunter Classes is a fan-made guide and is not affiliated with Bellring Games, Skystone Games, Steam, or Valve."}}
+
+    {"@type":"Question","name":"What is the best Mistfall Hunter class for beginners?","acceptedAnswer":{"@type":"Answer","text":"Mercenary is the safest default for new players because its role is easier to understand during stressful extraction fights. Withered Knight is also a strong beginner option for players joining squads."}},
+
+    {"@type":"Question","name":"Is Shadowstrix good for solo play?","acceptedAnswer":{"@type":"Answer","text":"Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster."}},
+
+    {"@type":"Question","name":"Should squads always bring Seer?","acceptedAnswer":{"@type":"Answer","text":"No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow."}},
+
+    {"@type":"Question","name":"How accurate is the Mistfall Hunter build planner?","acceptedAnswer":{"@type":"Answer","text":"The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change."}},
+
+    {"@type":"Question","name":"Does Mistfall Hunter have codes?","acceptedAnswer":{"@type":"Answer","text":"This site focuses on classes and builds because the current opportunity is a decision-support guide, not a short-lived codes page. If official redeem codes become meaningful, they should be handled on a separate page."}}
+
   ]
 }
 </script>
@@ -48,8 +75,8 @@
 <body>
   <header class="site-header">
     <a class="brand" href="/">
-      <img src="/static/logo.png" alt="" width="64" height="64">
-      <span>Mistfall <strong>Classes</strong></span>
+      <img src="/static/logo.png" alt="Mistfall Hunter Classes" width="64" height="64">
+      <span>Mistfall Classes</span>
     </a>
     <nav aria-label="Primary navigation">
       <a href="/">Planner</a>
@@ -58,25 +85,54 @@
       <a href="/steam/">Steam Info</a>
       <a href="/contact/">Contact</a>
     </nav>
-    <a class="header-cta" href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" rel="nofollow noopener" target="_blank">Steam</a>
+    <div class="header-tools">
+      <details class="language-switcher">
+        <summary aria-label="Choose language">English</summary>
+        <div class="language-menu">
+
+          <a href="/" hreflang="en" lang="en">English</a>
+
+          <a href="/es/" hreflang="es" lang="es">Español</a>
+
+          <a href="/ja/" hreflang="ja" lang="ja">日本語</a>
+
+          <a href="/fr/" hreflang="fr" lang="fr">Français</a>
+
+          <a href="/de/" hreflang="de" lang="de">Deutsch</a>
+
+          <a href="/pt/" hreflang="pt" lang="pt">Português</a>
+
+          <a href="/ko/" hreflang="ko" lang="ko">한국어</a>
+
+          <a href="/it/" hreflang="it" lang="it">Italiano</a>
+
+        </div>
+      </details>
+      <a class="header-cta" href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" rel="nofollow noopener" target="_blank">Steam</a>
+    </div>
   </header>
 
-  
+
 <main>
   <section class="hero" id="planner">
     <div class="hero-copy">
-      <p class="kicker">Updated July 2026 · Steam / PC · fan-made tool</p>
-      <h1><span>Mistfall Hunter</span><span>Classes &</span><span>Build Planner</span></h1>
+      <p class="kicker">Updated July 2026 - Steam / PC - fan-made tool</p>
+      <h1>Mistfall Hunter Classes &amp; Build Planner</h1>
       <p class="lede">Choose a class for solo runs, duo pressure, or squad extraction before you spend hours learning the wrong rhythm. The planner below compares Mistfall Hunter classes by play style, risk tolerance, damage needs, control, and team utility.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#class-planner">Use the planner</a>
         <a class="btn secondary" href="/classes/">Read class guide</a>
       </div>
       <ul class="fact-strip">
+
         <li><span>Game type</span><strong>PvPvE extraction ARPG</strong></li>
+
         <li><span>Release</span><strong>29 Jul, 2026</strong></li>
+
         <li><span>Developer</span><strong>Bellring Games</strong></li>
+
         <li><span>Platform</span><strong>Windows on Steam</strong></li>
+
       </ul>
     </div>
     <figure class="hero-media">
@@ -86,50 +142,67 @@
   </section>
 
   <section class="tool-section" id="class-planner" aria-labelledby="planner-title">
-    <div class="section-heading">
-      <p class="kicker">Interactive class picker</p>
-      <h2 id="planner-title">Mistfall Hunter class planner</h2>
-      <p>Answer four questions and the tool ranks classes for your run. The output is a recommendation model, not an official tier list, so use it as a starting point and recheck after balance patches.</p>
+  <div class="section-heading">
+    <p class="kicker">Interactive class picker</p>
+    <h2 id="planner-title">Mistfall Hunter class planner</h2>
+    <p>Answer four questions and the tool ranks classes for your run. The output is a recommendation model, not an official tier list, so use it as a starting point and recheck after balance patches.</p>
+  </div>
+  <div class="planner-grid">
+    <form class="planner-card" data-planner-form>
+      <label>Run format
+        <select name="format">
+
+          <option value="solo">Solo extraction</option>
+
+          <option value="duo">Duo skirmish</option>
+
+          <option value="squad">Squad play</option>
+
+        </select>
+      </label>
+      <label>Preferred combat rhythm
+        <select name="style">
+
+          <option value="balanced">Balanced survival</option>
+
+          <option value="burst">Burst damage</option>
+
+          <option value="control">Control and utility</option>
+
+          <option value="frontline">Frontline pressure</option>
+
+        </select>
+      </label>
+      <label>Risk tolerance
+        <select name="risk">
+
+          <option value="low">Low risk</option>
+
+          <option value="medium">Medium risk</option>
+
+          <option value="high">High risk</option>
+
+        </select>
+      </label>
+      <label>Experience level
+        <select name="experience">
+
+          <option value="new">New player</option>
+
+          <option value="returning">Returning ARPG player</option>
+
+          <option value="advanced">Advanced extraction player</option>
+
+        </select>
+      </label>
+      <button class="btn primary" type="submit">Find my class</button>
+      <button class="btn secondary" type="reset">Reset</button>
+    </form>
+    <div class="planner-card result-card" aria-live="polite" data-planner-result>
+      <p class="empty-state">Your recommendation will appear here. Try the default solo setup first if you are unsure.</p>
     </div>
-    <div class="planner-grid">
-      <form class="planner-card" data-planner-form>
-        <label>Run format
-          <select name="format">
-            <option value="solo">Solo extraction</option>
-            <option value="duo">Duo skirmish</option>
-            <option value="squad">Squad play</option>
-          </select>
-        </label>
-        <label>Preferred combat rhythm
-          <select name="style">
-            <option value="balanced">Balanced survival</option>
-            <option value="burst">Burst damage</option>
-            <option value="control">Control and utility</option>
-            <option value="frontline">Frontline pressure</option>
-          </select>
-        </label>
-        <label>Risk tolerance
-          <select name="risk">
-            <option value="low">Low risk</option>
-            <option value="medium">Medium risk</option>
-            <option value="high">High risk</option>
-          </select>
-        </label>
-        <label>Experience level
-          <select name="experience">
-            <option value="new">New player</option>
-            <option value="returning">Returning ARPG player</option>
-            <option value="advanced">Advanced extraction player</option>
-          </select>
-        </label>
-        <button class="btn primary" type="submit">Find my class</button>
-        <button class="btn secondary" type="reset">Reset</button>
-      </form>
-      <div class="planner-card result-card" aria-live="polite" data-planner-result>
-        <p class="empty-state">Your recommendation will appear here. Try the default solo setup first if you are unsure.</p>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <section class="section-pad" id="classes">
     <div class="section-heading">
@@ -138,7 +211,7 @@
       <p>These profiles keep the class choice practical: who should play it, what the role contributes, and where the risk sits.</p>
     </div>
     <div class="class-grid">
-      
+
       <article class="class-card">
         <span>Low risk</span>
         <h3>Mercenary</h3>
@@ -151,7 +224,7 @@
           <div><dt>Control</dt><dd>54</dd></div>
         </dl>
       </article>
-      
+
       <article class="class-card">
         <span>Medium risk</span>
         <h3>Blackarrow</h3>
@@ -164,7 +237,7 @@
           <div><dt>Control</dt><dd>64</dd></div>
         </dl>
       </article>
-      
+
       <article class="class-card">
         <span>High risk</span>
         <h3>Shadowstrix</h3>
@@ -177,7 +250,7 @@
           <div><dt>Control</dt><dd>58</dd></div>
         </dl>
       </article>
-      
+
       <article class="class-card">
         <span>High risk</span>
         <h3>Sorcerer</h3>
@@ -190,7 +263,7 @@
           <div><dt>Control</dt><dd>82</dd></div>
         </dl>
       </article>
-      
+
       <article class="class-card">
         <span>Medium risk</span>
         <h3>Seer</h3>
@@ -203,7 +276,7 @@
           <div><dt>Control</dt><dd>86</dd></div>
         </dl>
       </article>
-      
+
       <article class="class-card">
         <span>Medium risk</span>
         <h3>Withered Knight</h3>
@@ -216,7 +289,7 @@
           <div><dt>Control</dt><dd>76</dd></div>
         </dl>
       </article>
-      
+
     </div>
   </section>
 
@@ -225,13 +298,17 @@
       <p class="kicker">How to use the result</p>
       <h2>Turn a recommendation into a playable build</h2>
       <ol class="steps">
-        <li><strong>Pick the class role first.</strong> Mistfall Hunter rewards extraction decisions, so survivability and information can matter as much as raw damage.</li>
-        <li><strong>Match gear to the job.</strong> Frontline classes need staying power, burst classes need clean engage windows, and support classes need safe positioning.</li>
-        <li><strong>Recheck after patches.</strong> This site records source dates because class balance, skill values, and gear availability can change quickly.</li>
+
+        <li>Pick the class role first. Mistfall Hunter rewards extraction decisions, so survivability and information can matter as much as raw damage.</li>
+
+        <li>Match gear to the job. Frontline classes need staying power, burst classes need clean engage windows, and support classes need safe positioning.</li>
+
+        <li>Recheck after patches. This site records source dates because class balance, skill values, and gear availability can change quickly.</li>
+
       </ol>
     </div>
     <aside class="source-card">
-      <img src="/static/images/mistfall/mistfall-hunter-steam-header.webp" alt="Mistfall Hunter official Steam header capsule" width="460" height="215">
+      <img src="/static/images/mistfall/mistfall-hunter-steam-header.webp" alt="Official Steam hero art for Mistfall Hunter dark fantasy extraction ARPG" width="460" height="215">
       <h3>Source policy</h3>
       <p>Official Steam facts are used for platform and release details. Class recommendations are a transparent fan scoring model and should be corrected when stronger patch or gameplay evidence appears.</p>
       <a href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" rel="nofollow noopener" target="_blank">Open official Steam page</a>
@@ -242,17 +319,26 @@
     <div>
       <p class="kicker">Planner method</p>
       <h2>Why the Mistfall Hunter class planner weights roles this way</h2>
+
       <p>The class planner starts with the practical question players ask before a run: will this class help me survive the next extraction, win a fight, or support the squad decision? Solo scoring favors classes that can recover from mistakes and finish a route without constant help. Squad scoring gives more credit to information, control, and space creation because those traits turn into safer team decisions.</p>
+
       <p>Combat rhythm changes the second layer of scoring. Burst damage favors Shadowstrix and Sorcerer because they fit short engage windows. Control and utility lift Seer, Sorcerer, and Withered Knight because they help shape fights before the final trade. Frontline pressure favors Mercenary and Withered Knight because they are easier to understand when a fight becomes messy.</p>
+
       <p>Risk tolerance matters because a strong class can still be wrong for the player using it. New players get a penalty on high-risk picks, while advanced extraction players get more room to choose fragile burst tools. This keeps the result practical rather than pretending one universal tier list fits every run.</p>
+
     </div>
     <div class="method-card">
       <h3>Inputs used by the tool</h3>
       <ul>
+
         <li>Run format: solo, duo, or squad.</li>
+
         <li>Combat rhythm: balanced, burst, control, or frontline.</li>
+
         <li>Risk tolerance: low, medium, or high.</li>
+
         <li>Experience level: new, returning, or advanced.</li>
+
       </ul>
       <h3>Output you get</h3>
       <p>A top recommended class, a role explanation, and the next four ranked alternatives with score bars. The result is designed to help you pick a direction quickly, then read the class guide before committing to gear and talent choices.</p>
@@ -267,10 +353,15 @@
     <table>
       <thead><tr><th>Need</th><th>Best starting pick</th><th>Why it fits</th></tr></thead>
       <tbody>
+
         <tr><td data-label="Need">First solo extraction</td><td data-label="Best starting pick">Mercenary</td><td data-label="Why it fits">Forgiving frontline profile and lower planning load.</td></tr>
+
         <tr><td data-label="Need">Squad utility</td><td data-label="Best starting pick">Seer</td><td data-label="Why it fits">Information and control help the whole team choose safer fights.</td></tr>
+
         <tr><td data-label="Need">High burst plays</td><td data-label="Best starting pick">Shadowstrix or Sorcerer</td><td data-label="Why it fits">Both reward timing, but punish bad positioning.</td></tr>
+
         <tr><td data-label="Need">Anchor role</td><td data-label="Best starting pick">Withered Knight</td><td data-label="Why it fits">Durability and space control suit coordinated groups.</td></tr>
+
       </tbody>
     </table>
   </section>
@@ -279,15 +370,23 @@
     <div>
       <p class="kicker">Examples</p>
       <h2>Example Mistfall Hunter class choices</h2>
-      <p><strong>New solo player:</strong> choose solo extraction, balanced survival, low risk, and new player. The planner should lean toward Mercenary because it reduces decision overload and gives a clearer frontline pattern for early learning.</p>
-      <p><strong>Coordinated three-player squad:</strong> choose squad play, control and utility, medium risk, and returning ARPG player. Seer and Withered Knight usually rise because information, control, and anchoring help teammates make cleaner extraction calls.</p>
-      <p><strong>Aggressive PvP hunter:</strong> choose duo skirmish, burst damage, high risk, and advanced extraction player. Shadowstrix or Sorcerer can appear near the top because the model assumes you can handle positioning mistakes and timing windows.</p>
+
+      <p>New solo player: choose solo extraction, balanced survival, low risk, and new player. The planner should lean toward Mercenary because it reduces decision overload and gives a clearer frontline pattern for early learning.</p>
+
+      <p>Coordinated three-player squad: choose squad play, control and utility, medium risk, and returning ARPG player. Seer and Withered Knight usually rise because information, control, and anchoring help teammates make cleaner extraction calls.</p>
+
+      <p>Aggressive PvP hunter: choose duo skirmish, burst damage, high risk, and advanced extraction player. Shadowstrix or Sorcerer can appear near the top because the model assumes you can handle positioning mistakes and timing windows.</p>
+
     </div>
     <div class="method-card">
       <h3>When not to trust the result blindly</h3>
+
       <p>Do not treat the planner as final if a new patch changes class skills, talent values, gear scaling, or extraction rewards. If your party already has a support or frontline role, pick the class that fills the missing job instead of stacking the highest score.</p>
+
       <p>The safest workflow is planner first, class guide second, then in-game testing with your current gear.</p>
+
       <p>If two classes score close together, treat the result as a tie and choose the role your party lacks. A ten-point gap usually means the recommended class fits the selected run shape more clearly.</p>
+
       <h3>Update policy</h3>
       <p>Because Mistfall Hunter launched recently, early class advice can shift as players find stronger routes and the developer adjusts balance. This planner should be reviewed whenever official patch notes, verified class values, or repeated community gameplay evidence contradict the current scoring assumptions.</p>
     </div>
@@ -295,14 +394,20 @@
 
   <section class="section-pad faq" id="faq">
     <div class="section-heading">
-      <p class="kicker">FAQ</p>
+      <p class="kicker">Mistfall Hunter classes FAQ</p>
       <h2>Mistfall Hunter classes FAQ</h2>
     </div>
+
     <details open><summary>What is the best Mistfall Hunter class for beginners?</summary><p>Mercenary is the safest default for new players because its role is easier to understand during stressful extraction fights. Withered Knight is also a strong beginner option for players joining squads.</p></details>
-    <details><summary>Is Shadowstrix good for solo play?</summary><p>Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster.</p></details>
-    <details><summary>Should squads always bring Seer?</summary><p>No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow.</p></details>
-    <details><summary>How accurate is the Mistfall Hunter build planner?</summary><p>The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change.</p></details>
-    <details><summary>Does Mistfall Hunter have codes?</summary><p>This site focuses on classes and builds because the current opportunity is a decision-support guide, not a short-lived codes page. If official redeem codes become meaningful, they should be handled on a separate page.</p></details>
+
+    <details ><summary>Is Shadowstrix good for solo play?</summary><p>Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster.</p></details>
+
+    <details ><summary>Should squads always bring Seer?</summary><p>No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow.</p></details>
+
+    <details ><summary>How accurate is the Mistfall Hunter build planner?</summary><p>The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change.</p></details>
+
+    <details ><summary>Does Mistfall Hunter have codes?</summary><p>This site focuses on classes and builds because the current opportunity is a decision-support guide, not a short-lived codes page. If official redeem codes become meaningful, they should be handled on a separate page.</p></details>
+
   </section>
 </main>
 
@@ -310,7 +415,7 @@
   <footer class="site-footer">
     <div>
       <a class="footer-brand" href="/">
-        <img src="/static/logo.png" alt="" width="48" height="48">
+        <img src="/static/logo.png" alt="Mistfall Hunter Classes" width="48" height="48">
         <span>Mistfall Hunter Classes</span>
       </a>
       <p>Fan-made Mistfall Hunter class guide and build planner. Not affiliated with Bellring Games, Skystone Games, Steam, or Valve.</p>
@@ -323,6 +428,7 @@
       <a href="/sitemap.xml">Sitemap</a>
     </nav>
   </footer>
+  <script id="planner-config" type="application/json">{"classes": [{"best_for": "Players who want forgiving melee pressure and steady extractions.", "burst": 60, "control": 54, "frontline": 92, "id": "mercenary", "name": "Mercenary", "risk": "low", "risk_label": "Low risk", "role": "Frontline brawler", "solo": 86, "squad": 78}, {"best_for": "Careful players who prefer scouting, poking, and choosing fights.", "burst": 78, "control": 64, "frontline": 58, "id": "blackarrow", "name": "Blackarrow", "risk": "medium", "risk_label": "Medium risk", "role": "Ranged pressure", "solo": 74, "squad": 84}, {"best_for": "High-mobility players who like ambushes, flanks, and fast disengage.", "burst": 90, "control": 58, "frontline": 62, "id": "shadowstrix", "name": "Shadowstrix", "risk": "high", "risk_label": "High risk", "role": "Assassin skirmisher", "solo": 82, "squad": 70}, {"best_for": "Players who want spell burst, zone pressure, and group fight impact.", "burst": 92, "control": 82, "frontline": 40, "id": "sorcerer", "name": "Sorcerer", "risk": "high", "risk_label": "High risk", "role": "Area damage caster", "solo": 66, "squad": 88}, {"best_for": "Squads that value tracking, utility, and safer extraction decisions.", "burst": 42, "control": 86, "frontline": 38, "id": "seer", "name": "Seer", "risk": "medium", "risk_label": "Medium risk", "role": "Support and information", "solo": 58, "squad": 92}, {"best_for": "Players who like holding space, surviving trades, and protecting allies.", "burst": 64, "control": 76, "frontline": 88, "id": "withered-knight", "name": "Withered Knight", "risk": "medium", "risk_label": "Medium risk", "role": "Durable initiator", "solo": 78, "squad": 86}], "text": {"calculating": "Calculating class fit...", "description": "Answer four questions and the tool ranks classes for your run. The output is a recommendation model, not an official tier list, so use it as a starting point and recheck after balance patches.", "empty": "Your recommendation will appear here. Try the default solo setup first if you are unsure.", "fit": "{name} fits your {format} run because the scoring model balances class role, selected combat rhythm, risk tolerance, and experience level.", "kicker": "Interactive class picker", "labels": {"experience": "Experience level", "format": "Run format", "risk": "Risk tolerance", "style": "Preferred combat rhythm"}, "note": "Model note: this is a fan-made recommendation and should be rechecked when verified Mistfall Hunter class balance data changes.", "options": {"experience": {"advanced": "Advanced extraction player", "new": "New player", "returning": "Returning ARPG player"}, "format": {"duo": "Duo skirmish", "solo": "Solo extraction", "squad": "Squad play"}, "risk": {"high": "High risk", "low": "Low risk", "medium": "Medium risk"}, "style": {"balanced": "Balanced survival", "burst": "Burst damage", "control": "Control and utility", "frontline": "Frontline pressure"}}, "recommended": "Recommended class", "reset": "Reset", "score_label": "{score} out of 100", "score_text": "{score}/100 - {role}", "short_empty": "Pick your settings to generate a build direction.", "submit": "Find my class", "title": "Mistfall Hunter class planner"}}</script>
   <script src="/static/js/mistfall-planner.js"></script>
 </body>
 </html>

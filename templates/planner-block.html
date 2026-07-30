@@ -1,0 +1,44 @@
+<section class="tool-section" id="class-planner" aria-labelledby="planner-title">
+  <div class="section-heading">
+    <p class="kicker">{{ text.planner.kicker }}</p>
+    <h2 id="planner-title">{{ text.planner.title }}</h2>
+    <p>{{ text.planner.description }}</p>
+  </div>
+  <div class="planner-grid">
+    <form class="planner-card" data-planner-form>
+      <label>{{ text.planner.labels.format }}
+        <select name="format">
+          {% for value, label in text.planner.options.format.items() %}
+          <option value="{{ value }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>{{ text.planner.labels.style }}
+        <select name="style">
+          {% for value, label in text.planner.options.style.items() %}
+          <option value="{{ value }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>{{ text.planner.labels.risk }}
+        <select name="risk">
+          {% for value, label in text.planner.options.risk.items() %}
+          <option value="{{ value }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>{{ text.planner.labels.experience }}
+        <select name="experience">
+          {% for value, label in text.planner.options.experience.items() %}
+          <option value="{{ value }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button class="btn primary" type="submit">{{ text.planner.submit }}</button>
+      <button class="btn secondary" type="reset">{{ text.planner.reset }}</button>
+    </form>
+    <div class="planner-card result-card" aria-live="polite" data-planner-result>
+      <p class="empty-state">{{ text.planner.empty if not short_planner else text.planner.short_empty }}</p>
+    </div>
+  </div>
+</section>

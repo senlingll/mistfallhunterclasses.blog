@@ -1,37 +1,26 @@
-﻿# Mistfall Hunter Classes: Complete Site Guide
+# Mistfall Hunter Classes: Complete Site Guide
 
-> Mistfall Hunter Classes is a fan-made guide and planner for Mistfall Hunter, the dark fantasy extraction ARPG listed on Steam. The site is independent from Bellring Games, Skystone Games, Steam, and Valve, and it separates official platform facts from editorial class recommendations.
+> Mistfall Hunter Classes is an independent fan-made class guide and build planner for players comparing Mistfall Hunter roles before they choose a solo, duo, or squad setup. The site links to official Steam information for platform and release facts and keeps class recommendations editorial rather than official.
 
 ## Site Background
-
-Mistfall Hunter Classes exists because class choice is a repeated player decision in Mistfall Hunter. The official Steam page describes a game where players combine skills, talents, and gear for each class, which makes a class-focused planner more useful than a short-lived news or codes page. The site records official availability information from Steam and presents class recommendations as a transparent fan scoring model.
-
-The editorial standard is simple: official store facts should be treated as source-backed; class recommendations should be treated as practical guidance that can change with patches, skill values, gear availability, and community discoveries. Players, writers, or maintainers can send corrections through the contact page with source links. When stronger evidence appears, the planner and class guide should be revised instead of preserving stale rankings.
+Mistfall Hunter Classes exists to help players make class and build decisions with clear assumptions. The site separates official Steam facts from fan-made scoring. Platform, developer, publisher, and release details are tied to the official Steam listing, while class recommendations are transparent editorial guidance that should be revised when verified patch notes, class values, or repeated gameplay evidence changes the balance picture. Corrections can be sent through the contact page with a source URL and the affected page path.
 
 ## Content Category Details
+### [Main planner](https://mistfallhunterclasses.blog/)
+Interactive Mistfall Hunter class planner and role overview. The page is implemented as crawlable static HTML and is included in the sitemap.
 
-### [Class Planner](https://mistfallhunterclasses.blog/)
+### [Classes guide](https://mistfallhunterclasses.blog/classes/)
+Class role profiles, risk notes, and beginner direction. The page is implemented as crawlable static HTML and is included in the sitemap.
 
-The homepage provides the primary Mistfall Hunter class planner. It asks for run format, combat rhythm, risk tolerance, and experience level, then ranks classes using a visible fan scoring model. The page also includes source notes, class cards, a decision table, and FAQ answers so the planner is crawlable and useful before JavaScript runs.
+### [Build planner](https://mistfallhunterclasses.blog/build-planner/)
+Dedicated planner page for build-intent searches. The page is implemented as crawlable static HTML and is included in the sitemap.
 
-### [Classes Guide](https://mistfallhunterclasses.blog/classes/)
-
-The classes guide summarizes each role in plain language. It covers Mercenary, Blackarrow, Shadowstrix, Sorcerer, Seer, and Withered Knight with role labels, risk notes, and best-use cases. The goal is to help users understand the class identity before using the planner result.
-
-### [Build Planner](https://mistfallhunterclasses.blog/build-planner/)
-
-The build planner page mirrors the core interaction for users who arrive through tool-intent searches. It keeps the class recommendation workflow on the indexed page instead of sending users elsewhere.
-
-### [Steam Info](https://mistfallhunterclasses.blog/steam/)
-
-The Steam info page lists source-backed facts for Mistfall Hunter, including the official Steam page, Windows platform availability, release date, developer, publisher, and broad genre/category context. It links users to the official Steam store rather than inventing a download or play route.
+### [Steam info](https://mistfallhunterclasses.blog/steam/)
+Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
 ## User Value
-
-The site helps players avoid a common early-game problem: choosing a class because it sounds strong without understanding whether it fits solo extraction, squad utility, burst damage, frontline pressure, or lower-risk learning. The planner gives a practical first answer, while the class cards and decision table explain the reasoning behind that answer. The site also protects users from stale short-cycle search traps by focusing on class and build intent instead of expired codes or one-day update spikes.
+The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.
 
 ## Latest Update Content
-
-### [Initial Mistfall Hunter class planner](https://mistfallhunterclasses.blog/)
-
-Updated in July 2026. The first build added the English homepage, class recommendation model, class guide cards, Steam source page, legal pages, llms files, sitemap, robots rules, and compressed official Steam media for the visual identity.
+### [Multilingual planner update](https://mistfallhunterclasses.blog/)
+Updated in July 2026 to add English, Spanish, Japanese, French, German, Portuguese, Korean, and Italian routes with localized metadata, navigation, planner controls, class copy, FAQ content, sitemap entries, and language switching.

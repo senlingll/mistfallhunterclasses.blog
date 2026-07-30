@@ -1,11 +1,7 @@
-const classData = [
-  { name: "Mercenary", role: "Frontline brawler", solo: 86, squad: 78, burst: 60, control: 54, frontline: 92, risk: "low" },
-  { name: "Blackarrow", role: "Ranged pressure", solo: 74, squad: 84, burst: 78, control: 64, frontline: 58, risk: "medium" },
-  { name: "Shadowstrix", role: "Assassin skirmisher", solo: 82, squad: 70, burst: 90, control: 58, frontline: 62, risk: "high" },
-  { name: "Sorcerer", role: "Area damage caster", solo: 66, squad: 88, burst: 92, control: 82, frontline: 40, risk: "high" },
-  { name: "Seer", role: "Support and information", solo: 58, squad: 92, burst: 42, control: 86, frontline: 38, risk: "medium" },
-  { name: "Withered Knight", role: "Durable initiator", solo: 78, squad: 86, burst: 64, control: 76, frontline: 88, risk: "medium" }
-];
+const plannerConfigElement = document.getElementById("planner-config");
+const plannerConfig = plannerConfigElement ? JSON.parse(plannerConfigElement.textContent) : null;
+const classData = plannerConfig ? plannerConfig.classes : [];
+const plannerText = plannerConfig ? plannerConfig.text : {};
 
 function riskScore(classRisk, selectedRisk) {
   const order = { low: 1, medium: 2, high: 3 };
@@ -24,23 +20,28 @@ function scoreClass(item, values) {
   return Math.max(0, Math.min(100, score));
 }
 
+function interpolate(template, values) {
+  return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
+}
+
 function renderResult(container, ranked, values) {
   const top = ranked[0];
+  const formatLabel = plannerText.options.format[values.format] || values.format;
   container.innerHTML = `
-    <p class="kicker">Recommended class</p>
+    <p class="kicker">${plannerText.recommended}</p>
     <h3>${top.name}</h3>
     <p><strong>${top.role}</strong></p>
-    <p>${top.name} fits your ${values.format} run because the scoring model balances class role, selected combat rhythm, risk tolerance, and experience level.</p>
+    <p>${interpolate(plannerText.fit, { name: top.name, format: formatLabel })}</p>
     <div class="result-list">
       ${ranked.slice(0, 4).map(item => `
         <div class="result-item">
           <strong>${item.name}</strong>
-          <div class="score-bar" aria-label="${item.score} out of 100"><span style="--score:${item.score}%"></span></div>
-          <small>${item.score}/100 · ${item.role}</small>
+          <div class="score-bar" aria-label="${interpolate(plannerText.score_label, { score: item.score })}"><span style="--score:${item.score}%"></span></div>
+          <small>${interpolate(plannerText.score_text, { score: item.score, role: item.role })}</small>
         </div>
       `).join("")}
     </div>
-    <p class="empty-state">Model note: this is a fan-made recommendation and should be rechecked when verified Mistfall Hunter class balance data changes.</p>
+    <p class="empty-state">${plannerText.note}</p>
   `;
 }
 
@@ -48,7 +49,7 @@ document.querySelectorAll("[data-planner-form]").forEach((form) => {
   const result = form.parentElement.querySelector("[data-planner-result]");
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    result.innerHTML = "<p class='empty-state'>Calculating class fit...</p>";
+    result.innerHTML = `<p class="empty-state">${plannerText.calculating}</p>`;
     const values = Object.fromEntries(new FormData(form).entries());
     const ranked = classData
       .map((item) => ({ ...item, score: scoreClass(item, values) }))
@@ -57,7 +58,7 @@ document.querySelectorAll("[data-planner-form]").forEach((form) => {
   });
   form.addEventListener("reset", () => {
     if (result) {
-      result.innerHTML = "<p class='empty-state'>Your recommendation will appear here. Try the default solo setup first if you are unsure.</p>";
+      result.innerHTML = `<p class="empty-state">${plannerText.empty}</p>`;
     }
   });
 });
