@@ -111,7 +111,10 @@ a:hover { color: #fff0ba; }
 }
 .header-cta,
 .btn {
+  appearance: none;
   border-radius: 8px;
+  border: 0;
+  cursor: pointer;
   display: inline-flex;
   font-weight: 800;
   justify-content: center;
@@ -123,8 +126,21 @@ a:hover { color: #fff0ba; }
   color: #1d1508;
 }
 .btn.secondary {
+  background: rgba(16, 19, 15, 0.62);
   border: 1px solid var(--line);
   color: var(--text);
+}
+.btn.secondary:hover,
+.btn.secondary:focus-visible {
+  background: rgba(215, 168, 80, 0.12);
+  color: #fff0ba;
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: rgba(41, 48, 36, 0.72);
+  border: 1px solid rgba(220, 184, 104, 0.14);
+  color: var(--dim);
+  cursor: not-allowed;
 }
 
 .hero,
