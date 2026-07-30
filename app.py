@@ -538,6 +538,7 @@ def build_site_data(page_key, locale="en"):
         "page": page,
         "canonical_url": f"{BASE_URL}{page['path']}",
         "alternate_urls": get_alternate_urls(page_key),
+        "x_default_url": f"{BASE_URL}{get_page_path(page_key, 'en')}",
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},

@@ -7,9 +7,11 @@
   <meta name="description" content="{{ page.description }}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="{{ canonical_url }}">
-  {% for alt_locale, alt_url in alternate_urls.items() %}
-  <link rel="alternate" hreflang="{{ alt_locale }}" href="{{ alt_url }}">
+  {% for link in language_links %}
+  <link rel="alternate" hreflang="{{ link.code }}" href="{{ base_url }}{{ link.url }}">
   {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ x_default_url }}">
+
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.description }}">
   <meta property="og:url" content="{{ canonical_url }}">

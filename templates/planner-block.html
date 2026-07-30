@@ -8,29 +8,29 @@
     <form class="planner-card" data-planner-form>
       <label>{{ text.planner.labels.format }}
         <select name="format">
-          {% for value, label in text.planner.options.format.items() %}
-          <option value="{{ value }}">{{ label }}</option>
+          {% for value in text['planner']['options']['format'] %}
+          <option value="{{ value }}">{{ text['planner']['options']['format'][value] }}</option>
           {% endfor %}
         </select>
       </label>
       <label>{{ text.planner.labels.style }}
         <select name="style">
-          {% for value, label in text.planner.options.style.items() %}
-          <option value="{{ value }}">{{ label }}</option>
+          {% for value in text['planner']['options']['style'] %}
+          <option value="{{ value }}">{{ text['planner']['options']['style'][value] }}</option>
           {% endfor %}
         </select>
       </label>
       <label>{{ text.planner.labels.risk }}
         <select name="risk">
-          {% for value, label in text.planner.options.risk.items() %}
-          <option value="{{ value }}">{{ label }}</option>
+          {% for value in text['planner']['options']['risk'] %}
+          <option value="{{ value }}">{{ text['planner']['options']['risk'][value] }}</option>
           {% endfor %}
         </select>
       </label>
       <label>{{ text.planner.labels.experience }}
         <select name="experience">
-          {% for value, label in text.planner.options.experience.items() %}
-          <option value="{{ value }}">{{ label }}</option>
+          {% for value in text['planner']['options']['experience'] %}
+          <option value="{{ value }}">{{ text['planner']['options']['experience'][value] }}</option>
           {% endfor %}
         </select>
       </label>
