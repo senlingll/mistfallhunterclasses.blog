@@ -214,7 +214,8 @@ h3 { font-size: 1.12rem; margin: 0 0 0.55rem; }
 }
 .hero-media img,
 .rounded-media,
-.source-card img {
+.source-card img,
+.article-media img {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -234,6 +235,36 @@ figcaption {
   text-align: center;
 }
 .section-heading p { color: var(--muted); }
+.article-media-section {
+  padding-top: 0;
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+.article-media {
+  margin: 0;
+}
+.article-media figcaption {
+  max-width: 860px;
+}
+.source-list h2 {
+  margin-bottom: 1rem;
+}
+.source-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.source-grid a {
+  background: rgba(34, 42, 32, 0.86);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+.source-grid span {
+  color: var(--muted);
+}
 .tool-section {
   background: rgba(16, 19, 15, 0.44);
   border-block: 1px solid rgba(220, 184, 104, 0.12);
@@ -429,7 +460,8 @@ summary {
     width: 100%;
   }
   .fact-strip,
-  .class-grid { grid-template-columns: 1fr; }
+  .class-grid,
+  .source-grid { grid-template-columns: 1fr; }
   .hero-actions,
   .site-header nav,
   .site-footer nav { flex-direction: column; width: 100%; }

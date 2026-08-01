@@ -6,6 +6,7 @@
 - [Main planner](https://mistfallhunterclasses.blog/): Interactive Mistfall Hunter class planner and role overview.
 - [Classes guide](https://mistfallhunterclasses.blog/classes/): Class role profiles, risk notes, and beginner direction.
 - [Build planner](https://mistfallhunterclasses.blog/build-planner/): Dedicated planner page for build-intent searches.
+- [Price guide](https://mistfallhunterclasses.blog/price/): Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 - [Steam info](https://mistfallhunterclasses.blog/steam/): Official Steam facts and safe source links.
 
 ## Common Resources

@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-from app import BASE_URL, LAST_UPDATED, PAGE_ORDER, PAGE_SLUGS, app, get_page_path, get_route_matrix, page_not_found
+from app import BASE_URL, LAST_UPDATED, PAGE_LASTMOD, PAGE_ORDER, PAGE_SLUGS, app, get_page_path, get_route_matrix, page_not_found
 from werkzeug.exceptions import NotFound
 
 
@@ -74,9 +74,10 @@ def write_sitemap(static_dir):
     """
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for route in get_route_matrix():
+        lastmod = PAGE_LASTMOD.get(route["page_key"], LAST_UPDATED)
         lines.append("  <url>")
         lines.append(f"    <loc>{BASE_URL}{route['path']}</loc>")
-        lines.append(f"    <lastmod>{LAST_UPDATED}</lastmod>")
+        lines.append(f"    <lastmod>{lastmod}</lastmod>")
         lines.append("  </url>")
     lines.append("</urlset>")
     with open(os.path.join(static_dir, "sitemap.xml"), "w", encoding="utf-8") as output:
@@ -110,6 +111,7 @@ def write_llms_files(static_dir):
         ("Main planner", get_page_path("home"), "Interactive Mistfall Hunter class planner and role overview."),
         ("Classes guide", get_page_path("classes"), "Class role profiles, risk notes, and beginner direction."),
         ("Build planner", get_page_path("build-planner"), "Dedicated planner page for build-intent searches."),
+        ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
     ]
     common_links = [
@@ -182,6 +184,7 @@ def copy_static_assets(build_dir):
         os.path.join("js", "mistfall-planner.js"),
         os.path.join("images", "mistfall", "mistfall-hunter-steam-hero.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-steam-header.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
         "logo.png",
         "favicon.ico",
     ]

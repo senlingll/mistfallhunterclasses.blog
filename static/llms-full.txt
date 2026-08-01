@@ -15,6 +15,9 @@ Class role profiles, risk notes, and beginner direction. The page is implemented
 ### [Build planner](https://mistfallhunterclasses.blog/build-planner/)
 Dedicated planner page for build-intent searches. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Price guide](https://mistfallhunterclasses.blog/price/)
+Steam price snapshot, launch discount, buyer checks, and refund-source guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
