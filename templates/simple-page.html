@@ -56,6 +56,16 @@
         <figcaption>{{ section.caption }}</figcaption>
       </figure>
     </section>
+    {% elif section.type == "embed" %}
+    <section class="section-pad article-media-section">
+      <h2>{{ section.title }}</h2>
+      <figure class="article-media">
+        <div class="embed-frame">
+          <iframe src="{{ section.src }}" title="{{ section.title }}" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <figcaption>{{ section.caption }}</figcaption>
+      </figure>
+    </section>
     {% elif section.type == "table" %}
     <section class="section-pad comparison">
       <h2>{{ section.title }}</h2>
@@ -80,7 +90,7 @@
       <h2>{{ section.title }}</h2>
       <div class="source-grid">
         {% for item in section['items'] %}
-        <a href="{{ item[1] }}" target="_blank" rel="noopener">
+        <a href="{{ item[1] }}" target="_blank" rel="{{ item[3] if item|length > 3 else 'noopener' }}">
           <strong>{{ item[0] }}</strong>
           <span>{{ item[2] }}</span>
         </a>

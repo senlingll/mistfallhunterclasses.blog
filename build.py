@@ -112,6 +112,7 @@ def write_llms_files(static_dir):
         ("Classes guide", get_page_path("classes"), "Class role profiles, risk notes, and beginner direction."),
         ("Build planner", get_page_path("build-planner"), "Dedicated planner page for build-intent searches."),
         ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
+        ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
     ]
     common_links = [
@@ -185,6 +186,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-steam-hero.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-steam-header.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-player-count-guide.webp"),
         "logo.png",
         "favicon.ico",
     ]

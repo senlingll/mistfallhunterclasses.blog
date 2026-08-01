@@ -18,6 +18,9 @@ Dedicated planner page for build-intent searches. The page is implemented as cra
 ### [Price guide](https://mistfallhunterclasses.blog/price/)
 Steam price snapshot, launch discount, buyer checks, and refund-source guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Player count guide](https://mistfallhunterclasses.blog/player-count/)
+SteamDB chart interpretation, current-player signals, and queue-timing guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 

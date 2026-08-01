@@ -7,6 +7,7 @@
 /de/build-planner /de/build-planner/ 301
 /de/classes /de/classes/ 301
 /de/contact /de/contact/ 301
+/de/player-count /de/player-count/ 301
 /de/price /de/price/ 301
 /de/privacy-policy /de/privacy-policy/ 301
 /de/steam /de/steam/ 301
@@ -16,6 +17,7 @@
 /es/build-planner /es/build-planner/ 301
 /es/classes /es/classes/ 301
 /es/contact /es/contact/ 301
+/es/player-count /es/player-count/ 301
 /es/price /es/price/ 301
 /es/privacy-policy /es/privacy-policy/ 301
 /es/steam /es/steam/ 301
@@ -25,6 +27,7 @@
 /fr/build-planner /fr/build-planner/ 301
 /fr/classes /fr/classes/ 301
 /fr/contact /fr/contact/ 301
+/fr/player-count /fr/player-count/ 301
 /fr/price /fr/price/ 301
 /fr/privacy-policy /fr/privacy-policy/ 301
 /fr/steam /fr/steam/ 301
@@ -34,6 +37,7 @@
 /it/build-planner /it/build-planner/ 301
 /it/classes /it/classes/ 301
 /it/contact /it/contact/ 301
+/it/player-count /it/player-count/ 301
 /it/price /it/price/ 301
 /it/privacy-policy /it/privacy-policy/ 301
 /it/steam /it/steam/ 301
@@ -43,6 +47,7 @@
 /ja/build-planner /ja/build-planner/ 301
 /ja/classes /ja/classes/ 301
 /ja/contact /ja/contact/ 301
+/ja/player-count /ja/player-count/ 301
 /ja/price /ja/price/ 301
 /ja/privacy-policy /ja/privacy-policy/ 301
 /ja/steam /ja/steam/ 301
@@ -52,10 +57,12 @@
 /ko/build-planner /ko/build-planner/ 301
 /ko/classes /ko/classes/ 301
 /ko/contact /ko/contact/ 301
+/ko/player-count /ko/player-count/ 301
 /ko/price /ko/price/ 301
 /ko/privacy-policy /ko/privacy-policy/ 301
 /ko/steam /ko/steam/ 301
 /ko/terms-of-service /ko/terms-of-service/ 301
+/player-count /player-count/ 301
 /price /price/ 301
 /privacy-policy /privacy-policy/ 301
 /pt /pt/ 301
@@ -63,6 +70,7 @@
 /pt/build-planner /pt/build-planner/ 301
 /pt/classes /pt/classes/ 301
 /pt/contact /pt/contact/ 301
+/pt/player-count /pt/player-count/ 301
 /pt/price /pt/price/ 301
 /pt/privacy-policy /pt/privacy-policy/ 301
 /pt/steam /pt/steam/ 301
