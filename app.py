@@ -80,7 +80,7 @@ TEXT = {
         "footer_aria": "Footer navigation",
         "language_aria": "Choose language",
         "steam_cta": "Steam",
-        "nav": {"home": "Planner", "classes": "Classes", "build-planner": "Build Planner", "steam": "Steam Info", "contact": "Contact"},
+        "nav": {"home": "Planner", "classes": "Classes", "build-planner": "Build Planner", "player-count": "Player Count", "steam": "Steam Info", "contact": "Contact"},
         "footer": {"about": "About", "contact": "Contact", "privacy-policy": "Privacy", "terms-of-service": "Terms", "sitemap": "Sitemap", "disclaimer": "Fan-made Mistfall Hunter class guide and build planner. Not affiliated with Bellring Games, Skystone Games, Steam, or Valve."},
         "pages": {
             "home": {"title": "Mistfall Hunter Classes & Build Planner", "description": "Compare Mistfall Hunter classes, plan solo or squad builds, and check role recommendations with a fan-made class planner.", "h1": "Mistfall Hunter Classes & Build Planner", "kicker": "Updated July 2026 - Steam / PC - fan-made tool"},
@@ -168,7 +168,7 @@ TEXT = {
 LOCALE_OVERRIDES = {
     "es": {
         "site_name": "Clases de Mistfall Hunter", "brand": "Mistfall Clases", "nav_aria": "Navegacion principal", "footer_aria": "Navegacion del pie", "language_aria": "Elegir idioma", "steam_cta": "Steam",
-        "nav": {"home": "Planificador", "classes": "Clases", "build-planner": "Builds", "steam": "Steam", "contact": "Contacto"},
+        "nav": {"home": "Planificador", "classes": "Clases", "build-planner": "Builds", "player-count": "Jugadores", "steam": "Steam", "contact": "Contacto"},
         "footer": {"about": "Acerca de", "contact": "Contacto", "privacy-policy": "Privacidad", "terms-of-service": "Terminos", "sitemap": "Mapa del sitio", "disclaimer": "Guia y planificador fan-made de Mistfall Hunter. No esta afiliado con Bellring Games, Skystone Games, Steam ni Valve."},
         "pages": {
             "home": {"title": "Clases de Mistfall Hunter y Builds", "description": "Compara clases de Mistfall Hunter, planea builds solo o en escuadron y revisa recomendaciones con una herramienta fan-made.", "h1": "Clases de Mistfall Hunter y Builds", "kicker": "Actualizado en julio de 2026 - Steam / PC - herramienta fan-made"},
@@ -184,7 +184,7 @@ LOCALE_OVERRIDES = {
     },
     "ja": {
         "site_name": "Mistfall Hunter クラス", "brand": "Mistfall クラス", "nav_aria": "主要ナビゲーション", "footer_aria": "フッターナビゲーション", "language_aria": "言語を選択", "steam_cta": "Steam",
-        "nav": {"home": "プランナー", "classes": "クラス", "build-planner": "ビルド", "steam": "Steam情報", "contact": "連絡先"},
+        "nav": {"home": "プランナー", "classes": "クラス", "build-planner": "ビルド", "player-count": "プレイヤー数", "steam": "Steam情報", "contact": "連絡先"},
         "footer": {"about": "このサイトについて", "contact": "連絡先", "privacy-policy": "プライバシー", "terms-of-service": "利用規約", "sitemap": "サイトマップ", "disclaimer": "Mistfall Hunter のファン作成クラスガイド兼ビルドプランナーです。Bellring Games、Skystone Games、Steam、Valve とは提携していません。"},
         "pages": {
             "home": {"title": "Mistfall Hunter クラスとビルド", "description": "Mistfall Hunter クラスを比較し、ソロや分隊向けのビルドを考えるファン作成プランナーです。", "h1": "Mistfall Hunter クラスとビルド", "kicker": "2026年7月更新 - Steam / PC - ファン作成ツール"},
@@ -200,7 +200,7 @@ LOCALE_OVERRIDES = {
     },
     "fr": {
         "site_name": "Classes Mistfall Hunter", "brand": "Mistfall Classes", "nav_aria": "Navigation principale", "footer_aria": "Navigation du pied", "language_aria": "Choisir la langue", "steam_cta": "Steam",
-        "nav": {"home": "Planificateur", "classes": "Classes", "build-planner": "Builds", "steam": "Steam", "contact": "Contact"},
+        "nav": {"home": "Planificateur", "classes": "Classes", "build-planner": "Builds", "player-count": "Joueurs", "steam": "Steam", "contact": "Contact"},
         "footer": {"about": "A propos", "contact": "Contact", "privacy-policy": "Confidentialite", "terms-of-service": "Conditions", "sitemap": "Plan du site", "disclaimer": "Guide et planificateur fan-made pour Mistfall Hunter. Non affilie a Bellring Games, Skystone Games, Steam ou Valve."},
         "pages": {
             "home": {"title": "Classes Mistfall Hunter et Builds", "description": "Comparez les classes Mistfall Hunter, preparez vos builds solo ou escouade et utilisez un planificateur fan-made.", "h1": "Classes Mistfall Hunter et Builds", "kicker": "Mis a jour en juillet 2026 - Steam / PC - outil fan-made"},
@@ -216,7 +216,7 @@ LOCALE_OVERRIDES = {
     },
     "de": {
         "site_name": "Mistfall Hunter Klassen", "brand": "Mistfall Klassen", "nav_aria": "Hauptnavigation", "footer_aria": "Footer-Navigation", "language_aria": "Sprache waehlen", "steam_cta": "Steam",
-        "nav": {"home": "Planer", "classes": "Klassen", "build-planner": "Build-Planer", "steam": "Steam-Info", "contact": "Kontakt"},
+        "nav": {"home": "Planer", "classes": "Klassen", "build-planner": "Build-Planer", "player-count": "Spielerzahl", "steam": "Steam-Info", "contact": "Kontakt"},
         "footer": {"about": "Uber uns", "contact": "Kontakt", "privacy-policy": "Datenschutz", "terms-of-service": "Nutzungsbedingungen", "sitemap": "Sitemap", "disclaimer": "Fan-erstellter Mistfall Hunter Klassen Guide und Build-Planer. Nicht mit Bellring Games, Skystone Games, Steam oder Valve verbunden."},
         "pages": {
             "home": {"title": "Mistfall Hunter Klassen & Build-Planer", "description": "Vergleiche Mistfall Hunter Klassen, plane Solo- oder Gruppen-Builds und nutze einen fan-erstellten Klassenplaner.", "h1": "Mistfall Hunter Klassen & Build-Planer", "kicker": "Aktualisiert im Juli 2026 - Steam / PC - Fan-Tool"},
@@ -232,7 +232,7 @@ LOCALE_OVERRIDES = {
     },
     "pt": {
         "site_name": "Classes de Mistfall Hunter", "brand": "Mistfall Classes", "nav_aria": "Navegacao principal", "footer_aria": "Navegacao do rodape", "language_aria": "Escolher idioma", "steam_cta": "Steam",
-        "nav": {"home": "Planejador", "classes": "Classes", "build-planner": "Builds", "steam": "Steam", "contact": "Contato"},
+        "nav": {"home": "Planejador", "classes": "Classes", "build-planner": "Builds", "player-count": "Jogadores", "steam": "Steam", "contact": "Contato"},
         "footer": {"about": "Sobre", "contact": "Contato", "privacy-policy": "Privacidade", "terms-of-service": "Termos", "sitemap": "Mapa do site", "disclaimer": "Guia e planejador fan-made de Mistfall Hunter. Nao afiliado a Bellring Games, Skystone Games, Steam ou Valve."},
         "pages": {
             "home": {"title": "Classes de Mistfall Hunter e Builds", "description": "Compare classes de Mistfall Hunter, planeje builds solo ou em grupo e use um planejador fan-made.", "h1": "Classes de Mistfall Hunter e Builds", "kicker": "Atualizado em julho de 2026 - Steam / PC - ferramenta fan-made"},
@@ -248,7 +248,7 @@ LOCALE_OVERRIDES = {
     },
     "ko": {
         "site_name": "Mistfall Hunter 클래스", "brand": "Mistfall 클래스", "nav_aria": "기본 탐색", "footer_aria": "바닥글 탐색", "language_aria": "언어 선택", "steam_cta": "Steam",
-        "nav": {"home": "플래너", "classes": "클래스", "build-planner": "빌드", "steam": "Steam 정보", "contact": "문의"},
+        "nav": {"home": "플래너", "classes": "클래스", "build-planner": "빌드", "player-count": "플레이어 수", "steam": "Steam 정보", "contact": "문의"},
         "footer": {"about": "소개", "contact": "문의", "privacy-policy": "개인정보", "terms-of-service": "이용 약관", "sitemap": "사이트맵", "disclaimer": "Mistfall Hunter 팬 제작 클래스 가이드와 빌드 플래너입니다. Bellring Games, Skystone Games, Steam, Valve와 제휴하지 않습니다."},
         "pages": {
             "home": {"title": "Mistfall Hunter 클래스와 빌드", "description": "Mistfall Hunter 클래스를 비교하고 솔로와 파티 빌드를 계획하는 팬 제작 클래스 플래너입니다.", "h1": "Mistfall Hunter 클래스와 빌드", "kicker": "2026년 7월 업데이트 - Steam / PC - 팬 제작 도구"},
@@ -264,7 +264,7 @@ LOCALE_OVERRIDES = {
     },
     "it": {
         "site_name": "Classi Mistfall Hunter", "brand": "Mistfall Classi", "nav_aria": "Navigazione principale", "footer_aria": "Navigazione footer", "language_aria": "Scegli lingua", "steam_cta": "Steam",
-        "nav": {"home": "Planner", "classes": "Classi", "build-planner": "Build", "steam": "Steam", "contact": "Contatto"},
+        "nav": {"home": "Planner", "classes": "Classi", "build-planner": "Build", "player-count": "Giocatori", "steam": "Steam", "contact": "Contatto"},
         "footer": {"about": "Chi siamo", "contact": "Contatto", "privacy-policy": "Privacy", "terms-of-service": "Termini", "sitemap": "Mappa del sito", "disclaimer": "Guida e planner fan-made di Mistfall Hunter. Non affiliato a Bellring Games, Skystone Games, Steam o Valve."},
         "pages": {
             "home": {"title": "Classi Mistfall Hunter e Build", "description": "Confronta le classi Mistfall Hunter, pianifica build solo o squadra e usa un planner fan-made.", "h1": "Classi Mistfall Hunter e Build", "kicker": "Aggiornato a luglio 2026 - Steam / PC - strumento fan-made"},
@@ -521,14 +521,11 @@ PLAYER_COUNT_PAGE_DATA = {
     "en": {
         "page": {"title": "Mistfall Hunter Player Count: Steam Charts, Peaks, and Queue Timing", "description": "Check how to read Mistfall Hunter player count, Steam Charts and SteamDB peaks, with queue-timing tips for solo and squad runs.", "h1": "Mistfall Hunter Player Count: Steam Charts, Peaks, and Queue Timing", "kicker": "Player count guide"},
         "sections": [
-            {"type": "image", "src": "images/mistfall/mistfall-hunter-player-count-guide.webp", "alt": "Editorial chart illustration for reading Mistfall Hunter player count trends", "caption": "Generated editorial illustration: use it as a chart-reading guide, not as a live SteamDB screenshot."},
-            {"type": "rich", "title": "Quick answer: where to check the live player count", "paragraphs": ["The most useful Mistfall Hunter player count source is a live Steam chart, because the number changes by hour, region, sale timing, patch timing, and weekend activity. This page does not freeze a permanent player-count claim. Instead, it shows where to verify the current number and how to decide whether the chart is healthy enough for your next solo, duo, or squad session.", "Use SteamDB or Steam chart pages for the live count, then compare three signals: current players, 24-hour peak, and all-time peak. Current players tell you how busy the game is right now. The 24-hour peak tells you whether the day still has a reliable activity window. The all-time peak is historical context and should not be treated as today queue quality.", "For Mistfall Hunter specifically, player count matters because it is a PvPvE extraction ARPG. A thin activity window can affect matchmaking, market feel, squad availability, and how often you meet hostile players. A strong peak does not guarantee perfect queues in every region, but it is a better signal than review count alone." ]},
             {"type": "embed", "title": "Live SteamDB chart", "src": "https://steamdb.info/embed/?appid=3282300", "caption": "SteamDB embed for Mistfall Hunter app 3282300. SteamDB is a third-party tracking site; use it as a directional live chart, not an official publisher statement."},
+            {"type": "rich", "title": "Quick answer: where to check the live player count", "paragraphs": ["The most useful Mistfall Hunter player count source is a live Steam chart, because the number changes by hour, region, sale timing, patch timing, and weekend activity. This page does not freeze a permanent player-count claim. Instead, it shows where to verify the current number and how to decide whether the chart is healthy enough for your next solo, duo, or squad session.", "Use SteamDB or Steam chart pages for the live count, then compare three signals: current players, 24-hour peak, and all-time peak. Current players tell you how busy the game is right now. The 24-hour peak tells you whether the day still has a reliable activity window. The all-time peak is historical context and should not be treated as today queue quality.", "For Mistfall Hunter specifically, player count matters because it is a PvPvE extraction ARPG. A thin activity window can affect matchmaking, market feel, squad availability, and how often you meet hostile players. A strong peak does not guarantee perfect queues in every region, but it is a better signal than review count alone." ]},
             {"type": "table", "title": "How to read Mistfall Hunter Steam Charts", "headers": ["Signal", "What it means", "Decision use"], "rows": [["Current players", "People currently in-game on Steam", "Best for deciding whether to queue now."], ["24-hour peak", "The busiest recent daily window", "Best for planning play time if current count is low."], ["All-time peak", "Highest tracked Steam peak", "Useful for launch history, weak for today queue quality."], ["Patch or sale spike", "Temporary activity lift after news or discount", "Check whether the spike lasts beyond one day."]]},
-            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Official Steam header art for Mistfall Hunter used as source-identification media", "caption": "Official Steam media helps confirm that chart data belongs to Mistfall Hunter app 3282300."},
             {"type": "rich", "title": "What player count can and cannot tell you", "paragraphs": ["Player count is useful, but it is not a complete quality score. A game can have a modest player count and still feel good if matchmaking is regional, peak hours are predictable, and squads coordinate through Discord or friends. A large all-time peak can also be misleading if the launch surge faded or if a free demo created a temporary spike.", "For solo players, the practical question is whether the current window gives enough encounters without turning every route into a crowded brawl. For squads, the question is different: can your group find consistent sessions at your usual hour, and are enough players online to keep extraction decisions unpredictable? That is why this guide separates current count, daily peak, and trend direction instead of giving one simple verdict.", "If you are deciding whether to buy, combine player count with the price guide, official Steam page, recent reviews, and the class planner. A discount plus an active weekend peak is a stronger signal than a discount alone. If you already own the game, use the 24-hour peak to find better run windows before changing your class or build because of one quiet queue." ]},
             {"type": "table", "title": "Queue-timing checklist", "headers": ["Situation", "What to do", "Why"], "rows": [["Current count is low but daily peak is higher", "Play near the recent peak hour", "The community may be active in a different timezone."], ["Daily peak is falling for several days", "Wait for patch notes, sale news, or weekend activity", "One quiet hour is noise; several quiet days are a stronger trend."], ["You play with a fixed squad", "Check the chart at your normal session time", "Global peaks matter less than your own play window."], ["You are buying mainly for PvP", "Read recent reviews and watch activity after launch updates", "Population affects encounter density more than class choice does."]]},
-            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Official Mistfall Hunter Steam hero art used for the player-count guide", "caption": "Official Steam art is used as real game media; the chart illustration above is only explanatory."},
             {"type": "faq", "title": "Mistfall Hunter player count FAQ", "items": [["What is the best Mistfall Hunter player count source?", "Use a live Steam chart such as SteamDB for the current count, 24-hour peak, and historical peak. This fan page explains how to interpret those numbers rather than claiming they stay fixed."], ["Is Mistfall Hunter dead if the current player count is low?", "Not necessarily. Check the 24-hour peak, weekend pattern, patch timing, and your region. Extraction games can feel different by timezone and squad habits."], ["Should I buy Mistfall Hunter based on player count?", "Use player count as one signal. Also check Steam price, recent reviews, system fit, refund policy, and whether the classes match your play style."], ["Do Steam charts include console players?", "Mistfall Hunter is tracked here as a Steam/Windows game. Steam chart data should not be treated as a full cross-platform audience count unless the publisher confirms other platforms and tracking sources."], ["Why does the all-time peak matter less than current players?", "All-time peak shows launch or event history. Current players and 24-hour peak are more useful for deciding whether queues are active now."]]},
             {"type": "links", "title": "Verification sources", "items": [["SteamDB Mistfall Hunter charts", "https://steamdb.info/app/3282300/charts/", "Live current players, 24-hour peak, and historical Steam chart context.", "nofollow noopener"], ["Official Steam page", OFFICIAL_STEAM_URL, "Official app page for platform, release, publisher, and store facts."]]},
             {"type": "related", "title": "Related Mistfall Hunter guides", "items": [["Mistfall Hunter Steam info", "/steam/", "Verify the official store and platform facts."], ["Mistfall Hunter classes guide", "/classes/", "Pick a role after checking activity windows."], ["Mistfall Hunter build planner", "/build-planner/", "Match a class direction to your solo or squad plan."], ["Mistfall Hunter price guide", "/price/", "Use player-count trends together with price and refund checks before buying."]]},
@@ -654,14 +651,11 @@ def localized_player_count_data(locale):
         "it": {"embed_title": "Grafico SteamDB live", "embed_caption": "Embed SteamDB per Mistfall Hunter app 3282300. Usalo come grafico terzo indicativo, non come dichiarazione ufficiale.", "sources": "Fonti di verifica", "steamdb_desc": "Giocatori attuali, picco giornaliero e storico Steam.", "steam_desc": "Pagina ufficiale per piattaforma, uscita, editore e store.", "steam_info": "Info Steam Mistfall Hunter", "steam_info_desc": "Verifica dati ufficiali di piattaforma.", "classes": "Guida classi Mistfall Hunter", "classes_desc": "Scegli ruolo dopo gli orari attivi.", "planner": "Planner build Mistfall Hunter", "planner_desc": "Abbina classe a piano solo o squadra.", "price": "Prezzo Mistfall Hunter", "price_desc": "Unisci attivita, prezzo e rimborso."},
     }[locale]
     sections = [
-        {"type": "image", "src": "images/mistfall/mistfall-hunter-player-count-guide.webp", "alt": f"{copy['keyword']} trend reading editorial illustration", "caption": detail["image_caption"]},
-        {"type": "rich", "title": detail["quick_title"], "paragraphs": detail["quick"]},
         {"type": "embed", "title": common["embed_title"], "src": "https://steamdb.info/embed/?appid=3282300", "caption": common["embed_caption"]},
+        {"type": "rich", "title": detail["quick_title"], "paragraphs": detail["quick"]},
         {"type": "table", "title": detail["signals_title"], "headers": detail["signal_headers"], "rows": detail["signal_rows"]},
-        {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Official Mistfall Hunter Steam header image", "caption": detail["media_caption"]},
         {"type": "rich", "title": detail["limits_title"], "paragraphs": detail["limits"]},
         {"type": "table", "title": detail["queue_title"], "headers": detail["queue_headers"], "rows": detail["queue_rows"]},
-        {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Official Mistfall Hunter Steam hero art", "caption": detail["hero_caption"]},
         {"type": "faq", "title": copy["faq_title"], "items": detail["faq"]},
         {"type": "links", "title": common["sources"], "items": [["SteamDB Mistfall Hunter charts", "https://steamdb.info/app/3282300/charts/", common["steamdb_desc"], "nofollow noopener"], ["Official Steam page", OFFICIAL_STEAM_URL, common["steam_desc"]]]},
         {"type": "related", "title": copy["related_title"], "items": [[common["steam_info"], get_page_path("steam", locale), common["steam_info_desc"]], [common["classes"], get_page_path("classes", locale), common["classes_desc"]], [common["planner"], get_page_path("build-planner", locale), common["planner_desc"]], [common["price"], get_page_path("price", locale), common["price_desc"]]]},

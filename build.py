@@ -186,7 +186,6 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-steam-hero.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-steam-header.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
-        os.path.join("images", "mistfall", "mistfall-hunter-player-count-guide.webp"),
         "logo.png",
         "favicon.ico",
     ]

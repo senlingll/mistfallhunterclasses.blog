@@ -445,7 +445,12 @@ summary {
 }
 
 @media (max-width: 560px) {
-  h1 { font-size: 2rem; }
+  h1 {
+    font-size: clamp(1.65rem, 7.2vw, 1.9rem);
+    line-height: 1.12;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
   .hero,
   .section-pad,
   .simple-hero {
@@ -455,6 +460,11 @@ summary {
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
+  }
+  .simple-hero h1 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
   }
   .hero {
     display: block;
