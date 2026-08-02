@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 
+{% block schema %}
+{% if page_key == "player-count" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.h1 | tojson }},
+  "description": {{ page.description | tojson }},
+  "url": {{ canonical_url | tojson }},
+  "inLanguage": {{ locale_meta.html_lang | tojson }},
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ site_name | tojson }},
+    "url": {{ base_url | tojson }}
+  }
+}
+</script>
+{% for section in sections %}
+{% if section.type == "faq" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in section['items'] %}
+    {"@type":"Question","name":{{ faq[0] | tojson }},"acceptedAnswer":{"@type":"Answer","text":{{ faq[1] | tojson }}}}{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <main class="simple-main">
   <section class="simple-hero">
@@ -64,6 +99,7 @@
           <iframe src="{{ section.src }}" title="{{ section.title }}" loading="lazy" allowfullscreen></iframe>
         </div>
         <figcaption>{{ section.caption }}</figcaption>
+        <p><a class="btn secondary" href="{{ section.link_href }}" target="_blank" rel="nofollow noopener">{{ section.link_label }}</a></p>
       </figure>
     </section>
     {% elif section.type == "table" %}
