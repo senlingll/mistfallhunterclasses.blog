@@ -24,9 +24,12 @@ SteamDB chart interpretation, current-player signals, and queue-timing guidance.
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Review guide](https://mistfallhunterclasses.blog/review/)
+Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ## User Value
 The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.
 
 ## Latest Update Content
 ### [Multilingual planner update](https://mistfallhunterclasses.blog/)
-Updated in July 2026 to add English, Spanish, Japanese, French, German, Portuguese, Korean, and Italian routes with localized metadata, navigation, planner controls, class copy, FAQ content, sitemap entries, and language switching.
+Updated in August 2026 to add the multilingual Mistfall Hunter review guide, localized metadata, source links, FAQ content, related class resources, sitemap entries, and language switching.

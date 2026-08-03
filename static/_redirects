@@ -10,6 +10,7 @@
 /de/player-count /de/player-count/ 301
 /de/price /de/price/ 301
 /de/privacy-policy /de/privacy-policy/ 301
+/de/review /de/review/ 301
 /de/steam /de/steam/ 301
 /de/terms-of-service /de/terms-of-service/ 301
 /es /es/ 301
@@ -20,6 +21,7 @@
 /es/player-count /es/player-count/ 301
 /es/price /es/price/ 301
 /es/privacy-policy /es/privacy-policy/ 301
+/es/review /es/review/ 301
 /es/steam /es/steam/ 301
 /es/terms-of-service /es/terms-of-service/ 301
 /fr /fr/ 301
@@ -30,6 +32,7 @@
 /fr/player-count /fr/player-count/ 301
 /fr/price /fr/price/ 301
 /fr/privacy-policy /fr/privacy-policy/ 301
+/fr/review /fr/review/ 301
 /fr/steam /fr/steam/ 301
 /fr/terms-of-service /fr/terms-of-service/ 301
 /it /it/ 301
@@ -40,6 +43,7 @@
 /it/player-count /it/player-count/ 301
 /it/price /it/price/ 301
 /it/privacy-policy /it/privacy-policy/ 301
+/it/review /it/review/ 301
 /it/steam /it/steam/ 301
 /it/terms-of-service /it/terms-of-service/ 301
 /ja /ja/ 301
@@ -50,6 +54,7 @@
 /ja/player-count /ja/player-count/ 301
 /ja/price /ja/price/ 301
 /ja/privacy-policy /ja/privacy-policy/ 301
+/ja/review /ja/review/ 301
 /ja/steam /ja/steam/ 301
 /ja/terms-of-service /ja/terms-of-service/ 301
 /ko /ko/ 301
@@ -60,6 +65,7 @@
 /ko/player-count /ko/player-count/ 301
 /ko/price /ko/price/ 301
 /ko/privacy-policy /ko/privacy-policy/ 301
+/ko/review /ko/review/ 301
 /ko/steam /ko/steam/ 301
 /ko/terms-of-service /ko/terms-of-service/ 301
 /player-count /player-count/ 301
@@ -73,7 +79,9 @@
 /pt/player-count /pt/player-count/ 301
 /pt/price /pt/price/ 301
 /pt/privacy-policy /pt/privacy-policy/ 301
+/pt/review /pt/review/ 301
 /pt/steam /pt/steam/ 301
 /pt/terms-of-service /pt/terms-of-service/ 301
+/review /review/ 301
 /steam /steam/ 301
 /terms-of-service /terms-of-service/ 301

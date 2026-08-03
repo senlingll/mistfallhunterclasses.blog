@@ -9,6 +9,7 @@
 - [Price guide](https://mistfallhunterclasses.blog/price/): Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 - [Player count guide](https://mistfallhunterclasses.blog/player-count/): SteamDB chart interpretation, current-player signals, and queue-timing guidance.
 - [Steam info](https://mistfallhunterclasses.blog/steam/): Official Steam facts and safe source links.
+- [Review guide](https://mistfallhunterclasses.blog/review/): Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs.
 
 ## Common Resources
 - [About](https://mistfallhunterclasses.blog/about/): Editorial policy and source handling.
@@ -17,4 +18,4 @@
 - [Terms of Service](https://mistfallhunterclasses.blog/terms-of-service/): Fan-site disclaimer and usage terms.
 
 ## Latest Updates
-- [Main planner](https://mistfallhunterclasses.blog/): Updated in July 2026 with multilingual routes, class planner copy, sitemap, and language switching.
+- [Review guide](https://mistfallhunterclasses.blog/review/): Added in August 2026 with an independent purchase decision guide, localized review routes, source links, and related class resources.

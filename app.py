@@ -14,7 +14,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01"}
+PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -35,6 +35,7 @@ PAGE_ORDER = [
     "price",
     "player-count",
     "steam",
+    "review",
     "about",
     "contact",
     "privacy-policy",
@@ -48,6 +49,7 @@ PAGE_SLUGS = {
     "price": "price",
     "player-count": "player-count",
     "steam": "steam",
+    "review": "review",
     "about": "about",
     "contact": "contact",
     "privacy-policy": "privacy-policy",
@@ -72,6 +74,17 @@ KEYWORD_MAP = {
     "pt": {"market": "Brazil", "primary": "classes de Mistfall Hunter", "related": ["guia de classes Mistfall Hunter", "melhor classe Mistfall Hunter", "planejador de build Mistfall Hunter", "Mistfall Hunter Steam"], "rejected": ["codigos Mistfall Hunter as priority"], "evidence": "Brazilian Portuguese game queries usually keep the title and localize classes, guide, best class, and build.", "confidence": "medium"},
     "ko": {"market": "Korea", "primary": "Mistfall Hunter 클래스", "related": ["Mistfall Hunter 빌드", "Mistfall Hunter 클래스 가이드", "Mistfall Hunter 추천 클래스", "Mistfall Hunter Steam"], "rejected": ["Mistfall Hunter 코드 as primary page"], "evidence": "Korean game searches commonly keep the title and use 클래스, 빌드, 가이드, and 추천.", "confidence": "medium"},
     "it": {"market": "Italy", "primary": "classi Mistfall Hunter", "related": ["guida classi Mistfall Hunter", "migliore classe Mistfall Hunter", "build Mistfall Hunter", "Mistfall Hunter Steam"], "rejected": ["codici Mistfall Hunter as homepage priority"], "evidence": "Italian game search wording commonly keeps the title and uses classi, guida, migliore classe, and build.", "confidence": "medium"},
+}
+
+REVIEW_KEYWORD_MAP = {
+    "en": {"market": "US", "primary": "Mistfall Hunter review", "related": ["is Mistfall Hunter worth it", "Mistfall Hunter price", "Mistfall Hunter player count", "Mistfall Hunter classes"], "rejected": ["Mistfall Hunter character creation as a standalone page; fold into the review because its global window volume was 400."], "evidence": "Similarweb global phrase match: window volume 11,420, difficulty 19, informational intent, 2026-08-03; question tab returned no rows.", "confidence": "medium"},
+    "es": {"market": "US / Latin America", "primary": "reseña de Mistfall Hunter", "related": ["vale la pena Mistfall Hunter", "precio de Mistfall Hunter", "clases de Mistfall Hunter", "jugadores de Mistfall Hunter"], "rejected": ["Mistfall Hunter Test as a literal German-only candidate"], "evidence": "Similarweb localized query returned no rows in all three tabs; wording follows neutral Latin-American game-search usage and the validated global English review intent.", "confidence": "low"},
+    "ja": {"market": "Japan", "primary": "Mistfall Hunter 評価", "related": ["Mistfall Hunter レビュー", "Mistfall Hunter 感想", "Mistfall Hunter 価格", "Mistfall Hunter クラス"], "rejected": ["Mistfall Hunter レビュー as primary because the phrase tab had 0 window volume; it remains a supporting variant."], "evidence": "Similarweb related tab returned Mistfall Hunter 評価 with window volume 100 and difficulty 17; the phrase tab for レビュー had 0 window volume and average volume 82.", "confidence": "medium"},
+    "fr": {"market": "France", "primary": "avis Mistfall Hunter", "related": ["Mistfall Hunter vaut-il le coup", "prix Mistfall Hunter", "classes Mistfall Hunter", "joueurs Mistfall Hunter"], "rejected": ["review Mistfall Hunter as the only French wording"], "evidence": "Similarweb localized query returned no rows in all three tabs; avis is the natural French review intent and is bounded by the validated global English review cluster.", "confidence": "low"},
+    "de": {"market": "Germany", "primary": "Mistfall Hunter Review", "related": ["lohnt sich Mistfall Hunter", "Mistfall Hunter Preis", "Mistfall Hunter Klassen", "Mistfall Hunter Spielerzahl"], "rejected": ["Mistfall Hunter Test as an isolated primary; Similarweb returned playtest-related phrases rather than a clean review cluster."], "evidence": "Similarweb German Test query was polluted by playtest terms; the global review phrase remains the cleanest validated intent, while Review is retained as common German gaming usage.", "confidence": "low"},
+    "pt": {"market": "Brazil", "primary": "análise de Mistfall Hunter", "related": ["Mistfall Hunter vale a pena", "preço de Mistfall Hunter", "classes de Mistfall Hunter", "jogadores de Mistfall Hunter"], "rejected": ["review Mistfall Hunter as the only localized wording"], "evidence": "Similarweb localized query returned no rows in all three tabs; análise de is the natural Brazilian Portuguese review intent and is bounded by the global cluster.", "confidence": "low"},
+    "ko": {"market": "Korea", "primary": "Mistfall Hunter 리뷰", "related": ["Mistfall Hunter 할 만한가", "Mistfall Hunter 가격", "Mistfall Hunter 클래스", "Mistfall Hunter 플레이어 수"], "rejected": ["Mistfall Hunter 평가 as the primary because local Similarweb coverage was empty"], "evidence": "Similarweb Korean query returned no rows in all three tabs; 리뷰 is the established Korean game-review wording and is bounded by the validated global review intent.", "confidence": "low"},
+    "it": {"market": "Italy", "primary": "recensione Mistfall Hunter", "related": ["Mistfall Hunter vale la pena", "prezzo Mistfall Hunter", "classi Mistfall Hunter", "giocatori Mistfall Hunter"], "rejected": ["review Mistfall Hunter as the only Italian wording"], "evidence": "Similarweb localized query returned no rows in all three tabs; recensione is the natural Italian review intent and is bounded by the validated global review cluster.", "confidence": "low"},
 }
 
 TEXT = {
@@ -711,7 +724,672 @@ def get_page_path(page_key, locale="en"):
     return f"/{locale}/" if not slug else f"/{locale}/{slug}/"
 
 
+REVIEW_PAGE_DATA = {
+    "en": {
+        "page": {
+            "title": "Mistfall Hunter Review: Is It Worth Buying on Steam?",
+            "description": "This practical Mistfall Hunter review weighs the extraction loop, class learning curve, Steam price, player activity, and who should buy.",
+            "h1": "Mistfall Hunter Review: Is It Worth Buying on Steam?",
+            "kicker": "Mistfall Hunter review | Updated August 2026",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Editorial illustration of a Mistfall Hunter reviewing an extraction route", "caption": "Editorial illustration generated for this fan-made review; it is not an official gameplay screenshot."},
+            {"type": "rich", "title": "Quick verdict: a promising extraction ARPG for the right player", "paragraphs": [
+                "Our Mistfall Hunter review verdict is conditional: the game is worth considering if you enjoy extraction PvPvE, repeated runs, risky gear decisions, and learning a role through play. It is not an easy recommendation for someone looking for a short single-player campaign or a fixed, low-stress progression path. The useful question is not whether the game is universally good. It is whether its loop gives you a reason to return after a successful extraction and a reason to try again after losing a kit.",
+                "Mistfall Hunter has a strong starting point for players who like making decisions under pressure. You choose a route, read danger, decide when to fight, and weigh the value of staying longer against the value of leaving with what you have. That structure makes class choice matter, because a forgiving frontline role changes the kinds of mistakes you can survive while a burst or control role asks for cleaner timing.",
+                "The main caution is freshness. Early advice can change as players discover routes, balance shifts, and the Steam community forms a clearer view of matchmaking and performance. Treat this as an independent decision guide, not an official tier list or a promise of a permanent meta. Check the live Steam page, recent reviews, and your own PC compatibility before paying."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter review at a glance", "headers": ["Question", "Review answer", "Why it matters"], "rows": [
+                ["What kind of game is it?", "Extraction PvPvE ARPG", "Runs combine combat, route choices, loot risk, and an extraction decision."],
+                ["Who is the best fit?", "Players who enjoy repeatable high-stakes runs", "The core appeal comes from decisions and learning, not a one-time story finish."],
+                ["Is it beginner-friendly?", "Yes with the right class, but not frictionless", "Mercenary or Withered Knight can reduce early punishment while you learn the loop."],
+                ["Should you buy immediately?", "Only after checking live Steam facts", "Price, reviews, requirements, and activity can change after launch."],
+                ["What is this site's stance?", "Independent fan guidance", "Class recommendations are editorial and separate from official Steam facts."]
+            ]},
+            {"type": "rich", "title": "What the Mistfall Hunter game loop asks of you", "paragraphs": [
+                "An extraction game asks you to manage an incomplete plan. You enter with a goal, but the route, enemies, loot, and other players can force a new decision. The most valuable skill is often knowing when a small gain is enough. Staying for one more chest or fight may improve the run, but it can also turn a safe exit into a lost loadout. That tension gives the game its identity and also explains why the first hours may feel less comfortable than a conventional action RPG.",
+                "The loop rewards information as much as mechanical execution. You need to recognize when a fight is favorable, when your class has its strongest window, and when your squad has already spent the resources needed to continue. A good build therefore is not only a damage list. It is a plan for positioning, recovery, disengagement, and the kind of risk your group can communicate clearly.",
+                "Solo and squad play can feel like different products. Solo runs place more weight on self-recovery, information, and mistakes you can correct alone. A coordinated squad can turn control, anchoring, and scouting into shared safety, but it also creates a communication burden. Before judging the game, play enough sessions in the format you actually intend to use. A class or mode that feels awkward in a random group may feel excellent with friends."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Official Steam artwork showing Mistfall Hunter characters in a snowy battle", "caption": "Official Steam artwork used to identify the game and set the review's visual context; it is not a performance benchmark."},
+            {"type": "rich", "title": "Classes and the learning curve", "paragraphs": [
+                "The class system is one of the site's strongest reasons to review Mistfall Hunter through player fit rather than a single winner. Mercenary offers a clearer frontline pattern and is a sensible first stop for players who need room to make mistakes. Withered Knight adds durability and space control for players who want to anchor a group. These choices may not produce the biggest highlight moments, but they make the game's decision language easier to read.",
+                "Blackarrow, Shadowstrix, and Sorcerer ask for more deliberate timing. Blackarrow rewards range, scouting, and choosing when to apply pressure. Shadowstrix can create strong ambush and disengage moments, but its mistakes are exposed quickly. Sorcerer offers burst and area control while asking the player to understand positioning and cooldown windows. Seer sits on the utility side of the spectrum: its value rises when information, control, and safer squad calls matter more than personal damage.",
+                "For a first session, use the class guide and build planner as a starting map, not a command. Pick one job you can describe in a sentence, then test whether the class actually helps you survive and communicate. If two recommendations are close, treat them as a tie and choose the role your squad lacks. That approach remains useful even when a future patch changes individual values."
+            ]},
+            {"type": "table", "title": "Who should start with which class?", "headers": ["Player need", "Good starting direction", "Tradeoff to understand"], "rows": [
+                ["First solo sessions", "Mercenary", "Safer mistakes, but less burst spectacle."],
+                ["Squad anchor", "Withered Knight", "You trade some damage for space and durability."],
+                ["Range and scouting", "Blackarrow", "Positioning and patience matter more than face-tanking."],
+                ["Aggressive flanks", "Shadowstrix", "High payoff comes with a sharper punishment curve."],
+                ["Area pressure or utility", "Sorcerer or Seer", "Choose between burst control and team information."]
+            ]},
+            {"type": "rich", "title": "Strengths, tradeoffs, and what to verify", "paragraphs": [
+                "The strongest part of Mistfall Hunter is the decision density. Even a short run can ask you to compare time, noise, equipment value, enemy pressure, and the needs of the next fight. That makes a successful extraction feel earned rather than automatic. The class planner supports this strength because it frames a role around solo, duo, or squad conditions instead of pretending that one score fits every player.",
+                "The tradeoff is that the game can feel demanding before its habits become familiar. If you dislike losing progress, cautious exits, or repeating a route to improve your read of it, the central loop may feel like friction. If you enjoy studying patterns and turning a failed run into a better plan, the same friction becomes the reason to return. Neither response is a skill issue; it is a fit question.",
+                "Before buying, verify four live details: the current Steam price in your region, recent user-review direction, PC requirements and performance reports, and the player activity during your normal play time. The existing price and player-count guides cover those checks in more detail. The review should help you decide what to inspect, not replace the official store page or current community evidence."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Official Mistfall Hunter Steam header in a dark forest", "caption": "Official Steam header used as a second identification reference; the review does not treat store art as gameplay evidence."},
+            {"type": "rich", "title": "How to use this review before buying", "paragraphs": [
+                "Start with the format you will actually play. If you will mostly queue solo, read the solo sections of the class guide and use a forgiving recommendation as your baseline. If you will play with friends, compare the jobs your group already has and use the build planner to test a missing role. This avoids buying for an imagined meta while ignoring the way your own group communicates.",
+                "Next, separate stable facts from changing signals. Developer, publisher, platform, and store identity belong to the official Steam listing. Price, reviews, queue feel, and class strength are time-sensitive. A review can explain how to interpret those signals, but it should date its assumptions and avoid turning one early impression into a permanent verdict.",
+                "The short conclusion is simple: buy when the extraction loop itself sounds appealing, your system is supported, and the live Steam evidence matches your expectations. Wait when you are only reacting to launch momentum, a discount countdown, or a claimed best class. That decision rule is more durable than a numeric rating and leaves room for the game to improve or change."
+            ]},
+            {"type": "table", "title": "Buy now, wait, or skip?", "headers": ["Your situation", "Practical choice", "Reason"], "rows": [
+                ["You already enjoy extraction PvPvE", "Consider buying after live checks", "The core loop is likely aligned with your taste."],
+                ["You want a relaxed campaign", "Wait or skip", "Loss risk and repeated runs may feel like the wrong structure."],
+                ["You have a fixed squad", "Check class coverage first", "Role fit can turn the same game into a better group experience."],
+                ["Your PC or region is uncertain", "Wait", "Confirm requirements, regional price, and current reviews."],
+                ["You are chasing a temporary meta", "Do not rush", "Early class advice can move with patches and new evidence."]
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter review FAQ", "items": [
+                ["Is Mistfall Hunter worth buying?", "It is worth considering when you enjoy extraction PvPvE, repeatable runs, and making risk decisions under pressure. Check the live Steam price, requirements, recent reviews, and player activity before buying."],
+                ["Is Mistfall Hunter good for solo players?", "It can be, but solo places more weight on self-recovery, information, and forgiving class choices. Mercenary is a practical starting point; test the class before treating the recommendation as final."],
+                ["What is the best class for a new player?", "Mercenary is the clearest low-risk starting direction in this site's model. Withered Knight is another sensible option for players who prefer a durable squad role."],
+                ["Does this review give an official score?", "No. It is an independent fan review and decision guide. A fixed score would hide how much the answer depends on mode, class preference, PC setup, and current balance."],
+                ["Where should I check current price and player count?", "Use the official Steam listing for the regional price and product facts, then use a live SteamDB chart as a third-party activity signal. The site's price and player-count guides explain what to compare."],
+                ["Will this review stay accurate after patches?", "The decision framework should remain useful, but class strength, performance, queue timing, and value can change. Recheck official patch information and recent player evidence before relying on old details."]
+            ]},
+            {"type": "links", "title": "Review sources and verification", "items": [
+                ["Official Mistfall Hunter Steam page", OFFICIAL_STEAM_URL, "Product identity, platform, price, requirements, reviews, and current store state.", "noopener"],
+                ["SteamDB Mistfall Hunter charts", STEAMDB_CHARTS_URL, "Third-party current-player and peak context; interpret as directional activity data.", "nofollow noopener"],
+                ["Steam refund policy", "https://store.steampowered.com/steam_refunds/", "Check the current platform rules before paying.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Continue with related Mistfall Hunter guides", "items": [
+                ["Mistfall Hunter classes guide", get_page_path("classes", "en"), "Compare role fit, risk, and beginner directions."],
+                ["Mistfall Hunter build planner", get_page_path("build-planner", "en"), "Match a class direction to solo, duo, or squad play."],
+                ["Mistfall Hunter player count guide", get_page_path("player-count", "en"), "Read SteamDB signals and queue timing without overclaiming."],
+                ["Mistfall Hunter price guide", get_page_path("price", "en"), "Check price snapshots, discounts, and buyer cautions."],
+                ["Mistfall Hunter Steam info", get_page_path("steam", "en"), "Verify official platform and release facts."]
+            ]}
+        ]
+    }
+}
+
+
+REVIEW_PAGE_DATA.update({
+    "es": {
+        "page": {
+            "title": "Reseña de Mistfall Hunter: ¿vale la pena comprarlo?",
+            "description": "Reseña práctica de Mistfall Hunter sobre el bucle de extracción, clases, precio de Steam, actividad y quién debería comprar.",
+            "h1": "Reseña de Mistfall Hunter: ¿vale la pena comprarlo?",
+            "kicker": "Reseña de Mistfall Hunter | Actualizada en agosto de 2026",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Ilustración editorial de una ruta de extracción de Mistfall Hunter", "caption": "Ilustración editorial generada para esta reseña hecha por fans; no es una captura oficial del juego."},
+            {"type": "rich", "title": "Veredicto rápido: buen juego de extracción para el jugador adecuado", "paragraphs": [
+                "Nuestra reseña de Mistfall Hunter llega a un veredicto condicionado: merece consideración si te gustan el PvPvE de extracción, las partidas repetibles, el riesgo de perder equipo y aprender un rol jugando. No es una recomendación automática para quien busca una campaña corta y relajada o una progresión sin retrocesos. La pregunta útil no es si es bueno para todo el mundo, sino si sus decisiones de ruta, combate y extracción te dan motivos para volver.",
+                "El juego funciona mejor cuando disfrutas decidir bajo presión. Entras con un plan, lees el peligro, eliges cuándo pelear y comparas el valor de seguir explorando con el valor de salir con lo que ya tienes. Por eso las clases importan: un rol frontal puede perdonar un fallo que un personaje de ráfaga no perdona, mientras que apoyo y control exigen comunicación más limpia.",
+                "La principal cautela es que se trata de un juego reciente. Las rutas, el equilibrio, el rendimiento y la sensación de encontrar partida pueden cambiar mientras la comunidad aprende. Usa esta página como guía independiente, no como tier list oficial. Antes de pagar, revisa la página de Steam, las reseñas recientes, los requisitos de tu PC y la actividad en tu horario normal."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter: resumen de la reseña", "headers": ["Pregunta", "Respuesta", "Por qué importa"], "rows": [
+                ["¿Qué tipo de juego es?", "ARPG PvPvE de extracción", "Cada partida mezcla combate, decisiones de ruta, botín y una salida con riesgo."],
+                ["¿Para quién encaja?", "Para quien disfruta partidas tensas y repetibles", "La gracia está en aprender y decidir, no solo en terminar una historia."],
+                ["¿Es fácil para empezar?", "Sí con una clase adecuada, pero no sin fricción", "Mercenary o Withered Knight dan más margen mientras aprendes."],
+                ["¿Comprar ya?", "Solo después de revisar Steam en directo", "Precio, reseñas, requisitos y actividad pueden cambiar."],
+                ["¿Qué postura tiene esta web?", "Guía independiente hecha por fans", "Las recomendaciones son editoriales y no datos oficiales."]
+            ]},
+            {"type": "rich", "title": "Qué te pide el bucle de juego", "paragraphs": [
+                "Un juego de extracción empieza con un plan incompleto. La ruta, los enemigos, el botín y otros jugadores obligan a cambiarlo. A menudo la habilidad más importante es reconocer cuándo una ganancia pequeña ya es suficiente. Quedarte por otro cofre puede mejorar la partida, pero también convertir una salida segura en una pérdida de equipo. Esa tensión explica tanto el atractivo como la incomodidad de las primeras horas.",
+                "El bucle premia la información además de la ejecución. Debes reconocer qué pelea conviene, cuándo tu clase tiene su mejor ventana y cuándo el grupo ya gastó recursos para continuar. Una build, por tanto, no es solo daño: también es posición, recuperación, retirada y un nivel de riesgo que el equipo pueda comunicar.",
+                "Solo y escuadrón pueden sentirse como experiencias distintas. En solo pesan la recuperación y la información que puedes conseguir por tu cuenta. En grupo, el control, la exploración y un ancla resistente crean seguridad compartida, pero exigen coordinación. Juega varias sesiones en el formato que realmente usarás antes de decidir si el juego te encaja."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Arte oficial de Steam de Mistfall Hunter durante una batalla nevada", "caption": "Arte oficial de Steam para identificar el juego y contextualizar la reseña; no demuestra rendimiento."},
+            {"type": "rich", "title": "Clases y curva de aprendizaje", "paragraphs": [
+                "La forma más útil de valorar las clases de Mistfall Hunter es pensar en el jugador y la partida, no en un ganador universal. Mercenary ofrece una línea frontal fácil de leer y es un buen primer paso si necesitas margen para equivocarte. Withered Knight añade resistencia y control de espacio para quien quiere anclar al equipo. Quizá no producen los momentos más llamativos, pero hacen más comprensible el lenguaje del juego.",
+                "Blackarrow, Shadowstrix y Sorcerer piden un timing más deliberado. Blackarrow premia distancia, exploración y presión paciente. Shadowstrix puede crear emboscadas fuertes, pero castiga pronto un mal cálculo. Sorcerer aporta ráfaga y control de área mientras exige entender posición y enfriamientos. Seer se acerca al lado de utilidad: sube de valor cuando la información y las decisiones seguras del escuadrón importan más que el daño individual.",
+                "Para tu primera sesión, usa la guía de clases y el planificador como mapa, no como orden. Elige un trabajo que puedas explicar en una frase y comprueba si realmente te ayuda a sobrevivir y comunicarte. Si dos resultados quedan cerca, trátalos como empate y cubre el rol que falta. Así la recomendación sigue siendo útil aunque un parche cambie valores concretos."
+            ]},
+            {"type": "table", "title": "Dirección inicial según tu necesidad", "headers": ["Necesidad", "Dirección", "Coste o riesgo"], "rows": [
+                ["Primeras partidas en solo", "Mercenary", "Perdona más fallos, pero tiene menos ráfaga."],
+                ["Ancla del escuadrón", "Withered Knight", "Cambia parte del daño por espacio y resistencia."],
+                ["Distancia y exploración", "Blackarrow", "La posición y la paciencia son esenciales."],
+                ["Flancos agresivos", "Shadowstrix", "Mayor recompensa con curva de castigo más dura."],
+                ["Área o utilidad", "Sorcerer o Seer", "Elige entre control explosivo e información para el grupo."]
+            ]},
+            {"type": "rich", "title": "Puntos fuertes, límites y comprobaciones", "paragraphs": [
+                "La mayor fortaleza de Mistfall Hunter es la densidad de decisiones. Una partida corta puede pedirte comparar tiempo, ruido, valor del equipo, presión enemiga y necesidades de la siguiente pelea. Una extracción exitosa se siente ganada porque no todo está automatizado. El planificador de clases refuerza esa idea al separar solo, dúo y escuadrón en vez de imponer una puntuación universal.",
+                "El coste es que el juego puede sentirse exigente antes de que sus hábitos sean familiares. Si no te gustan perder progreso, salir con poco o repetir una ruta para leerla mejor, el bucle puede parecer fricción. Si disfrutas convertir una partida fallida en un plan mejor, la misma fricción se convierte en motivo para volver. Es una cuestión de encaje, no de habilidad.",
+                "Antes de comprar, comprueba cuatro datos que cambian: precio local en Steam, dirección de las reseñas recientes, requisitos y rendimiento en tu PC, y actividad en tu horario. Las guías de precio y jugadores de esta web explican esos controles. Esta reseña te dice qué mirar, pero no sustituye la tienda oficial ni la evidencia actual de jugadores."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Cabecera oficial de Mistfall Hunter en Steam", "caption": "Cabecera oficial usada como segunda referencia de identidad; no se presenta como prueba de jugabilidad."},
+            {"type": "rich", "title": "Cómo usar esta reseña antes de comprar", "paragraphs": [
+                "Empieza por el formato que jugarás de verdad. Si vas a jugar solo, lee las partes de solo de la guía de clases y toma una recomendación permisiva como base. Si jugarás con amigos, revisa qué roles ya tiene el grupo y prueba el hueco con el planificador. Así no compras persiguiendo una meta imaginaria que no coincide con la forma en que jugáis.",
+                "Después separa hechos estables de señales cambiantes. El nombre del producto, la plataforma, el desarrollador y la tienda pertenecen a Steam oficial. Precio, reseñas, colas y fuerza de las clases son temporales. Una reseña puede explicar cómo leer esas señales, pero debe fechar sus supuestos y no convertir una primera impresión en una sentencia permanente.",
+                "La conclusión corta es: compra cuando el bucle de extracción te atraiga, tu PC sea compatible y la evidencia viva de Steam coincida con tus expectativas. Espera si solo reaccionas al impulso de lanzamiento, a una cuenta atrás de descuento o a una supuesta mejor clase. Esa regla dura más que una nota numérica y deja espacio para futuros cambios."
+            ]},
+            {"type": "table", "title": "¿Comprar, esperar o pasar?", "headers": ["Situación", "Decisión práctica", "Motivo"], "rows": [
+                ["Te gusta el PvPvE de extracción", "Considera comprar tras comprobar datos", "El bucle central encaja con tus gustos."],
+                ["Quieres una campaña relajada", "Espera o pasa", "El riesgo de pérdida puede no encajarte."],
+                ["Tienes un escuadrón fijo", "Comprueba la cobertura de roles", "La clase puede mejorar la experiencia del grupo."],
+                ["Tu PC o región son inciertos", "Espera", "Confirma requisitos, precio y reseñas actuales."],
+                ["Solo persigues la meta del momento", "No te apresures", "Los parches pueden cambiar las recomendaciones."]
+            ]},
+            {"type": "faq", "title": "Preguntas frecuentes de la reseña de Mistfall Hunter", "items": [
+                ["¿Vale la pena comprar Mistfall Hunter?", "Puede valer la pena si te gustan el PvPvE de extracción, las partidas repetibles y decidir bajo presión. Comprueba precio, requisitos, reseñas recientes y actividad en Steam antes de pagar."],
+                ["¿Es bueno para jugar en solo?", "Puede serlo, pero el solo exige más recuperación, información y una clase permisiva. Mercenary es una dirección práctica de inicio; pruébala antes de tomarla como definitiva."],
+                ["¿Cuál es la mejor clase para empezar?", "Mercenary es la dirección de bajo riesgo más clara en el modelo de esta web. Withered Knight también es razonable si prefieres un rol resistente en escuadrón."],
+                ["¿La reseña tiene una puntuación oficial?", "No. Es una reseña independiente hecha por fans y una guía de decisión. Una nota fija ocultaría cuánto depende la respuesta del modo, la clase, el PC y el equilibrio actual."],
+                ["¿Dónde miro el precio y los jugadores actuales?", "Usa Steam oficial para el precio regional y los datos del producto. Después consulta un gráfico de SteamDB como señal externa de actividad; las guías de precio y jugadores explican la comparación."],
+                ["¿Seguirá siendo válida después de un parche?", "El marco de decisión debería servir, pero fuerza de clases, rendimiento, colas y valor pueden cambiar. Revisa notas oficiales y evidencia reciente antes de confiar en detalles antiguos."]
+            ]},
+            {"type": "links", "title": "Fuentes y comprobaciones", "items": [
+                ["Página oficial de Mistfall Hunter en Steam", OFFICIAL_STEAM_URL, "Identidad, plataforma, precio, requisitos, reseñas y estado actual.", "noopener"],
+                ["Gráficos de Mistfall Hunter en SteamDB", STEAMDB_CHARTS_URL, "Contexto de jugadores actuales y picos; úsalo como señal direccional.", "nofollow noopener"],
+                ["Política de reembolsos de Steam", "https://store.steampowered.com/steam_refunds/", "Consulta las reglas actuales antes de pagar.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Más guías relacionadas de Mistfall Hunter", "items": [
+                ["Guía de clases de Mistfall Hunter", get_page_path("classes", "es"), "Compara roles, riesgo y direcciones para principiantes."],
+                ["Planificador de builds de Mistfall Hunter", get_page_path("build-planner", "es"), "Une una clase con juego solo, dúo o escuadrón."],
+                ["Guía de jugadores de Mistfall Hunter", get_page_path("player-count", "es"), "Lee señales de SteamDB y horarios de cola."],
+                ["Guía de precio de Mistfall Hunter", get_page_path("price", "es"), "Revisa precio, descuentos y cautelas de compra."],
+                ["Información de Mistfall Hunter en Steam", get_page_path("steam", "es"), "Comprueba datos oficiales de plataforma y lanzamiento."]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "ja": {
+        "page": {
+            "title": "Mistfall Hunter 評価レビュー：Steamで買う価値はある？",
+            "description": "Mistfall Hunter 評価を、脱出ループ、クラスの学習曲線、Steam価格、人口、購入前の確認点から整理します。",
+            "h1": "Mistfall Hunter 評価レビュー：Steamで買う価値はある？",
+            "kicker": "Mistfall Hunter 評価 | 2026年8月更新",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Mistfall Hunterの脱出ルートを描いた編集用イラスト", "caption": "このファンレビューのために生成した編集用イラストです。公式ゲーム画面ではありません。"},
+            {"type": "rich", "title": "先に結論：合う人には魅力的な脱出ARPG", "paragraphs": [
+                "Mistfall Hunter 評価の結論は条件付きです。脱出PvPvE、繰り返すラン、装備を失うリスク、役割をプレイしながら覚える体験が好きなら、購入候補になります。一方、短いソロキャンペーンや、失敗しても進行が戻らないゲームを探しているなら、急いで買う必要はありません。重要なのは、全員におすすめできるかではなく、脱出するたびにもう一度試したくなる判断があるかです。",
+                "このゲームは、プレッシャーの中で決めることを楽しめる人に向きます。ルートを選び、危険を読み、戦うか避けるかを決め、今持っている装備で帰るか探索を続けるかを比べます。だからクラス選択にも意味があります。前線役はミスを回収しやすく、瞬間火力や制御役は位置取りとタイミングをより正確に要求します。",
+                "注意点は発売直後の新しさです。ルート、バランス、動作、マッチングの感覚はコミュニティの成長とともに変わります。このページは公式ティアリストではなく、独立した購入判断ガイドとして読んでください。支払う前にSteam公式ページ、最近のレビュー、PC環境、普段遊ぶ時間帯の人口を確認しましょう。"
+            ]},
+            {"type": "table", "title": "Mistfall Hunter 評価の要点", "headers": ["質問", "レビューの答え", "判断材料"], "rows": [
+                ["どんなゲーム？", "脱出PvPvE ARPG", "戦闘、ルート、装備リスク、脱出判断を1ランで行います。"],
+                ["誰に向く？", "緊張感のある反復ランが好きな人", "一度の物語完了より、判断と学習が中心です。"],
+                ["初心者向き？", "クラスを選べば始めやすいが簡単ではない", "MercenaryやWithered Knightは学習中の余裕を作ります。"],
+                ["すぐ買うべき？", "Steamの最新情報を確認してから", "価格、レビュー、必要環境、人口は変化します。"],
+                ["このサイトの立場は？", "独立したファンガイド", "クラス評価は編集上の目安で、公式情報とは分けています。"]
+            ]},
+            {"type": "rich", "title": "脱出ループで求められる判断", "paragraphs": [
+                "脱出ゲームでは最初から完璧な計画を持てません。ルート、敵、戦利品、他プレイヤーによって計画を変える必要があります。大切なのは、少しの利益で帰るべき時を知ることです。もう一つの宝箱や戦闘は成果を増やしますが、安全な脱出を装備の全損に変えることもあります。この緊張感が個性であり、一般的なアクションRPGより最初の数時間が難しく感じられる理由です。",
+                "ループでは操作技術だけでなく情報が重要です。どの戦闘が有利か、クラスの強い時間帯はいつか、分隊が継続に必要な資源を使い切っていないかを見ます。ビルドはダメージ表だけではありません。位置取り、回復、離脱、そしてチームが共有できるリスクの範囲まで含めた方針です。",
+                "ソロと分隊は別のゲームのように感じる場合があります。ソロでは自己回復と情報収集、失敗からの立て直しが中心です。連携分隊では制御、偵察、アンカー役が安全を共有できますが、意思疎通が必要です。購入判断の前に、実際に遊ぶ形式で何度かランを試してください。"
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "雪上で戦うMistfall Hunterの公式Steamアート", "caption": "ゲームの正しいストア情報を確認するための公式Steam素材です。性能評価の根拠ではありません。"},
+            {"type": "rich", "title": "クラスと学習曲線", "paragraphs": [
+                "クラスの評価は、万能な順位ではなく、プレイヤーとランの条件で見るのが実用的です。Mercenaryは前線の仕事が読みやすく、ミスを許容してほしい初心者に向きます。Withered Knightは耐久と空間制御で分隊を支える方向です。派手な瞬間火力は少なくても、ゲームの判断を理解しやすい入口になります。",
+                "Blackarrow、Shadowstrix、Sorcererはより正確なタイミングを求めます。Blackarrowは距離、偵察、有利な戦闘選択を活かします。Shadowstrixは奇襲と離脱が強い一方、位置を誤るとすぐに弱点が出ます。Sorcererは瞬間火力と範囲制御を持ち、Seerは個人火力より情報、補助、分隊の安全な判断で価値が上がります。",
+                "最初はクラスガイドとビルドプランナーを地図として使い、命令として扱わないでください。自分が説明できる役割を一つ選び、生存と意思疎通に本当に役立つかを試します。二つの候補が近いなら同点として、分隊に足りない役割を選べば、パッチ後も判断方法を保てます。"
+            ]},
+            {"type": "table", "title": "目的別の初期クラス", "headers": ["目的", "初期候補", "理解しておく弱点"], "rows": [
+                ["初めてのソロ", "Mercenary", "ミスに強いが瞬間火力は控えめです。"],
+                ["分隊のアンカー", "Withered Knight", "ダメージの一部を耐久と空間制御に回します。"],
+                ["遠距離と偵察", "Blackarrow", "正面で受けず、位置と忍耐が必要です。"],
+                ["攻撃的な側面攻撃", "Shadowstrix", "見返りが大きいぶん失敗の罰も大きいです。"],
+                ["範囲攻撃または補助", "Sorcerer または Seer", "爆発的な制御かチーム情報かを選びます。"]
+            ]},
+            {"type": "rich", "title": "強み、弱み、購入前に確認すること", "paragraphs": [
+                "Mistfall Hunterの強みは判断の密度です。短いランでも、時間、音、装備価値、敵の圧力、次の戦闘に必要な資源を比べます。何も考えずに進めないため、成功した脱出には手応えがあります。クラスプランナーもソロ、デュオ、分隊を分け、単一のスコアを全員に押しつけないことで、この強みを補助します。",
+                "一方で、習慣が身につくまでは負荷を感じます。進行を失うこと、少ない戦利品で帰ること、同じルートを読み直すことが苦手なら、ループは摩擦に見えるでしょう。失敗を次の計画に変えることが好きなら、同じ摩擦が再挑戦の理由になります。これは上手さではなく適性の問題です。",
+                "購入前に確認するのは、地域のSteam価格、最近のレビューの傾向、PCの必要環境と動作報告、普段遊ぶ時間帯の人口です。価格ガイドとプレイヤー数ガイドではそれぞれ詳しく整理しています。このレビューは確認すべき点を示しますが、公式ストアや現在のプレイヤー情報の代わりにはなりません。"
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "暗い森にあるMistfall Hunterの公式Steamヘッダー", "caption": "別作品との混同を避けるための公式Steamヘッダーです。ゲームプレイの証拠としては扱いません。"},
+            {"type": "rich", "title": "購入前にこのレビューを使う手順", "paragraphs": [
+                "まず実際に遊ぶ形式を決めます。ソロ中心ならクラスガイドのソロ部分を読み、ミスを回収しやすい候補を基準にします。友人と遊ぶなら、分隊にすでにある役割を確認して、足りない仕事をプランナーで試します。自分のグループの通信方法を無視して、想像上のメタだけを追う必要はありません。",
+                "次に、変わりにくい事実と変化する信号を分けます。製品名、開発元、プラットフォーム、ストアの確認はSteam公式の役割です。価格、レビュー、待ち時間、クラスの強さは時間で変わります。レビューはそれらの読み方を説明できますが、前提日を示し、初期印象を永久の結論にしないことが大切です。",
+                "短い結論は、脱出ループに魅力を感じ、PCが対応し、Steamの現在情報が期待と合うなら購入を検討する、です。発売直後の勢い、割引のカウントダウン、誰かの最強クラス発言だけで急がないでください。固定の点数より、こちらの判断基準の方がパッチ後にも使いやすいでしょう。"
+            ]},
+            {"type": "table", "title": "今買う、待つ、見送るの判断", "headers": ["状況", "おすすめ", "理由"], "rows": [
+                ["脱出PvPvEが好き", "最新情報を確認して購入候補", "中心ループが好みに合う可能性があります。"],
+                ["落ち着いたキャンペーンが欲しい", "待つか見送る", "装備を失う構造が合わないかもしれません。"],
+                ["固定分隊がある", "役割の空きを先に確認", "クラスの相性で体験が変わります。"],
+                ["PCや地域が不確実", "待つ", "必要環境、価格、レビューを確認します。"],
+                ["一時的なメタだけが目的", "急がない", "パッチと検証でクラス評価は動きます。"]
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter 評価 よくある質問", "items": [
+                ["Mistfall Hunterは買う価値がありますか？", "脱出PvPvE、反復ラン、プレッシャー下の判断が好きなら購入候補です。支払う前にSteam価格、必要環境、最近のレビュー、活動状況を確認してください。"],
+                ["ソロプレイヤーにも向いていますか？", "向いていますが、自己回復、情報、扱いやすいクラスがより重要です。Mercenaryから試し、最終結論にする前に実際のランを確認しましょう。"],
+                ["初心者におすすめのクラスは？", "このサイトのモデルではMercenaryが低リスクの入口です。分隊で耐久役をしたい場合はWithered Knightも候補です。"],
+                ["公式スコアはありますか？", "ありません。独立したファンレビューです。モード、クラス、PC、バランスで答えが変わるため固定点数を避けています。"],
+                ["価格とプレイヤー数はどこで確認できますか？", "地域価格と製品情報はSteam公式、活動の目安はSteamDBのライブチャートで確認します。サイト内の価格ガイドとプレイヤー数ガイドも参照できます。"],
+                ["パッチ後もレビューは使えますか？", "判断の枠組みは使えますが、クラス、性能、待ち時間、価格の価値は変化します。古い詳細は公式情報と最近のプレイヤー証拠で再確認してください。"]
+            ]},
+            {"type": "links", "title": "レビューの確認ソース", "items": [
+                ["Mistfall Hunter Steam公式ページ", OFFICIAL_STEAM_URL, "製品名、平台、価格、必要環境、レビュー、販売状態を確認します。", "noopener"],
+                ["SteamDB Mistfall Hunter チャート", STEAMDB_CHARTS_URL, "現在数とピークの第三者データ。方向性のある信号として読みます。", "nofollow noopener"],
+                ["Steam返金ポリシー", "https://store.steampowered.com/steam_refunds/", "購入前に現在のプラットフォーム条件を確認します。", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "関連するMistfall Hunterガイド", "items": [
+                ["Mistfall Hunter クラスガイド", get_page_path("classes", "ja"), "役割、リスク、初心者向け方向を比較します。"],
+                ["Mistfall Hunter ビルドプランナー", get_page_path("build-planner", "ja"), "ソロ、デュオ、分隊に合う方向を探します。"],
+                ["Mistfall Hunter プレイヤー数ガイド", get_page_path("player-count", "ja"), "SteamDBの信号と待ち時間を読みます。"],
+                ["Mistfall Hunter 価格ガイド", get_page_path("price", "ja"), "価格、割引、購入前の注意を確認します。"],
+                ["Mistfall Hunter Steam情報", get_page_path("steam", "ja"), "公式の平台と発売情報を確認します。"]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "fr": {
+        "page": {
+            "title": "Avis Mistfall Hunter : faut-il l'acheter sur Steam ?",
+            "description": "Avis pratique sur Mistfall Hunter : boucle d'extraction, classes, prix Steam, activité et critères avant achat.",
+            "h1": "Avis Mistfall Hunter : faut-il l'acheter sur Steam ?",
+            "kicker": "Avis Mistfall Hunter | Mis à jour en août 2026",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Illustration éditoriale d'une route d'extraction Mistfall Hunter", "caption": "Illustration éditoriale générée pour cet avis créé par des fans ; ce n'est pas une capture officielle."},
+            {"type": "rich", "title": "Verdict rapide : une extraction ARPG pour le bon profil", "paragraphs": [
+                "Notre avis Mistfall Hunter est nuancé : le jeu mérite votre attention si vous aimez le PvPvE d'extraction, les runs répétées, le risque de perdre un équipement et l'apprentissage d'un rôle en jouant. Il est moins adapté si vous cherchez une campagne solo courte ou une progression douce qui ne revient jamais en arrière. La vraie question n'est pas de savoir si le jeu plaît à tout le monde, mais si ses choix de route, de combat et d'extraction donnent envie de relancer une partie.",
+                "Le jeu fonctionne surtout pour les joueurs qui aiment décider sous pression. Vous entrez avec un plan, vous lisez le danger, vous choisissez le moment du combat et vous comparez la valeur d'un butin supplémentaire au risque de ne pas sortir. Les classes comptent donc réellement : une classe de front pardonne davantage une erreur, alors qu'une classe burst ou contrôle demande un placement et un timing plus précis.",
+                "Le principal point de prudence est la fraîcheur du jeu. Les routes, l'équilibrage, les performances et la sensation de matchmaking peuvent évoluer pendant que la communauté apprend. Lisez cette page comme un manuel indépendant, pas comme une tier list officielle. Vérifiez la page Steam, les avis récents, la compatibilité de votre PC et l'activité à votre heure habituelle avant de payer."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter en un coup d'œil", "headers": ["Question", "Réponse de l'avis", "Pourquoi"], "rows": [
+                ["Quel type de jeu ?", "ARPG PvPvE d'extraction", "Chaque run combine combat, route, butin à risque et choix de sortie."],
+                ["Pour qui ?", "Les joueurs qui aiment les runs tendues", "L'intérêt vient des décisions et de l'apprentissage, pas d'une histoire unique."],
+                ["Accessible aux débutants ?", "Oui avec la bonne classe, mais pas sans effort", "Mercenary et Withered Knight donnent plus de marge au départ."],
+                ["Acheter tout de suite ?", "Vérifier Steam en direct avant", "Prix, avis, exigences et activité évoluent."],
+                ["Position du site ?", "Ressource indépendante créée par des fans", "Les conseils de classes sont éditoriaux et séparés des faits Steam."]
+            ]},
+            {"type": "rich", "title": "Ce que demande la boucle d'extraction", "paragraphs": [
+                "Un jeu d'extraction commence avec un plan incomplet. La route, les ennemis, le butin et les autres joueurs vous obligent à l'adapter. Le savoir-faire le plus important est souvent de reconnaître le moment où un petit gain suffit. Rester pour un coffre ou un combat de plus peut améliorer la run, mais aussi transformer une sortie sûre en perte d'équipement. Cette tension donne son identité au jeu et rend les premières heures moins confortables qu'un ARPG classique.",
+                "La boucle récompense l'information autant que l'exécution. Il faut reconnaître un combat favorable, la fenêtre forte de sa classe et le moment où l'équipe a déjà dépensé les ressources nécessaires pour continuer. Une build n'est donc pas seulement une liste de dégâts : elle comprend le placement, la récupération, le désengagement et un niveau de risque que l'équipe peut communiquer.",
+                "Le solo et l'escouade peuvent sembler être deux expériences différentes. En solo, l'auto-récupération, l'information et la correction des erreurs pèsent davantage. En groupe, le contrôle, l'éclaireur et le rôle d'ancrage créent une sécurité partagée, mais exigent de la coordination. Jouez plusieurs sessions dans le mode que vous utiliserez réellement avant de conclure."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Illustration Steam officielle de Mistfall Hunter dans une bataille enneigée", "caption": "Artwork Steam officiel utilisé pour identifier le jeu ; il ne mesure pas les performances."},
+            {"type": "rich", "title": "Classes et courbe d'apprentissage", "paragraphs": [
+                "Le meilleur moyen d'évaluer les classes Mistfall Hunter est de partir du besoin du joueur, pas d'un gagnant universel. Mercenary propose un rôle de front lisible et convient aux joueurs qui veulent une marge d'erreur. Withered Knight ajoute de la résistance et du contrôle d'espace pour ancrer une équipe. Ces choix offrent peut-être moins de moments spectaculaires, mais rendent les décisions plus faciles à comprendre.",
+                "Blackarrow, Shadowstrix et Sorcerer demandent un timing plus précis. Blackarrow récompense la distance, l'exploration et une pression patiente. Shadowstrix crée de bonnes fenêtres d'embuscade et de retrait, mais expose vite les erreurs. Sorcerer apporte burst et contrôle de zone, tandis que Seer gagne de la valeur quand l'information, l'utilité et les appels d'escouade comptent plus que les dégâts personnels.",
+                "Pour votre première session, utilisez le manuel des classes et le planificateur comme une carte, pas comme un ordre. Choisissez un travail que vous pouvez expliquer en une phrase, puis vérifiez s'il vous aide vraiment à survivre et à communiquer. Si deux options sont proches, considérez-les comme une égalité et choisissez le rôle manquant."
+            ]},
+            {"type": "table", "title": "Direction de départ selon le besoin", "headers": ["Besoin", "Direction", "Compromis"], "rows": [
+                ["Premières sessions solo", "Mercenary", "Plus permissif, mais moins de burst."],
+                ["Ancrer l'escouade", "Withered Knight", "Échange une partie des dégâts contre espace et endurance."],
+                ["Distance et repérage", "Blackarrow", "Le placement et la patience deviennent essentiels."],
+                ["Flancs agressifs", "Shadowstrix", "Le gain est fort, la sanction aussi."],
+                ["Zone ou utilité", "Sorcerer ou Seer", "Choisir entre contrôle explosif et information d'équipe."]
+            ]},
+            {"type": "rich", "title": "Forces, limites et vérifications", "paragraphs": [
+                "La force principale de Mistfall Hunter est la densité de décisions. Même une courte run demande de comparer le temps, le bruit, la valeur de l'équipement, la pression ennemie et les ressources de la prochaine rencontre. Une extraction réussie paraît méritée parce que le jeu ne joue pas à votre place. Le planificateur de classes complète cette idée en distinguant solo, duo et escouade plutôt qu'en imposant un score universel.",
+                "Le compromis est une certaine exigence avant que les habitudes deviennent naturelles. Si vous n'aimez pas perdre une progression, repartir avec peu ou relire une route plusieurs fois, la boucle peut ressembler à une friction. Si vous aimez transformer une défaite en plan plus propre, cette friction devient une raison de revenir. C'est une question d'affinité, pas de talent.",
+                "Avant l'achat, vérifiez quatre signaux actuels : prix Steam dans votre région, tendance des avis récents, exigences et performances sur votre PC, activité à votre heure de jeu. Les ressources prix et joueurs du site détaillent ces contrôles. Cet avis aide à savoir quoi regarder, mais ne remplace ni la boutique officielle ni les informations de la communauté."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Bannière Steam officielle de Mistfall Hunter dans une forêt sombre", "caption": "Bannière officielle utilisée comme seconde référence d'identité ; elle ne sert pas de preuve de gameplay."},
+            {"type": "rich", "title": "Comment utiliser cet avis avant d'acheter", "paragraphs": [
+                "Commencez par le mode que vous jouerez vraiment. Si vous jouez surtout en solo, consultez les conseils solo du manuel des classes et prenez une option permissive comme référence. Avec des amis, regardez les rôles déjà présents et testez le rôle manquant dans le planificateur. Cela évite d'acheter pour une méta imaginaire qui ne correspond pas à votre groupe.",
+                "Séparez ensuite les faits stables des signaux changeants. Le nom du produit, la plateforme, le développeur et l'identité de la boutique se vérifient sur Steam officiel. Prix, avis, files d'attente et puissance des classes évoluent. Un avis peut expliquer comment lire ces signaux, mais doit dater ses hypothèses et éviter de transformer une première impression en verdict permanent.",
+                "La conclusion est simple : envisagez l'achat si la boucle d'extraction vous attire, si votre PC est compatible et si les informations Steam actuelles correspondent à vos attentes. Attendez si vous réagissez seulement à l'élan du lancement, à un compte à rebours de remise ou à une prétendue meilleure classe. Cette règle résiste mieux qu'une note chiffrée."
+            ]},
+            {"type": "table", "title": "Acheter, attendre ou passer ?", "headers": ["Situation", "Choix pratique", "Raison"], "rows": [
+                ["Vous aimez le PvPvE d'extraction", "Envisager après vérifications", "La boucle centrale peut correspondre à vos goûts."],
+                ["Vous voulez une campagne tranquille", "Attendre ou passer", "Le risque de perte peut mal convenir."],
+                ["Vous avez une escouade fixe", "Vérifier les rôles", "La couverture de classes change l'expérience."],
+                ["PC ou région incertaine", "Attendre", "Confirmer exigences, prix et avis actuels."],
+                ["Vous cherchez seulement la méta du jour", "Ne pas se presser", "Les patchs peuvent changer les conseils."]
+            ]},
+            {"type": "faq", "title": "Questions fréquentes sur l'avis Mistfall Hunter", "items": [
+                ["Mistfall Hunter vaut-il son prix ?", "Le jeu mérite d'être envisagé si vous aimez le PvPvE d'extraction, les runs répétées et les choix sous pression. Vérifiez prix, exigences, avis récents et activité Steam avant de payer."],
+                ["Mistfall Hunter convient-il au solo ?", "Oui, mais le solo demande davantage de récupération, d'information et une classe permissive. Mercenary est une direction de départ pratique ; testez-la avant de la considérer comme définitive."],
+                ["Quelle classe choisir quand on débute ?", "Le modèle du site place Mercenary comme direction de faible risque. Withered Knight est une autre option logique si vous préférez ancrer une escouade."],
+                ["Y a-t-il une note officielle dans cet avis ?", "Non. Il s'agit d'un avis indépendant créé par des fans et d'une aide à la décision. Une note fixe cacherait l'effet du mode, de la classe, du PC et de l'équilibrage."],
+                ["Où vérifier le prix et les joueurs actuels ?", "Consultez Steam officiel pour le prix régional et les faits du produit, puis SteamDB pour un signal d'activité tiers. Les ressources prix et joueurs expliquent la lecture."],
+                ["L'avis restera-t-il valable après un patch ?", "Le cadre de décision restera utile, mais classes, performances, files et valeur peuvent changer. Vérifiez les informations officielles et les témoignages récents avant de réutiliser un détail ancien."]
+            ]},
+            {"type": "links", "title": "Sources de vérification", "items": [
+                ["Page Steam officielle de Mistfall Hunter", OFFICIAL_STEAM_URL, "Identité, plateforme, prix, exigences, avis et état actuel de la boutique.", "noopener"],
+                ["Graphiques Mistfall Hunter sur SteamDB", STEAMDB_CHARTS_URL, "Contexte de joueurs et de pics ; un signal tiers à lire avec prudence.", "nofollow noopener"],
+                ["Politique de remboursement Steam", "https://store.steampowered.com/steam_refunds/", "Vérifier les règles de la plateforme avant paiement.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Ressources Mistfall Hunter liées", "items": [
+                ["Manuel des classes Mistfall Hunter", get_page_path("classes", "fr"), "Comparer rôles, risque et options de départ."],
+                ["Planificateur de build Mistfall Hunter", get_page_path("build-planner", "fr"), "Associer une classe au solo, duo ou escouade."],
+                ["Ressource joueurs Mistfall Hunter", get_page_path("player-count", "fr"), "Lire SteamDB et le contexte des files."],
+                ["Ressource prix Mistfall Hunter", get_page_path("price", "fr"), "Vérifier prix, remise et précautions d'achat."],
+                ["Infos Steam Mistfall Hunter", get_page_path("steam", "fr"), "Confirmer les faits officiels de plateforme et de sortie."]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "de": {
+        "page": {
+            "title": "Mistfall Hunter Review: Lohnt sich der Kauf auf Steam?",
+            "description": "Diese Mistfall Hunter Review bewertet Extraction-Loop, Klassen, Steam-Preis, Spieleraktivität und Kaufkriterien.",
+            "h1": "Mistfall Hunter Review: Lohnt sich der Kauf auf Steam?",
+            "kicker": "Mistfall Hunter Review | Aktualisiert: 2026-08",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Redaktionelle Illustration einer Mistfall Hunter Extraktionsroute", "caption": "Für diese von Fans erstellte Review erzeugte redaktionelle Illustration; kein offizieller Gameplay-Screenshot."},
+            {"type": "rich", "title": "Kurzfazit: ein Extraction-ARPG für den passenden Spielertyp", "paragraphs": [
+                "Unser Mistfall Hunter Review fällt bewusst bedingt aus: Das Spiel ist interessant, wenn du Extraction-PvPvE, wiederholbare Runs, riskante Ausrüstung und das Lernen einer Rolle durch Spielen magst. Es ist weniger passend, wenn du eine kurze Einzelspieler-Kampagne oder einen ruhigen Fortschritt ohne Rückschritte suchst. Die nützlichere Frage lautet nicht, ob das Spiel jedem gefällt, sondern ob seine Entscheidungen über Route, Kampf und Extraktion dich zu einer weiteren Runde einladen.",
+                "Mistfall Hunter funktioniert besonders gut für Spieler, die unter Druck entscheiden möchten. Du startest mit einem Plan, liest Gefahren, wählst deine Kämpfe und vergleichst zusätzlichen Loot mit dem Risiko, nicht mehr sicher herauszukommen. Deshalb ist die Klassenwahl wichtig: Eine Frontline-Klasse verzeiht Fehler eher, während Burst- und Kontrollrollen präziseres Timing und bessere Positionierung verlangen.",
+                "Der wichtigste Vorbehalt ist die frühe Lebensphase des Spiels. Routen, Balance, Performance und Matchmaking können sich verändern, während die Community Erfahrungen sammelt. Lies diese Seite als unabhängigen Entscheidungsleitfaden, nicht als offizielle Tier-Liste. Prüfe vor dem Kauf die aktuelle Steam-Seite, neue Reviews, deine PC-Kompatibilität und die Aktivität zu deiner normalen Spielzeit."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter Review auf einen Blick", "headers": ["Frage", "Antwort", "Warum es zählt"], "rows": [
+                ["Was für ein Spiel ist es?", "Extraction-PvPvE-ARPG", "Runs verbinden Kampf, Route, Loot-Risiko und die Entscheidung zur Extraktion."],
+                ["Für wen passt es?", "Spieler mit Freude an angespannten Runs", "Der Reiz liegt in Lernen und Entscheidungen, nicht nur im Story-Abschluss."],
+                ["Ist der Einstieg einfach?", "Mit passender Klasse ja, aber nicht reibungslos", "Mercenary und Withered Knight geben am Anfang mehr Spielraum."],
+                ["Sofort kaufen?", "Erst aktuelle Steam-Fakten prüfen", "Preis, Reviews, Anforderungen und Aktivität können wechseln."],
+                ["Welche Haltung hat die Seite?", "Unabhängiger Fan-Leitfaden", "Klassenempfehlungen sind Redaktion und keine offiziellen Daten."]
+            ]},
+            {"type": "rich", "title": "Was der Extraction-Loop von dir verlangt", "paragraphs": [
+                "Ein Extraction-Spiel beginnt mit einem unvollständigen Plan. Route, Gegner, Loot und andere Spieler zwingen dich, ihn anzupassen. Eine wichtige Fähigkeit ist zu erkennen, wann ein kleiner Gewinn genügt. Eine weitere Truhe kann den Run verbessern, aber auch eine sichere Rückkehr in verlorene Ausrüstung verwandeln. Diese Spannung gibt dem Spiel sein Profil und erklärt, warum die ersten Stunden härter wirken können als in einem normalen Action-RPG.",
+                "Der Loop belohnt Information ebenso wie mechanische Ausführung. Du musst sehen, wann ein Kampf günstig ist, wann deine Klasse ihr stärkstes Fenster hat und wann das Team bereits zu viele Ressourcen für den Rückweg verbraucht hat. Ein Build ist daher nicht nur eine Schadensliste. Er umfasst Position, Erholung, Rückzug und ein Risiko, das die Gruppe verständlich kommunizieren kann.",
+                "Solo und Gruppe können wie zwei verschiedene Spiele wirken. Solo zählen Selbstrettung, Informationen und Fehlerkorrektur stärker. Eine koordinierte Gruppe verwandelt Kontrolle, Scouten und eine Ankerrolle in gemeinsame Sicherheit, braucht aber Kommunikation. Spiele vor dem Urteil mehrere Sessions in der Spielart, die du tatsächlich nutzen willst."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Offizielles Steam-Artwork von Mistfall Hunter in einer verschneiten Schlacht", "caption": "Offizielles Steam-Artwork zur Identifikation des Spiels; kein Beleg für Performance."},
+            {"type": "rich", "title": "Klassen und Lernkurve", "paragraphs": [
+                "Klassen lassen sich sinnvoller über Spielerbedarf als über einen universellen Sieger bewerten. Mercenary bietet ein gut lesbares Frontline-Muster und passt zu Spielern, die Fehlerraum brauchen. Withered Knight bringt Widerstand und Raumkontrolle für die Rolle als Gruppenanker. Beide erzeugen vielleicht weniger spektakuläre Höhepunkte, machen aber die Sprache der Entscheidungen leichter verständlich.",
+                "Blackarrow, Shadowstrix und Sorcerer verlangen bewussteres Timing. Blackarrow belohnt Distanz, Scouting und geduldigen Druck. Shadowstrix kann starke Ambush- und Rückzugsfenster schaffen, bestraft schlechte Position aber schnell. Sorcerer bietet Burst und Flächenkontrolle. Seer gewinnt vor allem dann an Wert, wenn Informationen, Utility und sichere Gruppenentscheidungen wichtiger sind als persönlicher Schaden.",
+                "Nutze Klassenleitfaden und Build-Planer beim ersten Versuch als Karte, nicht als Befehl. Wähle eine Aufgabe, die du in einem Satz erklären kannst, und prüfe, ob sie Überleben und Kommunikation wirklich verbessert. Liegen zwei Optionen eng zusammen, behandle sie als Gleichstand und fülle die fehlende Gruppenrolle. Dieses Denken bleibt auch nach Balance-Patches brauchbar."
+            ]},
+            {"type": "table", "title": "Start-Richtung nach Spielerbedarf", "headers": ["Bedarf", "Gute Richtung", "Zu verstehender Nachteil"], "rows": [
+                ["Erste Solo-Runs", "Mercenary", "Verzeiht mehr Fehler, bietet aber weniger Burst."],
+                ["Gruppenanker", "Withered Knight", "Tauscht etwas Schaden gegen Raum und Haltbarkeit."],
+                ["Distanz und Scouten", "Blackarrow", "Position und Geduld sind wichtiger als Face-Tanking."],
+                ["Aggressive Flanken", "Shadowstrix", "Hoher Ertrag mit schärferer Fehlerstrafe."],
+                ["Fläche oder Utility", "Sorcerer oder Seer", "Zwischen Burst-Kontrolle und Gruppeninformation wählen."]
+            ]},
+            {"type": "rich", "title": "Stärken, Nachteile und Prüfungen vor dem Kauf", "paragraphs": [
+                "Die größte Stärke von Mistfall Hunter ist die Dichte der Entscheidungen. Selbst eine kurze Runde verlangt den Vergleich von Zeit, Lärm, Ausrüstungswert, Gegnerdruck und Ressourcen für den nächsten Kampf. Eine erfolgreiche Extraktion fühlt sich verdient an, weil nichts völlig automatisch läuft. Der Klassenplaner unterstützt das, indem er Solo, Duo und Gruppe trennt, statt eine Zahl auf alle Spieler zu übertragen.",
+                "Der Nachteil ist die Anstrengung, bevor die Gewohnheiten sitzen. Wer verlorenen Fortschritt, vorsichtige Ausgänge oder das erneute Lesen einer Route nicht mag, erlebt den Loop vielleicht als Reibung. Wer aus einer Niederlage einen besseren Plan baut, findet darin den Grund für eine weitere Runde. Das ist eine Frage der Passung, kein Test von Können.",
+                "Prüfe vor dem Kauf vier aktuelle Signale: regionaler Steam-Preis, Richtung der neuen Bewertungen, Anforderungen und Performance auf deinem PC sowie Spieleraktivität zu deiner üblichen Zeit. Die Preis- und Spielerzahlen-Leitfäden dieser Seite erklären die Details. Diese Review zeigt dir, was du prüfen solltest, ersetzt aber weder Steam noch aktuelle Community-Evidenz."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Offizieller Mistfall Hunter Steam-Header in einem dunklen Wald", "caption": "Offizieller Header als zweite Identitätsreferenz; nicht als Gameplay-Nachweis verwendet."},
+            {"type": "rich", "title": "So nutzt du diese Review vor dem Kauf", "paragraphs": [
+                "Beginne mit der Spielart, die du wirklich spielen wirst. Für Solo liest du die Solo-Hinweise im Klassenleitfaden und nimmst eine verzeihende Richtung als Basis. Mit Freunden prüfst du zuerst die vorhandenen Rollen und testest die Lücke im Build-Planer. So kaufst du nicht für eine gedachte Meta, die zu deiner Gruppe und ihrer Kommunikation gar nicht passt.",
+                "Trenne danach stabile Fakten von veränderlichen Signalen. Produktname, Plattform, Entwickler und Store-Identität gehören zur offiziellen Steam-Seite. Preis, Reviews, Warteschlangen und Klassenstärke verändern sich. Eine Review kann zeigen, wie diese Signale zu lesen sind, sollte ihre Annahmen aber datieren und einen frühen Eindruck nicht als ewiges Urteil verkaufen.",
+                "Das kurze Fazit lautet: Kaufe, wenn dich der Extraction-Loop selbst reizt, dein PC unterstützt wird und die aktuellen Steam-Fakten zu deinen Erwartungen passen. Warte, wenn du nur auf Launch-Hype, Rabattdruck oder eine angeblich beste Klasse reagierst. Diese Entscheidungsregel hält länger als eine feste Zahl und lässt Raum für Patches."
+            ]},
+            {"type": "table", "title": "Jetzt kaufen, warten oder auslassen?", "headers": ["Situation", "Praktische Wahl", "Grund"], "rows": [
+                ["Du magst Extraction-PvPvE", "Nach Live-Check in Betracht ziehen", "Der Kern-Loop passt wahrscheinlich zu dir."],
+                ["Du willst eine entspannte Kampagne", "Warten oder auslassen", "Verlustrisiko kann die falsche Struktur sein."],
+                ["Du hast eine feste Gruppe", "Klassenabdeckung prüfen", "Rollenfit verändert das Gruppenerlebnis."],
+                ["PC oder Region sind unsicher", "Warten", "Anforderungen, Preis und Reviews bestätigen."],
+                ["Du jagst nur die aktuelle Meta", "Nicht überstürzen", "Patches können Empfehlungen verändern."]
+            ]},
+            {"type": "faq", "title": "Häufige Fragen zu Mistfall Hunter", "items": [
+                ["Lohnt sich Mistfall Hunter?", "Das Spiel ist interessant, wenn du Extraction-PvPvE, wiederholbare Runs und Entscheidungen unter Druck magst. Prüfe Steam-Preis, Anforderungen, neue Reviews und Aktivität vor dem Kauf."],
+                ["Ist Mistfall Hunter gut für Solo-Spieler?", "Es kann passen, aber Solo verlangt mehr Selbstrettung, Information und eine verzeihende Klasse. Mercenary ist eine praktische Richtung; teste sie, bevor du sie als endgültig annimmst."],
+                ["Welche Klasse ist für Anfänger gut?", "Das Modell dieser Seite setzt Mercenary als klare Richtung mit geringem Risiko. Withered Knight ist sinnvoll, wenn du in einer Gruppe einen robusten Anker spielen willst."],
+                ["Gibt diese Review eine offizielle Wertung?", "Nein. Es ist eine unabhängige, von Fans erstellte Review und Entscheidungshilfe. Eine feste Wertung würde Modus, Klasse, PC und aktuelle Balance zu stark vereinfachen."],
+                ["Wo prüfe ich Preis und Spielerzahl?", "Nutze Steam offiziell für Regionalpreis und Produktfakten. SteamDB liefert ein externes Aktivitätssignal; die Preis- und Spielerzahlen-Leitfäden helfen bei der Einordnung."],
+                ["Bleibt die Review nach Patches gültig?", "Der Entscheidungsrahmen bleibt nützlich, aber Klassen, Performance, Wartezeit und Wert können sich ändern. Prüfe offizielle Hinweise und aktuelle Spielerberichte erneut."]
+            ]},
+            {"type": "links", "title": "Review-Quellen und Prüfung", "items": [
+                ["Offizielle Mistfall Hunter Steam-Seite", OFFICIAL_STEAM_URL, "Produktidentität, Plattform, Preis, Anforderungen, Bewertungen und aktueller Stand im Store.", "noopener"],
+                ["Mistfall Hunter Charts auf SteamDB", STEAMDB_CHARTS_URL, "Drittanbieter-Kontext zu aktuellen Spielern und Peaks; nur als Richtungssignal lesen.", "nofollow noopener"],
+                ["Steam-Rückerstattungsrichtlinie", "https://store.steampowered.com/steam_refunds/", "Aktuelle Plattformregeln vor dem Bezahlen prüfen.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Verwandte Mistfall Hunter Leitfäden", "items": [
+                ["Mistfall Hunter Klassenleitfaden", get_page_path("classes", "de"), "Rollen, Risiko und Einsteiger-Richtungen vergleichen."],
+                ["Mistfall Hunter Build-Planer", get_page_path("build-planner", "de"), "Klasse auf Solo-, Duo- oder Gruppenstil abstimmen."],
+                ["Mistfall Hunter Spielerzahlen-Leitfaden", get_page_path("player-count", "de"), "SteamDB-Signale und Wartezeiten einordnen."],
+                ["Mistfall Hunter Preisleitfaden", get_page_path("price", "de"), "Preis, Rabatt und Hinweise vor dem Kauf prüfen."],
+                ["Mistfall Hunter Steam-Info", get_page_path("steam", "de"), "Offizielle Plattform- und Release-Fakten bestätigen."]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "pt": {
+        "page": {
+            "title": "Análise de Mistfall Hunter: vale a pena comprar?",
+            "description": "Análise prática de Mistfall Hunter sobre extração, classes, preço no Steam, atividade e critérios antes da compra.",
+            "h1": "Análise de Mistfall Hunter: vale a pena comprar?",
+            "kicker": "Análise de Mistfall Hunter | Atualizada em agosto de 2026",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Ilustração editorial de uma rota de extração de Mistfall Hunter", "caption": "Ilustração editorial gerada para esta análise feita por fãs; não é uma captura oficial do jogo."},
+            {"type": "rich", "title": "Veredito rápido: um ARPG de extração para o jogador certo", "paragraphs": [
+                "Nossa análise de Mistfall Hunter chega a um veredito condicional: o jogo merece atenção se você gosta de PvPvE de extração, partidas repetíveis, risco de perder equipamentos e aprender uma função jogando. Ele é menos indicado para quem procura uma campanha solo curta ou uma progressão tranquila sem retrocessos. A pergunta mais útil não é se o jogo é bom para todos, mas se suas decisões de rota, combate e extração dão vontade de iniciar outra partida.",
+                "Mistfall Hunter funciona melhor para quem gosta de decidir sob pressão. Você entra com um plano, lê o perigo, escolhe quando lutar e compara o valor de continuar explorando com o valor de sair levando o que já encontrou. Por isso a escolha de classe importa: uma função de linha de frente tolera mais erros, enquanto uma classe de dano explosivo ou controle exige melhor posicionamento e timing.",
+                "A principal cautela é a fase inicial do jogo. Rotas, balanceamento, desempenho e sensação de encontrar partidas podem mudar enquanto a comunidade aprende. Leia esta página como um guia independente, não como uma tier list oficial. Antes de pagar, confira a página do Steam, avaliações recentes, compatibilidade do PC e atividade no horário em que você costuma jogar."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter em resumo", "headers": ["Pergunta", "Resposta da análise", "Por que importa"], "rows": [
+                ["Que tipo de jogo é?", "ARPG PvPvE de extração", "Cada partida combina combate, rota, risco de loot e decisão de saída."],
+                ["Para quem combina?", "Quem gosta de partidas tensas e repetíveis", "O apelo está em aprender e decidir, não apenas terminar uma história."],
+                ["É fácil para iniciantes?", "Com a classe certa, sim; sem atrito, não", "Mercenary e Withered Knight dão mais margem no começo."],
+                ["Devo comprar já?", "Confira os dados atuais do Steam antes", "Preço, avaliações, requisitos e atividade mudam."],
+                ["Qual é a posição do site?", "Guia independente feito por fãs", "Recomendações de classe são editoriais, separadas dos fatos oficiais."]
+            ]},
+            {"type": "rich", "title": "O que o ciclo de extração exige", "paragraphs": [
+                "Um jogo de extração começa com um plano incompleto. A rota, os inimigos, o loot e outros jogadores obrigam você a adaptá-lo. Uma habilidade importante é saber quando um ganho pequeno já é suficiente. Ficar para abrir outro baú pode melhorar a partida, mas também transformar uma saída segura em perda de equipamento. Essa tensão dá identidade ao jogo e explica por que as primeiras horas podem ser menos confortáveis do que em um ARPG tradicional.",
+                "O ciclo recompensa informação tanto quanto execução mecânica. Você precisa reconhecer uma luta favorável, o momento mais forte da sua classe e quando o grupo já gastou recursos demais para continuar. Uma build, portanto, não é apenas uma lista de dano. Ela inclui posicionamento, recuperação, retirada e um nível de risco que o time consegue comunicar.",
+                "Solo e equipe podem parecer jogos diferentes. No solo pesam mais a recuperação própria, a informação e a correção de erros. Em um grupo coordenado, controle, reconhecimento e uma função de âncora criam segurança compartilhada, mas exigem comunicação. Jogue algumas sessões no formato que realmente pretende usar antes de decidir se o jogo combina com você."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Arte oficial do Steam de Mistfall Hunter em uma batalha na neve", "caption": "Arte oficial do Steam usada para confirmar a identidade do jogo; não é prova de desempenho."},
+            {"type": "rich", "title": "Classes e curva de aprendizado", "paragraphs": [
+                "A forma mais prática de avaliar as classes de Mistfall Hunter é pensar na necessidade do jogador, não em um vencedor universal. Mercenary oferece uma linha de frente fácil de entender e funciona bem para quem quer margem para errar. Withered Knight acrescenta resistência e controle de espaço para quem quer ancorar a equipe. Essas opções talvez tenham menos momentos chamativos, mas tornam as decisões do jogo mais fáceis de ler.",
+                "Blackarrow, Shadowstrix e Sorcerer pedem timing mais consciente. Blackarrow recompensa distância, reconhecimento e pressão paciente. Shadowstrix cria boas janelas de emboscada e retirada, mas pune rápido uma posição ruim. Sorcerer entrega dano explosivo e controle de área. Seer ganha valor quando informação, utilidade e decisões seguras da equipe importam mais do que dano individual.",
+                "Na primeira sessão, use o guia de classes e o planejador como mapa, não como ordem. Escolha uma função que você consiga explicar em uma frase e verifique se ela realmente ajuda a sobreviver e a se comunicar. Se duas opções ficarem próximas, trate como empate e cubra o papel que falta no grupo. Esse raciocínio continua válido mesmo depois de um patch."
+            ]},
+            {"type": "table", "title": "Direção inicial por necessidade", "headers": ["Necessidade", "Direção", "Troca a entender"], "rows": [
+                ["Primeiras partidas solo", "Mercenary", "Perdoa mais erros, mas tem menos explosão de dano."],
+                ["Âncora da equipe", "Withered Knight", "Troca parte do dano por espaço e resistência."],
+                ["Distância e reconhecimento", "Blackarrow", "Posicionamento e paciência são essenciais."],
+                ["Flancos agressivos", "Shadowstrix", "Alto retorno com punição mais severa."],
+                ["Área ou utilidade", "Sorcerer ou Seer", "Escolha entre controle explosivo e informação para o time."]
+            ]},
+            {"type": "rich", "title": "Pontos fortes, limites e checagens", "paragraphs": [
+                "A maior força de Mistfall Hunter é a quantidade de decisões. Mesmo uma partida curta pede comparação entre tempo, barulho, valor do equipamento, pressão inimiga e recursos necessários para a próxima luta. Uma extração bem-sucedida parece merecida porque o jogo não decide tudo por você. O planejador de classes reforça isso ao separar solo, duo e equipe em vez de empurrar uma nota igual para todos.",
+                "A troca é que o jogo pode parecer exigente antes de os hábitos ficarem naturais. Se você não gosta de perder progresso, sair com pouco ou repetir uma rota para entendê-la melhor, o ciclo pode parecer atrito. Se gosta de transformar uma derrota em plano melhor, o mesmo atrito vira motivo para voltar. É uma questão de encaixe, não de habilidade.",
+                "Antes da compra, verifique quatro sinais atuais: preço regional no Steam, direção das avaliações recentes, requisitos e desempenho no seu PC, e atividade no horário em que joga. Os guias de preço e jogadores detalham esses pontos. Esta análise mostra o que observar, mas não substitui a loja oficial nem as evidências atuais dos jogadores."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Cabeçalho oficial de Mistfall Hunter no Steam em uma floresta escura", "caption": "Cabeçalho oficial usado como segunda referência de identidade; não é apresentado como prova de gameplay."},
+            {"type": "rich", "title": "Como usar esta análise antes de comprar", "paragraphs": [
+                "Comece pelo formato que você realmente vai jogar. Se for jogar solo, leia as orientações solo do guia de classes e use uma direção mais tolerante como base. Se for jogar com amigos, veja quais funções já existem e teste a lacuna no planejador. Assim você não compra para uma meta imaginária que não combina com a comunicação do seu grupo.",
+                "Depois, separe fatos estáveis de sinais que mudam. Nome do produto, plataforma, desenvolvedor e identidade da loja devem ser confirmados no Steam oficial. Preço, avaliações, filas e força das classes mudam com o tempo. Uma análise pode explicar como ler esses sinais, mas precisa datar suas premissas e evitar transformar uma primeira impressão em veredito permanente.",
+                "A conclusão curta é: compre quando o ciclo de extração em si parecer atraente, seu PC for compatível e os dados atuais do Steam confirmarem sua expectativa. Espere quando você estiver apenas reagindo ao impulso do lançamento, a uma contagem regressiva de desconto ou à suposta melhor classe. Essa regra dura mais do que uma nota fixa e permite mudanças futuras."
+            ]},
+            {"type": "table", "title": "Comprar, esperar ou deixar passar?", "headers": ["Situação", "Escolha prática", "Motivo"], "rows": [
+                ["Você gosta de PvPvE de extração", "Considere após checar dados atuais", "O ciclo principal provavelmente combina com seu gosto."],
+                ["Você quer uma campanha relaxada", "Espere ou deixe passar", "O risco de perder equipamento pode não combinar."],
+                ["Você tem equipe fixa", "Confira a cobertura de funções", "O encaixe de classe muda a experiência do grupo."],
+                ["PC ou região incertos", "Espere", "Confirme requisitos, preço e avaliações atuais."],
+                ["Você só busca a meta do momento", "Não tenha pressa", "Patches podem mudar recomendações."]
+            ]},
+            {"type": "faq", "title": "Perguntas frequentes sobre a análise de Mistfall Hunter", "items": [
+                ["Mistfall Hunter vale a pena?", "Vale considerar se você gosta de PvPvE de extração, partidas repetíveis e decisões sob pressão. Confira preço, requisitos, avaliações recentes e atividade no Steam antes de pagar."],
+                ["Mistfall Hunter é bom para jogar solo?", "Pode ser, mas solo exige mais recuperação, informação e uma classe tolerante. Mercenary é uma direção prática; teste antes de tratá-la como definitiva."],
+                ["Qual classe é boa para começar?", "O modelo deste site coloca Mercenary como direção de baixo risco. Withered Knight é uma opção lógica se você prefere uma âncora resistente para a equipe."],
+                ["A análise tem uma nota oficial?", "Não. É uma análise independente feita por fãs e um guia de decisão. Uma nota fixa esconderia o efeito do modo, da classe, do PC e do balanceamento atual."],
+                ["Onde vejo preço e jogadores atuais?", "Use o Steam oficial para preço regional e fatos do produto. Use o SteamDB como sinal externo de atividade; os guias de preço e jogadores explicam a leitura."],
+                ["A análise continua válida depois de patches?", "O método de decisão continua útil, mas classes, desempenho, filas e valor podem mudar. Verifique informações oficiais e relatos recentes novamente."]
+            ]},
+            {"type": "links", "title": "Fontes e verificações", "items": [
+                ["Página oficial de Mistfall Hunter no Steam", OFFICIAL_STEAM_URL, "Identidade, plataforma, preço, requisitos, avaliações e estado atual da loja.", "noopener"],
+                ["Gráficos de Mistfall Hunter no SteamDB", STEAMDB_CHARTS_URL, "Contexto de jogadores e picos; use como sinal direcional de terceiros.", "nofollow noopener"],
+                ["Política de reembolso do Steam", "https://store.steampowered.com/steam_refunds/", "Confira as regras atuais da plataforma antes de pagar.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Guias relacionados de Mistfall Hunter", "items": [
+                ["Guia de classes de Mistfall Hunter", get_page_path("classes", "pt"), "Compare papéis, risco e direções para iniciantes."],
+                ["Planejador de build de Mistfall Hunter", get_page_path("build-planner", "pt"), "Combine uma classe com jogo solo, duo ou equipe."],
+                ["Guia de jogadores de Mistfall Hunter", get_page_path("player-count", "pt"), "Leia sinais do SteamDB e horários de fila."],
+                ["Guia de preço de Mistfall Hunter", get_page_path("price", "pt"), "Confira preço, descontos e cuidados antes de comprar."],
+                ["Mistfall Hunter no Steam", get_page_path("steam", "pt"), "Verifique fatos oficiais de plataforma e lançamento."]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "ko": {
+        "page": {
+            "title": "Mistfall Hunter 리뷰: Steam에서 살 가치가 있을까?",
+            "description": "Mistfall Hunter 리뷰에서 추출 루프, 클래스, Steam 가격, 플레이어 활동과 구매 전 확인점을 정리합니다.",
+            "h1": "Mistfall Hunter 리뷰: Steam에서 살 가치가 있을까?",
+            "kicker": "Mistfall Hunter 리뷰 | 2026년 8월 업데이트",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Mistfall Hunter 탈출 경로를 표현한 편집용 일러스트", "caption": "이 팬 제작 리뷰를 위해 생성한 편집용 일러스트이며 공식 게임 화면이 아닙니다."},
+            {"type": "rich", "title": "빠른 결론: 맞는 플레이어에게 매력적인 추출 ARPG", "paragraphs": [
+                "Mistfall Hunter 리뷰의 결론은 조건부입니다. 추출 PvPvE, 반복 플레이, 장비를 잃을 수 있는 긴장감, 플레이하면서 역할을 익히는 과정을 좋아한다면 구매 후보가 됩니다. 반대로 짧은 싱글 캠페인이나 실패해도 진행이 되돌아가지 않는 편안한 게임을 원한다면 서두를 이유가 적습니다. 모든 사람에게 좋은지보다, 탈출에 성공하거나 실패한 뒤 다시 시도할 판단이 있는지가 더 중요한 질문입니다.",
+                "이 게임은 압박 속에서 선택하는 것을 좋아하는 사람에게 잘 맞습니다. 진입 전에 계획을 세우고, 위험을 읽고, 싸울 때를 고르고, 더 탐색할 가치와 지금 탈출할 가치를 비교합니다. 그래서 클래스 선택도 중요합니다. 전방 역할은 실수를 회복할 여지가 크고, 폭발 피해나 제어 역할은 위치와 타이밍을 더 정확하게 요구합니다.",
+                "가장 큰 주의점은 출시 초기라는 점입니다. 루트, 밸런스, 성능, 매칭 체감은 커뮤니티가 경험을 쌓으면서 바뀔 수 있습니다. 이 페이지는 공식 티어표가 아니라 독립적인 구매 판단 가이드로 읽으세요. 결제 전 Steam 공식 페이지, 최근 평가, PC 호환성, 평소 플레이 시간대의 활동을 확인하는 편이 안전합니다."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter 리뷰 한눈에 보기", "headers": ["질문", "리뷰 답변", "판단 이유"], "rows": [
+                ["어떤 게임인가요?", "추출 PvPvE ARPG", "전투, 루트 선택, 장비 위험, 탈출 판단이 한 판에 들어갑니다."],
+                ["누구에게 맞나요?", "긴장감 있는 반복 플레이를 좋아하는 사람", "한 번의 스토리 완료보다 판단과 학습이 핵심입니다."],
+                ["초보자도 할 만한가요?", "클래스를 고르면 가능하지만 쉽지만은 않음", "Mercenary와 Withered Knight가 초반 실수 여지를 만듭니다."],
+                ["바로 사야 하나요?", "현재 Steam 정보를 먼저 확인", "가격, 평가, 사양, 활동은 바뀔 수 있습니다."],
+                ["이 사이트의 입장은?", "독립 팬 가이드", "클래스 추천은 편집 판단이며 공식 정보와 분리합니다."]
+            ]},
+            {"type": "rich", "title": "추출 루프가 요구하는 것", "paragraphs": [
+                "추출 게임은 완성된 계획으로 시작하지 않습니다. 이동 경로, 적, 전리품, 다른 플레이어 때문에 계획을 계속 바꿔야 합니다. 작은 이득만으로도 돌아갈 때를 아는 것이 중요한 능력입니다. 상자 하나를 더 열면 수익이 늘 수 있지만, 안전한 탈출을 장비 손실로 바꿀 수도 있습니다. 이 긴장감이 게임의 정체성이며 일반적인 액션 RPG보다 초반이 불편하게 느껴지는 이유입니다.",
+                "루프는 조작 실력만큼 정보를 보상합니다. 싸워도 되는 상황인지, 클래스의 강한 타이밍이 언제인지, 팀이 계속하기 위한 자원을 이미 썼는지 읽어야 합니다. 따라서 빌드는 피해량 목록만이 아닙니다. 위치 선정, 회복, 이탈, 그리고 팀이 공유할 수 있는 위험 수준까지 포함합니다.",
+                "솔로와 파티는 서로 다른 게임처럼 느껴질 수 있습니다. 솔로는 자기 회복, 정보 수집, 실수 복구가 더 중요합니다. 협동 파티는 제어, 정찰, 앵커 역할로 안전을 공유하지만 소통이 필요합니다. 실제로 플레이할 형식으로 여러 세션을 해 본 뒤 게임이 맞는지 판단하세요."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "눈 덮인 전투 장면을 보여주는 Mistfall Hunter 공식 Steam 아트", "caption": "게임의 공식 Steam 페이지를 확인하는 데 쓰는 이미지이며 성능의 근거는 아닙니다."},
+            {"type": "rich", "title": "클래스와 학습 곡선", "paragraphs": [
+                "Mistfall Hunter 클래스는 하나의 순위표보다 플레이어의 목적을 기준으로 보는 편이 좋습니다. Mercenary는 이해하기 쉬운 전방 패턴을 제공해 실수할 여지가 필요한 플레이어에게 적합합니다. Withered Knight는 내구도와 공간 제어로 파티를 받치는 방향입니다. 가장 화려한 장면을 만들지는 않아도 게임의 판단 구조를 배우기 좋은 입구입니다.",
+                "Blackarrow, Shadowstrix, Sorcerer는 더 정확한 타이밍을 요구합니다. Blackarrow는 거리, 정찰, 신중한 압박을 보상합니다. Shadowstrix는 매복과 이탈 창이 강하지만 위치 실수를 빠르게 처벌합니다. Sorcerer는 폭발 피해와 범위 제어를 제공합니다. Seer는 개인 피해보다 정보, 유틸리티, 안전한 파티 판단이 중요할 때 가치가 올라갑니다.",
+                "첫 세션에서는 클래스 가이드와 빌드 플래너를 명령이 아니라 지도처럼 사용하세요. 한 문장으로 설명할 수 있는 역할을 고르고 실제 생존과 소통에 도움이 되는지 확인합니다. 두 선택지의 점수가 가깝다면 동점으로 보고 파티에 없는 역할을 고르세요. 패치가 수치를 바꿔도 이 판단 방식은 남습니다."
+            ]},
+            {"type": "table", "title": "필요에 따른 시작 클래스", "headers": ["필요", "시작 방향", "이해할 단점"], "rows": [
+                ["첫 솔로 세션", "Mercenary", "실수에 강하지만 폭발 피해는 낮습니다."],
+                ["파티 앵커", "Withered Knight", "피해 일부를 공간과 내구도에 투자합니다."],
+                ["거리와 정찰", "Blackarrow", "정면 대결보다 위치와 인내가 중요합니다."],
+                ["공격적 측면 공격", "Shadowstrix", "보상이 큰 만큼 실패의 처벌도 큽니다."],
+                ["범위 압박 또는 유틸리티", "Sorcerer 또는 Seer", "폭발 제어와 팀 정보 중 하나를 고릅니다."]
+            ]},
+            {"type": "rich", "title": "장점, 한계, 구매 전 확인", "paragraphs": [
+                "Mistfall Hunter의 가장 큰 장점은 선택의 밀도입니다. 짧은 판도 시간, 소리, 장비 가치, 적의 압박, 다음 전투에 필요한 자원을 비교하게 합니다. 아무것도 자동으로 해결되지 않기 때문에 탈출 성공에 손맛이 있습니다. 클래스 플래너가 솔로, 듀오, 파티를 분리하는 것도 이 장점을 보완하는 방식입니다.",
+                "반대로 익숙해지기 전에는 부담이 될 수 있습니다. 진행 손실, 적은 전리품으로 귀환, 같은 루트를 다시 읽는 과정이 싫다면 루프가 마찰처럼 느껴집니다. 실패를 다음 계획으로 바꾸는 것을 좋아한다면 같은 마찰이 다시 플레이할 이유가 됩니다. 실력 문제가 아니라 취향과의 적합성입니다.",
+                "구매 전에는 지역 Steam 가격, 최근 평가의 방향, PC 사양과 성능 보고, 평소 플레이 시간대의 활동을 확인하세요. 이 사이트의 가격 가이드와 플레이어 수 가이드가 각각 자세히 다룹니다. 이 리뷰는 확인할 항목을 정리하지만 공식 상점이나 최신 플레이어 근거를 대신하지 않습니다."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "어두운 숲 속의 Mistfall Hunter 공식 Steam 헤더", "caption": "게임 정체성을 확인하는 공식 Steam 헤더이며 실제 플레이 증거로 사용하지 않습니다."},
+            {"type": "rich", "title": "구매 전에 이 리뷰를 사용하는 방법", "paragraphs": [
+                "실제로 플레이할 형식부터 정하세요. 솔로 중심이라면 클래스 가이드의 솔로 부분을 읽고 실수를 회복하기 쉬운 방향을 기준으로 삼습니다. 친구와 플레이한다면 팀에 이미 있는 역할을 보고 빌드 플래너로 빈 역할을 시험하세요. 자신의 파티 소통 방식을 무시하고 상상 속 메타만 쫓을 필요는 없습니다.",
+                "그다음 변하지 않는 사실과 변하는 신호를 나눕니다. 제품명, 플랫폼, 개발사, 상점 정보는 Steam 공식 페이지에서 확인합니다. 가격, 평가, 대기 시간, 클래스 강점은 변합니다. 리뷰는 신호를 읽는 법을 설명할 수 있지만 전제 날짜를 밝혀야 하며 초기 인상을 영구적인 결론처럼 말하지 않아야 합니다.",
+                "짧은 결론은 이렇습니다. 추출 루프 자체가 끌리고 PC가 지원되며 현재 Steam 정보가 기대와 맞으면 구매를 검토하세요. 출시 분위기, 할인 카운트다운, 누군가의 최강 클래스 주장만으로 서두르지는 마세요. 고정 점수보다 이 판단 기준이 패치 이후에도 오래갑니다."
+            ]},
+            {"type": "table", "title": "지금 구매, 대기, 보류", "headers": ["상황", "실용적인 선택", "이유"], "rows": [
+                ["추출 PvPvE를 좋아함", "현재 정보 확인 후 고려", "핵심 루프가 취향에 맞을 가능성이 큽니다."],
+                ["편안한 캠페인을 원함", "대기 또는 보류", "장비 손실 구조가 맞지 않을 수 있습니다."],
+                ["고정 파티가 있음", "역할 구성을 먼저 확인", "클래스 조합이 경험을 바꿉니다."],
+                ["PC나 지역이 불확실함", "대기", "사양, 가격, 최신 평가를 확인합니다."],
+                ["현재 메타만 따라가려 함", "서두르지 않기", "패치가 추천을 바꿀 수 있습니다."]
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter 리뷰 자주 묻는 질문", "items": [
+                ["Mistfall Hunter는 살 만한가요?", "추출 PvPvE, 반복 플레이, 압박 속 판단을 좋아한다면 구매 후보입니다. 결제 전 Steam 가격, 사양, 최근 평가, 활동을 확인하세요."],
+                ["솔로 플레이어에게 좋은가요?", "가능하지만 솔로는 자기 회복, 정보, 관대한 클래스가 더 중요합니다. Mercenary부터 시작하되 실제 세션으로 확인하세요."],
+                ["초보자에게 좋은 클래스는 무엇인가요?", "이 사이트 모델에서는 Mercenary가 낮은 위험의 시작 방향입니다. 파티에서 튼튼한 앵커를 원하면 Withered Knight도 좋습니다."],
+                ["공식 점수가 있나요?", "없습니다. 독립 팬 리뷰이자 판단 가이드입니다. 모드, 클래스, PC, 밸런스에 따라 답이 달라져 고정 점수를 피했습니다."],
+                ["가격과 현재 플레이어 수는 어디서 보나요?", "지역 가격과 제품 정보는 Steam 공식 페이지에서, 활동 신호는 SteamDB 차트에서 확인하세요. 사이트의 가격 및 플레이어 수 가이드도 도움이 됩니다."],
+                ["패치 후에도 리뷰가 유효한가요?", "판단 프레임은 유효하지만 클래스, 성능, 대기 시간, 가치는 바뀔 수 있습니다. 오래된 세부 정보는 최신 공식 자료와 플레이어 근거로 다시 확인하세요."]
+            ]},
+            {"type": "links", "title": "리뷰 확인 출처", "items": [
+                ["Mistfall Hunter 공식 Steam 페이지", OFFICIAL_STEAM_URL, "제품 정체성, 플랫폼, 가격, 사양, 평가와 현재 상점 상태.", "noopener"],
+                ["SteamDB Mistfall Hunter 차트", STEAMDB_CHARTS_URL, "현재 플레이어와 피크의 제3자 맥락; 방향성 신호로만 읽습니다.", "nofollow noopener"],
+                ["Steam 환불 정책", "https://store.steampowered.com/steam_refunds/", "결제 전에 현재 플랫폼 규정을 확인합니다.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "관련 Mistfall Hunter 가이드", "items": [
+                ["Mistfall Hunter 클래스 가이드", get_page_path("classes", "ko"), "역할, 위험도, 초보자 방향을 비교합니다."],
+                ["Mistfall Hunter 빌드 플래너", get_page_path("build-planner", "ko"), "솔로, 듀오, 파티에 맞는 클래스를 찾습니다."],
+                ["Mistfall Hunter 플레이어 수 가이드", get_page_path("player-count", "ko"), "SteamDB 신호와 대기 시간 맥락을 읽습니다."],
+                ["Mistfall Hunter 가격 가이드", get_page_path("price", "ko"), "가격, 할인, 구매 전 주의점을 확인합니다."],
+                ["Mistfall Hunter Steam 정보", get_page_path("steam", "ko"), "공식 플랫폼과 출시 사실을 확인합니다."]
+            ]}
+        ]
+    }
+})
+
+
+REVIEW_PAGE_DATA.update({
+    "it": {
+        "page": {
+            "title": "Recensione Mistfall Hunter: vale la pena comprarlo?",
+            "description": "Recensione pratica di Mistfall Hunter: loop extraction, classi, prezzo Steam, attivita e controlli prima dell'acquisto.",
+            "h1": "Recensione Mistfall Hunter: vale la pena comprarlo?",
+            "kicker": "Recensione Mistfall Hunter | Aggiornata ad agosto 2026",
+        },
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-review-verdict.webp", "alt": "Illustrazione editoriale di una rotta di estrazione di Mistfall Hunter", "caption": "Illustrazione editoriale generata per questa recensione realizzata dai fan; non è uno screenshot ufficiale."},
+            {"type": "rich", "title": "Verdetto rapido: un extraction ARPG per il giocatore giusto", "paragraphs": [
+                "La nostra recensione Mistfall Hunter arriva a un verdetto condizionato: il gioco merita attenzione se ti piacciono PvPvE extraction, run ripetute, rischio di perdere equipaggiamento e apprendimento di un ruolo attraverso il gioco. È meno adatto se cerchi una breve campagna single-player o una progressione tranquilla senza passi indietro. La domanda utile non è se sia buono per tutti, ma se le decisioni su rotta, combattimento ed estrazione ti spingano a fare un'altra partita.",
+                "Mistfall Hunter funziona soprattutto per chi ama decidere sotto pressione. Entri con un piano, leggi il pericolo, scegli quando combattere e confronti il valore di restare con il valore di uscire con ciò che hai già trovato. Per questo la scelta della classe conta: una classe frontale perdona più errori, mentre burst e controllo richiedono posizione e tempismo più precisi.",
+                "La cautela principale è la fase iniziale del gioco. Rotte, bilanciamento, prestazioni e sensazione del matchmaking possono cambiare mentre la community impara. Leggi questa pagina come guida indipendente, non come tier list ufficiale. Prima di pagare controlla la pagina Steam, le recensioni recenti, la compatibilità del PC e l'attività nella tua fascia oraria."
+            ]},
+            {"type": "table", "title": "Mistfall Hunter in breve", "headers": ["Domanda", "Risposta della recensione", "Perché conta"], "rows": [
+                ["Che gioco è?", "ARPG PvPvE extraction", "Ogni run unisce combattimento, rotta, rischio del loot e scelta dell'uscita."],
+                ["A chi si adatta?", "A chi ama run tese e ripetibili", "Il valore sta nelle decisioni e nell'apprendimento, non solo nella storia."],
+                ["È facile per iniziare?", "Sì con la classe giusta, ma non senza attrito", "Mercenary e Withered Knight danno più margine all'inizio."],
+                ["Conviene comprarlo subito?", "Controlla prima i dati Steam attuali", "Prezzo, recensioni, requisiti e attività cambiano."],
+                ["Qual è la posizione del sito?", "Risorsa indipendente realizzata dai fan", "I consigli sulle classi sono editoriali e separati dai fatti ufficiali."]
+            ]},
+            {"type": "rich", "title": "Cosa richiede il loop di estrazione", "paragraphs": [
+                "Un gioco extraction inizia con un piano incompleto. Rotta, nemici, loot e altri giocatori ti obbligano ad adattarlo. Una competenza importante è capire quando un guadagno piccolo è già sufficiente. Restare per un altro forziere può migliorare la run, ma trasformare un'uscita sicura in perdita dell'equipaggiamento. Questa tensione dà identità al gioco e rende le prime ore meno comode di un action RPG tradizionale.",
+                "Il loop premia l'informazione quanto l'esecuzione. Devi riconoscere un combattimento favorevole, la finestra forte della tua classe e il momento in cui la squadra ha già speso troppe risorse per continuare. Una build non è quindi solo una lista di danni: comprende posizione, recupero, disimpegno e un rischio che il gruppo sappia comunicare.",
+                "Solo e squadra possono sembrare due giochi diversi. In solo pesano di più recupero personale, informazioni e correzione degli errori. In gruppo, controllo, scouting e un ruolo d'ancora creano sicurezza condivisa, ma richiedono coordinazione. Gioca alcune sessioni nel formato che userai davvero prima di decidere se il gioco fa per te."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-hero.webp", "alt": "Artwork ufficiale Steam di Mistfall Hunter in una battaglia innevata", "caption": "Artwork ufficiale Steam usato per identificare il gioco; non è una prova delle prestazioni."},
+            {"type": "rich", "title": "Classi e curva di apprendimento", "paragraphs": [
+                "Il modo più utile per valutare le classi Mistfall Hunter è partire dal bisogno del giocatore, non da un vincitore universale. Mercenary offre una linea frontale facile da leggere e va bene per chi vuole margine d'errore. Withered Knight aggiunge resistenza e controllo dello spazio per chi vuole fare da ancora alla squadra. Forse producono meno momenti spettacolari, ma rendono più chiaro il linguaggio delle decisioni.",
+                "Blackarrow, Shadowstrix e Sorcerer richiedono un tempismo più consapevole. Blackarrow premia distanza, scouting e pressione paziente. Shadowstrix crea buone finestre di imboscata e disimpegno, ma punisce presto una posizione sbagliata. Sorcerer offre burst e controllo ad area. Seer cresce di valore quando informazione, utilità e decisioni sicure della squadra contano più del danno personale.",
+                "Nella prima sessione usa guida classi e planner build come una mappa, non come un ordine. Scegli un compito che puoi spiegare in una frase e verifica se aiuta davvero sopravvivenza e comunicazione. Se due opzioni sono vicine, considerale un pareggio e copri il ruolo mancante. Questo metodo resta utile anche dopo una patch."
+            ]},
+            {"type": "table", "title": "Direzione iniziale per esigenza", "headers": ["Esigenza", "Direzione", "Compromesso"], "rows": [
+                ["Prime run solo", "Mercenary", "Perdona più errori, ma ha meno burst."],
+                ["Ancora della squadra", "Withered Knight", "Scambia parte del danno con spazio e resistenza."],
+                ["Distanza e scouting", "Blackarrow", "Posizione e pazienza contano più del faccia a faccia."],
+                ["Fianchi aggressivi", "Shadowstrix", "Ricompensa alta con punizione più severa."],
+                ["Area o utilità", "Sorcerer o Seer", "Scegli tra controllo esplosivo e informazione di squadra."]
+            ]},
+            {"type": "rich", "title": "Punti forti, limiti e controlli", "paragraphs": [
+                "Il punto forte di Mistfall Hunter è la densità delle decisioni. Anche una run breve ti chiede di confrontare tempo, rumore, valore dell'equipaggiamento, pressione nemica e risorse per il prossimo combattimento. Un'estrazione riuscita sembra meritata perché il gioco non risolve tutto al posto tuo. Il planner classi aiuta separando solo, duo e squadra invece di applicare lo stesso punteggio a tutti.",
+                "Il compromesso è la fatica prima che le abitudini diventino naturali. Se non ami perdere progressi, uscire con poco o rileggere una rotta più volte, il loop può sembrare attrito. Se ti piace trasformare una sconfitta in un piano migliore, lo stesso attrito diventa il motivo per tornare. È una questione di compatibilità, non di abilità.",
+                "Prima dell'acquisto controlla quattro segnali attuali: prezzo regionale Steam, direzione delle recensioni recenti, requisiti e prestazioni sul tuo PC, attività nell'orario in cui giochi. Le risorse prezzo e giocatori del sito spiegano questi controlli. La recensione indica cosa guardare, ma non sostituisce store ufficiale o dati recenti della community."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-steam-header.webp", "alt": "Header ufficiale Steam di Mistfall Hunter in una foresta scura", "caption": "Header ufficiale come seconda verifica dell'identità; non viene presentato come prova di gameplay."},
+            {"type": "rich", "title": "Come usare questa recensione prima di comprare", "paragraphs": [
+                "Parti dal formato che giocherai davvero. Se giochi soprattutto solo, leggi i consigli solo della guida classi e usa una direzione permissiva come base. Con amici, controlla i ruoli già presenti e prova il ruolo mancante nel planner. Non devi comprare inseguendo una meta immaginaria che non coincide con la comunicazione della tua squadra.",
+                "Poi separa fatti stabili e segnali variabili. Nome del prodotto, piattaforma, sviluppatore e identità dello store vanno verificati su Steam ufficiale. Prezzo, recensioni, code e forza delle classi cambiano. Una recensione può spiegare come leggere questi segnali, ma deve datare le sue premesse e non trasformare una prima impressione in un verdetto eterno.",
+                "La conclusione breve è questa: valuta l'acquisto se il loop extraction ti attrae, il PC è compatibile e i dati Steam attuali confermano le tue aspettative. Aspetta se reagisci solo a hype di lancio, conto alla rovescia dello sconto o alla presunta classe migliore. Questa regola dura più di un voto fisso e lascia spazio alle patch."
+            ]},
+            {"type": "table", "title": "Comprare, aspettare o lasciare perdere?", "headers": ["Situazione", "Scelta pratica", "Motivo"], "rows": [
+                ["Ti piace PvPvE extraction", "Valuta dopo i controlli live", "Il loop centrale probabilmente ti si adatta."],
+                ["Vuoi una campagna rilassata", "Aspetta o lascia perdere", "Il rischio di perdita può essere inadatto."],
+                ["Hai una squadra fissa", "Controlla la copertura dei ruoli", "Il fit delle classi cambia l'esperienza."],
+                ["PC o regione incerti", "Aspetta", "Conferma requisiti, prezzo e recensioni attuali."],
+                ["Insegui solo la meta attuale", "Non avere fretta", "Le patch possono cambiare i consigli."]
+            ]},
+            {"type": "faq", "title": "Domande frequenti sulla recensione Mistfall Hunter", "items": [
+                ["Mistfall Hunter vale la pena?", "È da considerare se ti piacciono PvPvE extraction, run ripetibili e decisioni sotto pressione. Controlla prezzo, requisiti, recensioni recenti e attività Steam prima di pagare."],
+                ["È adatto ai giocatori solo?", "Può esserlo, ma il solo richiede più recupero, informazioni e una classe permissiva. Mercenary è una direzione pratica; provala prima di considerarla definitiva."],
+                ["Quale classe è buona per iniziare?", "Il modello del sito indica Mercenary come direzione a basso rischio. Withered Knight è sensata se vuoi fare da ancora resistente alla squadra."],
+                ["La recensione dà un voto ufficiale?", "No. È una recensione indipendente realizzata dai fan e una guida decisionale. Un voto fisso nasconderebbe l'effetto di modalità, classe, PC e bilanciamento."],
+                ["Dove controllo prezzo e giocatori attuali?", "Usa Steam ufficiale per prezzo regionale e fatti del prodotto. Usa SteamDB come segnale esterno di attività; le risorse prezzo e giocatori spiegano come leggerlo."],
+                ["La recensione sarà valida dopo le patch?", "Il metodo resta utile, ma classi, prestazioni, code e valore possono cambiare. Ricontrolla informazioni ufficiali e testimonianze recenti."]
+            ]},
+            {"type": "links", "title": "Fonti e verifiche della recensione", "items": [
+                ["Pagina Steam ufficiale di Mistfall Hunter", OFFICIAL_STEAM_URL, "Identità, piattaforma, prezzo, requisiti, recensioni e stato attuale dello store.", "noopener"],
+                ["Grafici Mistfall Hunter su SteamDB", STEAMDB_CHARTS_URL, "Contesto terzo su giocatori e picchi; usalo come segnale direzionale.", "nofollow noopener"],
+                ["Politica rimborsi Steam", "https://store.steampowered.com/steam_refunds/", "Controlla le regole attuali della piattaforma prima di pagare.", "nofollow noopener"]
+            ]},
+            {"type": "related", "title": "Risorse Mistfall Hunter correlate", "items": [
+                ["Manuale classi Mistfall Hunter", get_page_path("classes", "it"), "Confronta ruoli, rischio e direzioni per principianti."],
+                ["Planner build Mistfall Hunter", get_page_path("build-planner", "it"), "Abbina una classe a solo, duo o squadra."],
+                ["Risorsa giocatori Mistfall Hunter", get_page_path("player-count", "it"), "Leggi segnali SteamDB e contesto delle code."],
+                ["Risorsa prezzo Mistfall Hunter", get_page_path("price", "it"), "Controlla prezzo, sconti e note prima dell'acquisto."],
+                ["Info Steam Mistfall Hunter", get_page_path("steam", "it"), "Verifica fatti ufficiali di piattaforma e uscita."]
+            ]}
+        ]
+    }
+})
+
+
 for locale in LOCALE_ORDER:
+    TEXT[locale]["pages"]["review"] = REVIEW_PAGE_DATA[locale]["page"]
     player_count_data = localized_player_count_data(locale)
     TEXT[locale]["pages"]["player-count"] = player_count_data["page"]
 
@@ -807,10 +1485,12 @@ def make_simple_sections(locale, page_key):
     if page_key == "price":
         related = PRICE_RELATED_COPY[locale]
         return PRICE_PAGE_DATA[locale]["sections"] + [
-            {"type": "related", "title": related["title"], "items": [[related["steam_label"], get_page_path("steam", locale), related["steam_desc"]], [related["classes_label"], get_page_path("classes", locale), related["classes_desc"]], [related["planner_label"], get_page_path("build-planner", locale), related["planner_desc"]]]}
+            {"type": "related", "title": related["title"], "items": [[related["steam_label"], get_page_path("steam", locale), related["steam_desc"]], [related["classes_label"], get_page_path("classes", locale), related["classes_desc"]], [related["planner_label"], get_page_path("build-planner", locale), related["planner_desc"]], [REVIEW_PAGE_DATA[locale]["page"]["h1"], get_page_path("review", locale), REVIEW_PAGE_DATA[locale]["page"]["description"]]]}
         ]
     if page_key == "player-count":
         return localized_player_count_data(locale)["sections"]
+    if page_key == "review":
+        return REVIEW_PAGE_DATA[locale]["sections"]
     if page_key == "about":
         return [{"type": "rich", "title": text["pages"]["about"]["h1"], "paragraphs": simple.get("about", [])}]
     if page_key == "contact":
@@ -834,6 +1514,7 @@ def build_site_data(page_key, locale="en"):
         abort(404)
     text = get_locale_text(locale)
     page = {**text["pages"][page_key], "path": get_page_path(page_key, locale), "key": page_key}
+    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -848,12 +1529,13 @@ def build_site_data(page_key, locale="en"):
         "page_key": page_key,
         "page": page,
         "canonical_url": f"{BASE_URL}{page['path']}",
+        "page_image_url": f"{BASE_URL}/static/{page_image}",
         "alternate_urls": get_alternate_urls(page_key),
         "x_default_url": f"{BASE_URL}{get_page_path(page_key, 'en')}",
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": KEYWORD_MAP[locale],
+        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "sections": make_simple_sections(locale, page_key),
     }

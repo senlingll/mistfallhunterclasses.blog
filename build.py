@@ -114,6 +114,7 @@ def write_llms_files(static_dir):
         ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
         ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
+        ("Review guide", get_page_path("review"), "Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs."),
     ]
     common_links = [
         ("About", get_page_path("about"), "Editorial policy and source handling."),
@@ -131,7 +132,7 @@ def write_llms_files(static_dir):
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in core_links])
     llms_lines.extend(["", "## Common Resources"])
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
-    llms_lines.extend(["", "## Latest Updates", f"- [Main planner]({BASE_URL}/): Updated in July 2026 with multilingual routes, class planner copy, sitemap, and language switching."])
+    llms_lines.extend(["", "## Latest Updates", f"- [Review guide]({BASE_URL}{get_page_path('review')}): Added in August 2026 with an independent purchase decision guide, localized review routes, source links, and related class resources."])
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -153,7 +154,7 @@ def write_llms_files(static_dir):
         "",
         "## Latest Update Content",
         f"### [Multilingual planner update]({BASE_URL}/)",
-        "Updated in July 2026 to add English, Spanish, Japanese, French, German, Portuguese, Korean, and Italian routes with localized metadata, navigation, planner controls, class copy, FAQ content, sitemap entries, and language switching.",
+        "Updated in August 2026 to add the multilingual Mistfall Hunter review guide, localized metadata, source links, FAQ content, related class resources, sitemap entries, and language switching.",
     ])
     with open(os.path.join(static_dir, "llms-full.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(full_lines) + "\n")
@@ -186,6 +187,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-steam-hero.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-steam-header.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-review-verdict.webp"),
         "logo.png",
         "favicon.ico",
     ]

@@ -17,6 +17,9 @@
     "ARPG",
     "PvPvE",
     "Steam appdetails",
+    "SteamDB",
+    "SteamDB Mistfall Hunter",
+    "Blackarrow, Shadowstrix, Sorcerer",
     "Jul 29, 2026",
     "Windows on Steam",
     "Mistfall Hunter - Upgrade to Deluxe Edition",
@@ -36,12 +39,18 @@
     "ja": {
       "Mistfall Hunter": "Mistfall Hunter",
       "Mercenary": "Mercenary",
-      "Withered Knight": "Withered Knight"
+      "Withered Knight": "Withered Knight",
+      "Blackarrow": "Blackarrow",
+      "Shadowstrix": "Shadowstrix",
+      "Sorcerer": "Sorcerer"
     },
     "ko": {
       "Mistfall Hunter": "Mistfall Hunter",
       "Mercenary": "Mercenary",
-      "Withered Knight": "Withered Knight"
+      "Withered Knight": "Withered Knight",
+      "Blackarrow": "Blackarrow",
+      "Shadowstrix": "Shadowstrix",
+      "Sorcerer": "Sorcerer"
     }
   }
 }
