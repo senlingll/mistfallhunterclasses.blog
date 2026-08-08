@@ -115,6 +115,7 @@ def write_llms_files(static_dir):
         ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
         ("Review guide", get_page_path("review"), "Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs."),
+        ("Gameplay guide", get_page_path("gameplay"), "Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes."),
     ]
     common_links = [
         ("About", get_page_path("about"), "Editorial policy and source handling."),
@@ -132,7 +133,7 @@ def write_llms_files(static_dir):
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in core_links])
     llms_lines.extend(["", "## Common Resources"])
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
-    llms_lines.extend(["", "## Latest Updates", f"- [Review guide]({BASE_URL}{get_page_path('review')}): Added in August 2026 with an independent purchase decision guide, localized review routes, source links, and related class resources."])
+    llms_lines.extend(["", "## Latest Updates", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -153,8 +154,8 @@ def write_llms_files(static_dir):
         "The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.",
         "",
         "## Latest Update Content",
-        f"### [Multilingual planner update]({BASE_URL}/)",
-        "Updated in August 2026 to add the multilingual Mistfall Hunter review guide, localized metadata, source links, FAQ content, related class resources, sitemap entries, and language switching.",
+        f"### [Multilingual gameplay update]({BASE_URL}{get_page_path('gameplay')})",
+        "Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.",
     ])
     with open(os.path.join(static_dir, "llms-full.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(full_lines) + "\n")
@@ -188,6 +189,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-steam-header.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-review-verdict.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-gameplay-loop.webp"),
         "logo.png",
         "favicon.ico",
     ]
@@ -197,7 +199,7 @@ def copy_static_assets(build_dir):
             destination = os.path.join(static_build, filename)
             ensure_dir(os.path.dirname(destination))
             shutil.copy2(source, destination)
-    for filename in ["robots.txt", "sitemap.xml", "favicon.ico", "llms.txt", "llms-full.txt", "_redirects", "_worker.js"]:
+    for filename in ["robots.txt", "sitemap.xml", "ads.txt", "favicon.ico", "llms.txt", "llms-full.txt", "_redirects", "_worker.js"]:
         source = os.path.join("static", filename)
         if os.path.exists(source):
             shutil.copy2(source, os.path.join(build_dir, filename))
