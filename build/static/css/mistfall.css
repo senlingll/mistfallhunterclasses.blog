@@ -401,6 +401,11 @@ summary {
   object-fit: cover;
   width: 100%;
 }
+.article-media img.map-media {
+  aspect-ratio: 1 / 1;
+  background: rgba(8, 14, 22, 0.9);
+  object-fit: contain;
+}
 .article-media figcaption {
   color: var(--muted);
   font-size: 0.92rem;

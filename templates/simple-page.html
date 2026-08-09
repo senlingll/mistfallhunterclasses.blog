@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block schema %}
-{% if page_key in ["player-count", "review", "gameplay"] %}
+{% if page_key in ["player-count", "review", "gameplay", "map-guide"] %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,7 +87,7 @@
     {% elif section.type == "image" %}
     <section class="section-pad article-media-section">
       <figure class="article-media">
-        <img src="{{ url_for('static', filename=section.src) }}" alt="{{ section.alt }}" width="1280" height="720" loading="lazy">
+        <img class="article-media-img{% if section.image_class %} {{ section.image_class }}{% endif %}" src="{{ url_for('static', filename=section.src) }}" alt="{{ section.alt }}" width="{{ section.width if section.width else 1280 }}" height="{{ section.height if section.height else 720 }}" loading="lazy">
         <figcaption>{{ section.caption }}</figcaption>
       </figure>
     </section>

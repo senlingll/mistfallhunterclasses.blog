@@ -21,6 +21,9 @@ Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 ### [Player count guide](https://mistfallhunterclasses.blog/player-count/)
 SteamDB chart interpretation, current-player signals, and queue-timing guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Map guide](https://mistfallhunterclasses.blog/map-guide/)
+Map markers, key-route decisions, community map references, and extraction planning. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
@@ -34,5 +37,8 @@ Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, c
 The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.
 
 ## Latest Update Content
+### [Multilingual map guide update](https://mistfallhunterclasses.blog/map-guide/)
+Updated on 2026-08-10 to add the multilingual Mistfall Hunter map guide, attributed community map references, a conceptual route visual, localized metadata, FAQ content, related class resources, sitemap entries, and language switching.
+
 ### [Multilingual gameplay update](https://mistfallhunterclasses.blog/gameplay/)
 Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.

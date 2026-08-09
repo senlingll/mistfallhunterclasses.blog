@@ -14,7 +14,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08"}
+PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -34,6 +34,7 @@ PAGE_ORDER = [
     "build-planner",
     "price",
     "player-count",
+    "map-guide",
     "steam",
     "review",
     "gameplay",
@@ -49,6 +50,7 @@ PAGE_SLUGS = {
     "build-planner": "build-planner",
     "price": "price",
     "player-count": "player-count",
+    "map-guide": "map-guide",
     "steam": "steam",
     "review": "review",
     "gameplay": "gameplay",
@@ -550,6 +552,26 @@ PLAYER_COUNT_PAGE_DATA = {
     }
 }
 
+def replace_nested_text(value, replacements):
+    """
+    递归替换嵌套本地化数据中的指定文本。
+
+    :param value: 字符串、列表、字典或其他本地化数据
+    :param replacements: 原文本到本地化文本的替换字典
+    :return: 替换后的本地化数据
+    """
+    if isinstance(value, str):
+        result = value
+        for source, target in replacements.items():
+            result = result.replace(source, target)
+        return result
+    if isinstance(value, list):
+        return [replace_nested_text(item, replacements) for item in value]
+    if isinstance(value, dict):
+        return {key: replace_nested_text(item, replacements) for key, item in value.items()}
+    return value
+
+
 PLAYER_COUNT_LOCALE_COPY = {
     "es": {"title": "Jugadores de Mistfall Hunter: Steam Charts, picos y mejor hora", "description": "Aprende a leer jugadores de Mistfall Hunter, Steam Charts y picos de SteamDB antes de entrar solo o con escuadron.", "h1": "Jugadores de Mistfall Hunter: Steam Charts, picos y mejor hora", "kicker": "Guia de jugadores", "keyword": "jugadores de Mistfall Hunter", "source": "grafico de SteamDB", "related_title": "Guias relacionadas de Mistfall Hunter", "faq_title": "Preguntas frecuentes sobre jugadores de Mistfall Hunter"},
     "ja": {"title": "Mistfall Hunter player count: Steam Chartsとピークの読み方", "description": "Mistfall Hunterのplayer count、Steam Charts、SteamDBのピークを確認し、ソロや分隊で遊ぶ時間を判断するガイド。", "h1": "Mistfall Hunter player count: Steam Chartsとピークの読み方", "kicker": "プレイヤー数ガイド", "keyword": "Mistfall Hunter player count", "source": "SteamDBチャート", "related_title": "関連するMistfall Hunterガイド", "faq_title": "Mistfall Hunter player count FAQ"},
@@ -655,7 +677,12 @@ def localized_player_count_data(locale):
     :return: dict，包含页面元信息和正文区块
     """
     if locale == "en":
-        return PLAYER_COUNT_PAGE_DATA["en"]
+        data = PLAYER_COUNT_PAGE_DATA["en"]
+        related_items = data["sections"][-1]["items"]
+        map_path = get_page_path("map-guide", locale)
+        if not any(item[1] == map_path for item in related_items):
+            related_items.append([MAP_PAGE_DATA[locale]["page"]["h1"], map_path, MAP_PAGE_DATA[locale]["page"]["description"]])
+        return data
     copy = PLAYER_COUNT_LOCALE_COPY[locale]
     detail = PLAYER_COUNT_DETAIL_COPY[locale]
     common = {
@@ -667,6 +694,16 @@ def localized_player_count_data(locale):
         "ko": {"embed_title": "실시간 SteamDB 차트", "embed_caption": "Mistfall Hunter app 3282300용 SteamDB 임베드입니다. 공식 발표가 아닌 제3자 참고 차트로 보세요.", "open_chart": "실시간 SteamDB 차트 열기", "sources": "확인 출처", "steamdb_desc": "현재 플레이어, 일일 피크, Steam 기록 맥락.", "steam_desc": "플랫폼, 출시, 퍼블리셔, 스토어 공식 페이지.", "steam_info": "Mistfall Hunter Steam 정보", "steam_info_desc": "공식 플랫폼 정보를 확인합니다.", "classes": "Mistfall Hunter 클래스 가이드", "classes_desc": "활동 시간 확인 후 역할을 고릅니다.", "planner": "Mistfall Hunter 빌드 플래너", "planner_desc": "솔로 또는 스쿼드 계획에 맞는 클래스를 찾습니다.", "price": "Mistfall Hunter 가격 가이드", "price_desc": "활동 추이와 가격, 환불 조건을 함께 확인합니다."},
         "it": {"embed_title": "Grafico SteamDB live", "embed_caption": "Embed SteamDB per Mistfall Hunter app 3282300. Usalo come grafico terzo indicativo, non come dichiarazione ufficiale.", "open_chart": "Apri il grafico SteamDB live", "sources": "Fonti di verifica", "steamdb_desc": "Giocatori attuali, picco giornaliero e storico Steam.", "steam_desc": "Pagina ufficiale per piattaforma, uscita, editore e store.", "steam_info": "Info Steam Mistfall Hunter", "steam_info_desc": "Verifica dati ufficiali di piattaforma.", "classes": "Guida classi Mistfall Hunter", "classes_desc": "Scegli ruolo dopo gli orari attivi.", "planner": "Planner build Mistfall Hunter", "planner_desc": "Abbina classe a piano solo o squadra.", "price": "Prezzo Mistfall Hunter", "price_desc": "Unisci attivita, prezzo e rimborso."},
     }[locale]
+    common = replace_nested_text(common, I18N_TERM_REPLACEMENTS.get(locale, {}))
+    link_labels = {
+        "es": ("Gráficos de Mistfall Hunter en SteamDB", "Página oficial de Steam"),
+        "ja": ("Mistfall Hunter SteamDBチャート", "Steam公式ページ"),
+        "fr": ("Graphiques Mistfall Hunter sur SteamDB", "Page Steam officielle"),
+        "de": ("Mistfall Hunter SteamDB-Charts", "Offizielle Steam-Seite"),
+        "pt": ("Gráficos de Mistfall Hunter no SteamDB", "Página oficial do Steam"),
+        "ko": ("Mistfall Hunter SteamDB 차트", "공식 Steam 페이지"),
+        "it": ("Grafici Mistfall Hunter su SteamDB", "Pagina Steam ufficiale"),
+    }[locale]
     sections = [
         {"type": "embed", "title": common["embed_title"], "src": STEAMDB_EMBED_URL, "link_href": STEAMDB_CHARTS_URL, "caption": common["embed_caption"], "link_label": common["open_chart"]},
         {"type": "rich", "title": detail["quick_title"], "paragraphs": detail["quick"]},
@@ -674,9 +711,10 @@ def localized_player_count_data(locale):
         {"type": "rich", "title": detail["limits_title"], "paragraphs": detail["limits"]},
         {"type": "table", "title": detail["queue_title"], "headers": detail["queue_headers"], "rows": detail["queue_rows"]},
         {"type": "faq", "title": copy["faq_title"], "items": detail["faq"]},
-        {"type": "links", "title": common["sources"], "items": [["SteamDB Mistfall Hunter charts", STEAMDB_CHARTS_URL, common["steamdb_desc"], "nofollow noopener"], ["Official Steam page", OFFICIAL_STEAM_URL, common["steam_desc"]]]},
+        {"type": "links", "title": common["sources"], "items": [[link_labels[0], STEAMDB_CHARTS_URL, common["steamdb_desc"], "nofollow noopener"], [link_labels[1], OFFICIAL_STEAM_URL, common["steam_desc"]]]},
         {"type": "related", "title": copy["related_title"], "items": [[common["steam_info"], get_page_path("steam", locale), common["steam_info_desc"]], [common["classes"], get_page_path("classes", locale), common["classes_desc"]], [common["planner"], get_page_path("build-planner", locale), common["planner_desc"]], [common["price"], get_page_path("price", locale), common["price_desc"]]]},
     ]
+    sections[-1]["items"].append([MAP_PAGE_DATA[locale]["page"]["h1"], get_page_path("map-guide", locale), MAP_PAGE_DATA[locale]["page"]["description"]])
     return {"page": {"title": copy["title"], "description": copy["description"], "h1": copy["h1"], "kicker": copy["kicker"]}, "sections": sections}
 
 PRICE_RELATED_COPY = {
@@ -902,6 +940,527 @@ GAMEPLAY_KEYWORD_MAP = {
     "it": {"market": "Italy", "primary": "gameplay di Mistfall Hunter", "related": ["come si gioca a Mistfall Hunter", "gioco di estrazione Mistfall Hunter", "combattimento Mistfall Hunter", "classi Mistfall Hunter"], "rejected": ["recensione Mistfall Hunter as the primary; keep buyer intent on /review/"], "evidence": "Global Similarweb returned English gameplay rows but no Italian-specific rows; gameplay di is the working Italian gaming term supported by the existing class and review locale wording.", "confidence": "low"},
 }
 
+MAP_KEYWORD_MAP = {
+    "en": {"market": "US", "primary": "Mistfall Hunter map", "related": ["Mistfall Hunter maps", "Mistfall Hunter map guide", "Mistfall Hunter key map", "how many players in a map Mistfall Hunter"], "rejected": ["Mistfall Hunter roadmap as a separate page", "Mistfall Hunter codes as a new page"], "evidence": "Similarweb global phrase match exact: monthly volume 140, 28-day window 2740, difficulty 0; related maps monthly 222/window 2350; question tab includes map player-count variants. Bing SERP for maps shows an accessible interactive map source.", "confidence": "medium"},
+    "es": {"market": "US / Latin America", "primary": "mapa de Mistfall Hunter", "related": ["mapas de Mistfall Hunter", "guía del mapa de Mistfall Hunter", "mapa de llaves Mistfall Hunter", "cuántos jugadores caben en un mapa de Mistfall Hunter"], "rejected": ["ruta de actualización Mistfall Hunter as a separate page", "códigos Mistfall Hunter as primary"], "evidence": "Similarweb global native seed had no exact match; phrase/question rows included Brandrgarde map wording. Bing Spanish SERP was noisy, so the term is a low-confidence natural localization bounded by the English map intent and the verified interactive map source.", "confidence": "low"},
+    "ja": {"market": "Japan", "primary": "Mistfall Hunter マップ", "related": ["Mistfall Hunter マップ攻略", "Mistfall Hunter 鍵マップ", "Mistfall Hunter 地図", "マップ内のプレイヤー数"], "rejected": ["Mistfall Hunter ロードマップ as the page primary", "Mistfall Hunter コード as primary"], "evidence": "Similarweb Japan-language seed had no exact match and only a zero-window PS5 map variant. Bing Japanese SERP retained the game title and surfaced the Steam/Wiki/interactive-map cluster; Japanese map wording is low-confidence but intent-consistent.", "confidence": "low"},
+    "fr": {"market": "France", "primary": "carte Mistfall Hunter", "related": ["guide carte Mistfall Hunter", "cartes Mistfall Hunter", "carte des clés Mistfall Hunter", "combien de joueurs sur une carte Mistfall Hunter"], "rejected": ["roadmap Mistfall Hunter as a map synonym", "codes Mistfall Hunter as primary"], "evidence": "Similarweb French seed had no exact match; Bing French SERP was noisy and did not establish a stable local result. Use this natural French map term with low confidence and keep the visible source boundary conservative.", "confidence": "low"},
+    "de": {"market": "Germany", "primary": "Mistfall Hunter Karte", "related": ["Mistfall Hunter Karten Guide", "Mistfall Hunter Karten", "Mistfall Hunter Schlüsselkarte", "wie viele Spieler auf einer Mistfall-Hunter-Karte"], "rejected": ["Mistfall Hunter Roadmap as map intent", "Mistfall Hunter Codes as primary"], "evidence": "Similarweb German seed had no exact match. Bing German SERP retained the game/Steam/Wiki/interactive-map cluster, so Karte is a low-confidence but grammatically natural local term.", "confidence": "low"},
+    "pt": {"market": "Brazil", "primary": "mapa de Mistfall Hunter", "related": ["mapas de Mistfall Hunter", "guia do mapa de Mistfall Hunter", "mapa de chaves Mistfall Hunter", "quantos jogadores cabem em um mapa de Mistfall Hunter"], "rejected": ["roadmap Mistfall Hunter as map intent", "códigos Mistfall Hunter as primary"], "evidence": "Similarweb Portuguese seed had no exact match; phrase/question rows surfaced Spanish Brandrgarde wording. Bing Portuguese SERP was noisy, so the Brazilian Portuguese term is low-confidence and follows the verified global map boundary; the natural Brazilian form uses de.", "confidence": "low"},
+    "ko": {"market": "Korea", "primary": "Mistfall Hunter 맵", "related": ["Mistfall Hunter 맵 공략", "Mistfall Hunter 지도", "Mistfall Hunter 열쇠 맵", "Mistfall Hunter 맵에 몇 명이 들어가나요"], "rejected": ["Mistfall Hunter 로드맵 as map intent", "Mistfall Hunter 코드 as primary"], "evidence": "Similarweb Korean seed had no exact match. Bing Korean SERP retained the game/Steam/Wiki/interactive-map cluster; 맵 is the concise gaming term with low confidence because local keyword volume was unavailable.", "confidence": "low"},
+    "it": {"market": "Italy", "primary": "mappa Mistfall Hunter", "related": ["guida mappa Mistfall Hunter", "mappe Mistfall Hunter", "mappa delle chiavi Mistfall Hunter", "quanti giocatori ci sono in una mappa Mistfall Hunter"], "rejected": ["roadmap Mistfall Hunter as map intent", "codici Mistfall Hunter as primary"], "evidence": "Similarweb Italian seed had no exact match; Bing Italian SERP was dominated by the unrelated MAPPA entity, so this is a low-confidence natural localization supported by the English map boundary and source page.", "confidence": "low"},
+}
+
+COMMUNITY_MAP_URL = "https://mistfall.shejihu.top/"
+COMMUNITY_WIKI_URL = "https://wiki.biligame.com/mistfallhunter/%E9%9B%BE%E5%BD%B1%E7%8C%8E%E4%BA%BA"
+
+MAP_PAGE_DATA = {
+    "en": {
+        "page": {"title": "Mistfall Hunter Map Guide: Maps, Key Routes and Extraction Tips", "description": "Use this Mistfall Hunter map guide to read map markers, key routes, safe exits, and solo or squad decisions without treating community data as official.", "h1": "Mistfall Hunter Map Guide: Maps, Key Routes and Extraction Tips", "kicker": "Map guide | Updated August 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Conceptual Mistfall Hunter map route diagram comparing safe, balanced, and dangerous extraction paths", "caption": "Editorial route decision diagram created for this guide. It is a conceptual illustration, not a real in-game map or coordinate claim."},
+            {"type": "rich", "title": "Quick answer: what the Mistfall Hunter map guide is for", "paragraphs": [
+                "The Mistfall Hunter map is most useful when you treat it as a decision surface rather than a promise that every run will follow the same route. Before entering, identify the objective, the likely return direction, and the information you still need. During the run, compare distance, cover, threat markers, loot value, and the time needed to reach an exit. The best route is often the one that leaves a credible way back, not the one with the most icons.",
+                "This page separates verified source facts from community map references. The official Steam listing establishes the game identity and extraction ARPG context. The interactive map and community Wiki are useful for locations, markers, keys, and route research, but their labels can change as players update them. Use them as current references, confirm important details in the live source, and avoid treating an old screenshot as a permanent patch record.",
+                "The practical goal is simple: turn map information into a safer choice for solo, duo, or squad play. Pick a role from the classes guide, set a build direction with the planner, then use the map to decide where to spend time and when to extract. This map guide does not invent coordinates, key locations, or party limits that the public sources do not verify."
+            ]},
+            {"type": "table", "title": "What to check before following a map route", "headers": ["Map signal", "Question to ask", "Practical decision"], "rows": [
+                ["Objective marker", "Does this location serve the run goal or only add distance?", "Choose the shortest route that still leaves a return option."],
+                ["Key or locked area", "Is the key requirement current in the community source?", "Verify the live marker before risking a valuable loadout."],
+                ["Threat or event marker", "Is the danger confirmed, recent, or only a player report?", "Treat uncertain danger as a reason to slow down, not as a guaranteed fact."],
+                ["Extraction point", "Can the team reach it after one more fight?", "Set a leave threshold before greed removes the safe exit."],
+                ["Team route", "Does every player know the next landmark and fallback?", "Use short calls for place, threat, direction, and exit."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Community map reference for the Shenwood map in Mistfall Hunter with named locations", "caption": "Community map reference: Shenwood labels from the public 射击虎 interactive map source. This is not official Steam media; check the linked source for current markers and attribution."},
+            {"type": "rich", "title": "How to read Mistfall Hunter maps before a run", "paragraphs": [
+                "Start with a route skeleton instead of trying to memorize every marker. Pick an entry landmark, one useful destination, and one extraction direction. A skeleton gives you a way to interpret new information: if a fight closes the direct path, you already know which side route preserves the objective and which route only adds risk. This is especially helpful for beginners who lose time by opening the map repeatedly without deciding what they are trying to reach.",
+                "Use map detail to compare options, not to remove uncertainty. A key marker can tell you where a valuable door or objective may be, but it cannot guarantee that another squad will not arrive first or that the marker reflects the latest update. When information conflicts, prefer the live community source, record the date of your check, and plan as if the most valuable route will be contested. That keeps a useful marker from becoming tunnel vision.",
+                "The strongest map habit is an early extraction check. Ask how much inventory value you have, how many defensive resources remain, whether the next objective is on the way out, and whether everyone can communicate the fallback route. If the answer is weak, extracting is not giving up on the map; it is converting information into a successful run."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Community map reference for Brand Keep in Mistfall Hunter with interior and exterior route landmarks", "caption": "Community map reference: Brand Keep labels from the public 射击虎 map collection. Community material is labeled separately from official game media and may change with updates."},
+            {"type": "rich", "title": "Solo, duo, and squad route examples", "paragraphs": [
+                "For solo play, value recovery and information more heavily than raw map coverage. Choose one destination, keep a route that avoids being trapped by a second fight, and leave when the objective and a reasonable haul are complete. Mercenary is a practical low-risk class direction from the site model because it leaves more room for correcting a route mistake. That does not make it an official best class; it simply gives a new player a clearer map-learning baseline.",
+                "For duo play, split information gathering without splitting so far that neither player can help. One player can read the next landmark while the other watches the likely approach, but both should agree on the same extraction threshold. If the map shows a tempting key route, decide in advance whether the key is the objective or an optional detour. A route that requires both players to cross an exposed area may be worse than a slower path with a reliable fallback.",
+                "For a squad, turn landmarks into communication points. Call the next location, the likely threat, the direction of movement, and the exit plan in that order. Control and utility classes can make a difficult map section more manageable, while a frontline class can hold space during a retreat. The map supports those roles; it does not replace the class guide or the team's actual knowledge of its gear and timing."
+            ]},
+            {"type": "table", "title": "Route choice by player need", "headers": ["Situation", "Map priority", "Useful site resource"], "rows": [
+                ["First solo runs", "Simple loop with an early fallback", "Classes guide for a forgiving starting role"],
+                ["Searching for a key", "Live marker, door requirement, and return route", "Community map source linked below"],
+                ["Aggressive duo", "Approach options and a shared extraction threshold", "Build planner for role fit"],
+                ["Coordinated squad", "Landmarks and fallback calls", "Gameplay guide for extraction decisions"],
+                ["Busy queue window", "Avoid predictable choke points when possible", "Player-count guide for activity context"]
+            ]},
+            {"type": "rich", "title": "Limits, map updates, and what not to assume", "paragraphs": [
+                "A community map can be excellent and still be incomplete. Marker names, key locations, event routes, and map availability may change after a patch or as players correct the database. The page you are reading records the check date and links to the public map source, but it cannot guarantee that a live marker will match your next instance. Open the source before a high-value run and report corrections through the source's own channel when available.",
+                "Do not use a map screenshot as proof of a permanent party limit, exact spawn rule, or guaranteed loot. Those claims need a current official or repeatable community source. The question-style keywords about players per map are useful FAQ candidates, but a responsible answer is to explain what can be verified and where to check, not to fill a missing number with a guess.",
+                "Map knowledge should also remain subordinate to the result you want. If the route has already delivered the objective, a safe extraction may be better than one more marker. If your squad has no fallback call or your class cannot recover from a bad fight, the correct map decision can be to leave."
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter map FAQ", "items": [
+                ["Where can I find a Mistfall Hunter map?", "The public 射击虎 interactive map is linked in the sources below and includes map, key, task, and marker references. Check its live page because community labels can change."],
+                ["Does this page provide an official Mistfall Hunter map?", "No. The two map images are community references and the route diagram is a conceptual illustration. The official Steam page is linked for product facts, not for unverified map coordinates."],
+                ["What is a Mistfall Hunter key map used for?", "Use a key map to locate a possible locked-area or key-related marker, then confirm the current requirement and plan a return route. Do not risk a valuable loadout from an old screenshot alone."],
+                ["How many players can be on a Mistfall Hunter map?", "This page does not invent a party or instance limit. Check current official information or a dated, repeatable community source; player-count signals on this site describe Steam activity, not a guaranteed map capacity."],
+                ["Should I follow the map exactly in solo play?", "No. Use it to choose a destination, compare a fallback, and decide when to extract. Solo routes need more recovery and information margin than a coordinated squad route."],
+                ["Will this map guide stay accurate after a patch?", "The route-reading method should remain useful, but markers and map facts can change. Recheck the linked community map and official sources before relying on a specific location." ]
+            ]},
+            {"type": "links", "title": "Map sources and verification", "items": [
+                ["射击虎 Mistfall Hunter interactive map", COMMUNITY_MAP_URL, "Community map, markers, keys, tasks, and Wiki references. The source states its public materials follow CC BY-SA; verify current attribution and content on the live page.", "nofollow noopener"],
+                ["Mistfall Hunter community Wiki", COMMUNITY_WIKI_URL, "Community reference for game facts and configuration context; not an official developer source.", "nofollow noopener"],
+                ["Official Mistfall Hunter Steam page", OFFICIAL_STEAM_URL, "Official product identity, platform, launch, store, and current source facts.", "noopener"]
+            ]},
+            {"type": "related", "title": "Related Mistfall Hunter guides", "items": [
+                ["Mistfall Hunter gameplay guide", get_page_path("gameplay", "en"), "Understand the extraction loop and beginner decisions."],
+                ["Mistfall Hunter player count guide", get_page_path("player-count", "en"), "Read SteamDB activity signals without confusing them with map capacity."],
+                ["Mistfall Hunter classes guide", get_page_path("classes", "en"), "Choose a role that matches the route and risk you can manage."],
+                ["Mistfall Hunter build planner", get_page_path("build-planner", "en"), "Match a class direction to solo, duo, or squad play."]
+            ]}
+        ]
+    },
+    "es": {
+        "page": {"title": "Mapa de Mistfall Hunter: rutas, llaves y extracción", "description": "Usa esta guía del mapa de Mistfall Hunter para leer marcadores, rutas de llaves, salidas y decisiones de solo o escuadrón sin confundir datos de la comunidad con información oficial.", "h1": "Mapa de Mistfall Hunter: rutas, llaves y consejos de extracción", "kicker": "Guía del mapa | Actualizada en agosto de 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Diagrama conceptual de rutas del mapa de Mistfall Hunter con caminos seguros, equilibrados y peligrosos", "caption": "Ilustración editorial de decisiones de ruta. No es un mapa real del juego ni una afirmación de coordenadas."},
+            {"type": "rich", "title": "Respuesta rápida: para qué sirve esta guía del mapa", "paragraphs": [
+                "El mapa de Mistfall Hunter sirve mejor como una superficie de decisiones, no como una promesa de que cada partida seguirá la misma ruta. Antes de entrar, define el objetivo, la dirección probable de regreso y la información que todavía necesitas. Durante la partida, compara distancia, cobertura, marcadores de peligro, valor del botín y tiempo hasta una salida. La mejor ruta suele ser la que conserva una vuelta posible, no la que acumula más iconos.",
+                "Esta página separa los datos verificados de las referencias de la comunidad. La página oficial de Steam ayuda a confirmar la identidad del juego y su contexto de ARPG de extracción. El mapa interactivo y la Wiki comunitaria pueden ayudar con lugares, marcadores, llaves y rutas, pero sus etiquetas pueden cambiar. Úsalos como referencias actuales, revisa los detalles importantes en la fuente viva y no trates una captura antigua como prueba permanente.",
+                "El objetivo práctico es convertir la información del mapa en una decisión más segura para solo, dúo o escuadrón. Elige un rol en la guía de clases, define una dirección con el planificador y después usa el mapa para decidir dónde gastar tiempo y cuándo extraer. Esta guía no inventa coordenadas, ubicaciones de llaves ni límites de jugadores que las fuentes públicas no confirmen."
+            ]},
+            {"type": "table", "title": "Qué revisar antes de seguir una ruta", "headers": ["Señal del mapa", "Pregunta", "Decisión práctica"], "rows": [
+                ["Objetivo", "¿La ubicación ayuda a la partida o solo añade distancia?", "Elige la ruta corta que conserve una vuelta."],
+                ["Llave o zona cerrada", "¿La fuente comunitaria confirma el requisito actual?", "Revisa el marcador antes de arriesgar un equipo valioso."],
+                ["Peligro o evento", "¿Es reciente, confirmado o solo un reporte?", "Trata la incertidumbre como motivo para frenar."],
+                ["Salida", "¿El equipo puede llegar después de otro combate?", "Define un límite de retirada antes de caer en la avaricia."],
+                ["Ruta de equipo", "¿Todos conocen el siguiente punto y el plan alternativo?", "Usa llamadas breves de lugar, amenaza, dirección y salida."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Referencia comunitaria del mapa Shenwood de Mistfall Hunter con ubicaciones señaladas", "caption": "Referencia comunitaria del mapa Shenwood tomada de la fuente pública de 射击虎. No es material oficial de Steam; consulta el enlace para marcadores actuales y atribución."},
+            {"type": "rich", "title": "Cómo leer un mapa antes de la extracción", "paragraphs": [
+                "Empieza con una estructura de ruta, no intentando memorizar cada marcador. Elige un punto de entrada, un destino útil y una dirección de extracción. Esa estructura permite interpretar nueva información: si un combate bloquea el camino directo, ya sabes qué desvío conserva el objetivo y cuál solo añade riesgo. Es especialmente útil para principiantes que pierden tiempo abriendo el mapa sin decidir qué quieren alcanzar.",
+                "Usa el detalle del mapa para comparar opciones, no para eliminar la incertidumbre. Un marcador de llave puede señalar una puerta valiosa, pero no garantiza que otra escuadra no llegue primero ni que el marcador esté actualizado. Si hay conflicto, prioriza la fuente comunitaria en vivo, anota la fecha de la comprobación y planifica como si la ruta más valiosa estuviera disputada.",
+                "El hábito más fuerte es revisar pronto la extracción. Pregunta cuánto valor llevas, cuántas defensas quedan, si el siguiente objetivo está de camino y si todos conocen la ruta alternativa. Si la respuesta es débil, extraer no significa abandonar el mapa: significa convertir la información en una partida exitosa."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Referencia comunitaria del mapa Brand Keep de Mistfall Hunter con rutas interiores y exteriores", "caption": "Referencia comunitaria del mapa Brand Keep desde la colección pública de mapas de 射击虎. Puede cambiar con las actualizaciones."},
+            {"type": "rich", "title": "Rutas para solo, dúo y escuadrón", "paragraphs": [
+                "En solo, da más peso a la recuperación y a la información que a cubrir todo el mapa. Elige un destino, conserva una ruta que no te encierre en un segundo combate y sal cuando el objetivo y un botín razonable estén completos. Mercenary es una dirección de bajo riesgo en el modelo editorial del sitio porque deja margen para corregir un error de ruta. No es una clase oficial superior; es un punto de partida claro para aprender el mapa.",
+                "En dúo, divide la observación sin separarte tanto que nadie pueda ayudar. Una persona puede leer el siguiente punto y la otra vigilar el acceso probable, pero ambos deben acordar el mismo límite de extracción. Si aparece una ruta de llave, decide antes si la llave es el objetivo o un desvío opcional. Un camino lento con una retirada clara puede ser mejor que cruzar una zona expuesta por un premio incierto.",
+                "En escuadrón, convierte los puntos del mapa en llamadas de comunicación. Di el siguiente lugar, el peligro probable, la dirección y el plan de salida. Las clases de control y utilidad pueden hacer más manejable una sección difícil, mientras una clase frontal puede sostener el espacio durante la retirada. El mapa ayuda a esos roles, pero no sustituye la guía de clases ni el conocimiento real del equipo."
+            ]},
+            {"type": "table", "title": "Prioridad de ruta según la necesidad", "headers": ["Situación", "Prioridad del mapa", "Recurso relacionado"], "rows": [
+                ["Primeras partidas solo", "Vuelta sencilla y alternativa temprana", "Guía de clases para un rol tolerante"],
+                ["Buscar una llave", "Marcador vivo, requisito y regreso", "Fuente de mapa comunitaria"],
+                ["Dúo agresivo", "Opciones de entrada y límite compartido", "Planificador de builds"],
+                ["Escuadrón coordinado", "Puntos de referencia y llamadas de retirada", "Guía de gameplay"],
+                ["Horario con mucha actividad", "Evitar cuellos de botella previsibles", "Guía de jugadores para contexto"]
+            ]},
+            {"type": "rich", "title": "Límites y actualización de los mapas", "paragraphs": [
+                "Un mapa comunitario puede ser excelente y aun así estar incompleto. Los nombres, llaves, eventos y rutas pueden cambiar después de un parche o una corrección de jugadores. Esta página registra la fecha de comprobación y enlaza la fuente pública, pero no garantiza que un marcador coincida con tu próxima instancia. Abre la fuente antes de una partida de alto valor y comunica las correcciones en su canal cuando exista.",
+                "No uses una captura para demostrar un límite fijo de jugadores, una regla exacta de aparición o botín garantizado. Esas afirmaciones necesitan una fuente oficial actual o un registro comunitario repetible. Las preguntas sobre jugadores por mapa son buenas candidatas para FAQ, pero una respuesta responsable explica qué se puede verificar y dónde, sin rellenar un número ausente con una suposición.",
+                "El conocimiento del mapa debe estar al servicio del resultado. Si ya tienes el objetivo, una extracción segura puede ser mejor que otro marcador. Si el escuadrón no tiene una llamada alternativa o tu clase no puede recuperarse de un mal combate, la decisión correcta puede ser salir."
+            ]},
+            {"type": "faq", "title": "Preguntas frecuentes sobre el mapa de Mistfall Hunter", "items": [
+                ["¿Dónde encuentro un mapa de Mistfall Hunter?", "La fuente pública de mapa interactivo de 射击虎 está enlazada abajo e incluye referencias de mapas, llaves, tareas y marcadores. Consulta su página actual porque la comunidad puede cambiar las etiquetas."],
+                ["¿Esta página ofrece un mapa oficial?", "No. Las dos imágenes de mapa son referencias comunitarias y el diagrama de rutas es conceptual. La página oficial de Steam se enlaza para hechos del producto, no para coordenadas no verificadas."],
+                ["¿Para qué sirve un mapa de llaves?", "Sirve para investigar una zona cerrada o un marcador relacionado con una llave. Confirma el requisito actual y prepara el regreso antes de arriesgar un equipo valioso."],
+                ["¿Cuántos jugadores caben en un mapa?", "Esta página no inventa un límite de grupo o de instancia. Comprueba información oficial actual o una fuente comunitaria fechada y repetible; la guía de jugadores del sitio describe actividad de Steam, no capacidad garantizada."],
+                ["¿Debo seguir el mapa exactamente en solo?", "No. Úsalo para elegir destino, comparar una alternativa y decidir cuándo extraer. El solo necesita más margen de recuperación e información que un escuadrón coordinado."],
+                ["¿Seguirá siendo exacta la guía después de un parche?", "El método para leer rutas seguirá siendo útil, pero los marcadores y hechos pueden cambiar. Revisa la fuente comunitaria y las fuentes oficiales antes de confiar en una ubicación concreta."]
+            ]},
+            {"type": "links", "title": "Fuentes y verificación del mapa", "items": [
+                ["Mapa interactivo de Mistfall Hunter de 射击虎", COMMUNITY_MAP_URL, "Mapa comunitario, marcadores, llaves, tareas y referencias Wiki. La fuente declara materiales públicos bajo CC BY-SA; revisa la atribución y el contenido en vivo.", "nofollow noopener"],
+                ["Wiki comunitaria de Mistfall Hunter", COMMUNITY_WIKI_URL, "Referencia comunitaria para datos y configuración; no es una fuente oficial del desarrollador.", "nofollow noopener"],
+                ["Página oficial de Mistfall Hunter en Steam", OFFICIAL_STEAM_URL, "Identidad del producto, plataforma, lanzamiento y datos oficiales actuales.", "noopener"]
+            ]},
+            {"type": "related", "title": "Guías relacionadas de Mistfall Hunter", "items": [
+                ["Guía de gameplay de Mistfall Hunter", get_page_path("gameplay", "es"), "Entiende el ciclo de extracción y las decisiones iniciales."],
+                ["Guía de jugadores de Mistfall Hunter", get_page_path("player-count", "es"), "Lee actividad de Steam sin confundirla con capacidad del mapa."],
+                ["Guía de clases de Mistfall Hunter", get_page_path("classes", "es"), "Elige un rol acorde con la ruta y el riesgo."],
+                ["Planificador de builds de Mistfall Hunter", get_page_path("build-planner", "es"), "Relaciona la clase con solo, dúo o escuadrón."]
+            ]}
+        ]
+    },
+    "ja": {
+        "page": {"title": "Mistfall Hunter マップ攻略: 鍵ルートと脱出の考え方", "description": "Mistfall Hunter マップ、鍵ルート、目印、脱出判断を整理します。コミュニティ情報と公式情報を分けて、安全なソロ・分隊判断に役立てます。", "h1": "Mistfall Hunter マップ攻略: 鍵ルートと脱出の考え方", "kicker": "マップ攻略 | 2026年8月更新"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Mistfall Hunterの安全ルート、均衡ルート、危険ルートを比べるマップ判断の概念図", "caption": "ルート判断を説明する編集部作成の概念図です。実際のゲーム内マップや座標ではありません。"},
+            {"type": "rich", "title": "先に結論: このマップ攻略で分かること", "paragraphs": [
+                "Mistfall Hunterのマップは、同じ道を再現するためではなく、情報を次の判断につなげるために使います。出発前に目的、帰りの方向、まだ必要な情報を決めます。プレイ中は距離、遮蔽、危険マーカー、戦利品の価値、脱出地点までの時間を比べます。アイコンが多い道より、戻れる道を残すルートが良いこともあります。",
+                "このページでは公式情報とコミュニティのマップ情報を分けます。公式Steamページはゲームの名称、プラットフォーム、抽出ARPGとしての説明を確認する場所です。インタラクティブマップやコミュニティWikiは場所、マーカー、鍵、ルートの調査に役立ちますが、表示は更新されます。重要な位置はライブの情報源で確認し、古い画像を固定的な証拠にしないでください。",
+                "目的は、ソロ、デュオ、分隊でマップを見ながら安全な選択をすることです。クラスガイドで役割を選び、ビルドプランナーで方向を決め、その後にマップで時間を使う場所と脱出のタイミングを考えます。公開情報が確認していない座標、鍵の場所、人数制限をこのページで作りません。"
+            ]},
+            {"type": "table", "title": "ルートを選ぶ前の確認表", "headers": ["マップの情報", "確認する質問", "実際の判断"], "rows": [
+                ["目的地マーカー", "この場所は目的に必要か、距離が増えるだけか", "戻る道を残せる短いルートを選ぶ。"],
+                ["鍵・閉鎖エリア", "コミュニティ情報の条件は現在も有効か", "高価な装備を持つ前にライブで確認する。"],
+                ["危険・イベント", "最近の情報か、確定情報か、プレイヤー報告か", "不確実なら速度を落とす理由にする。"],
+                ["脱出地点", "もう一戦しても全員が到達できるか", "欲張る前に撤退ラインを決める。"],
+                ["分隊ルート", "次の目印と代替ルートを全員が知っているか", "場所、危険、方向、出口を短く伝える。"]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Mistfall Hunterの神木林を示すコミュニティマップ参考画像", "caption": "コミュニティマップ参考: 射击虎の公開マップにある神木林の表示です。公式Steam素材ではないため、現在のマーカーと帰属はリンク先で確認してください。"},
+            {"type": "rich", "title": "出発前にMistfall Hunterのマップを読む方法", "paragraphs": [
+                "最初からすべてのマーカーを覚えようとせず、ルートの骨格を作ります。入口の目印、目的地、脱出方向を一つずつ選びます。直接ルートが戦闘で閉じても、目的を保てる迂回と、リスクだけ増える道を区別できます。初心者がマップを何度も開きながら目的を決められない状態を減らせます。",
+                "マップの詳細は不確実さを消すものではなく、選択肢を比べるための情報です。鍵のマーカーがあっても、別の分隊が先に着かない保証や、最新更新の保証はありません。情報が食い違うときはライブのコミュニティソースを優先し、確認日を記録し、価値の高い道は競合すると考えて動きます。",
+                "最も重要なのは早めの脱出確認です。持っている価値、残っている防御手段、次の目的地が帰り道にあるか、全員が代替ルートを理解しているかを確認します。答えが弱いなら、脱出はマップを諦めることではなく、情報を成功したランに変える行動です。"
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Mistfall Hunterのブラント要塞を示すコミュニティマップ参考画像", "caption": "コミュニティマップ参考: 射击虎の公開マップにあるブラント要塞の表示です。アップデートで変わる可能性があります。"},
+            {"type": "rich", "title": "ソロ、デュオ、分隊のルート例", "paragraphs": [
+                "ソロではマップ全体を横断するより、回復と情報の余裕を重視します。目的地を一つ決め、二度目の戦闘で閉じ込められない帰路を残し、目的と十分な戦利品がそろったら出ます。サイトのモデルではMercenaryが低リスクの出発点です。公式の最強クラスという意味ではなく、マップを覚えるための判断を単純にする方向です。",
+                "デュオでは情報を分担しますが、助けられない距離まで離れません。一人が次の目印を読み、もう一人が接近方向を見る場合でも、脱出ラインは共有します。鍵ルートが見つかったら、鍵が目的なのか寄り道なのかを先に決めます。不確かな報酬のために開けた場所を横切るより、遅くても戻れる道を選ぶ方が安全です。",
+                "分隊では目印を通信ポイントにします。次の場所、危険、移動方向、出口の順で短く伝えます。制御やユーティリティのクラスは難しい区間を扱いやすくし、前線役は撤退中の空間を保てます。マップは役割を助けますが、クラスガイドや実際の装備、タイミングの理解を置き換えません。"
+            ]},
+            {"type": "table", "title": "プレイ目的ごとのマップ優先順位", "headers": ["状況", "マップで優先すること", "関連リソース"], "rows": [
+                ["最初のソロ", "単純な周回と早めの代替路", "クラスガイドで扱いやすい役割を選ぶ"],
+                ["鍵を探す", "ライブのマーカー、条件、帰路", "下記のコミュニティマップ"],
+                ["攻撃的なデュオ", "接近ルートと共有する撤退ライン", "ビルドプランナー"],
+                ["連携分隊", "目印と撤退コール", "ゲームプレイガイド"],
+                ["混雑する時間帯", "予測される狭い通路を避ける", "プレイヤー数ガイド"]
+            ]},
+            {"type": "rich", "title": "更新と限界: マップから推測しすぎない", "paragraphs": [
+                "コミュニティマップが詳しくても、完全とは限りません。マーカー名、鍵、イベント、ルートはパッチやプレイヤーの修正で変わります。このページは確認日と公開ソースを示しますが、次のインスタンスで同じ表示になる保証はありません。高価値のランの前にはライブソースを開き、修正はソース側の窓口で確認してください。",
+                "画像だけで固定の人数制限、正確なスポーン規則、確定した戦利品を証明しないでください。人数やマップ内プレイヤー数の質問はFAQに向いていますが、確認できる範囲と確認先を説明し、足りない数字を推測で埋めないのが安全です。",
+                "マップ知識は結果のために使います。目的を達成したなら、もう一つのマーカーより安全な脱出が良い場合があります。分隊に代替コールがなく、クラスが悪い戦闘から戻れないなら、正しいマップ判断は離脱です。"
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter マップ よくある質問", "items": [
+                ["Mistfall Hunterのマップはどこで見られますか？", "下のソースに射击虎の公開インタラクティブマップをリンクしています。マップ、鍵、タスク、マーカーの参考がありますが、表示は更新されるためライブページを確認してください。"],
+                ["このページは公式マップですか？", "いいえ。2枚はコミュニティマップ参考で、ルート図は概念図です。公式Steamページは製品情報の確認先であり、未検証の座標を示す公式資料ではありません。"],
+                ["鍵マップは何に使いますか？", "閉鎖エリアや鍵に関係するマーカーを調べるために使います。現在の条件を確認し、帰路を作ってから価値のある装備を持ち込みます。"],
+                ["マップには何人のプレイヤーが入りますか？", "このページでは分隊やインスタンスの人数を推測しません。公式情報または日付のある再現可能なコミュニティ情報を確認してください。サイトのプレイヤー数はSteam活動の参考で、マップ容量ではありません。"],
+                ["ソロではマップ通りに動くべきですか？", "いいえ。目的地、代替路、脱出の判断に使います。ソロは分隊より回復と情報の余裕が必要です。"],
+                ["パッチ後もこの攻略は使えますか？", "ルートを考える方法は使えますが、マーカーと事実は変わることがあります。特定の場所に頼る前に、コミュニティと公式ソースを再確認してください。"]
+            ]},
+            {"type": "links", "title": "マップの確認ソース", "items": [
+                ["射击虎 Mistfall Hunter インタラクティブマップ", COMMUNITY_MAP_URL, "マップ、マーカー、鍵、タスク、Wikiへのリンクを含むコミュニティソースです。公開素材はCC BY-SAと説明されていますが、帰属と内容はライブページで確認してください。", "nofollow noopener"],
+                ["Mistfall Hunter コミュニティWiki", COMMUNITY_WIKI_URL, "ゲーム情報と設定のコミュニティ参考。開発元の公式ソースではありません。", "nofollow noopener"],
+                ["Mistfall Hunter 公式Steamページ", OFFICIAL_STEAM_URL, "ゲームの名称、プラットフォーム、発売、ストア情報を確認します。", "noopener"]
+            ]},
+            {"type": "related", "title": "関連するMistfall Hunterガイド", "items": [
+                ["Mistfall Hunter ゲームプレイガイド", get_page_path("gameplay", "ja"), "抽出ループと初心者の判断を確認します。"],
+                ["Mistfall Hunter プレイヤー数ガイド", get_page_path("player-count", "ja"), "SteamDB活動とマップ容量を区別します。"],
+                ["Mistfall Hunter クラスガイド", get_page_path("classes", "ja"), "ルートとリスクに合う役割を選びます。"],
+                ["Mistfall Hunter ビルドプランナー", get_page_path("build-planner", "ja"), "ソロ、デュオ、分隊の方向を合わせます。"]
+            ]}
+        ]
+    },
+    "fr": {
+        "page": {"title": "Carte Mistfall Hunter : routes, clés et extraction", "description": "Cette guide de carte Mistfall Hunter explique les marqueurs, routes de clés, sorties et décisions solo ou escouade sans présenter les données communautaires comme officielles.", "h1": "Carte Mistfall Hunter : routes, clés et conseils d'extraction", "kicker": "Guide de carte | Mis à jour en août 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Schéma conceptuel des routes sûres, équilibrées et dangereuses sur une carte Mistfall Hunter", "caption": "Schéma éditorial de décision de route. Ce n'est ni une capture de jeu ni une carte réelle avec des coordonnées."},
+            {"type": "rich", "title": "Réponse rapide : à quoi sert ce guide de carte", "paragraphs": [
+                "La carte Mistfall Hunter sert surtout à transformer l'information en décision, pas à promettre le même trajet à chaque partie. Avant d'entrer, définissez l'objectif, le sens probable du retour et l'information manquante. Pendant la run, comparez distance, couverture, danger, valeur du butin et temps vers une sortie. La meilleure route conserve parfois un retour crédible au lieu de multiplier les marqueurs.",
+                "Cette page sépare les faits vérifiables des références communautaires. La page Steam officielle confirme l'identité du jeu et son contexte d'ARPG d'extraction. La carte interactive et le Wiki communautaire aident pour les lieux, marqueurs, clés et routes, mais leurs libellés peuvent évoluer. Vérifiez les détails importants sur la source en direct et ne prenez pas une ancienne image pour une preuve permanente.",
+                "L'objectif est pratique : faire un choix plus sûr en solo, duo ou escouade. Choisissez un rôle dans le guide des classes, définissez une direction avec le planificateur, puis utilisez la carte pour décider où investir du temps et quand extraire. Ce guide n'invente pas de coordonnées, de positions de clés ou de limites de joueurs que les sources publiques ne confirment pas."
+            ]},
+            {"type": "table", "title": "À vérifier avant de suivre une route", "headers": ["Signal", "Question", "Décision pratique"], "rows": [
+                ["Objectif", "Le lieu sert-il la run ou ajoute-t-il seulement du trajet ?", "Choisir le chemin court qui garde un retour."],
+                ["Clé ou zone fermée", "La condition est-elle encore confirmée par la source ?", "Vérifier en direct avant un équipement précieux."],
+                ["Danger ou événement", "Information récente, certaine ou simple rapport ?", "Traiter l'incertitude comme une raison de ralentir."],
+                ["Extraction", "L'équipe peut-elle revenir après un combat ?", "Fixer un seuil de départ avant la gourmandise."],
+                ["Route d'escouade", "Tout le monde connaît-il le prochain repère et le repli ?", "Appeler lieu, menace, direction et sortie brièvement."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Référence communautaire de la carte Shenwood de Mistfall Hunter avec ses lieux nommés", "caption": "Référence communautaire : carte Shenwood issue de la source publique 射击虎. Ce n'est pas un média Steam officiel ; vérifiez les marqueurs et l'attribution sur le lien."},
+            {"type": "rich", "title": "Lire une carte avant l'extraction", "paragraphs": [
+                "Commencez par une ossature de route plutôt que par la mémorisation de chaque marqueur. Choisissez un repère d'entrée, une destination utile et une direction de sortie. Si un combat ferme la route directe, cette ossature aide à distinguer le détour qui conserve l'objectif de celui qui ne fait qu'ajouter du risque. Cela évite aux débutants d'ouvrir la carte sans savoir ce qu'ils cherchent.",
+                "Le détail d'une carte sert à comparer des options, pas à supprimer l'incertitude. Un marqueur de clé peut indiquer une porte, mais il ne garantit ni l'absence d'une autre escouade ni la fraîcheur du marqueur. En cas de conflit, privilégiez la source communautaire en direct, notez la date de vérification et considérez la route la plus rentable comme contestée.",
+                "Le meilleur réflexe est de vérifier tôt la sortie. Regardez la valeur transportée, les ressources défensives restantes, la position de l'objectif sur le retour et la compréhension du repli par toute l'équipe. Si le bilan est mauvais, extraire convertit l'information en run réussie."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Référence communautaire de la carte Brand Keep de Mistfall Hunter avec des repères intérieurs et extérieurs", "caption": "Référence communautaire : carte Brand Keep issue de la collection publique 射击虎. Les informations peuvent évoluer après une mise à jour."},
+            {"type": "rich", "title": "Exemples de route en solo, duo et escouade", "paragraphs": [
+                "En solo, donnez plus de poids à la récupération et à l'information qu'à la couverture complète de la carte. Choisissez une destination, gardez une sortie qui ne vous enferme pas dans un second combat et partez quand l'objectif et un butin raisonnable sont acquis. Mercenary est une direction à faible risque dans le modèle éditorial du site : elle laisse davantage de marge pour corriger une erreur de route, sans être un classement officiel.",
+                "En duo, partagez l'observation sans vous éloigner au point de ne plus pouvoir vous aider. Un joueur lit le prochain repère et l'autre surveille l'approche probable, mais le seuil d'extraction reste commun. Si une route de clé apparaît, décidez si la clé est l'objectif ou un détour. Un chemin plus lent avec un repli clair vaut souvent mieux qu'une traversée exposée pour une récompense incertaine.",
+                "En escouade, transformez les repères en points de communication. Annoncez le prochain lieu, la menace, la direction et le plan de sortie. Les classes de contrôle et d'utilité facilitent certains passages, tandis qu'une classe de front peut tenir l'espace pendant le repli. La carte aide ces rôles mais ne remplace ni le guide des classes ni la connaissance réelle du groupe."
+            ]},
+            {"type": "table", "title": "Priorité de route selon le besoin", "headers": ["Situation", "Priorité de carte", "Ressource liée"], "rows": [
+                ["Premières runs solo", "Boucle simple et repli tôt", "Guide des classes"],
+                ["Chercher une clé", "Marqueur actuel, condition et retour", "Carte communautaire ci-dessous"],
+                ["Duo agressif", "Approches et seuil d'extraction partagé", "Planificateur de build"],
+                ["Escouade coordonnée", "Repères et appels de repli", "Guide gameplay"],
+                ["Période active", "Éviter les goulots prévisibles", "Guide des joueurs"]
+            ]},
+            {"type": "rich", "title": "Limites et mises à jour des cartes", "paragraphs": [
+                "Une carte communautaire peut être très utile sans être complète. Les noms, clés, événements et routes changent avec les patchs ou les corrections des joueurs. Cette page indique sa date de vérification et lie la source publique, mais ne garantit pas qu'un marqueur corresponde à votre prochaine instance. Ouvrez la source avant une run coûteuse et utilisez son canal pour signaler une correction.",
+                "Ne prenez pas une capture pour preuve d'une limite fixe de joueurs, d'une règle exacte d'apparition ou d'un butin garanti. Ces affirmations demandent une source officielle actuelle ou une observation communautaire répétable. Les questions sur le nombre de joueurs sont de bonnes FAQ, mais il vaut mieux expliquer quoi vérifier que remplir un chiffre absent par une supposition.",
+                "La connaissance de la carte sert le résultat. Si l'objectif est terminé, une extraction sûre peut être meilleure qu'un marqueur supplémentaire. Sans plan de repli ou si votre classe ne peut pas récupérer une mauvaise rencontre, partir peut être la bonne décision."
+            ]},
+            {"type": "faq", "title": "FAQ carte Mistfall Hunter", "items": [
+                ["Où trouver une carte Mistfall Hunter ?", "La carte interactive publique de 射击虎 est liée dans les sources. Elle contient des références de cartes, clés, tâches et marqueurs ; vérifiez toujours la page en direct."],
+                ["Cette page fournit-elle une carte officielle ?", "Non. Les deux images sont des références communautaires et le schéma de route est conceptuel. Steam officiel sert à vérifier le produit, pas des coordonnées non confirmées."],
+                ["À quoi sert une carte des clés ?", "Elle aide à rechercher une zone fermée ou un marqueur de clé. Confirmez la condition actuelle et préparez le retour avant de risquer votre équipement."],
+                ["Combien de joueurs peuvent être sur une carte ?", "Nous n'inventons pas de limite de groupe ou d'instance. Consultez une information officielle ou une source communautaire datée et répétable ; le guide joueurs parle de l'activité Steam, pas de la capacité de carte."],
+                ["Faut-il suivre la carte exactement en solo ?", "Non. Utilisez-la pour choisir une destination, comparer un repli et décider de l'extraction. Le solo demande davantage de marge."],
+                ["Le guide restera-t-il valable après un patch ?", "La méthode de lecture restera utile, mais les marqueurs peuvent changer. Revérifiez la carte communautaire et les sources officielles avant de suivre un lieu précis."]
+            ]},
+            {"type": "links", "title": "Sources et vérification", "items": [
+                ["Carte interactive Mistfall Hunter de 射击虎", COMMUNITY_MAP_URL, "Source communautaire pour cartes, marqueurs, clés, tâches et Wiki. Elle indique que ses contenus publics suivent CC BY-SA ; vérifiez l'attribution sur la page en direct.", "nofollow noopener"],
+                ["Wiki communautaire Mistfall Hunter", COMMUNITY_WIKI_URL, "Référence communautaire, pas une source officielle du développeur.", "nofollow noopener"],
+                ["Page Steam officielle de Mistfall Hunter", OFFICIAL_STEAM_URL, "Identité, plateforme, sortie et faits officiels du produit.", "noopener"]
+            ]},
+            {"type": "related", "title": "Ressources Mistfall Hunter liées", "items": [
+                ["Guide gameplay Mistfall Hunter", get_page_path("gameplay", "fr"), "Comprendre la boucle d'extraction et les premières décisions."],
+                ["Guide joueurs Mistfall Hunter", get_page_path("player-count", "fr"), "Lire l'activité Steam sans la confondre avec la capacité d'une carte."],
+                ["Guide des classes Mistfall Hunter", get_page_path("classes", "fr"), "Choisir un rôle adapté à la route et au risque."],
+                ["Planificateur de build Mistfall Hunter", get_page_path("build-planner", "fr"), "Associer une classe au solo, duo ou escouade."]
+            ]}
+        ]
+    },
+    "de": {
+        "page": {"title": "Mistfall Hunter Karte: Routen, Schlüssel und Extraktion", "description": "Dieser Mistfall Hunter Karten-Guide erklärt Marker, Schlüsselrouten, Ausgänge und Solo- oder Gruppenentscheidungen, ohne Community-Daten als offiziell auszugeben.", "h1": "Mistfall Hunter Karte: Routen, Schlüssel und Extraktionstipps", "kicker": "Karten-Guide | Aktualisiert August 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Konzeptionelles Diagramm für sichere, ausgewogene und gefährliche Routen auf einer Mistfall Hunter Karte", "caption": "Redaktionelles Routendiagramm. Es ist eine Konzeptgrafik, keine echte Spielkarte und keine Koordinatenangabe."},
+            {"type": "rich", "title": "Kurzantwort: Wofür dieser Karten-Guide gedacht ist", "paragraphs": [
+                "Die Mistfall Hunter Karte ist am nützlichsten, wenn sie Entscheidungen unterstützt und nicht vorgibt, dass jede Runde gleich läuft. Lege vor dem Einstieg Ziel, Rückrichtung und fehlende Informationen fest. Unterwegs vergleichst du Entfernung, Deckung, Gefahrenmarker, Beutewert und Zeit bis zur Extraktion. Die beste Route ist oft die, die eine glaubwürdige Rückkehr offenhält, nicht die mit den meisten Symbolen.",
+                "Diese Seite trennt geprüfte Fakten von Community-Referenzen. Die offizielle Steam-Seite bestätigt Spielidentität und den Extraction-ARPG-Kontext. Interaktive Karte und Community-Wiki helfen bei Orten, Markern, Schlüsseln und Routen, aber Beschriftungen können sich ändern. Prüfe wichtige Details auf der Live-Quelle und behandle alte Screenshots nicht als dauerhafte Beweise.",
+                "Das Ziel ist eine praktischere Entscheidung für Solo, Duo oder Gruppe. Wähle eine Rolle im Klassenleitfaden, lege mit dem Build-Planer eine Richtung fest und nutze danach die Karte, um Zeit und Ausstieg zu planen. Dieser Guide erfindet keine Koordinaten, Schlüsselorte oder Spielerlimits, die öffentliche Quellen nicht belegen."
+            ]},
+            {"type": "table", "title": "Vor einer Kartenroute prüfen", "headers": ["Kartensignal", "Frage", "Praktische Entscheidung"], "rows": [
+                ["Zielmarker", "Hilft der Ort der Runde oder verlängert er nur den Weg?", "Kurze Route mit Rückweg wählen."],
+                ["Schlüssel oder Sperrgebiet", "Ist die Bedingung in der Community-Quelle aktuell?", "Live prüfen, bevor wertvolle Ausrüstung riskiert wird."],
+                ["Gefahr oder Ereignis", "Ist die Meldung aktuell, sicher oder nur ein Bericht?", "Unsicherheit als Grund zum Verlangsamen behandeln."],
+                ["Extraktion", "Kann das Team nach einem weiteren Kampf zurück?", "Vor der Gier eine Abbruchgrenze festlegen."],
+                ["Gruppenroute", "Kennt jeder den nächsten Marker und den Rückfallplan?", "Ort, Gefahr, Richtung und Ausgang kurz ansagen."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Community-Referenzkarte von Shenwood in Mistfall Hunter mit benannten Orten", "caption": "Community-Referenz: Shenwood-Karte aus der öffentlichen 射击虎-Quelle. Kein offizielles Steam-Medium; aktuelle Marker und Attribution bitte auf der Quelle prüfen."},
+            {"type": "rich", "title": "Mistfall Hunter Karten vor der Runde lesen", "paragraphs": [
+                "Beginne mit einem Routenrahmen statt mit dem Auswendiglernen jedes Markers. Wähle Einstiegsmarker, nützliches Ziel und Ausstiegsrichtung. Wenn ein Kampf den direkten Weg schließt, erkennst du den Umweg, der das Ziel erhält, und den Weg, der nur Risiko hinzufügt. So öffnen Einsteiger die Karte nicht ständig ohne klare Aufgabe.",
+                "Kartendetails vergleichen Optionen, sie entfernen Unsicherheit nicht. Ein Schlüsselmarker kann eine Tür anzeigen, garantiert aber weder einen freien Weg noch eine aktuelle Markierung. Bei Widersprüchen die Live-Community-Quelle bevorzugen, Prüfdatum notieren und die wertvollste Route als umkämpft behandeln.",
+                "Der wichtigste Kartenrhythmus ist ein früher Extraktionscheck. Prüfe getragenen Wert, verbleibende Defensive, die Lage des nächsten Ziels auf dem Rückweg und den Rückfallplan der Gruppe. Wenn die Antworten schlecht sind, wird Extraktion aus Information ein erfolgreicher Lauf."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Community-Referenzkarte von Brand Keep in Mistfall Hunter mit inneren und äußeren Wegmarken", "caption": "Community-Referenz: Brand-Keep-Karte aus der öffentlichen 射击虎-Sammlung. Angaben können sich nach Updates ändern."},
+            {"type": "rich", "title": "Routenbeispiele für Solo, Duo und Gruppe", "paragraphs": [
+                "Im Solo zählen Erholung und Information stärker als vollständige Kartenabdeckung. Nimm ein Ziel, halte einen Rückweg offen, der dich nicht in einen zweiten Kampf zwingt, und extrahiere nach Ziel plus vernünftigem Wert. Mercenary ist im redaktionellen Modell eine Richtung mit geringerem Risiko und lässt eher Raum für einen Routenfehler. Das ist keine offizielle Tierlist.",
+                "Im Duo Informationen teilen, ohne unhelfbare Distanz aufzubauen. Einer liest den nächsten Marker, der andere beobachtet den wahrscheinlichen Zugang, aber die Extraktionsgrenze bleibt gemeinsam. Bei einer Schlüsselroute vorher entscheiden, ob sie Ziel oder Umweg ist. Ein langsamer Weg mit Rückfall kann besser sein als eine offene Querung für unsichere Beute.",
+                "In der Gruppe werden Marker zu Kommunikationspunkten. Nenne nächsten Ort, Gefahr, Richtung und Ausgang. Kontrolle und Utility helfen in schwierigen Abschnitten, eine Frontrolle kann Raum beim Rückzug halten. Die Karte unterstützt diese Rollen, ersetzt aber weder Klassenleitfaden noch echte Kenntnis von Ausrüstung und Timing."
+            ]},
+            {"type": "table", "title": "Kartenpriorität nach Situation", "headers": ["Situation", "Kartenpriorität", "Passende Ressource"], "rows": [
+                ["Erste Solo-Runden", "Einfache Schleife und früher Rückweg", "Klassenleitfaden"],
+                ["Schlüssel suchen", "Live-Marker, Bedingung und Rückkehr", "Community-Karte unten"],
+                ["Aggressives Duo", "Zugänge und gemeinsame Grenze", "Build-Planer"],
+                ["Koordinierte Gruppe", "Marker und Rückzugs-Calls", "Gameplay-Guide"],
+                ["Aktives Zeitfenster", "Vorhersehbare Engstellen meiden", "Spielerzahlen-Guide"]
+            ]},
+            {"type": "rich", "title": "Grenzen und Updates: Nicht zu viel aus der Karte ableiten", "paragraphs": [
+                "Eine Community-Karte kann sehr gut und trotzdem unvollständig sein. Namen, Schlüssel, Ereignisse und Routen ändern sich durch Patches oder Spieler-Korrekturen. Diese Seite nennt ihr Prüfdatum und verlinkt die öffentliche Quelle, garantiert aber keinen identischen Marker in deiner nächsten Instanz. Vor einem wertvollen Lauf die Quelle öffnen und Korrekturen dort melden.",
+                "Ein Screenshot beweist kein festes Spielerlimit, keine exakte Spawn-Regel und keine garantierte Beute. Dafür braucht es aktuelle offizielle oder wiederholbare Community-Belege. Fragen zur Spielerzahl pro Karte gehören in eine FAQ, aber ein fehlender Wert sollte nicht durch eine Vermutung ersetzt werden.",
+                "Kartenwissen dient dem Ergebnis. Nach dem Ziel kann ein sicherer Ausgang besser sein als ein zusätzlicher Marker. Ohne Rückfall-Call oder wenn die Klasse einen schlechten Kampf nicht auffängt, ist Abbruch die richtige Kartenentscheidung."
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter Karten-FAQ", "items": [
+                ["Wo finde ich eine Mistfall Hunter Karte?", "Die öffentliche interaktive Karte von 射击虎 ist unten verlinkt und enthält Karten-, Schlüssel-, Aufgaben- und Marker-Referenzen. Öffne die Live-Seite, weil sich Community-Beschriftungen ändern können."],
+                ["Ist diese Seite eine offizielle Karte?", "Nein. Zwei Bilder sind Community-Referenzen, das Routendiagramm ist eine Konzeptgrafik. Steam offiziell ist die Quelle für Produktfakten, nicht für ungeprüfte Koordinaten."],
+                ["Wofür dient eine Schlüsselkarte?", "Sie hilft bei der Suche nach einem verschlossenen Bereich oder Schlüsselmarker. Bedingung aktuell prüfen und Rückweg planen, bevor Ausrüstung riskiert wird."],
+                ["Wie viele Spieler passen auf eine Karte?", "Wir erfinden kein Gruppen- oder Instanzlimit. Prüfe aktuelle offizielle oder datierte, wiederholbare Community-Information. Der Spielerzahlen-Guide beschreibt Steam-Aktivität, nicht Kartenkapazität."],
+                ["Soll ich solo exakt der Karte folgen?", "Nein. Nutze sie für Ziel, Alternative und Extraktionsentscheidung. Solo braucht mehr Erholungs- und Informationsmarge."],
+                ["Bleibt der Guide nach einem Patch gültig?", "Die Methode bleibt brauchbar, aber Marker und Fakten können sich ändern. Vor konkreten Orten Community- und offizielle Quellen erneut prüfen."]
+            ]},
+            {"type": "links", "title": "Kartenquellen und Prüfung", "items": [
+                ["射击虎 Mistfall Hunter interaktive Karte", COMMUNITY_MAP_URL, "Community-Quelle für Karten, Marker, Schlüssel, Aufgaben und Wiki. Sie beschreibt öffentliche Materialien als CC BY-SA; Attribution und Inhalt live prüfen.", "nofollow noopener"],
+                ["Mistfall Hunter Community-Wiki", COMMUNITY_WIKI_URL, "Community-Referenz, keine offizielle Entwicklerquelle.", "nofollow noopener"],
+                ["Offizielle Mistfall Hunter Steam-Seite", OFFICIAL_STEAM_URL, "Produktidentität, Plattform, Release und offizielle Store-Fakten.", "noopener"]
+            ]},
+            {"type": "related", "title": "Verwandte Mistfall Hunter Guides", "items": [
+                ["Mistfall Hunter Gameplay-Guide", get_page_path("gameplay", "de"), "Extraction-Loop und Einsteigerentscheidungen verstehen."],
+                ["Mistfall Hunter Spielerzahlen-Guide", get_page_path("player-count", "de"), "Steam-Aktivität nicht mit Kartenkapazität verwechseln."],
+                ["Mistfall Hunter Klassenleitfaden", get_page_path("classes", "de"), "Rolle passend zu Route und Risiko wählen."],
+                ["Mistfall Hunter Build-Planer", get_page_path("build-planner", "de"), "Klasse auf Solo, Duo oder Gruppe abstimmen."]
+            ]}
+        ]
+    },
+    "pt": {
+        "page": {"title": "Mapa de Mistfall Hunter: rotas, chaves e extração", "description": "Veja o mapa de Mistfall Hunter, marcadores, rotas de chaves, saídas e decisões para solo ou equipe sem tratar dados da comunidade como oficiais.", "h1": "Mapa de Mistfall Hunter: rotas, chaves e dicas de extração", "kicker": "Guia do mapa | Atualizado em agosto de 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Diagrama conceitual de rotas seguras, equilibradas e perigosas no mapa de Mistfall Hunter", "caption": "Ilustração editorial de decisão de rota. Não é um mapa real do jogo nem uma afirmação de coordenadas."},
+            {"type": "rich", "title": "Resposta rápida: para que serve este guia do mapa", "paragraphs": [
+                "O mapa de Mistfall Hunter é mais útil quando transforma informação em decisão, não quando promete a mesma rota em toda partida. Antes de entrar, defina o objetivo, a direção provável de retorno e a informação que ainda falta. Durante a run, compare distância, cobertura, perigo, valor do loot e tempo até uma saída. A melhor rota muitas vezes é a que conserva uma volta possível, não a que tem mais marcadores.",
+                "Esta página separa fatos verificáveis de referências da comunidade. A página oficial do Steam confirma a identidade do jogo e o contexto de ARPG de extração. O mapa interativo e a Wiki comunitária ajudam a pesquisar locais, marcadores, chaves e rotas, mas os rótulos podem mudar. Confirme detalhes importantes na fonte ao vivo e não trate uma imagem antiga como prova permanente.",
+                "O objetivo é escolher melhor em solo, dupla ou equipe. Escolha um papel no guia de classes, defina uma direção com o planejador de build e use o mapa para decidir onde gastar tempo e quando extrair. Este guia não inventa coordenadas, locais de chaves ou limites de jogadores que as fontes públicas não confirmem."
+            ]},
+            {"type": "table", "title": "O que conferir antes de seguir uma rota", "headers": ["Sinal do mapa", "Pergunta", "Decisão prática"], "rows": [
+                ["Objetivo", "O local ajuda a run ou apenas aumenta a distância?", "Escolha o caminho curto que preserve o retorno."],
+                ["Chave ou área fechada", "O requisito ainda está confirmado na fonte?", "Confira ao vivo antes de arriscar equipamento valioso."],
+                ["Perigo ou evento", "É recente, confirmado ou apenas um relato?", "Trate a incerteza como motivo para reduzir o ritmo."],
+                ["Extração", "A equipe consegue voltar depois de outra luta?", "Defina o limite de saída antes da ganância."],
+                ["Rota da equipe", "Todos conhecem o próximo ponto e o recuo?", "Comunique lugar, ameaça, direção e saída de forma curta."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Referência comunitária do mapa Shenwood de Mistfall Hunter com locais marcados", "caption": "Referência comunitária: mapa Shenwood da fonte pública 射击虎. Não é mídia oficial do Steam; confira marcadores atuais e atribuição no link."},
+            {"type": "rich", "title": "Como ler o mapa antes da extração", "paragraphs": [
+                "Comece com um esqueleto de rota em vez de tentar memorizar cada marcador. Escolha um ponto de entrada, um destino útil e uma direção de saída. Se uma luta fechar o caminho direto, você já sabe qual desvio preserva o objetivo e qual só acrescenta risco. Isso evita que iniciantes abram o mapa repetidamente sem decidir o que precisam alcançar.",
+                "Use os detalhes do mapa para comparar escolhas, não para eliminar a incerteza. Um marcador de chave pode indicar uma porta valiosa, mas não garante que outra equipe não chegue primeiro nem que o marcador esteja atualizado. Quando houver conflito, prefira a fonte comunitária ao vivo, registre a data da conferência e trate a rota mais valiosa como disputada.",
+                "O hábito mais importante é conferir a extração cedo. Veja o valor carregado, as defesas restantes, se o próximo objetivo fica no caminho de volta e se todos conhecem a alternativa. Se a resposta for fraca, extrair transforma informação em uma run bem-sucedida."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Referência comunitária do mapa Brand Keep de Mistfall Hunter com rotas internas e externas", "caption": "Referência comunitária: mapa Brand Keep da coleção pública de 射击虎. Os dados podem mudar após atualizações."},
+            {"type": "rich", "title": "Exemplos de rota para solo, dupla e equipe", "paragraphs": [
+                "No solo, dê mais peso à recuperação e à informação do que a cobrir todo o mapa. Escolha um destino, mantenha uma volta que não prenda você em uma segunda luta e saia quando objetivo e loot razoável estiverem completos. Mercenary é uma direção de baixo risco no modelo editorial do site porque deixa margem para corrigir um erro de rota. Isso não é uma tier list oficial.",
+                "Na dupla, divida a observação sem se afastar tanto que ninguém possa ajudar. Uma pessoa lê o próximo ponto e a outra observa a aproximação provável, mas o limite de extração deve ser comum. Se surgir uma rota de chave, decida antes se ela é o objetivo ou um desvio. Um caminho lento com retorno claro pode ser melhor do que cruzar uma área exposta por uma recompensa incerta.",
+                "Em equipe, transforme pontos do mapa em chamadas de comunicação. Diga o próximo lugar, a ameaça, a direção e a saída. Classes de controle e utilidade podem facilitar uma área difícil, enquanto uma classe de frente segura espaço durante a retirada. O mapa apoia esses papéis, mas não substitui o guia de classes nem o conhecimento real do equipamento."
+            ]},
+            {"type": "table", "title": "Prioridade do mapa por necessidade", "headers": ["Situação", "Prioridade", "Recurso relacionado"], "rows": [
+                ["Primeiras runs solo", "Ciclo simples e retorno cedo", "Guia de classes"],
+                ["Procurar uma chave", "Marcador atual, requisito e volta", "Mapa comunitário abaixo"],
+                ["Dupla agressiva", "Entradas e limite compartilhado", "Planejador de build"],
+                ["Equipe coordenada", "Pontos e chamadas de recuo", "Guia de gameplay"],
+                ["Horário movimentado", "Evitar gargalos previsíveis", "Guia de jogadores"]
+            ]},
+            {"type": "rich", "title": "Limites e atualização dos mapas", "paragraphs": [
+                "Um mapa comunitário pode ser muito bom e ainda estar incompleto. Nomes, chaves, eventos e rotas mudam com patches ou correções dos jogadores. Esta página registra a data de conferência e liga para a fonte pública, mas não garante que um marcador será igual na sua próxima instância. Abra a fonte antes de uma run de alto valor e use o canal da fonte para correções.",
+                "Não use uma captura para provar limite fixo de jogadores, regra exata de surgimento ou loot garantido. Essas afirmações precisam de uma fonte oficial atual ou de evidência comunitária repetível. Perguntas sobre jogadores por mapa cabem no FAQ, mas uma resposta responsável explica o que conferir em vez de inventar um número.",
+                "Conhecimento de mapa deve servir ao resultado. Se o objetivo já foi concluído, uma extração segura pode ser melhor que outro marcador. Sem uma chamada de recuo ou sem uma classe capaz de recuperar uma luta ruim, sair pode ser a decisão correta."
+            ]},
+            {"type": "faq", "title": "Perguntas frequentes sobre o mapa de Mistfall Hunter", "items": [
+                ["Onde encontro um mapa de Mistfall Hunter?", "O mapa interativo público de 射击虎 está nas fontes abaixo e reúne referências de mapas, chaves, tarefas e marcadores. Confira a página ao vivo porque os rótulos podem mudar."],
+                ["Esta página oferece um mapa oficial?", "Não. As duas imagens são referências comunitárias e o diagrama de rota é conceitual. O Steam oficial serve para fatos do produto, não para coordenadas sem verificação."],
+                ["Para que serve um mapa de chaves?", "Ele ajuda a pesquisar uma área fechada ou um marcador de chave. Confirme o requisito atual e planeje a volta antes de arriscar seu equipamento."],
+                ["Quantos jogadores cabem em um mapa?", "Não inventamos um limite de grupo ou instância. Confira informação oficial atual ou fonte comunitária datada e repetível; o guia de jogadores mostra atividade Steam, não capacidade do mapa."],
+                ["Devo seguir o mapa exatamente no solo?", "Não. Use-o para escolher destino, comparar retorno e decidir a extração. Solo precisa de mais margem de recuperação e informação."],
+                ["O guia continua válido depois de um patch?", "O método continua útil, mas marcadores e fatos podem mudar. Revise a fonte comunitária e as fontes oficiais antes de confiar em um local específico."]
+            ]},
+            {"type": "links", "title": "Fontes e verificação do mapa", "items": [
+                ["Mapa interativo de Mistfall Hunter da 射击虎", COMMUNITY_MAP_URL, "Fonte comunitária para mapas, marcadores, chaves, tarefas e Wiki. Ela declara materiais públicos em CC BY-SA; verifique atribuição e conteúdo na página atual.", "nofollow noopener"],
+                ["Wiki comunitária de Mistfall Hunter", COMMUNITY_WIKI_URL, "Referência comunitária, não fonte oficial do desenvolvedor.", "nofollow noopener"],
+                ["Página oficial de Mistfall Hunter no Steam", OFFICIAL_STEAM_URL, "Identidade, plataforma, lançamento e fatos oficiais da loja.", "noopener"]
+            ]},
+            {"type": "related", "title": "Guias relacionados de Mistfall Hunter", "items": [
+                ["Guia de gameplay de Mistfall Hunter", get_page_path("gameplay", "pt"), "Entenda o ciclo de extração e as decisões iniciais."],
+                ["Guia de jogadores de Mistfall Hunter", get_page_path("player-count", "pt"), "Leia atividade Steam sem confundir com capacidade do mapa."],
+                ["Guia de classes de Mistfall Hunter", get_page_path("classes", "pt"), "Escolha um papel para sua rota e risco."],
+                ["Planejador de build de Mistfall Hunter", get_page_path("build-planner", "pt"), "Combine classe com solo, dupla ou equipe."]
+            ]}
+        ]
+    },
+    "ko": {
+        "page": {"title": "Mistfall Hunter 맵 공략: 열쇠 루트와 탈출 판단", "description": "Mistfall Hunter 맵의 마커, 열쇠 루트, 탈출 지점과 솔로·분대 판단을 정리합니다. 커뮤니티 자료와 공식 정보를 구분해 확인하세요.", "h1": "Mistfall Hunter 맵 공략: 열쇠 루트와 탈출 판단", "kicker": "맵 공략 | 2026년 8월 업데이트"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Mistfall Hunter 맵에서 안전한 길과 위험한 탈출 루트를 비교하는 개념도", "caption": "경로 판단을 설명하는 편집용 개념도입니다. 실제 게임 맵이나 좌표가 아닙니다."},
+            {"type": "rich", "title": "먼저 결론: 이 맵 공략의 용도", "paragraphs": [
+                "Mistfall Hunter 맵은 매번 같은 길을 따라가는 정답지가 아니라 정보를 다음 판단으로 바꾸는 도구입니다. 진입 전에 목표, 돌아갈 방향, 부족한 정보를 정하세요. 플레이 중에는 거리, 엄폐, 위험 마커, 전리품 가치, 탈출 지점까지의 시간을 비교합니다. 아이콘이 많은 길보다 돌아갈 선택지를 남기는 길이 더 좋을 수 있습니다.",
+                "이 페이지는 확인 가능한 공식 정보와 커뮤니티 맵 자료를 나눕니다. 공식 Steam 페이지는 게임 정체성과 추출 ARPG라는 설명을 확인하는 곳입니다. 인터랙티브 맵과 커뮤니티 Wiki는 위치, 마커, 열쇠, 경로를 조사하는 데 유용하지만 표시는 바뀔 수 있습니다. 중요한 내용은 실시간 출처에서 다시 확인하고 오래된 이미지를 영구적인 증거로 사용하지 마세요.",
+                "목표는 솔로, 듀오, 분대에서 맵 정보를 더 안전한 선택으로 바꾸는 것입니다. 클래스 가이드로 역할을 고르고 빌드 플래너로 방향을 정한 뒤 맵으로 시간을 쓸 곳과 탈출 시점을 결정합니다. 공개 출처가 확인하지 않은 좌표, 열쇠 위치, 인원 제한은 이 페이지에서 만들지 않습니다."
+            ]},
+            {"type": "table", "title": "루트를 따라가기 전 확인할 내용", "headers": ["맵 신호", "확인 질문", "실전 판단"], "rows": [
+                ["목표 마커", "목표에 필요한 장소인가, 거리만 늘리는가?", "돌아갈 길을 남기는 짧은 루트를 고릅니다."],
+                ["열쇠·잠긴 구역", "커뮤니티 출처의 조건이 현재도 맞는가?", "비싼 장비를 걸기 전 실시간으로 확인합니다."],
+                ["위험·이벤트", "최근 정보인가, 확정인가, 단순한 제보인가?", "불확실하면 속도를 늦춥니다."],
+                ["탈출 지점", "한 번 더 싸워도 전원이 돌아갈 수 있는가?", "욕심내기 전에 철수 기준을 정합니다."],
+                ["분대 루트", "다음 랜드마크와 후퇴 경로를 모두 아는가?", "장소, 위협, 방향, 출구를 짧게 콜합니다."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Mistfall Hunter 선목림 지역의 위치가 표시된 커뮤니티 맵 참고 이미지", "caption": "커뮤니티 맵 참고: 射击虎 공개 출처의 선목림 표시입니다. 공식 Steam 이미지가 아니며 현재 마커와 출처 표기는 링크에서 확인하세요."},
+            {"type": "rich", "title": "탈출 전 Mistfall Hunter 맵 읽는 방법", "paragraphs": [
+                "처음부터 모든 마커를 외우지 말고 루트의 뼈대를 만드세요. 진입 랜드마크, 필요한 목적지, 탈출 방향을 하나씩 정합니다. 직접 가는 길이 전투로 막혔을 때 목표를 유지하는 우회로와 위험만 늘리는 길을 구분할 수 있습니다. 맵을 계속 열면서도 목적을 정하지 못하는 초보 실수를 줄이는 방법입니다.",
+                "맵의 세부 정보는 불확실성을 없애는 것이 아니라 선택지를 비교하게 합니다. 열쇠 마커가 있어도 다른 분대보다 먼저 도착한다는 보장이나 최신 정보라는 보장은 없습니다. 정보가 다르면 실시간 커뮤니티 출처를 우선하고 확인 날짜를 기록하며 가치가 높은 길은 경쟁이 있다고 생각하세요.",
+                "가장 중요한 습관은 일찍 탈출을 점검하는 것입니다. 현재 전리품 가치, 남은 방어 수단, 다음 목표가 귀환 방향에 있는지, 모두가 후퇴 경로를 아는지 확인합니다. 조건이 나쁘면 탈출은 맵을 포기하는 행동이 아니라 정보를 성공적인 런으로 바꾸는 행동입니다."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Mistfall Hunter 브란드 요새의 안팎 경로가 표시된 커뮤니티 맵 참고 이미지", "caption": "커뮤니티 맵 참고: 射击虎 공개 맵 자료의 브란드 요새 표시입니다. 업데이트에 따라 달라질 수 있습니다."},
+            {"type": "rich", "title": "솔로, 듀오, 분대 루트 예시", "paragraphs": [
+                "솔로에서는 맵 전체를 덮는 것보다 회복과 정보의 여유를 높게 보세요. 목적지를 하나 정하고 두 번째 전투에 갇히지 않을 귀환로를 남긴 다음 목표와 적당한 전리품을 확보하면 나옵니다. 사이트 모델에서 Mercenary는 낮은 위험의 출발 방향입니다. 공식 최강 클래스라는 뜻이 아니라 맵을 배우는 동안 판단을 단순하게 해주는 선택입니다.",
+                "듀오에서는 서로 도울 수 없는 거리까지 벌어지지 않으면서 정보를 나눕니다. 한 명은 다음 랜드마크를 읽고 다른 한 명은 접근 방향을 보더라도 탈출 기준은 공유해야 합니다. 열쇠 루트가 보이면 목표인지 선택적 우회인지 먼저 정하세요. 불확실한 보상을 위해 노출된 길을 건너기보다 느려도 돌아갈 길이 있는 편이 안전합니다.",
+                "분대에서는 랜드마크를 소통 지점으로 사용합니다. 다음 장소, 위험, 이동 방향, 출구 순서로 짧게 말하세요. 제어·유틸리티 클래스는 어려운 구간을 다루기 쉽게 만들고 전열 클래스는 후퇴 중 공간을 지킬 수 있습니다. 맵은 역할을 돕지만 클래스 가이드와 실제 장비·타이밍 이해를 대신하지 않습니다."
+            ]},
+            {"type": "table", "title": "상황별 맵 우선순위", "headers": ["상황", "맵에서 우선할 것", "관련 자료"], "rows": [
+                ["첫 솔로 런", "간단한 순환과 이른 대체로", "클래스 가이드"],
+                ["열쇠 찾기", "현재 마커, 조건, 귀환로", "아래 커뮤니티 맵"],
+                ["공격적인 듀오", "접근 선택지와 공통 철수 기준", "빌드 플래너"],
+                ["협동 분대", "랜드마크와 후퇴 콜", "게임플레이 가이드"],
+                ["활동량이 높은 시간", "예측 가능한 좁은 길 피하기", "플레이어 수 가이드"]
+            ]},
+            {"type": "rich", "title": "맵의 한계와 업데이트", "paragraphs": [
+                "커뮤니티 맵은 매우 유용해도 완전하지 않을 수 있습니다. 이름, 열쇠, 이벤트, 루트는 패치나 플레이어 수정으로 바뀝니다. 이 페이지는 확인 날짜와 공개 출처를 표시하지만 다음 인스턴스에서 같은 마커가 나온다는 보장은 없습니다. 고가 장비 런 전에는 실시간 출처를 열고 출처의 피드백 경로에서 수정 내용을 확인하세요.",
+                "스크린샷 하나로 고정된 플레이어 제한, 정확한 스폰 규칙, 보장된 전리품을 증명하지 마세요. 현재 공식 자료나 반복 확인 가능한 커뮤니티 근거가 필요합니다. 맵 인원 질문은 FAQ에 적합하지만 확인할 수 있는 범위와 장소를 안내하고 없는 숫자를 추측하지 않는 것이 안전합니다.",
+                "맵 지식은 결과를 위해 사용합니다. 목표를 끝냈다면 마커 하나를 더 보는 것보다 안전한 탈출이 낫습니다. 후퇴 콜이 없거나 클래스가 나쁜 전투를 회복하지 못한다면 나오는 것이 올바른 맵 판단입니다."
+            ]},
+            {"type": "faq", "title": "Mistfall Hunter 맵 자주 묻는 질문", "items": [
+                ["Mistfall Hunter 맵은 어디서 볼 수 있나요?", "아래 출처에 射击虎 공개 인터랙티브 맵을 연결했습니다. 맵, 열쇠, 퀘스트, 마커 참고가 있지만 커뮤니티 표시는 바뀔 수 있으니 실시간 페이지를 확인하세요."],
+                ["이 페이지는 공식 맵인가요?", "아닙니다. 두 이미지는 커뮤니티 맵 참고이고 경로 그림은 개념도입니다. 공식 Steam 페이지는 제품 정보를 확인하는 곳이지 검증되지 않은 좌표 출처가 아닙니다."],
+                ["열쇠 맵은 무엇에 쓰나요?", "잠긴 구역이나 열쇠 관련 마커를 조사하는 데 씁니다. 현재 조건과 귀환로를 확인한 뒤 장비를 위험에 노출하세요."],
+                ["맵에 몇 명의 플레이어가 들어가나요?", "이 페이지는 분대나 인스턴스 인원 제한을 추측하지 않습니다. 현재 공식 정보나 날짜가 있는 반복 가능한 커뮤니티 자료를 확인하세요. 사이트의 플레이어 수는 Steam 활동 참고이지 맵 정원이 아닙니다."],
+                ["솔로에서는 맵을 그대로 따라가야 하나요?", "아닙니다. 목적지, 대체로, 탈출 결정을 위해 사용하세요. 솔로는 분대보다 회복과 정보의 여유가 필요합니다."],
+                ["패치 후에도 이 공략을 쓸 수 있나요?", "경로를 읽는 방법은 유효하지만 마커와 사실은 변할 수 있습니다. 특정 장소에 의존하기 전에 커뮤니티와 공식 출처를 다시 확인하세요."]
+            ]},
+            {"type": "links", "title": "맵 출처와 확인", "items": [
+                ["射击虎 Mistfall Hunter 인터랙티브 맵", COMMUNITY_MAP_URL, "맵, 마커, 열쇠, 퀘스트, Wiki를 제공하는 커뮤니티 출처입니다. 공개 자료는 CC BY-SA라고 안내하지만 실제 출처에서 표기와 내용을 확인하세요.", "nofollow noopener"],
+                ["Mistfall Hunter 커뮤니티 Wiki", COMMUNITY_WIKI_URL, "커뮤니티 참고 자료이며 개발사 공식 출처가 아닙니다.", "nofollow noopener"],
+                ["Mistfall Hunter 공식 Steam 페이지", OFFICIAL_STEAM_URL, "제품 정체성, 플랫폼, 출시와 공식 상점 정보를 확인합니다.", "noopener"]
+            ]},
+            {"type": "related", "title": "관련 Mistfall Hunter 가이드", "items": [
+                ["Mistfall Hunter 게임플레이 가이드", get_page_path("gameplay", "ko"), "추출 루프와 초반 판단을 이해합니다."],
+                ["Mistfall Hunter 플레이어 수 가이드", get_page_path("player-count", "ko"), "Steam 활동과 맵 정원을 혼동하지 않습니다."],
+                ["Mistfall Hunter 클래스 가이드", get_page_path("classes", "ko"), "경로와 위험에 맞는 역할을 고릅니다."],
+                ["Mistfall Hunter 빌드 플래너", get_page_path("build-planner", "ko"), "솔로, 듀오, 분대 방향에 클래스를 맞춥니다."]
+            ]}
+        ]
+    },
+    "it": {
+        "page": {"title": "Mappa Mistfall Hunter: rotte, chiavi ed estrazione", "description": "Guida alla mappa Mistfall Hunter con marcatori, rotte delle chiavi, uscite e decisioni per solo o squadra, separando dati community e fonti ufficiali.", "h1": "Mappa Mistfall Hunter: rotte, chiavi e consigli di estrazione", "kicker": "Guida mappa | Aggiornata agosto 2026"},
+        "sections": [
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-route-concept.webp", "image_class": "map-media", "width": 760, "height": 760, "alt": "Diagramma concettuale delle rotte sicure, equilibrate e pericolose su una mappa Mistfall Hunter", "caption": "Illustrazione editoriale per spiegare la scelta della rotta. Non è una mappa reale né una dichiarazione di coordinate."},
+            {"type": "rich", "title": "Risposta rapida: come usare questa guida mappa", "paragraphs": [
+                "La mappa Mistfall Hunter è utile quando trasforma le informazioni in decisioni, non quando promette lo stesso percorso in ogni partita. Prima di entrare definisci obiettivo, direzione del ritorno e informazione mancante. Durante la run confronta distanza, copertura, pericoli, valore del bottino e tempo verso l'uscita. La rotta migliore spesso lascia una via di ritorno invece di inseguire ogni icona.",
+                "Questa pagina separa i fatti verificabili dai riferimenti della community. La pagina Steam ufficiale conferma identità del gioco e contesto ARPG extraction. La mappa interattiva e la Wiki community aiutano con luoghi, marcatori, chiavi e rotte, ma le etichette possono cambiare. Controlla i dettagli importanti sulla fonte live e non trattare uno screenshot vecchio come prova permanente.",
+                "Lo scopo è decidere meglio in solo, duo o squadra. Scegli un ruolo nella guida classi, imposta una direzione con il planner build e usa la mappa per decidere dove spendere tempo e quando estrarre. Questa guida non inventa coordinate, posizioni chiavi o limiti giocatori che le fonti pubbliche non confermano."
+            ]},
+            {"type": "table", "title": "Cosa controllare prima di seguire una rotta", "headers": ["Segnale", "Domanda", "Decisione pratica"], "rows": [
+                ["Obiettivo", "Serve alla run o aggiunge solo distanza?", "Scegli il percorso breve che conserva il ritorno."],
+                ["Chiave o area chiusa", "Il requisito è ancora confermato dalla fonte?", "Verifica live prima di rischiare equipaggiamento."],
+                ["Pericolo o evento", "È recente, certo o solo un rapporto?", "Tratta l'incertezza come motivo per rallentare."],
+                ["Estrazione", "La squadra può tornare dopo un altro combattimento?", "Fissa una soglia di uscita prima della brama."],
+                ["Rotta squadra", "Tutti conoscono prossimo punto e ripiego?", "Chiama luogo, minaccia, direzione e uscita."]
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-shenwood.webp", "image_class": "map-media", "width": 760, "height": 727, "alt": "Riferimento community della mappa Shenwood di Mistfall Hunter con luoghi segnati", "caption": "Riferimento community: mappa Shenwood dalla fonte pubblica 射击虎. Non è media Steam ufficiale; controlla marcatori e attribuzione sul link."},
+            {"type": "rich", "title": "Come leggere la mappa prima dell'estrazione", "paragraphs": [
+                "Inizia con una struttura della rotta invece di memorizzare ogni marcatore. Scegli punto d'ingresso, destinazione utile e direzione d'uscita. Se un combattimento chiude il percorso diretto, distingui la deviazione che conserva l'obiettivo da quella che aggiunge solo rischio. È utile per chi apre la mappa senza aver deciso cosa raggiungere.",
+                "I dettagli servono a confrontare le opzioni, non a cancellare l'incertezza. Un marcatore di chiave può indicare una porta, ma non garantisce che un'altra squadra non arrivi prima o che sia aggiornato. Se le informazioni divergono, preferisci la fonte community live, annota la data e considera contestata la rotta più preziosa.",
+                "L'abitudine più forte è controllare presto l'uscita. Guarda valore trasportato, difese rimaste, posizione del prossimo obiettivo rispetto al ritorno e piano alternativo della squadra. Se il bilancio è debole, estrarre trasforma informazione in una run riuscita."
+            ]},
+            {"type": "image", "src": "images/mistfall/mistfall-hunter-map-brand-keep.webp", "image_class": "map-media", "width": 760, "height": 740, "alt": "Riferimento community della mappa Brand Keep di Mistfall Hunter con percorsi interni ed esterni", "caption": "Riferimento community: mappa Brand Keep dalla raccolta pubblica 射击虎. I dati possono cambiare dopo un aggiornamento."},
+            {"type": "rich", "title": "Esempi di rotta per solo, duo e squadra", "paragraphs": [
+                "In solo dai più peso a recupero e informazione che alla copertura completa. Scegli una destinazione, conserva un ritorno che non ti chiuda in un secondo combattimento ed estrai quando obiettivo e bottino ragionevole sono completi. Mercenary è una direzione a basso rischio nel modello editoriale del sito perché lascia margine per correggere un errore di rotta. Non è una tier list ufficiale.",
+                "Nel duo dividete l'osservazione senza allontanarvi oltre la distanza di aiuto. Un giocatore legge il prossimo punto e l'altro osserva l'accesso probabile, ma la soglia d'estrazione è comune. Se compare una rotta chiave, decidete se è obiettivo o deviazione. Un percorso lento con ripiego chiaro può valere più di una zona esposta per una ricompensa incerta.",
+                "In squadra trasformate i punti della mappa in chiamate. Dite luogo successivo, minaccia, direzione e uscita. Le classi controllo e utilità aiutano nei passaggi difficili, mentre una classe frontline può tenere spazio durante il ritiro. La mappa sostiene questi ruoli ma non sostituisce guida classi, equipaggiamento e timing reali."
+            ]},
+            {"type": "table", "title": "Priorità della mappa secondo il bisogno", "headers": ["Situazione", "Priorità", "Risorsa collegata"], "rows": [
+                ["Prime run solo", "Ciclo semplice e ritorno precoce", "Guida classi"],
+                ["Cercare una chiave", "Marcatore live, requisito e ritorno", "Mappa community sotto"],
+                ["Duo aggressivo", "Accessi e soglia condivisa", "Planner build"],
+                ["Squadra coordinata", "Punti e chiamate di ripiego", "Guida gameplay"],
+                ["Orario attivo", "Evitare strozzature prevedibili", "Guida giocatori"]
+            ]},
+            {"type": "rich", "title": "Limiti e aggiornamenti delle mappe", "paragraphs": [
+                "Una mappa community può essere ottima e restare incompleta. Nomi, chiavi, eventi e rotte cambiano con patch o correzioni dei giocatori. Questa pagina indica la data di verifica e collega la fonte pubblica, ma non garantisce lo stesso marcatore nella prossima istanza. Apri la fonte prima di una run di valore e segnala le correzioni sul suo canale.",
+                "Non usare uno screenshot per provare un limite fisso di giocatori, una regola esatta di spawn o bottino garantito. Servono fonti ufficiali attuali o prove community ripetibili. Le domande sui giocatori per mappa sono buone FAQ, ma è meglio spiegare cosa controllare che inventare un numero mancante.",
+                "La conoscenza della mappa serve al risultato. Dopo l'obiettivo, un'estrazione sicura può essere migliore di un marcatore in più. Senza chiamata di ripiego o se la classe non recupera da uno scontro sbagliato, uscire può essere la scelta corretta."
+            ]},
+            {"type": "faq", "title": "FAQ mappa Mistfall Hunter", "items": [
+                ["Dove trovo una mappa Mistfall Hunter?", "La mappa interattiva pubblica di 射击虎 è collegata nelle fonti e contiene riferimenti per mappe, chiavi, missioni e marcatori. Controlla la pagina live perché le etichette community cambiano."],
+                ["Questa pagina offre una mappa ufficiale?", "No. Le due immagini sono riferimenti community e il diagramma è concettuale. Steam ufficiale verifica il prodotto, non coordinate non confermate."],
+                ["A cosa serve una mappa delle chiavi?", "Aiuta a cercare un'area chiusa o un marcatore di chiave. Conferma il requisito attuale e pianifica il ritorno prima di rischiare l'equipaggiamento."],
+                ["Quanti giocatori entrano in una mappa?", "Non inventiamo un limite di gruppo o istanza. Controlla informazioni ufficiali o una fonte community datata e ripetibile; la guida giocatori tratta attività Steam, non capienza della mappa."],
+                ["Devo seguire la mappa esattamente in solo?", "No. Usala per scegliere destinazione, confrontare il ripiego e decidere l'estrazione. Il solo richiede più margine."],
+                ["La guida vale dopo una patch?", "Il metodo resta utile, ma marcatori e fatti cambiano. Ricontrolla mappa community e fonti ufficiali prima di affidarti a un luogo preciso."]
+            ]},
+            {"type": "links", "title": "Fonti e verifica della mappa", "items": [
+                ["Mappa interattiva Mistfall Hunter di 射击虎", COMMUNITY_MAP_URL, "Fonte community per mappe, marcatori, chiavi, missioni e Wiki. Dichiara materiali pubblici CC BY-SA; verifica attribuzione e contenuti sulla pagina live.", "nofollow noopener"],
+                ["Wiki community Mistfall Hunter", COMMUNITY_WIKI_URL, "Riferimento community, non fonte ufficiale dello sviluppatore.", "nofollow noopener"],
+                ["Pagina Steam ufficiale di Mistfall Hunter", OFFICIAL_STEAM_URL, "Identità, piattaforma, uscita e fatti ufficiali dello store.", "noopener"]
+            ]},
+            {"type": "related", "title": "Risorse Mistfall Hunter correlate", "items": [
+                ["Guida gameplay Mistfall Hunter", get_page_path("gameplay", "it"), "Capire loop di estrazione e prime decisioni."],
+                ["Guida giocatori Mistfall Hunter", get_page_path("player-count", "it"), "Leggere attività Steam senza confonderla con capienza mappa."],
+                ["Guida classi Mistfall Hunter", get_page_path("classes", "it"), "Scegliere ruolo adatto a rotta e rischio."],
+                ["Planner build Mistfall Hunter", get_page_path("build-planner", "it"), "Abbinare classe a solo, duo o squadra."]
+            ]}
+        ]
+    },
+}
+
+I18N_TERM_REPLACEMENTS = {
+    "es": {"margen de error": "margen para fallar", "FAQ": "preguntas frecuentes", "Error": "fallo", "error": "fallo"},
+    "fr": {"Cette guide de carte": "Cette page de carte", "Guides": "ressources", "Guide": "manuel", "guides": "ressources", "guide": "manuel", "FAQ": "questions fréquentes"},
+    "de": {"Guides": "Ressourcen", "Guide": "Anleitung", "guides": "Ressourcen", "guide": "Anleitung", "FAQ": "Häufige Fragen", "August 2026": "08/2026"},
+    "pt": {"FAQ": "perguntas frequentes"},
+    "ko": {"PREPARE, EXPLORE, FIGHT, EXTRACT": "준비, 탐험, 전투, 탈출", "Mistfall Hunter app 3282300": "Mistfall Hunter 앱 ID 3282300", "app 3282300": "앱 ID 3282300", "Official Steam page": "공식 Steam 페이지", "SteamDB Mistfall Hunter charts": "Mistfall Hunter SteamDB 차트", "Steam Charts": "Steam 차트", "player count": "플레이어 수", "FAQ": "자주 묻는 질문", "Guide": "안내", "guide": "안내"},
+    "ja": {"PREPARE, EXPLORE, FIGHT, EXTRACT": "準備、探索、戦闘、脱出", "Mistfall Hunter app 3282300": "Mistfall Hunter アプリID 3282300", "app 3282300": "アプリID 3282300", "Official Steam page": "Steam公式ページ", "SteamDB Mistfall Hunter charts": "Mistfall Hunter SteamDBチャート", "Steam Charts": "Steamチャート", "player count": "プレイヤー数", "FAQ": "よくある質問", "Guide": "ガイド", "guide": "案内"},
+    "it": {"FAQ": "Domande frequenti"},
+}
+
+for _locale, _replacements in I18N_TERM_REPLACEMENTS.items():
+    MAP_PAGE_DATA[_locale] = replace_nested_text(MAP_PAGE_DATA[_locale], _replacements)
+    PLAYER_COUNT_LOCALE_COPY[_locale] = replace_nested_text(PLAYER_COUNT_LOCALE_COPY[_locale], _replacements)
+    PLAYER_COUNT_DETAIL_COPY[_locale] = replace_nested_text(PLAYER_COUNT_DETAIL_COPY[_locale], _replacements)
+
+
 GAMEPLAY_PAGE_DATA = {
     "en": {
         "page": {"title": "Mistfall Hunter Gameplay Guide: Loop, Combat & Tips", "description": "Learn Mistfall Hunter gameplay: the extraction loop, pre-run choices, combat timing, solo and squad roles, and beginner mistakes to avoid.", "h1": "Mistfall Hunter Gameplay Guide: Extraction Loop and Beginner Tips", "kicker": "Gameplay guide | Updated August 2026"},
@@ -1084,6 +1643,10 @@ GAMEPLAY_PAGE_DATA = {
         ]
     },
 }
+
+for _locale, _replacements in I18N_TERM_REPLACEMENTS.items():
+    GAMEPLAY_PAGE_DATA[_locale] = replace_nested_text(GAMEPLAY_PAGE_DATA[_locale], _replacements)
+
 
 GAMEPLAY_PAGE_DATA["fr"]["page"]["kicker"] = "Explication du gameplay | Mise a jour en aout 2026"
 GAMEPLAY_PAGE_DATA["de"]["page"]["kicker"] = "Gameplay-Hilfe | Aktualisiert 08/2026"
@@ -1627,6 +2190,7 @@ for locale in LOCALE_ORDER:
     player_count_data = localized_player_count_data(locale)
     TEXT[locale]["pages"]["player-count"] = player_count_data["page"]
     TEXT[locale]["pages"]["gameplay"] = GAMEPLAY_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["map-guide"] = MAP_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -1724,6 +2288,8 @@ def make_simple_sections(locale, page_key):
         ]
     if page_key == "player-count":
         return localized_player_count_data(locale)["sections"]
+    if page_key == "map-guide":
+        return MAP_PAGE_DATA[locale]["sections"]
     if page_key == "review":
         return REVIEW_PAGE_DATA[locale]["sections"]
     if page_key == "gameplay":
@@ -1737,7 +2303,7 @@ def make_simple_sections(locale, page_key):
             "ko": "관련 Mistfall Hunter 가이드",
             "it": "Risorse Mistfall Hunter correlate",
         }
-        related_keys = ["classes", "build-planner", "player-count", "price", "review", "steam"]
+        related_keys = ["classes", "build-planner", "player-count", "map-guide", "price", "review", "steam"]
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
         return GAMEPLAY_PAGE_DATA[locale]["sections"] + [{"type": "related", "title": related_titles[locale], "items": related_items}]
     if page_key == "about":
@@ -1763,7 +2329,7 @@ def build_site_data(page_key, locale="en"):
         abort(404)
     text = get_locale_text(locale)
     page = {**text["pages"][page_key], "path": get_page_path(page_key, locale), "key": page_key}
-    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-steam-hero.webp"
+    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -1784,7 +2350,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else KEYWORD_MAP[locale],
+        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "sections": make_simple_sections(locale, page_key),
     }
