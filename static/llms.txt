@@ -9,6 +9,7 @@
 - [Price guide](https://mistfallhunterclasses.blog/price/): Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 - [Player count guide](https://mistfallhunterclasses.blog/player-count/): SteamDB chart interpretation, current-player signals, and queue-timing guidance.
 - [Map guide](https://mistfallhunterclasses.blog/map-guide/): Map markers, key-route decisions, community map references, and extraction planning.
+- [Tier list guide](https://mistfallhunterclasses.blog/tier-list/): Mode-specific class tier list with solo, duo, squad, and beginner decisions.
 - [Steam info](https://mistfallhunterclasses.blog/steam/): Official Steam facts and safe source links.
 - [Review guide](https://mistfallhunterclasses.blog/review/): Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs.
 - [Gameplay guide](https://mistfallhunterclasses.blog/gameplay/): Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes.
@@ -20,5 +21,6 @@
 - [Terms of Service](https://mistfallhunterclasses.blog/terms-of-service/): Fan-site disclaimer and usage terms.
 
 ## Latest Updates
+- [Tier list guide](https://mistfallhunterclasses.blog/tier-list/): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.
 - [Map guide](https://mistfallhunterclasses.blog/map-guide/): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.
 - [Gameplay guide](https://mistfallhunterclasses.blog/gameplay/): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources.

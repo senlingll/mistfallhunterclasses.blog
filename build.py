@@ -114,6 +114,7 @@ def write_llms_files(static_dir):
         ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
         ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
         ("Map guide", get_page_path("map-guide"), "Map markers, key-route decisions, community map references, and extraction planning."),
+        ("Tier list guide", get_page_path("tier-list"), "Mode-specific class tier list with solo, duo, squad, and beginner decisions."),
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
         ("Review guide", get_page_path("review"), "Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs."),
         ("Gameplay guide", get_page_path("gameplay"), "Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes."),
@@ -134,7 +135,7 @@ def write_llms_files(static_dir):
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in core_links])
     llms_lines.extend(["", "## Common Resources"])
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
-    llms_lines.extend(["", "## Latest Updates", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
+    llms_lines.extend(["", "## Latest Updates", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -155,6 +156,9 @@ def write_llms_files(static_dir):
         "The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.",
         "",
         "## Latest Update Content",
+        f"### [Multilingual tier list update]({BASE_URL}{get_page_path('tier-list')})",
+        "Updated on 2026-08-15 to add mode-specific class comparisons, an explicit non-official ranking method, three visual points, localized metadata, FAQ content, related class resources, sitemap entries, and language switching.",
+        "",
         f"### [Multilingual map guide update]({BASE_URL}{get_page_path('map-guide')})",
         "Updated on 2026-08-10 to add the multilingual Mistfall Hunter map guide, attributed community map references, a conceptual route visual, localized metadata, FAQ content, related class resources, sitemap entries, and language switching.",
         "",
@@ -194,6 +198,8 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-price-check.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-review-verdict.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-gameplay-loop.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-tier-list-modes.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-tier-list-roles.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-route-concept.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-shenwood.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-brand-keep.webp"),

@@ -469,7 +469,16 @@ summary {
   .simple-hero h1 {
     margin-left: auto;
     margin-right: auto;
-    max-width: 320px;
+    max-width: min(320px, 100%);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .simple-hero .kicker,
+  .simple-hero > p:not(.kicker),
+  .site-header nav a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   .hero {
     display: block;

@@ -2,6 +2,8 @@ import socket
 
 from flask import Flask, abort, render_template
 
+from tier_list_content import TIER_LIST_PAGE_DATA
+
 
 app = Flask(__name__)
 app.config["FREEZER_DESTINATION"] = "build"
@@ -14,7 +16,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10"}
+PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -35,6 +37,7 @@ PAGE_ORDER = [
     "price",
     "player-count",
     "map-guide",
+    "tier-list",
     "steam",
     "review",
     "gameplay",
@@ -51,6 +54,7 @@ PAGE_SLUGS = {
     "price": "price",
     "player-count": "player-count",
     "map-guide": "map-guide",
+    "tier-list": "tier-list",
     "steam": "steam",
     "review": "review",
     "gameplay": "gameplay",
@@ -89,6 +93,28 @@ REVIEW_KEYWORD_MAP = {
     "pt": {"market": "Brazil", "primary": "análise de Mistfall Hunter", "related": ["Mistfall Hunter vale a pena", "preço de Mistfall Hunter", "classes de Mistfall Hunter", "jogadores de Mistfall Hunter"], "rejected": ["review Mistfall Hunter as the only localized wording"], "evidence": "Similarweb localized query returned no rows in all three tabs; análise de is the natural Brazilian Portuguese review intent and is bounded by the global cluster.", "confidence": "low"},
     "ko": {"market": "Korea", "primary": "Mistfall Hunter 리뷰", "related": ["Mistfall Hunter 할 만한가", "Mistfall Hunter 가격", "Mistfall Hunter 클래스", "Mistfall Hunter 플레이어 수"], "rejected": ["Mistfall Hunter 평가 as the primary because local Similarweb coverage was empty"], "evidence": "Similarweb Korean query returned no rows in all three tabs; 리뷰 is the established Korean game-review wording and is bounded by the validated global review intent.", "confidence": "low"},
     "it": {"market": "Italy", "primary": "recensione Mistfall Hunter", "related": ["Mistfall Hunter vale la pena", "prezzo Mistfall Hunter", "classi Mistfall Hunter", "giocatori Mistfall Hunter"], "rejected": ["review Mistfall Hunter as the only Italian wording"], "evidence": "Similarweb localized query returned no rows in all three tabs; recensione is the natural Italian review intent and is bounded by the validated global review cluster.", "confidence": "low"},
+}
+
+TIER_LIST_KEYWORD_MAP = {
+    "en": {"market": "US", "primary": "Mistfall Hunter tier list", "related": ["Mistfall Hunter class tier list", "Mistfall Hunter best class", "Mistfall Hunter best solo class", "Mistfall Hunter classes tier list"], "rejected": ["Mistfall Hunter codes", "Mistfall Hunter trainer"], "evidence": "Similarweb global exact match: average volume 979, 28-day window volume 27690, difficulty 0, informational intent, latest trend month 2026-07; phrase and related tabs matched.", "confidence": "high"},
+    "es": {"market": "US / Latin America", "primary": "tier list de Mistfall Hunter", "related": ["tier list de clases de Mistfall Hunter", "mejor clase de Mistfall Hunter", "tier list Mistfall Hunter para solo", "clases de Mistfall Hunter"], "rejected": ["codigos Mistfall Hunter", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the English tier-list and best-class intent; Spanish uses the common gaming term tier list with localized class and mode modifiers.", "confidence": "medium"},
+    "ja": {"market": "Japan", "primary": "Mistfall Hunter ティアリスト", "related": ["Mistfall Hunter クラス ティアリスト", "Mistfall Hunter 最強クラス", "Mistfall Hunter ソロ 最強クラス", "Mistfall Hunter クラス一覧"], "rejected": ["Mistfall Hunter コード", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the comparison intent; Japanese copy keeps the game title and uses ティアリスト, 最強クラス and ソロ as natural game-search modifiers.", "confidence": "medium"},
+    "fr": {"market": "France", "primary": "tier list Mistfall Hunter", "related": ["tier list des classes Mistfall Hunter", "meilleure classe Mistfall Hunter", "meilleure classe Mistfall Hunter en solo", "classes Mistfall Hunter"], "rejected": ["codes Mistfall Hunter", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the English tier-list and best-class intent; French uses tier list des classes and meilleure classe for the same comparison boundary.", "confidence": "medium"},
+    "de": {"market": "Germany", "primary": "Mistfall Hunter Tier List", "related": ["beste Klasse Mistfall Hunter", "Mistfall Hunter Klassen Tier List", "beste Solo-Klasse Mistfall Hunter", "Mistfall Hunter Klassen"], "rejected": ["Mistfall Hunter Codes", "Mistfall Hunter Trainer"], "evidence": "Global Similarweb validates the tier-list cluster; German gaming search commonly retains Tier List and adds beste Klasse, Solo-Klasse and Klassen.", "confidence": "medium"},
+    "pt": {"market": "Brazil", "primary": "tier list Mistfall Hunter", "related": ["tier list de classes de Mistfall Hunter", "melhor classe de Mistfall Hunter", "melhor classe de Mistfall Hunter para solo", "classes de Mistfall Hunter"], "rejected": ["codigos Mistfall Hunter", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the comparison cluster; Brazilian Portuguese uses tier list de classes and melhor classe with localized mode modifiers.", "confidence": "medium"},
+    "ko": {"market": "Korea", "primary": "Mistfall Hunter 티어표", "related": ["Mistfall Hunter 직업 티어표", "Mistfall Hunter 최고의 직업", "Mistfall Hunter 솔로 직업 추천", "Mistfall Hunter 직업 목록"], "rejected": ["Mistfall Hunter 코드", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the best-class comparison intent; Korean uses 티어표, 직업, 최고의 직업 and 솔로 추천 as natural game-search terms.", "confidence": "medium"},
+    "it": {"market": "Italy", "primary": "tier list Mistfall Hunter", "related": ["tier list classi Mistfall Hunter", "migliore classe Mistfall Hunter", "migliore classe Mistfall Hunter in solo", "classi Mistfall Hunter"], "rejected": ["codici Mistfall Hunter", "Mistfall Hunter trainer"], "evidence": "Global Similarweb validates the English tier-list and best-class intent; Italian uses tier list classi and migliore classe with a solo modifier.", "confidence": "medium"},
+}
+
+TIER_LIST_RELATED_TITLES = {
+    "en": "Mistfall Hunter tier list guide",
+    "es": "Tier list de Mistfall Hunter",
+    "ja": "Mistfall Hunterティアリストガイド",
+    "fr": "Ressource tier list Mistfall Hunter",
+    "de": "Mistfall Hunter Tier-List-Leitfaden",
+    "pt": "Guia da tier list de Mistfall Hunter",
+    "ko": "Mistfall Hunter 티어표 가이드",
+    "it": "Guida tier list Mistfall Hunter",
 }
 
 TEXT = {
@@ -181,6 +207,10 @@ TEXT = {
             "faq_title": "Mistfall Hunter classes FAQ",
             "faq": [["What is the best Mistfall Hunter class for beginners?", "Mercenary is the safest default for new players because its role is easier to understand during stressful extraction fights. Withered Knight is also a strong beginner option for players joining squads."], ["Is Shadowstrix good for solo play?", "Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster."], ["Should squads always bring Seer?", "No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow."], ["How accurate is the Mistfall Hunter build planner?", "The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change."], ["Does Mistfall Hunter have codes?", "This site focuses on classes and builds because the current opportunity is a decision-support guide, not a short-lived codes page. If official redeem codes become meaningful, they should be handled on a separate page."]],
         },
+        "simple": {"privacy": [
+            "The class planner runs in your browser and does not require an account. This site uses Google products, including AdSense advertising and measurement services, and Microsoft Clarity. Depending on the service and your settings, these products may collect, use, or share cookies, web beacons, IP addresses, device information, and other identifiers to deliver, measure, secure, and improve services.",
+            "When Google ads are served, Google and its partners may place or read cookies or use web beacons, IP addresses, and other identifiers. Third parties may process this information under their own policies. See Google partner-site technology details at https://policies.google.com/technologies/partner-sites. Do not submit sensitive personal information to the planner; contact messages are handled through the published support address.",
+        ]},
     },
 }
 
@@ -401,6 +431,44 @@ FINAL_TEXT_FIXES = {
 
 for locale, block in FINAL_TEXT_FIXES.items():
     TEXT[locale] = deep_merge(TEXT[locale], block)
+
+PRIVACY_POLICY_COPY = {
+    "en": [
+        "The class planner runs in your browser and does not require an account. This site uses Google products, including AdSense advertising and measurement services, and Microsoft Clarity. Depending on the service and your settings, these products may collect, use, or share cookies, web beacons, IP addresses, device information, and other identifiers to deliver, measure, secure, and improve services.",
+        "When Google ads are served, Google and its partners may place or read cookies or use web beacons, IP addresses, and other identifiers. Third parties may process this information under their own policies. See Google partner-site technology details at https://policies.google.com/technologies/partner-sites. Do not submit sensitive personal information to the planner; contact messages are handled through the published support address.",
+    ],
+    "es": [
+        "El planificador de clases funciona en tu navegador y no necesita una cuenta. Este sitio usa productos de Google, incluidos los anuncios de AdSense y servicios de medicion, y Microsoft Clarity. Segun el servicio y tu configuracion, estos productos pueden recopilar, usar o compartir cookies, balizas web, direcciones IP, datos del dispositivo y otros identificadores para prestar, medir, proteger y mejorar los servicios.",
+        "Cuando se muestran anuncios de Google, Google y sus socios pueden colocar o leer cookies o usar balizas web, direcciones IP y otros identificadores. Los terceros pueden tratar esta informacion segun sus propias politicas. Consulta los detalles de Google sobre tecnologias en sitios asociados: https://policies.google.com/technologies/partner-sites. No envies datos personales sensibles al planificador; los mensajes de contacto se gestionan mediante el correo publicado.",
+    ],
+    "ja": [
+        "クラスプランナーはブラウザ内で動作し、アカウントは必要ありません。このサイトでは、AdSense広告や計測サービスを含むGoogleのサービスとMicrosoft Clarityを使用しています。サービスや設定によっては、Cookie、ウェブビーコン、IPアドレス、端末情報などの識別子が、サービスの配信、計測、安全確保、改善のために収集、利用、共有されることがあります。",
+        "Google広告が配信される場合、GoogleとパートナーはCookieを設定または読み取り、ウェブビーコン、IPアドレスなどの識別子を使用することがあります。第三者は各自のポリシーに基づいて情報を処理する場合があります。Googleのパートナーサイト向け技術説明は https://policies.google.com/technologies/partner-sites で確認できます。プランナーには機微な個人情報を入力せず、連絡メッセージは掲載されたサポート窓口で扱います。",
+    ],
+    "fr": [
+        "Le planificateur de classes fonctionne dans votre navigateur et ne demande pas de compte. Ce site utilise des produits Google, notamment la publicité et la mesure AdSense, ainsi que Microsoft Clarity. Selon le service et vos réglages, ces produits peuvent recueillir, utiliser ou partager des cookies, balises web, adresses IP, informations d appareil et autres identifiants pour fournir, mesurer, sécuriser et améliorer les services.",
+        "Lorsque des annonces Google sont diffusées, Google et ses partenaires peuvent déposer ou lire des cookies ou utiliser des balises web, adresses IP et autres identifiants. Des tiers peuvent traiter ces informations selon leurs propres politiques. Consultez les explications Google sur les technologies des sites partenaires : https://policies.google.com/technologies/partner-sites. Ne saisissez pas de données personnelles sensibles dans le planificateur ; les messages de contact passent par l adresse de support publiée.",
+    ],
+    "de": [
+        "Der Klassenplaner läuft im Browser und benötigt kein Konto. Diese Website nutzt Google-Produkte, darunter AdSense-Werbung und Messdienste, sowie Microsoft Clarity. Je nach Dienst und Einstellungen können diese Produkte Cookies, Web-Beacons, IP-Adressen, Geräteinformationen und andere Kennungen erfassen, nutzen oder teilen, um Dienste bereitzustellen, zu messen, zu schützen und zu verbessern.",
+        "Wenn Google-Anzeigen ausgeliefert werden, können Google und seine Partner Cookies setzen oder lesen sowie Web-Beacons, IP-Adressen und andere Kennungen verwenden. Dritte können diese Informationen nach ihren eigenen Richtlinien verarbeiten. Die Google-Erklärung zu Technologien auf Partnerseiten steht unter https://policies.google.com/technologies/partner-sites. Bitte keine sensiblen personenbezogenen Daten in den Planer eingeben; Kontaktmeldungen werden über die veröffentlichte Support-Adresse bearbeitet.",
+    ],
+    "pt": [
+        "O planejador de classes funciona no navegador e não exige uma conta. Este site usa produtos do Google, incluindo publicidade e medição do AdSense, além do Microsoft Clarity. Dependendo do serviço e das suas configurações, esses produtos podem coletar, usar ou compartilhar cookies, web beacons, endereços IP, informações do dispositivo e outros identificadores para fornecer, medir, proteger e melhorar os serviços.",
+        "Quando anúncios do Google são exibidos, o Google e seus parceiros podem colocar ou ler cookies e usar web beacons, endereços IP e outros identificadores. Terceiros podem processar essas informações de acordo com suas próprias políticas. Consulte a explicação do Google sobre tecnologias em sites parceiros: https://policies.google.com/technologies/partner-sites. Não envie dados pessoais sensíveis ao planejador; mensagens de contato são tratadas pelo endereço de suporte publicado.",
+    ],
+    "ko": [
+        "클래스 플래너는 브라우저에서 작동하며 계정이 필요하지 않습니다. 이 사이트는 AdSense 광고 및 측정 서비스를 포함한 Google 제품과 Microsoft Clarity를 사용합니다. 서비스와 설정에 따라 쿠키, 웹 비콘, IP 주소, 기기 정보 및 기타 식별자가 서비스 제공, 측정, 보안, 개선을 위해 수집, 사용 또는 공유될 수 있습니다.",
+        "Google 광고가 게재되면 Google과 파트너가 쿠키를 설정하거나 읽고 웹 비콘, IP 주소 및 기타 식별자를 사용할 수 있습니다. 제3자는 자체 정책에 따라 이 정보를 처리할 수 있습니다. Google 파트너 사이트 기술 안내는 https://policies.google.com/technologies/partner-sites 에서 확인하세요. 플래너에 민감한 개인정보를 입력하지 말고, 문의 메시지는 공개된 지원 주소를 통해 처리하세요.",
+    ],
+    "it": [
+        "Il planner delle classi funziona nel browser e non richiede un account. Questo sito usa prodotti Google, inclusi pubblicità e misurazione AdSense, e Microsoft Clarity. In base al servizio e alle impostazioni, questi prodotti possono raccogliere, usare o condividere cookie, web beacon, indirizzi IP, informazioni sul dispositivo e altri identificatori per fornire, misurare, proteggere e migliorare i servizi.",
+        "Quando vengono mostrati annunci Google, Google e i suoi partner possono impostare o leggere cookie e usare web beacon, indirizzi IP e altri identificatori. Terze parti possono trattare queste informazioni secondo le proprie policy. Consulta la spiegazione Google sulle tecnologie dei siti partner: https://policies.google.com/technologies/partner-sites. Non inserire dati personali sensibili nel planner; i messaggi di contatto sono gestiti tramite l indirizzo di supporto pubblicato.",
+    ],
+}
+
+for _locale, _privacy_copy in PRIVACY_POLICY_COPY.items():
+    TEXT[_locale].setdefault("simple", {})["privacy"] = _privacy_copy
 
 PRICE_PAGE_DATA = {
     "en": {
@@ -2191,6 +2259,7 @@ for locale in LOCALE_ORDER:
     TEXT[locale]["pages"]["player-count"] = player_count_data["page"]
     TEXT[locale]["pages"]["gameplay"] = GAMEPLAY_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["map-guide"] = MAP_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["tier-list"] = TIER_LIST_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -2266,6 +2335,7 @@ def make_simple_sections(locale, page_key):
             {"type": "rich", "title": simple.get("classes_title", text["pages"]["classes"]["h1"]), "paragraphs": simple.get("classes_paragraphs", [])},
             {"type": "table", "title": labels["class_table"], "headers": labels["class_headers"], "rows": [[c["name"], c["role"], c["best_for"]] for c in localized_classes(locale)]},
             {"type": "faq", "title": text["home"]["faq_title"], "items": text["home"]["faq"]},
+            {"type": "related", "title": TIER_LIST_RELATED_TITLES[locale], "items": [[text["pages"]["tier-list"]["h1"], get_page_path("tier-list", locale), text["pages"]["tier-list"]["description"]]]},
         ]
     if page_key == "build-planner":
         return [
@@ -2290,6 +2360,8 @@ def make_simple_sections(locale, page_key):
         return localized_player_count_data(locale)["sections"]
     if page_key == "map-guide":
         return MAP_PAGE_DATA[locale]["sections"]
+    if page_key == "tier-list":
+        return TIER_LIST_PAGE_DATA[locale]["sections"]
     if page_key == "review":
         return REVIEW_PAGE_DATA[locale]["sections"]
     if page_key == "gameplay":
@@ -2329,7 +2401,7 @@ def build_site_data(page_key, locale="en"):
         abort(404)
     text = get_locale_text(locale)
     page = {**text["pages"][page_key], "path": get_page_path(page_key, locale), "key": page_key}
-    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-steam-hero.webp"
+    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -2350,7 +2422,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else KEYWORD_MAP[locale],
+        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "sections": make_simple_sections(locale, page_key),
     }
