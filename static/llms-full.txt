@@ -27,6 +27,9 @@ Map markers, key-route decisions, community map references, and extraction plann
 ### [Tier list guide](https://mistfallhunterclasses.blog/tier-list/)
 Mode-specific class tier list with solo, duo, squad, and beginner decisions. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [PS5 guide](https://mistfallhunterclasses.blog/ps5/)
+Official Mistfall Hunter PS5 availability, release, price, and platform comparison checks. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
@@ -38,6 +41,10 @@ Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, c
 
 ## User Value
 The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.
+
+## Platform Availability
+### [Mistfall Hunter PS5 guide](https://mistfallhunterclasses.blog/ps5/)
+Updated on 2026-08-19 to verify official PlayStation, Xbox, and Steam platform pages, date the checked release and price context, separate console availability from unsupported performance claims, and connect the page to related buyer and gameplay resources.
 
 ## Latest Update Content
 ### [Multilingual tier list update](https://mistfallhunterclasses.blog/tier-list/)

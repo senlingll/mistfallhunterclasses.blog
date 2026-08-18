@@ -2,6 +2,7 @@ import socket
 
 from flask import Flask, abort, render_template
 
+from ps5_content import PS5_KEYWORD_MAP, PS5_PAGE_DATA, PS5_RELATED_TITLES
 from tier_list_content import TIER_LIST_PAGE_DATA
 
 
@@ -16,7 +17,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15"}
+PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -39,6 +40,7 @@ PAGE_ORDER = [
     "map-guide",
     "tier-list",
     "steam",
+    "ps5",
     "review",
     "gameplay",
     "about",
@@ -56,6 +58,7 @@ PAGE_SLUGS = {
     "map-guide": "map-guide",
     "tier-list": "tier-list",
     "steam": "steam",
+    "ps5": "ps5",
     "review": "review",
     "gameplay": "gameplay",
     "about": "about",
@@ -2260,6 +2263,7 @@ for locale in LOCALE_ORDER:
     TEXT[locale]["pages"]["gameplay"] = GAMEPLAY_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["map-guide"] = MAP_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["tier-list"] = TIER_LIST_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["ps5"] = PS5_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -2349,7 +2353,7 @@ def make_simple_sections(locale, page_key):
             {"type": "steam"},
             {"type": "rich", "title": text["pages"]["steam"]["h1"], "paragraphs": simple.get("steam_paragraphs", [])},
             {"type": "faq", "title": labels["steam_faq"], "items": text["home"]["faq"][:3]},
-            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]]]},
+            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]], [text["pages"]["ps5"]["h1"], get_page_path("ps5", locale), text["pages"]["ps5"]["description"]]]},
         ]
     if page_key == "price":
         related = PRICE_RELATED_COPY[locale]
@@ -2362,6 +2366,9 @@ def make_simple_sections(locale, page_key):
         return MAP_PAGE_DATA[locale]["sections"]
     if page_key == "tier-list":
         return TIER_LIST_PAGE_DATA[locale]["sections"]
+    if page_key == "ps5":
+        related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in ["steam", "price", "player-count", "review", "classes", "gameplay"]]
+        return PS5_PAGE_DATA[locale]["sections"] + [{"type": "related", "title": PS5_RELATED_TITLES[locale], "items": related_items}]
     if page_key == "review":
         return REVIEW_PAGE_DATA[locale]["sections"]
     if page_key == "gameplay":
@@ -2401,7 +2408,7 @@ def build_site_data(page_key, locale="en"):
         abort(404)
     text = get_locale_text(locale)
     page = {**text["pages"][page_key], "path": get_page_path(page_key, locale), "key": page_key}
-    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-steam-hero.webp"
+    page_image = "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-ps5-console-concept.webp" if page_key == "ps5" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -2422,7 +2429,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else KEYWORD_MAP[locale],
+        "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "sections": make_simple_sections(locale, page_key),
     }

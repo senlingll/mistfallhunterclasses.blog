@@ -379,10 +379,18 @@ summary {
 }
 .simple-main {
   min-height: 70vh;
+  min-width: 0;
 }
 .simple-hero {
   padding-bottom: 1rem;
   text-align: center;
+}
+.simple-hero h1,
+.simple-hero p {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .prose {
   color: var(--muted);
@@ -470,6 +478,7 @@ summary {
     margin-left: auto;
     margin-right: auto;
     max-width: min(320px, 100%);
+    width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
