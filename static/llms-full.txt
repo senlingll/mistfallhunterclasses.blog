@@ -30,6 +30,9 @@ Mode-specific class tier list with solo, duo, squad, and beginner decisions. The
 ### [PS5 guide](https://mistfallhunterclasses.blog/ps5/)
 Official Mistfall Hunter PS5 availability, release, price, and platform comparison checks. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Crossplay guide](https://mistfallhunterclasses.blog/crossplay/)
+PC, PS5, and Xbox crossplay checks, friend invites, progression limits, and source boundaries. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Steam info](https://mistfallhunterclasses.blog/steam/)
 Official Steam facts and safe source links. The page is implemented as crawlable static HTML and is included in the sitemap.
 
