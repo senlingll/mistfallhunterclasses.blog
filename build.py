@@ -221,7 +221,7 @@ def copy_static_assets(build_dir):
             destination = os.path.join(static_build, filename)
             ensure_dir(os.path.dirname(destination))
             shutil.copy2(source, destination)
-    for filename in ["robots.txt", "sitemap.xml", "ads.txt", "favicon.ico", "llms.txt", "llms-full.txt", "_redirects", "_worker.js"]:
+    for filename in ["robots.txt", "sitemap.xml", "favicon.ico", "llms.txt", "llms-full.txt", "_redirects", "_worker.js"]:
         source = os.path.join("static", filename)
         if os.path.exists(source):
             shutil.copy2(source, os.path.join(build_dir, filename))
