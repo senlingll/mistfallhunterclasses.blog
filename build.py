@@ -212,6 +212,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-crossplay-platforms.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-shenwood.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-brand-keep.webp"),
+        os.path.join("videos", "mistfall-hunter-build-guide.mp4"),
         "logo.png",
         "favicon.ico",
     ]

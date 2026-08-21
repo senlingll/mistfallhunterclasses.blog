@@ -18,7 +18,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19"}
+PAGE_LASTMOD = {"build-planner": "2026-08-21", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -88,6 +88,51 @@ KEYWORD_MAP = {
     "pt": {"market": "Brazil", "primary": "classes de Mistfall Hunter", "related": ["guia de classes Mistfall Hunter", "melhor classe Mistfall Hunter", "planejador de build Mistfall Hunter", "Mistfall Hunter Steam"], "rejected": ["codigos Mistfall Hunter as priority"], "evidence": "Brazilian Portuguese game queries usually keep the title and localize classes, guide, best class, and build.", "confidence": "medium"},
     "ko": {"market": "Korea", "primary": "Mistfall Hunter 클래스", "related": ["Mistfall Hunter 빌드", "Mistfall Hunter 클래스 가이드", "Mistfall Hunter 추천 클래스", "Mistfall Hunter Steam"], "rejected": ["Mistfall Hunter 코드 as primary page"], "evidence": "Korean game searches commonly keep the title and use 클래스, 빌드, 가이드, and 추천.", "confidence": "medium"},
     "it": {"market": "Italy", "primary": "classi Mistfall Hunter", "related": ["guida classi Mistfall Hunter", "migliore classe Mistfall Hunter", "build Mistfall Hunter", "Mistfall Hunter Steam"], "rejected": ["codici Mistfall Hunter as homepage priority"], "evidence": "Italian game search wording commonly keeps the title and uses classi, guida, migliore classe, and build.", "confidence": "medium"},
+}
+
+BUILD_GUIDE_VIDEO = {
+    "src": "videos/mistfall-hunter-build-guide.mp4",
+    "title": "Mistfall Hunter build guide: six classes and a builder walkthrough",
+    "description": "A short launch-version guide that compares all six classes, answers the four planner questions, and demonstrates the browser builder.",
+    "youtube_title": "Mistfall Hunter Build Guide: 6 Classes + Builder Walkthrough",
+    "youtube_description": "Mistfall Hunter builder walkthrough for the launch version: compare Mercenary, Blackarrow, Shadowstrix, Sorcerer, Seer, and Withered Knight, then use the build planner to choose a solo, duo, or squad direction. Try the tool at https://mistfallhunterclasses.blog/build-planner/.",
+    "transcript_title": "Full video transcript",
+    "transcript": [
+        "Welcome to this Mistfall Hunter build guide. The game launched on July 30, 2026, so treat this as a launch-version starting point rather than a permanent meta verdict. We will cover all six classes, then use the build planner to turn your preferred role into a practical first run.",
+        "Mercenary is the clearest frontline option. It suits new players and anyone who wants more room to recover from a bad position. Its risk is low in this model because the job is easy to explain: take space, survive pressure, and leave with the squad.",
+        "Blackarrow is the ranged pressure choice. Pick it if you enjoy scouting, poking, and waiting for a clean fight. The risk is medium because distance helps, but poor sightlines or impatient pushes can remove that advantage quickly.",
+        "Shadowstrix is the high-mobility assassin. It fits experienced players who like ambushes, flanks, and fast disengages. The reward is strong burst and surprise, while the risk is high because a missed timing window is punished immediately.",
+        "Sorcerer brings area damage and zone pressure. It is a good match for players who want spell burst and team-fight impact, but it needs positioning and cooldown discipline. That makes its risk high even when the damage ceiling looks attractive.",
+        "Seer is the information and utility specialist. Coordinated squads should consider it when tracking, control, or safer extraction calls matter more than personal damage. The risk is medium: its value depends on communication, but it can make the whole team more deliberate.",
+        "Withered Knight is the durable initiator. Choose it when you want to hold space, absorb trades, and protect allies while a group moves through a dangerous route. Its risk is medium because it is sturdy, but it still asks you to read when to anchor and when to retreat.",
+        "Now let us use the planner. It asks four questions: what format will you play, which combat rhythm do you prefer, how much risk can you accept, and how much extraction or ARPG experience do you have? Those answers are combined into a role-fit score, not a claim that one class is always best.",
+        "For a demo, choose solo extraction, balanced survival, low risk, and new player. The builder should move Mercenary toward the top because the model values recovery and a readable frontline job. Change the rhythm to burst and the risk to high, then Shadowstrix or Sorcerer should rise because the inputs now describe a different run.",
+        "Use the build maker as a first decision, then read the class guide and test the result with your current gear. If two scores are close, treat them as a tie and fill the role your team is missing. After a balance patch, revisit the build planner instead of assuming this launch snapshot still describes every class.",
+        "That is the complete route: compare the six jobs, answer four honest questions, inspect the recommended role, and test it in a real extraction. Open the Mistfall Hunter build planner at mistfallhunterclasses.blog/build-planner/ and choose a direction before you spend a full session learning the wrong rhythm.",
+    ],
+}
+
+REGIONAL_LINKS = {
+    ("en", "home"): {
+        "title": "German class resource",
+        "items": [["Mistfall Hunter Klassen", "/de/classes/", "Open the deutsche Klassenliste for a German-language role comparison."]],
+    },
+    ("en", "classes"): {
+        "title": "German class resource",
+        "items": [["Mistfall Hunter Klassen", "/de/classes/", "Use the deutsche Klassenliste after comparing the English role profiles."]],
+    },
+    ("en", "build-planner"): {
+        "title": "German class resource",
+        "items": [["Mistfall Hunter Klassen", "/de/classes/", "Cross-check the planner result with the deutsche Klassenliste before a run."]],
+    },
+    ("ja", "home"): {
+        "title": "関連するビルドプランナー",
+        "items": [["Mistfall Hunter ビルドプランナー", "/ja/build-planner/", "クラスを選んだ後、ソロ・デュオ・分隊向けのビルド方針を試せます。"]],
+    },
+    ("ja", "classes"): {
+        "title": "関連するビルドプランナー",
+        "items": [["Mistfall Hunter ビルドプランナー", "/ja/build-planner/", "クラスガイドからビルド方針を選び、プレイ形式に合わせて確認できます。"]],
+    },
 }
 
 REVIEW_KEYWORD_MAP = {
@@ -213,7 +258,21 @@ TEXT = {
             "faq_title": "Mistfall Hunter classes FAQ",
             "faq": [["What is the best Mistfall Hunter class for beginners?", "Mercenary is the safest default for new players because its role is easier to understand during stressful extraction fights. Withered Knight is also a strong beginner option for players joining squads."], ["Is Shadowstrix good for solo play?", "Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster."], ["Should squads always bring Seer?", "No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow."], ["How accurate is the Mistfall Hunter build planner?", "The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change."], ["Does Mistfall Hunter have codes?", "This site focuses on classes and builds because the current opportunity is a decision-support guide, not a short-lived codes page. If official redeem codes become meaningful, they should be handled on a separate page."]],
         },
-        "simple": {"privacy": [
+        "simple": {
+            "build_paragraphs": [
+                "The planner converts format, rhythm, risk, and experience into a build direction.",
+                "If two results are close, treat them as a tie and cover the role your squad is missing.",
+                "Open the build planner with the run you will actually play. It asks four practical questions: are you playing solo, duo, or squad; do you prefer balanced survival, burst damage, control and utility, or frontline pressure; how much risk can you accept; and are you new, returning to ARPGs, or an advanced extraction player? The builder combines those answers into a role-fit score, then explains why the first class and alternatives match the selected run. This page follows the July 30, 2026 launch version, so it is a starting model rather than a permanent meta claim.",
+                "Mercenary is the low-risk frontline brawler. It suits new players and anyone who wants a clear job with room to recover from a bad position. Choose it when steady extractions and forgiving melee pressure matter more than highlight-reel burst.",
+                "Blackarrow is the medium-risk ranged pressure class. It fits patient players who enjoy scouting, poking, and choosing when to commit. Distance helps you control a fight, but the class becomes fragile when sightlines disappear or you push without information.",
+                "Shadowstrix is a high-risk assassin skirmisher for players who already understand ambushes, flanks, and disengage timing. It can turn a clean opening into fast burst damage, but a missed window or exposed retreat is punished quickly.",
+                "Sorcerer is the high-risk area-damage caster. Pick it if spell burst, zone pressure, and team-fight impact are your priorities. The payoff is strong control of crowded fights; the tradeoff is that positioning and cooldown timing leave less room for mistakes.",
+                "Seer is the medium-risk support and information choice. It is best for coordinated squads that value tracking, utility, and safer extraction calls over personal damage. Its power grows with communication, so solo players should choose it for information play rather than automatic safety.",
+                "Withered Knight is the medium-risk durable initiator. It suits players who want to hold space, survive trades, and protect allies while a group moves through a dangerous route. The class is sturdy, but you still need to recognize when anchoring becomes overextending.",
+                "Use the build maker as a fast first decision, then read the class guide and test the result with your current gear. If the output favors a role your party already has, fill the missing job instead of blindly stacking the highest number. A builder is most useful when it reduces decision overload without pretending that one answer fits every player. The build maker keeps that first choice visible.",
+                "After a balance patch, return to the build planner and check the assumptions again. Skills, talents, gear scaling, and extraction rewards can change the practical risk of a class. Treat the builder as a transparent launch reference: it helps you choose a direction today, while your own runs decide whether that direction feels right.",
+            ],
+            "privacy": [
             "The class planner runs in your browser and does not require an account. This site uses Google products, including AdSense advertising and measurement services, and Microsoft Clarity. Depending on the service and your settings, these products may collect, use, or share cookies, web beacons, IP addresses, device information, and other identifiers to deliver, measure, secure, and improve services.",
             "When Google ads are served, Google and its partners may place or read cookies or use web beacons, IP addresses, and other identifiers. Third parties may process this information under their own policies. See Google partner-site technology details at https://policies.google.com/technologies/partner-sites. Do not submit sensitive personal information to the planner; contact messages are handled through the published support address.",
         ]},
@@ -437,6 +496,10 @@ FINAL_TEXT_FIXES = {
 
 for locale, block in FINAL_TEXT_FIXES.items():
     TEXT[locale] = deep_merge(TEXT[locale], block)
+
+TEXT["de"]["home"]["faq"] = [
+    faq for faq in TEXT["de"]["home"]["faq"] if faq[0] != "Gibt es Mistfall Hunter Codes?"
+]
 
 PRIVACY_POLICY_COPY = {
     "en": [
@@ -2345,12 +2408,18 @@ def make_simple_sections(locale, page_key):
             {"type": "related", "title": TIER_LIST_RELATED_TITLES[locale], "items": [[text["pages"]["tier-list"]["h1"], get_page_path("tier-list", locale), text["pages"]["tier-list"]["description"]]]},
         ]
     if page_key == "build-planner":
-        return [
+        rich_section = {"type": "rich", "title": text["pages"]["build-planner"]["h1"], "paragraphs": simple.get("build_paragraphs", [])}
+        if locale == "en":
+            rich_section["updated_label"] = f"Last updated: {PAGE_LASTMOD['build-planner']}"
+        sections = [
             {"type": "planner", "short": True},
-            {"type": "rich", "title": text["pages"]["build-planner"]["h1"], "paragraphs": simple.get("build_paragraphs", [])},
+            rich_section,
             {"type": "table", "title": labels["planner_table"], "headers": labels["planner_headers"], "rows": [[text["planner"]["options"]["experience"]["new"], text["planner"]["options"]["format"]["solo"] + ", " + text["planner"]["options"]["style"]["balanced"] + ", " + text["planner"]["options"]["risk"]["low"], localized_classes(locale)[0]["name"]], [text["planner"]["options"]["format"]["squad"], text["planner"]["options"]["style"]["control"] + ", " + text["planner"]["options"]["risk"]["medium"], localized_classes(locale)[4]["name"] + " / " + localized_classes(locale)[5]["name"]], [text["planner"]["options"]["format"]["duo"], text["planner"]["options"]["style"]["burst"] + ", " + text["planner"]["options"]["risk"]["high"], localized_classes(locale)[2]["name"] + " / " + localized_classes(locale)[3]["name"]]]},
             {"type": "faq", "title": labels["planner_faq"], "items": text["home"]["faq"][:4]},
         ]
+        if locale == "en":
+            sections.insert(2, {"type": "video", **BUILD_GUIDE_VIDEO})
+        return sections
     if page_key == "steam":
         return [
             {"type": "steam"},
@@ -2441,6 +2510,7 @@ def build_site_data(page_key, locale="en"):
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
         "keyword_map": REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
+        "regional_links": REGIONAL_LINKS.get((locale, page_key)),
         "sections": make_simple_sections(locale, page_key),
     }
 

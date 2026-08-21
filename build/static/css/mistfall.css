@@ -396,6 +396,39 @@ summary {
   color: var(--muted);
   max-width: 820px;
 }
+.content-meta {
+  color: var(--dim);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-top: -0.25rem;
+}
+.video-section {
+  max-width: 1040px;
+}
+.video-figure {
+  margin: 0 auto;
+  max-width: 920px;
+}
+.guide-video {
+  aspect-ratio: 16 / 9;
+  background: #0b0e0a;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: block;
+  height: auto;
+  object-fit: contain;
+  width: 100%;
+}
+.video-transcript {
+  margin: 1.6rem auto 0;
+}
+.video-transcript h3 {
+  color: var(--text);
+}
+.regional-links {
+  padding-top: 0;
+}
 .article-media {
   margin: 0 auto;
   max-width: 920px;

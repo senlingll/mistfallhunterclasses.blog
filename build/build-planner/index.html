@@ -47,6 +47,87 @@
   </script>
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mistfall Hunter Build Planner",
+  "description": "Use the Mistfall Hunter build planner to match classes with solo, duo, and squad play styles.",
+  "url": "https://mistfallhunterclasses.blog/build-planner/",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Mistfall Hunter Classes",
+    "url": "https://mistfallhunterclasses.blog"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VideoGame",
+      "@id": "https://mistfallhunterclasses.blog/build-planner/#game",
+      "name": "Mistfall Hunter",
+      "url": "https://mistfallhunter.com/",
+      "datePublished": "2026-07-30",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bellring Games",
+        "url": "https://mistfallhunter.com/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mistfallhunterclasses.blog/#website",
+      "url": "https://mistfallhunterclasses.blog/",
+      "name": "Mistfall Hunter Classes",
+      "publisher": {"@id": "https://mistfallhunterclasses.blog/#organization"},
+      "about": {"@id": "https://mistfallhunterclasses.blog/build-planner/#game"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://mistfallhunterclasses.blog/#organization",
+      "name": "Mistfall Hunter Classes",
+      "url": "https://mistfallhunterclasses.blog/",
+      "description": "Independent fan-made Mistfall Hunter class guide and build planner."
+    }
+  ]
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {"@type":"Question","name":"What is the best Mistfall Hunter class for beginners?","acceptedAnswer":{"@type":"Answer","text":"Mercenary is the safest default for new players because its role is easier to understand during stressful extraction fights. Withered Knight is also a strong beginner option for players joining squads."}},
+
+    {"@type":"Question","name":"Is Shadowstrix good for solo play?","acceptedAnswer":{"@type":"Answer","text":"Shadowstrix can be strong for solo players who already understand ambush timing and disengage windows. It is less forgiving than Mercenary because mistakes are punished faster."}},
+
+    {"@type":"Question","name":"Should squads always bring Seer?","acceptedAnswer":{"@type":"Answer","text":"No class should be mandatory in every squad. Seer is valuable when your team needs information, utility, and safer extraction calls, but a damage-heavy squad may prefer Sorcerer or Blackarrow."}},
+
+    {"@type":"Question","name":"How accurate is the Mistfall Hunter build planner?","acceptedAnswer":{"@type":"Answer","text":"The planner is a practical scoring model based on role fit. It is useful for choosing a starting direction, but it is not official and should be updated when verified skill values or patch notes change."}}
+
+  ]
+}
+</script>
+
+
+
 
 </head>
 <body>
@@ -168,7 +249,47 @@
 
     <section class="section-pad prose">
       <h2>Mistfall Hunter Build Planner</h2>
+      <p class="content-meta">Last updated: 2026-08-21</p>
 
+      <p>The planner converts format, rhythm, risk, and experience into a build direction.</p>
+
+      <p>If two results are close, treat them as a tie and cover the role your squad is missing.</p>
+
+      <p>Open the build planner with the run you will actually play. It asks four practical questions: are you playing solo, duo, or squad; do you prefer balanced survival, burst damage, control and utility, or frontline pressure; how much risk can you accept; and are you new, returning to ARPGs, or an advanced extraction player? The builder combines those answers into a role-fit score, then explains why the first class and alternatives match the selected run. This page follows the July 30, 2026 launch version, so it is a starting model rather than a permanent meta claim.</p>
+
+      <p>Mercenary is the low-risk frontline brawler. It suits new players and anyone who wants a clear job with room to recover from a bad position. Choose it when steady extractions and forgiving melee pressure matter more than highlight-reel burst.</p>
+
+      <p>Blackarrow is the medium-risk ranged pressure class. It fits patient players who enjoy scouting, poking, and choosing when to commit. Distance helps you control a fight, but the class becomes fragile when sightlines disappear or you push without information.</p>
+
+      <p>Shadowstrix is a high-risk assassin skirmisher for players who already understand ambushes, flanks, and disengage timing. It can turn a clean opening into fast burst damage, but a missed window or exposed retreat is punished quickly.</p>
+
+      <p>Sorcerer is the high-risk area-damage caster. Pick it if spell burst, zone pressure, and team-fight impact are your priorities. The payoff is strong control of crowded fights; the tradeoff is that positioning and cooldown timing leave less room for mistakes.</p>
+
+      <p>Seer is the medium-risk support and information choice. It is best for coordinated squads that value tracking, utility, and safer extraction calls over personal damage. Its power grows with communication, so solo players should choose it for information play rather than automatic safety.</p>
+
+      <p>Withered Knight is the medium-risk durable initiator. It suits players who want to hold space, survive trades, and protect allies while a group moves through a dangerous route. The class is sturdy, but you still need to recognize when anchoring becomes overextending.</p>
+
+      <p>Use the build maker as a fast first decision, then read the class guide and test the result with your current gear. If the output favors a role your party already has, fill the missing job instead of blindly stacking the highest number. A builder is most useful when it reduces decision overload without pretending that one answer fits every player. The build maker keeps that first choice visible.</p>
+
+      <p>After a balance patch, return to the build planner and check the assumptions again. Skills, talents, gear scaling, and extraction rewards can change the practical risk of a class. Treat the builder as a transparent launch reference: it helps you choose a direction today, while your own runs decide whether that direction feels right.</p>
+
+    </section>
+
+
+
+    <section class="section-pad video-section">
+      <h2>Mistfall Hunter build guide: six classes and a builder walkthrough</h2>
+      <figure class="video-figure">
+        <video class="guide-video" controls preload="auto" width="1280" height="720" poster="/static/images/mistfall/mistfall-hunter-steam-hero.webp">
+          <source src="/static/videos/mistfall-hunter-build-guide.mp4" type="video/mp4">
+          <p>A short launch-version guide that compares all six classes, answers the four planner questions, and demonstrates the browser builder.</p>
+        </video>
+        <figcaption>A short launch-version guide that compares all six classes, answers the four planner questions, and demonstrates the browser builder.</figcaption>
+      </figure>
+      <div class="video-transcript prose">
+        <h3>Full video transcript</h3>
+        <p>Welcome to this Mistfall Hunter build guide. The game launched on July 30, 2026, so treat this as a launch-version starting point rather than a permanent meta verdict. We will cover all six classes, then use the build planner to turn your preferred role into a practical first run.</p><p>Mercenary is the clearest frontline option. It suits new players and anyone who wants more room to recover from a bad position. Its risk is low in this model because the job is easy to explain: take space, survive pressure, and leave with the squad.</p><p>Blackarrow is the ranged pressure choice. Pick it if you enjoy scouting, poking, and waiting for a clean fight. The risk is medium because distance helps, but poor sightlines or impatient pushes can remove that advantage quickly.</p><p>Shadowstrix is the high-mobility assassin. It fits experienced players who like ambushes, flanks, and fast disengages. The reward is strong burst and surprise, while the risk is high because a missed timing window is punished immediately.</p><p>Sorcerer brings area damage and zone pressure. It is a good match for players who want spell burst and team-fight impact, but it needs positioning and cooldown discipline. That makes its risk high even when the damage ceiling looks attractive.</p><p>Seer is the information and utility specialist. Coordinated squads should consider it when tracking, control, or safer extraction calls matter more than personal damage. The risk is medium: its value depends on communication, but it can make the whole team more deliberate.</p><p>Withered Knight is the durable initiator. Choose it when you want to hold space, absorb trades, and protect allies while a group moves through a dangerous route. Its risk is medium because it is sturdy, but it still asks you to read when to anchor and when to retreat.</p><p>Now let us use the planner. It asks four questions: what format will you play, which combat rhythm do you prefer, how much risk can you accept, and how much extraction or ARPG experience do you have? Those answers are combined into a role-fit score, not a claim that one class is always best.</p><p>For a demo, choose solo extraction, balanced survival, low risk, and new player. The builder should move Mercenary toward the top because the model values recovery and a readable frontline job. Change the rhythm to burst and the risk to high, then Shadowstrix or Sorcerer should rise because the inputs now describe a different run.</p><p>Use the build maker as a first decision, then read the class guide and test the result with your current gear. If two scores are close, treat them as a tie and fill the role your team is missing. After a balance patch, revisit the build planner instead of assuming this launch snapshot still describes every class.</p><p>That is the complete route: compare the six jobs, answer four honest questions, inspect the recommended role, and test it in a real extraction. Open the Mistfall Hunter build planner at mistfallhunterclasses.blog/build-planner/ and choose a direction before you spend a full session learning the wrong rhythm.</p>
+      </div>
     </section>
 
 
@@ -204,6 +325,16 @@
 
     </section>
 
+
+
+  <section class="section-pad source-list regional-links">
+    <h2>German class resource</h2>
+    <div class="source-grid">
+
+      <a href="/de/classes/"><strong>Mistfall Hunter Klassen</strong><span>Cross-check the planner result with the deutsche Klassenliste before a run.</span></a>
+
+    </div>
+  </section>
 
 </main>
 

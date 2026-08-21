@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block schema %}
-{% if page_key in ["player-count", "review", "gameplay", "map-guide", "tier-list", "ps5", "crossplay"] %}
+{% if page_key in ["build-planner", "player-count", "review", "gameplay", "map-guide", "tier-list", "ps5", "crossplay"] %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -17,6 +17,42 @@
   }
 }
 </script>
+{% if page_key == "build-planner" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VideoGame",
+      "@id": "{{ base_url }}/build-planner/#game",
+      "name": "Mistfall Hunter",
+      "url": "https://mistfallhunter.com/",
+      "datePublished": "2026-07-30",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bellring Games",
+        "url": "https://mistfallhunter.com/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ base_url }}/#website",
+      "url": "{{ base_url }}/",
+      "name": "Mistfall Hunter Classes",
+      "publisher": {"@id": "{{ base_url }}/#organization"},
+      "about": {"@id": "{{ base_url }}/build-planner/#game"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ base_url }}/#organization",
+      "name": "Mistfall Hunter Classes",
+      "url": "{{ base_url }}/",
+      "description": "Independent fan-made Mistfall Hunter class guide and build planner."
+    }
+  ]
+}
+</script>
+{% endif %}
 {% for section in sections %}
 {% if section.type == "faq" %}
 <script type="application/ld+json">
@@ -80,14 +116,30 @@
     {% elif section.type == "rich" %}
     <section class="section-pad prose">
       <h2>{{ section.title }}</h2>
+      {% if section.updated_label %}<p class="content-meta">{{ section.updated_label }}</p>{% endif %}
       {% for paragraph in section.paragraphs %}
       <p>{{ paragraph }}</p>
       {% endfor %}
     </section>
+    {% elif section.type == "video" %}
+    <section class="section-pad video-section">
+      <h2>{{ section.title }}</h2>
+      <figure class="video-figure">
+        <video class="guide-video" controls preload="auto" width="1280" height="720" poster="{{ url_for('static', filename='images/mistfall/mistfall-hunter-steam-hero.webp') }}">
+          <source src="{{ url_for('static', filename=section.src) }}" type="video/mp4">
+          <p>{{ section.description }}</p>
+        </video>
+        <figcaption>{{ section.description }}</figcaption>
+      </figure>
+      <div class="video-transcript prose">
+        <h3>{{ section.transcript_title }}</h3>
+        {% for paragraph in section.transcript %}<p>{{ paragraph }}</p>{% endfor %}
+      </div>
+    </section>
     {% elif section.type == "image" %}
     <section class="section-pad article-media-section">
       <figure class="article-media">
-        <img class="article-media-img{% if section.image_class %} {{ section.image_class }}{% endif %}" src="{{ url_for('static', filename=section.src) }}" alt="{{ section.alt }}" width="{{ section.width if section.width else 1280 }}" height="{{ section.height if section.height else 720 }}" loading="lazy">
+        <img class="article-media-img{% if section.image_class %} {{ section.image_class }}{% endif %}" src="{{ url_for('static', filename=section.src) }}" alt="{{ section.alt }}" width="{{ section.width if section.width else 1280 }}" height="{{ section.height if section.height else 720 }}">
         <figcaption>{{ section.caption }}</figcaption>
       </figure>
     </section>
@@ -96,7 +148,7 @@
       <h2>{{ section.title }}</h2>
       <figure class="article-media">
         <div class="embed-frame">
-          <iframe src="{{ section.src }}" title="{{ section.title }}" loading="lazy" allowfullscreen></iframe>
+          <iframe src="{{ section.src }}" title="{{ section.title }}" allowfullscreen></iframe>
         </div>
         <figcaption>{{ section.caption }}</figcaption>
         <p><a class="btn secondary" href="{{ section.link_href }}" target="_blank" rel="nofollow noopener">{{ section.link_label }}</a></p>
@@ -147,5 +199,15 @@
     </section>
     {% endif %}
   {% endfor %}
+  {% if regional_links %}
+  <section class="section-pad source-list regional-links">
+    <h2>{{ regional_links['title'] }}</h2>
+    <div class="source-grid">
+      {% for item in regional_links['items'] %}
+      <a href="{{ item[1] }}"><strong>{{ item[0] }}</strong><span>{{ item[2] }}</span></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 </main>
 {% endblock %}

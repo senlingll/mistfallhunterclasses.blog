@@ -155,5 +155,16 @@
     <details {% if loop.first %}open{% endif %}><summary>{{ faq[0] }}</summary><p>{{ faq[1] }}</p></details>
     {% endfor %}
   </section>
+
+  {% if regional_links %}
+  <section class="section-pad source-list regional-links">
+    <h2>{{ regional_links['title'] }}</h2>
+    <div class="source-grid">
+      {% for item in regional_links['items'] %}
+      <a href="{{ item[1] }}"><strong>{{ item[0] }}</strong><span>{{ item[2] }}</span></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 </main>
 {% endblock %}
