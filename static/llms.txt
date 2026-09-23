@@ -9,6 +9,7 @@
 - [Price guide](https://mistfallhunterclasses.blog/price/): Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 - [Player count guide](https://mistfallhunterclasses.blog/player-count/): SteamDB chart interpretation, current-player signals, and queue-timing guidance.
 - [Map guide](https://mistfallhunterclasses.blog/map-guide/): Map markers, key-route decisions, community map references, and extraction planning.
+- [Boss guide](https://mistfallhunterclasses.blog/boss-guide/): Decision-first Mistfall Hunter boss guide for scouting, party-size planning, PvP risk, and extraction choices.
 - [Tier list guide](https://mistfallhunterclasses.blog/tier-list/): Mode-specific class tier list with solo, duo, squad, and beginner decisions.
 - [PS5 guide](https://mistfallhunterclasses.blog/ps5/): Official Mistfall Hunter PS5 availability, release, price, and platform comparison checks.
 - [Crossplay guide](https://mistfallhunterclasses.blog/crossplay/): PC, PS5, and Xbox crossplay checks, friend invites, progression limits, and source boundaries.

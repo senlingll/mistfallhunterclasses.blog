@@ -1,10 +1,12 @@
 /about /about/ 301
+/boss-guide /boss-guide/ 301
 /build-planner /build-planner/ 301
 /classes /classes/ 301
 /contact /contact/ 301
 /crossplay /crossplay/ 301
 /de /de/ 301
 /de/about /de/about/ 301
+/de/boss-guide /de/boss-guide/ 301
 /de/build-planner /de/build-planner/ 301
 /de/classes /de/classes/ 301
 /de/contact /de/contact/ 301
@@ -21,6 +23,7 @@
 /de/tier-list /de/tier-list/ 301
 /es /es/ 301
 /es/about /es/about/ 301
+/es/boss-guide /es/boss-guide/ 301
 /es/build-planner /es/build-planner/ 301
 /es/classes /es/classes/ 301
 /es/contact /es/contact/ 301
@@ -37,6 +40,7 @@
 /es/tier-list /es/tier-list/ 301
 /fr /fr/ 301
 /fr/about /fr/about/ 301
+/fr/boss-guide /fr/boss-guide/ 301
 /fr/build-planner /fr/build-planner/ 301
 /fr/classes /fr/classes/ 301
 /fr/contact /fr/contact/ 301
@@ -54,6 +58,7 @@
 /gameplay /gameplay/ 301
 /it /it/ 301
 /it/about /it/about/ 301
+/it/boss-guide /it/boss-guide/ 301
 /it/build-planner /it/build-planner/ 301
 /it/classes /it/classes/ 301
 /it/contact /it/contact/ 301
@@ -70,6 +75,7 @@
 /it/tier-list /it/tier-list/ 301
 /ja /ja/ 301
 /ja/about /ja/about/ 301
+/ja/boss-guide /ja/boss-guide/ 301
 /ja/build-planner /ja/build-planner/ 301
 /ja/classes /ja/classes/ 301
 /ja/contact /ja/contact/ 301
@@ -86,6 +92,7 @@
 /ja/tier-list /ja/tier-list/ 301
 /ko /ko/ 301
 /ko/about /ko/about/ 301
+/ko/boss-guide /ko/boss-guide/ 301
 /ko/build-planner /ko/build-planner/ 301
 /ko/classes /ko/classes/ 301
 /ko/contact /ko/contact/ 301
@@ -107,6 +114,7 @@
 /ps5 /ps5/ 301
 /pt /pt/ 301
 /pt/about /pt/about/ 301
+/pt/boss-guide /pt/boss-guide/ 301
 /pt/build-planner /pt/build-planner/ 301
 /pt/classes /pt/classes/ 301
 /pt/contact /pt/contact/ 301
