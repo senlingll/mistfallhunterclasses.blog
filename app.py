@@ -6,6 +6,7 @@ from boss_guide_content import BOSS_GUIDE_KEYWORD_MAP, BOSS_GUIDE_PAGE_DATA, BOS
 from ps5_content import PS5_KEYWORD_MAP, PS5_PAGE_DATA, PS5_RELATED_TITLES
 from tier_list_content import TIER_LIST_PAGE_DATA
 from crossplay_content import CROSSPLAY_KEYWORD_MAP, CROSSPLAY_PAGE_DATA, CROSSPLAY_RELATED_TITLES
+from system_requirements_content import SYSTEM_REQUIREMENTS_KEYWORD_MAP, SYSTEM_REQUIREMENTS_PAGE_DATA
 
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"build-planner": "2026-08-21", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23"}
+PAGE_LASTMOD = {"build-planner": "2026-08-21", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23", "system-requirements": "2026-09-24"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -47,6 +48,7 @@ PAGE_ORDER = [
     "review",
     "gameplay",
     "boss-guide",
+    "system-requirements",
     "about",
     "contact",
     "privacy-policy",
@@ -67,6 +69,7 @@ PAGE_SLUGS = {
     "review": "review",
     "gameplay": "gameplay",
     "boss-guide": "boss-guide",
+    "system-requirements": "system-requirements",
     "about": "about",
     "contact": "contact",
     "privacy-policy": "privacy-policy",
@@ -2334,6 +2337,7 @@ for locale in LOCALE_ORDER:
     TEXT[locale]["pages"]["tier-list"] = TIER_LIST_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["ps5"] = PS5_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["boss-guide"] = BOSS_GUIDE_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["system-requirements"] = SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -2429,7 +2433,7 @@ def make_simple_sections(locale, page_key):
             {"type": "steam"},
             {"type": "rich", "title": text["pages"]["steam"]["h1"], "paragraphs": simple.get("steam_paragraphs", [])},
             {"type": "faq", "title": labels["steam_faq"], "items": text["home"]["faq"][:3]},
-            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]], [text["pages"]["ps5"]["h1"], get_page_path("ps5", locale), text["pages"]["ps5"]["description"]], [CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]]]},
+            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]], [text["pages"]["ps5"]["h1"], get_page_path("ps5", locale), text["pages"]["ps5"]["description"]], [CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]], [SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["h1"], get_page_path("system-requirements", locale), SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["description"]]]},
         ]
     if page_key == "price":
         related = PRICE_RELATED_COPY[locale]
@@ -2455,6 +2459,20 @@ def make_simple_sections(locale, page_key):
         return BOSS_GUIDE_PAGE_DATA[locale]["sections"] + [
             {"type": "related", "title": boss_copy["related_title"], "items": related_items}
         ]
+    if page_key == "system-requirements":
+        related_titles = {
+            "en": "Related Mistfall Hunter guides",
+            "es": "Guías relacionadas de Mistfall Hunter",
+            "ja": "関連するMistfall Hunterガイド",
+            "fr": "Guides Mistfall Hunter associés",
+            "de": "Verwandte Mistfall-Hunter-Guides",
+            "pt": "Guias relacionados de Mistfall Hunter",
+            "ko": "관련 Mistfall Hunter 가이드",
+            "it": "Guide Mistfall Hunter correlate",
+        }
+        related_keys = ["steam", "review", "classes", "player-count"]
+        related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
+        return SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["sections"] + [{"type": "related", "title": related_titles[locale], "items": related_items}]
     if page_key == "ps5":
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in ["steam", "price", "player-count", "review", "classes", "gameplay"]]
         related_items.append([CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]])
@@ -2525,7 +2543,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
+        "keyword_map": SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "regional_links": REGIONAL_LINKS.get((locale, page_key)),
         "sections": make_simple_sections(locale, page_key),

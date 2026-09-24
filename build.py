@@ -121,6 +121,7 @@ def write_llms_files(static_dir):
         ("Steam info", get_page_path("steam"), "Official Steam facts and safe source links."),
         ("Review guide", get_page_path("review"), "Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs."),
         ("Gameplay guide", get_page_path("gameplay"), "Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes."),
+        ("System requirements guide", get_page_path("system-requirements"), "Official Steam minimum and recommended PC requirements, storage, SSD notes, and a practical compatibility checklist."),
     ]
     common_links = [
         ("About", get_page_path("about"), "Editorial policy and source handling."),
@@ -139,7 +140,7 @@ def write_llms_files(static_dir):
     llms_lines.extend(["", "## Common Resources"])
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
     llms_lines.extend([f"- [PS5 guide]({BASE_URL}{get_page_path('ps5')}): Added on 2026-08-19 with official PlayStation, Xbox, and Steam checks, three visual points, localized FAQ content, and platform comparison guidance.", f"- [Crossplay guide]({BASE_URL}{get_page_path('crossplay')}): Added on 2026-08-19 with PC, PS5, and Xbox platform checks, crossplay versus progression boundaries, three visual points, localized FAQ content, and official source links."])
-    llms_lines.extend(["", "## Latest Updates", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
+    llms_lines.extend(["", "## Latest Updates", f"- [System requirements guide]({BASE_URL}{get_page_path('system-requirements')}): Added on 2026-09-24 with official Steam PC requirements, three first-party visual points, localized compatibility guidance, FAQ content, and same-language related links.", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -175,6 +176,9 @@ def write_llms_files(static_dir):
         "",
         f"### [Multilingual gameplay update]({BASE_URL}{get_page_path('gameplay')})",
         "Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.",
+        "",
+        f"### [System requirements update]({BASE_URL}{get_page_path('system-requirements')})",
+        "Added on 2026-09-24 from the official Steam app details response with minimum and recommended PC requirements, storage and SSD caveats, three official Steam visual points, localized FAQ content, and same-language related links.",
     ])
     with open(os.path.join(static_dir, "llms-full.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(full_lines) + "\n")
@@ -214,6 +218,8 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-map-route-concept.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-ps5-console-concept.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-crossplay-platforms.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-system-requirements-pc.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-system-requirements-combat.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-boss-arena.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-boss-encounter.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-boss-pvp-risk.webp"),

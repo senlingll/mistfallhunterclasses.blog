@@ -33,7 +33,7 @@
   </script>
   {% block schema %}{% endblock %}
 </head>
-<body{% if page_key == 'boss-guide' %} class="img2grid-page guide-page"{% endif %}>
+<body class="img2grid-page{% if page_key in ['boss-guide', 'system-requirements'] %} guide-page{% endif %}">
   <header class="site-header">
     <a class="brand" href="{{ language_links | selectattr('code', 'equalto', locale) | map(attribute='url') | first }}">
       <img src="{{ url_for('static', filename='logo.png') }}" alt="{{ site_name }}" width="64" height="64">
