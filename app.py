@@ -2464,11 +2464,11 @@ def make_simple_sections(locale, page_key):
             "en": "Related Mistfall Hunter guides",
             "es": "Guías relacionadas de Mistfall Hunter",
             "ja": "関連するMistfall Hunterガイド",
-            "fr": "Guides Mistfall Hunter associés",
+            "fr": "Ressources Mistfall Hunter associées",
             "de": "Verwandte Mistfall-Hunter-Guides",
             "pt": "Guias relacionados de Mistfall Hunter",
             "ko": "관련 Mistfall Hunter 가이드",
-            "it": "Guide Mistfall Hunter correlate",
+            "it": "Risorse Mistfall Hunter correlate",
         }
         related_keys = ["steam", "review", "classes", "player-count"]
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
