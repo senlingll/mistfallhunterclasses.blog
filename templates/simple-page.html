@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block schema %}
-{% if page_key in ["build-planner", "player-count", "review", "gameplay", "map-guide", "tier-list", "ps5", "crossplay", "boss-guide", "system-requirements"] %}
+{% if page_key in ["build-planner", "player-count", "review", "gameplay", "map-guide", "tier-list", "ps5", "crossplay", "boss-guide", "system-requirements", "soul-coins"] %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -141,6 +141,22 @@
       <figure class="article-media">
         <img class="article-media-img{% if section.image_class %} {{ section.image_class }}{% endif %}" src="{{ url_for('static', filename=section.src) }}" alt="{{ section.alt }}" width="{{ section.width if section.width else 1280 }}" height="{{ section.height if section.height else 720 }}">
         <figcaption>{{ section.caption }}</figcaption>
+      </figure>
+    </section>
+    {% elif section.type == "flow" %}
+    <section class="section-pad route-flow-section">
+      <figure class="route-flow" aria-label="{{ section.title }}">
+        <figcaption>{{ section.title }}</figcaption>
+        <ol>
+          {% for item in section['items'] %}
+          <li>
+            <span class="route-flow-number">{{ loop.index }}</span>
+            <strong>{{ item[0] }}</strong>
+            <span>{{ item[1] }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+        <p class="route-flow-caption">{{ section.caption }}</p>
       </figure>
     </section>
     {% elif section.type == "embed" %}

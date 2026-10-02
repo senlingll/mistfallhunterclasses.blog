@@ -632,3 +632,86 @@ summary {
   }
   .comparison td::before { content: attr(data-label); }
 }
+
+.route-flow-section {
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+.route-flow {
+  background: linear-gradient(135deg, rgba(215, 168, 80, 0.1), rgba(34, 42, 32, 0.96) 42%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  margin: 0;
+  padding: clamp(1rem, 3vw, 1.75rem);
+}
+.route-flow figcaption {
+  color: var(--gold-soft);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+.route-flow ol {
+  counter-reset: route-step;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.route-flow li {
+  background: rgba(16, 19, 15, 0.66);
+  border: 1px solid rgba(220, 184, 104, 0.2);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  min-height: 144px;
+  padding: 1rem;
+  position: relative;
+}
+.route-flow li:not(:last-child)::after {
+  color: var(--gold-soft);
+  content: "→";
+  font-size: 1.35rem;
+  font-weight: 800;
+  position: absolute;
+  right: -0.92rem;
+  top: 50%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+}
+.route-flow-number {
+  align-items: center;
+  background: rgba(215, 168, 80, 0.16);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--gold-soft);
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  height: 1.75rem;
+  justify-content: center;
+  width: 1.75rem;
+}
+.route-flow li strong { color: var(--text); line-height: 1.3; }
+.route-flow li > span:last-child { color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+.route-flow-caption { color: var(--muted); font-size: 0.88rem; margin: 1rem 0 0; }
+
+@media (max-width: 840px) {
+  .route-flow ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .route-flow li:nth-child(2)::after { content: none; }
+}
+@media (max-width: 520px) {
+  .route-flow ol { grid-template-columns: 1fr; }
+  .route-flow li { min-height: 0; }
+  .route-flow li:not(:last-child)::after {
+    content: "↓";
+    bottom: -1.15rem;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translate(-50%, 50%);
+  }
+}

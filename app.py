@@ -7,6 +7,7 @@ from ps5_content import PS5_KEYWORD_MAP, PS5_PAGE_DATA, PS5_RELATED_TITLES
 from tier_list_content import TIER_LIST_PAGE_DATA
 from crossplay_content import CROSSPLAY_KEYWORD_MAP, CROSSPLAY_PAGE_DATA, CROSSPLAY_RELATED_TITLES
 from system_requirements_content import SYSTEM_REQUIREMENTS_KEYWORD_MAP, SYSTEM_REQUIREMENTS_PAGE_DATA
+from soul_coins_content import SOUL_COINS_KEYWORD_MAP, SOUL_COINS_PAGE_DATA
 
 
 app = Flask(__name__)
@@ -20,7 +21,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"build-planner": "2026-08-21", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23", "system-requirements": "2026-09-24"}
+PAGE_LASTMOD = {"build-planner": "2026-08-21", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23", "system-requirements": "2026-09-24", "soul-coins": "2026-10-02"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -39,6 +40,7 @@ PAGE_ORDER = [
     "classes",
     "build-planner",
     "price",
+    "soul-coins",
     "player-count",
     "map-guide",
     "tier-list",
@@ -60,6 +62,7 @@ PAGE_SLUGS = {
     "classes": "classes",
     "build-planner": "build-planner",
     "price": "price",
+    "soul-coins": "soul-coins",
     "player-count": "player-count",
     "map-guide": "map-guide",
     "tier-list": "tier-list",
@@ -2338,6 +2341,7 @@ for locale in LOCALE_ORDER:
     TEXT[locale]["pages"]["ps5"] = PS5_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["boss-guide"] = BOSS_GUIDE_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["system-requirements"] = SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["soul-coins"] = SOUL_COINS_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -2407,6 +2411,14 @@ def make_simple_sections(locale, page_key):
     simple = text.get("simple", TEXT["en"].get("simple", {}))
     labels = SIMPLE_LABELS[locale]
     primary = KEYWORD_MAP[locale]["primary"]
+    if page_key == "soul-coins":
+        page_data = SOUL_COINS_PAGE_DATA[locale]
+        related_items = [
+            [text["pages"]["gameplay"]["h1"], get_page_path("gameplay", locale), text["pages"]["gameplay"]["description"]],
+            [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]],
+            [text["pages"]["build-planner"]["h1"], get_page_path("build-planner", locale), text["pages"]["build-planner"]["description"]],
+        ]
+        return page_data["sections"] + [{"type": "related", "title": page_data["related_title"], "items": related_items}]
     if page_key == "classes":
         return [
             {"type": "classes"},
@@ -2437,8 +2449,10 @@ def make_simple_sections(locale, page_key):
         ]
     if page_key == "price":
         related = PRICE_RELATED_COPY[locale]
+        related_items = [[related["steam_label"], get_page_path("steam", locale), related["steam_desc"]], [related["classes_label"], get_page_path("classes", locale), related["classes_desc"]], [related["planner_label"], get_page_path("build-planner", locale), related["planner_desc"]], [REVIEW_PAGE_DATA[locale]["page"]["h1"], get_page_path("review", locale), REVIEW_PAGE_DATA[locale]["page"]["description"]]]
+        related_items.append([SOUL_COINS_PAGE_DATA[locale]["page"]["h1"], get_page_path("soul-coins", locale), SOUL_COINS_PAGE_DATA[locale]["page"]["description"]])
         return PRICE_PAGE_DATA[locale]["sections"] + [
-            {"type": "related", "title": related["title"], "items": [[related["steam_label"], get_page_path("steam", locale), related["steam_desc"]], [related["classes_label"], get_page_path("classes", locale), related["classes_desc"]], [related["planner_label"], get_page_path("build-planner", locale), related["planner_desc"]], [REVIEW_PAGE_DATA[locale]["page"]["h1"], get_page_path("review", locale), REVIEW_PAGE_DATA[locale]["page"]["description"]]]}
+            {"type": "related", "title": related["title"], "items": related_items}
         ]
     if page_key == "player-count":
         return localized_player_count_data(locale)["sections"]
@@ -2497,6 +2511,7 @@ def make_simple_sections(locale, page_key):
         related_keys = ["classes", "build-planner", "player-count", "map-guide", "boss-guide", "price", "review", "steam"]
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
         related_items.append([CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]])
+        related_items.append([SOUL_COINS_PAGE_DATA[locale]["page"]["h1"], get_page_path("soul-coins", locale), SOUL_COINS_PAGE_DATA[locale]["page"]["description"]])
         return GAMEPLAY_PAGE_DATA[locale]["sections"] + [{"type": "related", "title": related_titles[locale], "items": related_items}]
     if page_key == "about":
         return [{"type": "rich", "title": text["pages"]["about"]["h1"], "paragraphs": simple.get("about", [])}]
@@ -2543,7 +2558,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
+        "keyword_map": SOUL_COINS_KEYWORD_MAP[locale] if page_key == "soul-coins" else SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "regional_links": REGIONAL_LINKS.get((locale, page_key)),
         "sections": make_simple_sections(locale, page_key),
