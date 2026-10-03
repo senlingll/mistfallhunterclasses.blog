@@ -715,3 +715,36 @@ summary {
     transform: translate(-50%, 50%);
   }
 }
+
+@media (max-width: 560px) {
+  .soul-coins-page .site-header nav {
+    min-width: 0;
+    width: 100%;
+  }
+  .soul-coins-page .site-header nav a {
+    flex: 0 1 auto;
+    white-space: normal;
+  }
+  .soul-coins-page .simple-hero,
+  .soul-coins-page .section-pad,
+  .soul-coins-page .article-media,
+  .soul-coins-page .prose {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  .soul-coins-page .simple-hero .kicker,
+  .soul-coins-page .simple-hero > p:not(.kicker),
+  .soul-coins-page .article-media figcaption {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    width: 100%;
+  }
+  .soul-coins-page .article-media img {
+    max-width: 100%;
+    width: 100%;
+  }
+}
