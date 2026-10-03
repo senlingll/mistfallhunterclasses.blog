@@ -911,7 +911,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                             'Zähle die beiden Mails getrennt: Vor Ablauf wurden bis zu 1.000 Münzen '
                             'angekündigt, abhängig von der Berechtigung des Kontos und der Einlösung beider '
                             'Nachrichten. Verwechsle weder den eigenen Meilenstein vom 05.08.2026 noch die '
-                            'Dankes-Mail vom 105.08.2026 mit einer weiteren 500-Münzen-Belohnung. Manche '
+                            'Dankes-Mail vom 15.08.2026 mit einer weiteren 500-Münzen-Belohnung. Manche '
                             'ältere Seiten zeigen die zweite Welle noch als verfügbar, obwohl ihre '
                             'veröffentlichte Frist vorbei ist. Prüfe weitere kontospezifische Belohnungen im '
                             'aktuellen Pass und in den Aufgaben; Schätzungen Dritter sind keine '
