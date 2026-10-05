@@ -231,9 +231,9 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'related_title': 'Related Mistfall Hunter guides',
         'related_copy': 'Use the current game client for live rewards and the linked guides for broader game '
                         'context.'},
- 'es': {'page': {'title': 'Cómo conseguir Soul Coins en Mistfall Hunter (2026)',
+ 'es': {'page': {'title': 'Cómo conseguir Soul Coins en Mistfall Hunter (Guía 2026)',
                  'description': 'Descubre cómo conseguir Soul Coins en Mistfall Hunter, qué rutas siguen '
-                                'activas y qué recompensas ya vencieron.',
+                                'activas, qué recompensas vencieron y qué confirman —y qué no— las actualizaciones oficiales.',
                  'h1': 'Cómo conseguir Soul Coins en Mistfall Hunter: rutas actuales',
                  'kicker': 'Guía de monedas · Verificada el 2 de octubre de 2026'},
         'hero_alt': 'Arte oficial de Steam de Mistfall Hunter con cazadores en un mundo de fantasía oscura '
@@ -243,7 +243,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'route_visual_title': 'Ruta actual de Soul Coins, de un vistazo',
         'route_visual_nodes': [('Partida de Soul Harvest', 'Completa una partida activa'),
                                ('Fichas del evento', 'Consigue la moneda del evento'),
-                               ('Mistchaser Shop', 'Canjea objetos elegibles'),
+                               ('Tienda Mistchaser', 'Canjea objetos elegibles'),
                                ('Comprueba la tienda', 'Verifica saldo, precio y límites en el juego')],
         'route_visual_caption': 'Las actualizaciones oficiales describen este intercambio de fichas '
                                 'obtenidas en incursiones. Comprueba que Soul Harvest y la tienda sigan '
@@ -251,8 +251,8 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                 'septiembre de 2026.',
         'answer_title': 'Respuesta actual: usa el intercambio del evento y revisa la tienda activa',
         'answer': ['Al 2 de octubre de 2026, la ruta de juego más clara confirmada por el desarrollador '
-                   'consiste en completar incursiones de Soul Harvest, obtener fichas del evento y revisar '
-                   'si la Tienda Mistchaser ofrece Soul Coins. Bellring Games anunció que esa tienda permite '
+                   'consiste en completar incursiones de Soul Harvest, obtener fichas del evento y consultar el '
+                   'intercambio de Soul Coins en la Tienda Mistchaser. Bellring Games anunció que esa tienda permite '
                    'intercambiar objetos por Soul Coins al estrenarse Soul Harvest. El anuncio no fija una '
                    'cantidad, un ritmo de farmeo ilimitado ni un catálogo permanente; confirma los costes y '
                    'límites en tu cliente actual. El anuncio oficial confirma la ruta de intercambio, pero '
@@ -392,15 +392,14 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'currency_table_title': 'No mezcles estas monedas',
         'currency_table_headers': ['Nombre en el juego', 'Qué está confirmado', 'Qué comprobar'],
         'currency_table_rows': [['Soul Coins',
-                                 'El anuncio oficial de Soul Harvest las nombra como premio de intercambio '
-                                 'en Mistchaser.',
+                                 'El anuncio oficial de Soul Harvest las nombra como premio de intercambio en la Tienda Mistchaser.',
                                  'Lee el saldo actual de la tienda y el coste exacto antes de comprar.'],
                                 ['Fate Coins',
                                  'Moneda distinta; el anuncio de lanzamiento la relaciona con compras '
                                  'cosméticas.',
                                  'No la equipares a Soul Coins ni des por hecha una conversión.'],
                                 ['Moonlight Nectar',
-                                 'Recompensa diferente, también citada en el anuncio de Mistchaser.',
+                                 'Recompensa diferente, también citada en el anuncio de la Tienda Mistchaser.',
                                  'Comprueba qué moneda pide el pago del objeto.'],
                                 ['Fichas de Soul Harvest',
                                  'Se canjean por los objetos listados en la Tienda Mistchaser.',
@@ -418,9 +417,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                  'octubre, los dos plazos ya habían pasado. Las 1.000 monedas requerían que la cuenta '
                  'pudiera recibir y reclamara ambos a tiempo; el buzón no los recupera.'],
                 ['¿Los enemigos o cofres dejan caer Soul Coins directamente?',
-                 'El aviso oficial de Soul Harvest habla de fichas del evento que se canjean en Mistchaser. '
-                 'No confirma una caída directa universal de Soul Coins de enemigos o cofres normales. '
-                 'Confirma cualquier regla nueva en notas de parche actuales.'],
+                 'El aviso oficial de Soul Harvest habla de fichas del evento que se canjean en la Tienda Mistchaser. No confirma una caída directa universal de Soul Coins de enemigos o cofres normales. Confirma cualquier regla nueva en notas de parche actuales.'],
                 ['¿El Contrato Durmiente gratis entrega una cantidad fija de Soul Coins?',
                  'Las preguntas frecuentes oficiales confirman que el pase de la temporada 1 se desbloquea '
                  'tras siete días acumulados de inicio de sesión. Esa afirmación no confirma un total '
@@ -428,7 +425,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                 ['¿Soul Coins y Fate Coins son lo mismo?',
                  'No. Son nombres de moneda diferentes. El anuncio de lanzamiento describe Fate Coins como '
                  'otra moneda para compras cosméticas, mientras que la actualización de Soul Harvest incluye '
-                 'Soul Coins como recompensa de Mistchaser. Usa la moneda exacta que muestre el pago. Un '
+                 'Soul Coins como recompensa de la Tienda Mistchaser. Usa la moneda exacta que muestre el pago. Un '
                  'comentario de la comunidad de Steam indica que Fate Coins pueden cubrir la diferencia al '
                  'pagar, pero son otra moneda y debes comprobar esa opción en tu pantalla de compra.'],
                 ['¿Soul Coins se conservarán en la temporada 2?',
@@ -471,12 +468,12 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'related_copy': 'Usa el cliente actual para ver recompensas vigentes y las guías enlazadas para '
                         'ampliar el contexto del juego.'},
  'ja': {'page': {'title': 'Mistfall Hunter ソウルコイン入手方法（2026年）',
-                 'description': 'Mistfall Hunterの現在のソウルコイン入手経路、期限切れの配布、公式更新で確認できる内容を整理します。',
+                 'description': 'Mistfall Hunterの現在のソウルコイン入手経路、期限切れの配布、公式更新で確認できること・できないことを整理します。',
                  'h1': 'Mistfall Hunter ソウルコイン入手方法：現在の経路',
                  'kicker': '通貨ガイド · 2026年10月2日確認'},
         'hero_alt': '霧に包まれたダークファンタジー世界のハンターを描くMistfall Hunter公式Steamアート',
         'hero_caption': 'このガイドが扱うゲームを示すSteam公式アートです。通貨ドロップやショップ価格の根拠ではありません。',
-        'route_visual_title': '現在のSoul Coins入手ルート',
+        'route_visual_title': '現在のソウルコイン（Soul Coins）入手ルート',
         'route_visual_nodes': [('Soul Harvestに出撃', '開催中のマッチを完了'),
                                ('イベントトークン', 'イベント専用通貨を獲得'),
                                ('Mistchaser Shop', '対象アイテムを交換'),
@@ -484,9 +481,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'route_visual_caption': '公式更新で案内されたイベントトークン交換ルートです。現在のクライアントでSoul '
                                 'Harvestとショップが利用可能か確認してください。500枚のローンチ報酬メールは2回とも2026年9月1日に終了しました。',
         'answer_title': '現在の答え：イベント交換を確認し、ショップの表示を優先する',
-        'answer': ['2026年10月2日時点で、公式に確認しやすいゲーム内経路はSoul Harvestに参加してイベントトークンを獲得し、Mistchaser ShopでSoul '
-                   'Coinsへの交換を確認する方法です。Bellring GamesはSoul Harvest実装時、対象アイテムをSoul '
-                   'Coinsなどに交換できると案内しました。固定の獲得量、無制限の周回効率、常設の在庫までは公表していないため、現在のゲーム内に表示される数量と上限を確認してください。 '
+        'answer': ['2026年10月2日時点で、公式に確認しやすいゲーム内経路はSoul Harvestに参加してイベントトークンを獲得し、Mistchaser Shopでソウルコイン（Soul Coins）への交換を確認する方法です。Bellring GamesはSoul Harvest実装時、対象アイテムをSoul Coins（ソウルコイン）と交換できると案内しました。固定の獲得量、無制限の周回効率、常設の在庫までは公表していないため、現在のゲーム内に表示される数量と上限を確認してください。 '
                    '公式告知で交換ルートは確認できますが、イベントの開催状況・在庫・価格は変わることがあります。現在のクライアントで確認してください。',
                    'ローンチ時には別々の報酬メールが2回あり、それぞれSoul Coins '
                    '500枚が案内されていました。アカウントが両方の対象で、期限内に受け取った場合は最大1,000枚です。両方とも期限は2026年9月1日00:00 '
@@ -545,7 +540,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'season_alt': 'Mistfall Hunter公式Steamスクリーンショット：シーズンタブとPath of Gloryの報酬メニュー',
         'season_caption': 'Steam公式のゲーム画面にSeasonとPath of Gloryのメニューが表示されています。シーズン報酬の場所を示す参考であり、Soul '
                           'Coins残高、Mistchaserの価格、保証報酬を示すものではありません。',
-        'steps_title': 'Soul Coinsの入手方法：現在の経路を4点確認',
+        'steps_title': 'ソウルコイン（Soul Coins）の入手方法：現在の経路を4点確認',
         'steps_intro': ['報酬は更新で変わる可能性があり、公式告知もSoul '
                         'Coinsの固定合計を示していません。パッチ後に戻ってきたときは、ゲーム内で次の項目を確認してください。現在の交換、期限切れメール、別通貨を混同せずに済みます。'],
         'steps': [['1. 画面に表示された通貨名を確認',
@@ -620,15 +615,15 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                      'nofollow noopener']],
         'related_title': 'Mistfall Hunter 関連ガイド',
         'related_copy': '現在の報酬はゲーム内クライアントで確認し、リンク先のガイドでゲーム全体の背景を補ってください。'},
- 'fr': {'page': {'title': 'Obtenir des Soul Coins dans Mistfall Hunter (2026)',
-                 'description': 'Retrouvez la source actuelle des Soul Coins, le courrier de lancement '
-                                'expiré et ce que confirment les annonces officielles.',
-                 'h1': 'Obtenir des Soul Coins dans Mistfall Hunter : sources actuelles',
+ 'fr': {'page': {'title': 'Comment obtenir des Soul Coins dans Mistfall Hunter (guide 2026)',
+                 'description': 'Retrouvez le parcours actuel pour obtenir des Soul Coins, les e-mails de lancement '
+                                'expirés et ce que les annonces officielles confirment — ou ne confirment pas.',
+                 'h1': 'Comment obtenir des Soul Coins dans Mistfall Hunter : parcours actuels',
                  'kicker': 'Guide des monnaies · Vérifié le 2 octobre 2026'},
         'hero_alt': 'Illustration Steam officielle de Mistfall Hunter avec des chasseurs dans un monde de '
                     'fantasy sombre noyé dans la brume',
         'hero_caption': 'Illustration Steam officielle qui identifie le jeu de ce guide ; elle ne prouve ni '
-                        'une chute de monnaie ni un prix en boutique.',
+                        'que les Soul Coins s’obtiennent comme butin, ni leur prix en boutique.',
         'route_visual_title': 'La voie actuelle des Soul Coins, en bref',
         'route_visual_nodes': [('Partie de Soul Harvest', 'Terminer une partie active'),
                                ('Jetons événement', 'Gagner la monnaie de l’événement'),
@@ -640,16 +635,9 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                 'septembre 2026.',
         'answer_title': 'Réponse actuelle : passer par l’échange de l’événement et vérifier la boutique en '
                         'jeu',
-        'answer': ['Au 2 octobre 2026, la source de jeu la plus clairement confirmée est de terminer des '
-                   'parties de Soul Harvest, de gagner les jetons de l’événement puis de vérifier si la '
-                   'boutique Mistchaser propose des Soul Coins. Bellring Games a annoncé cet échange '
-                   'd’objets contre des Soul Coins lors du lancement de Soul Harvest. L’annonce ne fixe ni '
-                   'montant, ni rendement illimité, ni stock permanent : fiez-vous aux coûts et limites '
-                   'affichés dans votre client actuel. L’annonce officielle confirme cette voie d’échange, '
-                   'mais la disponibilité de l’événement, le stock et les prix peuvent changer ; '
-                   'vérifiez-les dans votre client actuel.',
+        'answer': ['Au 2 octobre 2026, le parcours de jeu officiel le plus clair consiste à terminer des parties de Soul Harvest, de gagner les jetons de l’événement puis de consulter les échanges de Soul Coins disponibles à la boutique Mistchaser. Bellring Games a annoncé cet échange d’objets contre des Soul Coins lors du lancement de Soul Harvest. L’annonce ne fixe ni montant, ni rendement illimité, ni stock permanent : fiez-vous aux coûts et limites affichés dans votre client actuel. L’annonce officielle confirme cette voie d’échange, mais la disponibilité de l’événement, le stock et les prix peuvent changer ; vérifiez-les dans votre client actuel.',
                    'Deux vagues distinctes de mails de lancement annonçaient chacune 500 Soul Coins, soit '
-                   'jusqu’à 1 000 si votre compte pouvait recevoir les deux et les a réclamées. Les deux '
+                   'jusqu’à 1 000 si votre compte était éligible aux deux offres et que vous les avez réclamées à temps. Les deux '
                    'échéances étaient fixées au 1er septembre 2026 à 00:00 UTC : elles ne sont plus '
                    'récupérables. Le déblocage du Slumbering Contract après sept jours ne garantit pas un '
                    'total fixe de Soul Coins ; consultez les récompenses et tâches actuellement affichées '
@@ -693,7 +681,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                           ['Les changements de saison 2 sont annoncés pour plus tard',
                            ['Dans sa réponse communautaire du 29 septembre, Bellring a annoncé pour la '
                             'saison 2 un nouveau mode saisonnier et une boutique d’échange dédiée visant à '
-                            'réduire le farm de Soul Harvest. Il s’agit d’un projet, pas d’une note de mise '
+                            'réduire les efforts nécessaires pour obtenir les récompenses de l’événement. Il s’agit d’un projet, pas d’une note de mise '
                             'à jour avec date d’ouverture, montant de Soul Coins ou catalogue final. Tant '
                             'que la boutique n’est pas dans le client et qu’une annonce officielle ne la '
                             'rend pas active, ne la comptez pas comme source actuelle.',
@@ -709,12 +697,12 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                'en boutique.'],
                               ['Mails de lancement (30 juillet et 1er août)',
                                'Expirés : deux offres de 500',
-                               'Les deux vagues officielles exigeaient une connexion avant le 1er septembre '
+                               'Les deux vagues officielles avaient pour date limite de réclamation le 1er septembre '
                                '2026 à 00:00 UTC. Jusqu’à 1 000 uniquement si le compte était éligible et '
                                'réclamait les deux à temps ; aucune récupération tardive.'],
                               ['Tâches de saison + Slumbering Contract',
                                'Vérifiez les récompenses en jeu ; total fixe non confirmé',
-                               'Les réponses officielles aux questions fréquentes sur le lancement confirme '
+                               'La FAQ officielle de lancement confirme '
                                'le déblocage du passe après sept jours, pas un versement fixe de Soul Coins. '
                                'Les comptes communautaires, comme ~700 pièces dans le passe ou +100 par '
                                'tâche, sont des estimations ; consultez les libellés de votre compte.'],
@@ -810,7 +798,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                 ['Les monstres ou coffres font-ils tomber directement des Soul Coins ?',
                  'L’annonce officielle de Soul Harvest parle des jetons d’événement échangeables chez '
                  'Mistchaser. Elle ne confirme pas une chute directe universelle depuis les monstres ou les '
-                 'coffres ordinaires. Vérifiez toute nouvelle règle dans un patch note actuel.'],
+                 'coffres ordinaires. Vérifiez toute nouvelle règle dans une note de mise à jour récente.'],
                 ['Le Slumbering Contract gratuit garantit-il un total fixe de Soul Coins ?',
                  'Les questions fréquentes officielles indiquent que le passe de la saison 1 se débloque '
                  'après sept jours de connexion cumulés. Cette information ne confirme pas un total '
@@ -861,8 +849,8 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'related_copy': 'Vérifiez les récompenses actuelles dans le client et utilisez les guides liés pour '
                         'le contexte général du jeu.'},
  'de': {'page': {'title': 'Mistfall Hunter: Soul Coins erhalten (Ratgeber 2026)',
-                 'description': 'Der aktuelle Weg zu Soul Coins, abgelaufene Startpost und die bestätigten '
-                                'Angaben aus offiziellen Mistfall-Hunter-Updates.',
+                 'description': 'Der aktuelle Weg zu Soul Coins, abgelaufene Start-Mails und was offizielle '
+                                'Updates bestätigen – und was nicht.',
                  'h1': 'Mistfall Hunter: Soul Coins erhalten – aktuelle Wege',
                  'kicker': 'Währungsratgeber · Geprüft am 2. Oktober 2026'},
         'hero_alt': 'Offizielle Mistfall-Hunter-Steam-Grafik mit Jägern in einer nebligen Dark-Fantasy-Welt',
@@ -950,7 +938,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                'Mails; keine nachträgliche Wiederherstellung.'],
                               ['Saisonaufgaben + Slumbering Contract',
                                'Aktuelle Belohnungen prüfen; feste Summe nicht bestätigt',
-                               'Die offiziellen häufig gestellten Fragen zum Start bestätigen die '
+                               'Die offizielle Start-FAQ bestätigt die '
                                'Freischaltung des Passes nach sieben Tagen, aber keine feste '
                                'Soul-Coin-Auszahlung. Community-Zählungen wie etwa 700 Pass-Münzen oder +100 '
                                'je Aufgabe sind Schätzungen; maßgeblich sind die Belohnungen in deinem '
@@ -959,8 +947,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                'Eventgebunden; derzeit keine wiederholbare Farm',
                                'Drittanbieter-Zusammenfassungen berichten, dass manche doppelten '
                                'Twitch-/Gylden-Rush-Kosmetika in Soul Coins umgewandelt wurden. Diese '
-                               'Kampagnen sind beendet; prüfe vor dem Zählen offizieller aktueller '
-                               'Eventregeln.'],
+                               'Kampagnen sind beendet; prüfe die aktuellen offiziellen Eventregeln, bevor du doppelte Belohnungen einrechnest.'],
                               ['Fate Coins beim Bezahlen',
                                'Von Spielern berichtete Alternative; Kasse prüfen',
                                'Ein Steam-Spieler berichtete, dass Fate Coins beim Kauf einen '
@@ -1050,7 +1037,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                  'getauscht werden. Sie bestätigt keinen allgemeinen direkten Soul-Coin-Drop von Monstern '
                  'oder normalen Truhen. Prüfe neue Dropregeln in aktuellen Patchnotes.'],
                 ['Gibt der kostenlose Slumbering Contract eine feste Zahl Soul Coins?',
-                 'Laut den offiziellen häufig gestellten Fragen wird der Season-1-Pass nach sieben '
+                 'Laut der offiziellen Start-FAQ wird der Season-1-Pass nach sieben '
                  'kumulierten Login-Tagen freigeschaltet. Diese Aussage bestätigt keine einheitliche '
                  'Soul-Coin-Summe; prüfe den aktuellen Belohnungspfad und vermeide unbestätigte '
                  'Gesamtzahlen.'],
@@ -1070,7 +1057,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                      'Offizielle Updates zum Soul-Harvest-/Mistchaser-Weg und zu den Season-2-Plänen vom 29. '
                      'September. Nach Patches erneut prüfen.',
                      'noopener'],
-                    ['Offizielle Ankündigung der Startbelohnungen',
+                    ['Offizielle Ankündigung „Launch Rewards & July 30 Update“',
                      'https://steamcommunity.com/app/3282300/announcements/detail/672874751810602953',
                      'Offizielle Mitteilung über 500 Soul Coins per Start-Mail und die Frist am 01.09.2026.',
                      'noopener'],
@@ -1098,9 +1085,9 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'related_title': 'Verwandte Mistfall-Hunter-Guides',
         'related_copy': 'Aktuelle Belohnungen im Spielclient prüfen; die verlinkten Guides liefern weiteren '
                         'Spielkontext.'},
- 'pt': {'page': {'title': 'Como conseguir Soul Coins em Mistfall Hunter (2026)',
-                 'description': 'Veja a rota atual das Soul Coins, a mensagem de lançamento expirada e o que '
-                                'as atualizações oficiais confirmam.',
+ 'pt': {'page': {'title': 'Como conseguir Soul Coins em Mistfall Hunter (Guia 2026)',
+                 'description': 'Veja o caminho atual para conseguir Soul Coins em Mistfall Hunter, as mensagens de lançamento expiradas e o que '
+                                'as atualizações oficiais confirmam — e o que não confirmam.',
                  'h1': 'Como conseguir Soul Coins em Mistfall Hunter: rotas atuais',
                  'kicker': 'Guia de moedas · Verificado em 2 de outubro de 2026'},
         'hero_alt': 'Arte oficial do Steam de Mistfall Hunter com caçadores em um mundo de fantasia sombria '
@@ -1109,14 +1096,14 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                         'moeda nem preço de loja.',
         'route_visual_title': 'A rota atual de Soul Coins em resumo',
         'route_visual_nodes': [('Partida de Soul Harvest', 'Conclua uma partida ativa'),
-                               ('Tokens do evento', 'Ganhe a moeda do evento'),
+                               ('Fichas do evento', 'Ganhe a moeda do evento'),
                                ('Mistchaser Shop', 'Troque itens elegíveis'),
                                ('Confira o estoque atual', 'Verifique saldo, preço e limite no jogo')],
         'route_visual_caption': 'As atualizações oficiais descrevem esta troca de fichas obtidas nas '
                                 'partidas. Confira se Soul Harvest e a loja estão disponíveis no seu cliente '
                                 'atual; as duas mensagens de 500 moedas expiraram em 1º de setembro de 2026.',
         'answer_title': 'Resposta atual: use a troca do evento e confira a loja ativa',
-        'answer': ['Em 2 de outubro de 2026, a rota de jogo mais claramente confirmada é completar partidas '
+        'answer': ['Em 2 de outubro de 2026, o caminho de jogo oficial mais claro é completar partidas '
                    'de Soul Harvest, ganhar fichas do evento e verificar se a Loja Mistchaser oferece Soul '
                    'Coins. A Bellring Games anunciou essa troca de itens por Soul Coins quando Soul Harvest '
                    'foi lançado. O anúncio não informa um pagamento fixo, farm ilimitado nem estoque '
@@ -1124,7 +1111,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                    'confirma a rota de troca, mas a disponibilidade do evento, o estoque e os preços podem '
                    'mudar; confira-os no seu cliente atual.',
                    'Duas mensagens diferentes de recompensa de lançamento anunciaram 500 Soul Coins cada, '
-                   'até 1.000 se sua conta podia receber e resgatou ambas. Os dois prazos terminaram em 1º '
+                   'até 1.000 se sua conta era elegível e você resgatou as duas. Os dois prazos terminaram em 1º '
                    'de setembro de 2026, às 00:00 UTC, então nenhuma pode mais ser resgatada. Desbloquear o '
                    'Slumbering Contract após sete dias acumulados não confirma um total fixo de Soul Coins; '
                    'confira as recompensas atuais da trilha e das tarefas em vez de repetir estimativas '
@@ -1186,14 +1173,14 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                'prazo; não há recuperação tardia.'],
                               ['Tarefas da temporada + Slumbering Contract',
                                'Confira as recompensas atuais; total fixo não confirmado',
-                               'As perguntas frequentes oficiais de lançamento confirma que o passe é '
+                               'As perguntas frequentes oficiais de lançamento confirmam que o passe é '
                                'desbloqueado após sete dias, não uma quantidade fixa de Soul Coins. '
                                'Contagens da comunidade, como ~700 moedas no passe ou +100 por tarefa, são '
                                'estimativas; use os rótulos exibidos na sua conta.'],
                               ['Recompensas antigas por duplicatas',
                                'Dependiam do evento; não são farm repetível agora',
                                'Resumos de terceiros relatam que alguns cosméticos duplicados de '
-                               'Twitch/Gylden Rush viravam Soul Coins. Essas campanhas terminaram; confira '
+                               'Twitch/Gylden Rush eram convertidos em Soul Coins. Essas campanhas terminaram; confira '
                                'uma regra oficial atual antes de contar qualquer duplicata.'],
                               ['Fate Coins na compra',
                                'Alternativa relatada por jogador; confira o pagamento',
@@ -1276,9 +1263,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                  'dois prazos já tinham acabado. Até 1.000 moedas só se aplicavam a contas elegíveis que '
                  'resgataram ambas a tempo; a caixa de correio não restaura as ofertas.'],
                 ['Monstros ou baús derrubam Soul Coins diretamente?',
-                 'O aviso oficial de Soul Harvest descreve fichas do evento que podem ser trocadas na '
-                 'Mistchaser. Ele não confirma uma queda direta universal de Soul Coins de monstros ou baús '
-                 'comuns. Confirme qualquer regra nova em uma nota de atualização atual.'],
+                 'O aviso oficial de Soul Harvest descreve fichas do evento que podem ser trocadas na Loja Mistchaser. Ele não confirma uma queda direta universal de Soul Coins de monstros ou baús comuns. Confirme qualquer regra nova em uma nota de atualização atual.'],
                 ['O Slumbering Contract grátis oferece uma quantidade fixa de Soul Coins?',
                  'As perguntas frequentes oficiais confirmam que o passe da Temporada 1 é desbloqueado após '
                  'sete dias acumulados de login. Essa afirmação não confirma um total universal de moedas; '
@@ -1328,21 +1313,21 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'related_copy': 'Confira as recompensas vigentes no cliente e use os guias relacionados para '
                         'entender o restante do jogo.'},
  'ko': {'page': {'title': 'Mistfall Hunter 소울 코인 얻는 법 (2026)',
-                 'description': '현재 소울 코인 획득 경로, 만료된 출시 우편, 공식 업데이트에서 확인된 내용을 정리합니다.',
+                 'description': '현재 소울 코인 획득 경로와 만료된 출시 우편, 공식 업데이트가 확인하는 내용과 확인하지 않는 내용을 정리합니다.',
                  'h1': 'Mistfall Hunter 소울 코인 얻는 법: 현재 획득 경로',
                  'kicker': '재화 가이드 · 2026년 10월 2일 확인'},
         'hero_alt': '안개 낀 다크 판타지 세계의 사냥꾼을 담은 Mistfall Hunter 공식 Steam 아트',
         'hero_caption': '가이드 대상 게임을 보여 주는 공식 Steam 아트입니다. 코인 드롭이나 상점 가격의 근거는 아닙니다.',
         'route_visual_title': '현재 Soul Coins 획득 경로 한눈에 보기',
-        'route_visual_nodes': [('Soul Harvest 매치', '진행 중인 매치 완료'),
+        'route_visual_nodes': [('Soul Harvest 한 판', '진행 중인 매치 완료'),
                                ('이벤트 토큰', '이벤트 전용 재화 획득'),
                                ('Mistchaser Shop', '교환 가능한 아이템 선택'),
                                ('현재 재고 확인', '게임에서 Soul Coins, 가격, 한도 확인')],
         'route_visual_caption': '공식 업데이트에 설명된 이벤트 토큰 교환 경로입니다. 현재 게임 클라이언트에서 Soul Harvest와 상점 이용이 가능한지 '
                                 '확인하세요. 500개 출시 보상 메일은 두 번 모두 2026년 9월 1일에 만료됐습니다.',
         'answer_title': '현재 답변: 이벤트 교환 경로를 확인하고 실제 상점 표시를 따르세요',
-        'answer': ['2026년 10월 2일 기준으로 공식 안내에서 가장 분명하게 확인되는 플레이 경로는 Soul Harvest 매치를 완료해 이벤트 토큰을 얻고 '
-                   'Mistchaser Shop에서 Soul Coins 교환 항목을 확인하는 것입니다. Bellring Games는 Soul Harvest 출시 안내에서 상점에서 '
+        'answer': ['2026년 10월 2일 기준으로 공식 안내에서 가장 분명하게 확인되는 플레이 경로는 Soul Harvest 한 판를 완료해 이벤트 토큰을 얻고 '
+                   'Mistchaser Shop에서 소울 코인(Soul Coins) 교환 항목을 확인하는 것입니다. Bellring Games는 Soul Harvest 출시 안내에서 상점에서 '
                    '아이템을 Soul Coins로 교환할 수 있다고 밝혔습니다. 고정 지급량, 무제한 파밍 효율, 상시 재고는 공개하지 않았으므로 현재 게임 클라이언트에 표시된 '
                    '수량과 한도를 확인하세요. 공식 공지에서 교환 경로를 확인할 수 있지만 이벤트 진행 여부, 재고와 가격은 바뀔 수 있습니다. 현재 클라이언트에서 확인하세요.',
                    '출시 보상 메일은 서로 다른 두 차례 발송됐고 각각 Soul Coins 500개가 안내됐습니다. 계정이 두 보상 모두 대상이었고 제때 수령했다면 최대 '
@@ -1489,10 +1474,10 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                      'nofollow noopener']],
         'related_title': '관련 Mistfall Hunter 가이드',
         'related_copy': '실시간 보상은 현재 게임 클라이언트에서 확인하고 연결된 가이드에서 게임의 넓은 맥락을 보세요.'},
- 'it': {'page': {'title': 'Come ottenere Soul Coins in Mistfall Hunter (2026)',
-                 'description': 'Scopri la fonte attuale delle Soul Coins, la posta di lancio scaduta e ciò '
-                                'che confermano gli aggiornamenti ufficiali.',
-                 'h1': 'Come ottenere Soul Coins in Mistfall Hunter: fonti attuali',
+ 'it': {'page': {'title': 'Come ottenere Soul Coins in Mistfall Hunter (guida 2026)',
+                 'description': 'Scopri il percorso attuale per ottenere Soul Coins in Mistfall Hunter, le e-mail di lancio scadute e cosa '
+                                'confermano — e cosa non confermano — gli aggiornamenti ufficiali.',
+                 'h1': 'Come ottenere Soul Coins in Mistfall Hunter: percorsi attuali',
                  'kicker': 'Guida alle valute · Verificata il 2 ottobre 2026'},
         'hero_alt': 'Artwork ufficiale Steam di Mistfall Hunter con cacciatori in un mondo fantasy oscuro '
                     'avvolto dalla nebbia',
@@ -1501,33 +1486,22 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'route_visual_title': 'Il percorso attuale delle Soul Coins in breve',
         'route_visual_nodes': [('Partita di Soul Harvest', 'Completa una partita attiva'),
                                ('Token evento', 'Ottieni la valuta dell’evento'),
-                               ('Mistchaser Shop', 'Scambia gli oggetti idonei'),
+                               ('negozio Mistchaser', 'Scambia gli oggetti idonei'),
                                ('Controlla le scorte', 'Verifica saldo, prezzo e limite nel gioco')],
         'route_visual_caption': 'Gli aggiornamenti ufficiali descrivono questo scambio di token ottenuti '
                                 'nelle partite. Verifica che Soul Harvest e il negozio siano disponibili nel '
                                 'client attuale; entrambe le mail di lancio da 500 monete sono scadute il 1° '
                                 'settembre 2026.',
         'answer_title': 'La risposta attuale: usa lo scambio dell’evento e controlla il negozio attivo',
-        'answer': ['Al 2 ottobre 2026, il percorso di gioco descritto più chiaramente da una fonte ufficiale '
-                   'consiste nel completare partite di Soul Harvest, ottenere i token dell’evento e '
-                   'controllare la Mistchaser Shop per le Soul Coins. Bellring Games ha annunciato lo '
-                   'scambio di oggetti con Soul Coins al lancio di Soul Harvest. L’annuncio non indica un '
-                   'pagamento fisso, un rendimento di farming illimitato o una disponibilità permanente: fai '
-                   'riferimento a costi e limiti mostrati dal client attuale. L’annuncio ufficiale conferma '
-                   'il percorso di scambio, ma disponibilità dell’evento, scorte e prezzi possono cambiare; '
-                   'verificali nel client attuale.',
+        'answer': ['Al 2 ottobre 2026, il percorso di gioco descritto più chiaramente da una fonte ufficiale consiste nel completare partite di Soul Harvest, ottenere i token dell’evento e controllare il negozio Mistchaser (Mistchaser Shop) per le Soul Coins. Bellring Games ha annunciato lo scambio di oggetti con Soul Coins al lancio di Soul Harvest. L’annuncio non indica un pagamento fisso, un rendimento di farming illimitato o una disponibilità permanente: fai riferimento a costi e limiti mostrati dal client attuale. L’annuncio ufficiale conferma il percorso di scambio, ma disponibilità dell’evento, scorte e prezzi possono cambiare; verificali nel client attuale.',
                    'Due diverse ondate di posta di lancio annunciavano 500 Soul Coins ciascuna: fino a 1.000 '
                    'se il tuo account poteva riceverle entrambe e le ha riscattate. Entrambe scadevano il 1° '
                    'settembre 2026 alle 00:00 UTC, quindi non sono più riscattabili. Lo sblocco dello '
                    'Slumbering Contract dopo sette giorni cumulativi non conferma un totale fisso di Soul '
                    'Coins; controlla le ricompense attuali del pass e delle attività invece di ripetere '
                    'stime datate.'],
-        'answer_blocks': [['I token di Soul Harvest passano dalla Mistchaser Shop',
-                           ['Lo sviluppatore descrive due passaggi: partecipare a Soul Harvest per '
-                            'guadagnare token esclusivi e scambiare oggetti idonei alla Mistchaser Shop. '
-                            'L’annuncio ufficiale elenca le Soul Coins fra le ricompense del negozio. È uno '
-                            'scambio ottenuto giocando, diverso da raccogliere Soul Coins direttamente da '
-                            'ogni mostro, forziere o estrazione.',
+        'answer_blocks': [['I token di Soul Harvest passano dal Mistchaser Shop',
+                           ['Lo sviluppatore descrive due passaggi: partecipare a Soul Harvest per guadagnare token esclusivi e scambiare oggetti idonei nel Mistchaser Shop. L’annuncio ufficiale elenca le Soul Coins fra le ricompense del negozio. È uno scambio ottenuto giocando, diverso da raccogliere Soul Coins direttamente da ogni mostro, forziere o estrazione.',
                             'Lo stesso aggiornamento dice che puoi portare le Soul Cocoons a Richie per '
                             'ottenere guadagni garantiti, mentre le squadre possono contendersi le '
                             'ricompense del rituale. Non afferma che ogni Cocoon o rituale paghi '
@@ -1569,7 +1543,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                             'ripristino stagionale. Se questo influenza la spesa, attendi le regole '
                             'definitive del ripristino e leggi la descrizione corrente dell’oggetto invece '
                             'di presumere che le Soul Coins scadano o rimangano.']]],
-        'source_table_title': 'Fonti attuali e scadute di Soul Coins',
+        'source_table_title': 'Percorsi attuali e scaduti per le Soul Coins',
         'source_table_headers': ['Fonte', 'Stato al 2 ott 2026', 'Cosa conferma la fonte'],
         'source_table_rows': [['Soul Harvest → Mistchaser Shop',
                                'Percorso attuale descritto dallo sviluppatore',
@@ -1606,9 +1580,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                                'riscattabile ora.']],
         'season_alt': 'Screenshot Steam ufficiale di Mistfall Hunter con la scheda della stagione e '
                       'l’interfaccia Path of Glory',
-        'season_caption': 'Lo screenshot ufficiale Steam mostra i menu Season e Path of Glory. Aiuta a '
-                          'individuare le ricompense stagionali; non mostra saldo Soul Coins, prezzo '
-                          'Mistchaser o una ricompensa garantita.',
+        'season_caption': 'Lo screenshot ufficiale Steam mostra i menu Season e Path of Glory. Aiuta a individuare le ricompense stagionali; non mostra saldo Soul Coins, prezzo del Mistchaser Shop o una ricompensa garantita.',
         'steps_title': 'Come ottenere Soul Coins: verifica il percorso attuale in quattro passaggi',
         'steps_intro': ['Le ricompense possono cambiare con gli aggiornamenti e gli avvisi ufficiali non '
                         'fissano un totale permanente di Soul Coins. Ripeti questi controlli nel client dopo '
@@ -1621,7 +1593,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                     'Se sono offerte più valute, fidati delle opzioni di pagamento esatte nel gioco. Non '
                     'presumere che Fate Coins si convertano in Soul Coins o che una tabella prezzi esterna '
                     'corrisponda al client della tua regione.']],
-                  ['2. Controlla Soul Harvest e la Mistchaser Shop',
+                  ['2. Controlla Soul Harvest e il Mistchaser Shop',
                    ['Verifica stato evento, token richiesti, oggetto di scambio, scorte residue e ogni '
                     'limite o refresh stagionale. L’aggiornamento ufficiale conferma lo scambio; una '
                     'correzione successiva cita anche i limiti del negozio. Per questo la guida non promette '
@@ -1633,7 +1605,7 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
                   ['3. Controlla pass e attività separatamente',
                    ['La soglia di sette giorni sblocca il pass; non significa che ogni giocatore riceva le '
                     'stesse monete. Dopo lo sblocco, controlla le attività rimaste e ogni icona di '
-                    'ricompensa nella schermata Contract. Non contare token pass, Moonlight Nectar o '
+                    'ricompensa nella interfaccia dello Slumbering Contract. Non contare token pass, Moonlight Nectar o '
                     'cosmetici come Soul Coins.',
                     'Se pass o attività non compaiono, controlla il periodo attivo nel feed ufficiale. Uno '
                     'screenshot di una stagione passata documenta una visualizzazione precedente, ma non '
@@ -1650,42 +1622,33 @@ SOUL_COINS_COPY = {'en': {'page': {'title': 'How to Get Soul Coins in Mistfall H
         'currency_table_title': 'Non confondere queste valute',
         'currency_table_headers': ['Nome nel gioco', 'Fatto confermato', 'Controllo pratico'],
         'currency_table_rows': [['Soul Coins',
-                                 'L’annuncio ufficiale Soul Harvest le cita come ricompensa di scambio '
-                                 'Mistchaser.',
+                                 'L’annuncio ufficiale Soul Harvest le cita come ricompensa di scambio nel Mistchaser Shop.',
                                  'Leggi saldo del negozio e prezzo esatto prima dell’acquisto.'],
                                 ['Fate Coins',
                                  'Valuta separata; l’annuncio di lancio la associa agli acquisti cosmetici.',
                                  'Non assimilarla alle Soul Coins né presumere una conversione.'],
                                 ['Moonlight Nectar',
-                                 'Ricompensa distinta citata nell’annuncio Mistchaser.',
+                                 'Ricompensa distinta citata nell’annuncio del Mistchaser Shop.',
                                  'Controlla quale valuta richiede il pagamento.'],
                                 ['Token Soul Harvest',
-                                 'Token evento scambiabili con gli oggetti elencati da Mistchaser.',
+                                 'Token evento scambiabili con gli oggetti elencati nel Mistchaser Shop.',
                                  'Conferma nome e scorte nell’interfaccia dell’evento attivo.']],
         'faq_title': 'Domande frequenti sulle Soul Coins',
         'faq': [['Come si ottengono Soul Coins in Mistfall Hunter adesso?',
-                 'L’aggiornamento ufficiale dell’evento descrive token Soul Harvest ottenuti in partita e lo '
-                 'scambio di oggetti idonei alla Mistchaser Shop, che include le Soul Coins fra i premi. '
-                 'Controlla scorte e limiti attuali nel gioco: l’avviso non fissa un pagamento.'],
+                 'L’aggiornamento ufficiale dell’evento descrive token Soul Harvest ottenuti in partita e lo scambio di oggetti idonei nel Mistchaser Shop, che include le Soul Coins fra i premi. Controlla scorte e limiti attuali nel gioco: l’avviso non fissa un pagamento.'],
                 ['Posso ancora riscattare una delle due mail di lancio da 500 Soul Coins?',
                  'No. Due mail ufficiali distinte annunciavano 500 Soul Coins ciascuna, ma entrambe sono '
                  'scadute il 1° settembre 2026 alle 00:00 UTC. Alla verifica del 2 ottobre, i due termini '
                  'erano passati. Fino a 1.000 valeva soltanto per account idonei che hanno riscattato '
                  'entrambe in tempo; la posta non le ripristina.'],
                 ['Mostri o forzieri lasciano cadere Soul Coins direttamente?',
-                 'L’avviso ufficiale di Soul Harvest descrive token evento scambiabili alla Mistchaser. Non '
-                 'conferma un drop diretto universale di Soul Coins da mostri o forzieri normali. Verifica '
-                 'ogni nuova regola di drop nelle note aggiornate.'],
+                 'L’avviso ufficiale di Soul Harvest descrive token evento scambiabili nel Mistchaser Shop. Non conferma un drop diretto universale di Soul Coins da mostri o forzieri normali. Verifica ogni nuova regola di drop nelle note aggiornate.'],
                 ['Lo Slumbering Contract gratuito dà un numero fisso di Soul Coins?',
                  'Le domande frequenti ufficiali confermano che il pass della Stagione 1 si sblocca dopo '
                  'sette giorni di accesso cumulativi. Quella frase non conferma un totale universale di '
                  'monete; guarda la traccia attiva ed evita quantità non verificate.'],
                 ['Soul Coins e Fate Coins sono la stessa valuta?',
-                 'No. Sono valute differenti. L’annuncio di luglio descrive Fate Coins come valuta cosmetica '
-                 'separata, mentre l’update Soul Harvest cita Soul Coins fra i premi Mistchaser. Segui il '
-                 'nome esatto mostrato al pagamento. Una segnalazione della community Steam dice che le Fate '
-                 'Coins possono coprire la differenza al pagamento, ma restano una valuta distinta; verifica '
-                 'l’opzione nella schermata d’acquisto.'],
+                 'No. Sono valute differenti. L’annuncio di luglio descrive Fate Coins come valuta cosmetica separata, mentre l’update Soul Harvest cita Soul Coins fra i premi del Mistchaser Shop. Segui il nome esatto mostrato al pagamento. Una segnalazione della community Steam dice che le Fate Coins possono coprire la differenza al pagamento, ma restano una valuta distinta; verifica l’opzione nella schermata d’acquisto.'],
                 ['Le Soul Coins passeranno alla Stagione 2?',
                  'La risposta dello sviluppatore del 29 settembre annuncia piani per un negozio scambi in '
                  'Stagione 2, ma non risolve il trasferimento delle Soul Coins. Attendi le regole definitive '
