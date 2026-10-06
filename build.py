@@ -276,3 +276,12 @@ if __name__ == "__main__":
     except Exception as exc:
         print(f"Error during build process: {exc}", file=sys.stderr)
         sys.exit(1)
+
+if __name__ == "__main__":
+    from pathlib import Path
+
+    _indexnow_root = Path(__file__).resolve().parent
+    _indexnow_source = _indexnow_root / "9e5379efa057d46c861afd1029114d6f.txt"
+    _indexnow_target = _indexnow_root / "build" / "9e5379efa057d46c861afd1029114d6f.txt"
+    _indexnow_target.parent.mkdir(parents=True, exist_ok=True)
+    _indexnow_target.write_bytes(_indexnow_source.read_bytes())
