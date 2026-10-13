@@ -6,6 +6,7 @@
 - [Main planner](https://mistfallhunterclasses.blog/): Interactive Mistfall Hunter class planner and role overview.
 - [Classes guide](https://mistfallhunterclasses.blog/classes/): Class role profiles, risk notes, and beginner direction.
 - [Build planner](https://mistfallhunterclasses.blog/build-planner/): Dedicated planner page for build-intent searches.
+- [Builds guide](https://mistfallhunterclasses.blog/builds/): Practical class build directions for solo, duo, squad, and beginner runs.
 - [Price guide](https://mistfallhunterclasses.blog/price/): Steam price snapshot, launch discount, buyer checks, and refund-source guidance.
 - [Soul Coins guide](https://mistfallhunterclasses.blog/soul-coins/): Current Soul Harvest/Mistchaser exchange, expired launch mail, currency distinctions, and dated official source checks.
 - [Player count guide](https://mistfallhunterclasses.blog/player-count/): SteamDB chart interpretation, current-player signals, and queue-timing guidance.

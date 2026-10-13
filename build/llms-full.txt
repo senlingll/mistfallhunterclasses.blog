@@ -15,6 +15,9 @@ Class role profiles, risk notes, and beginner direction. The page is implemented
 ### [Build planner](https://mistfallhunterclasses.blog/build-planner/)
 Dedicated planner page for build-intent searches. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Builds guide](https://mistfallhunterclasses.blog/builds/)
+Practical class build directions for solo, duo, squad, and beginner runs. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Price guide](https://mistfallhunterclasses.blog/price/)
 Steam price snapshot, launch discount, buyer checks, and refund-source guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
 
@@ -70,6 +73,9 @@ Added on 2026-09-23 with a decision-first boss encounter guide, official Steam s
 
 ### [Multilingual gameplay update](https://mistfallhunterclasses.blog/gameplay/)
 Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.
+
+### [Mistfall Hunter builds update](https://mistfallhunterclasses.blog/builds/)
+Added on 2026-10-14 after Similarweb phrase-match and related-keyword validation for Mistfall Hunter builds. The page separates build examples from the existing interactive planner, includes six class directions, three editorial visual assets, FAQ coverage, and same-language related links.
 
 ### [System requirements update](https://mistfallhunterclasses.blog/system-requirements/)
 Added on 2026-09-24 from the official Steam app details response with minimum and recommended PC requirements, storage and SSD caveats, three official Steam visual points, localized FAQ content, and same-language related links.
