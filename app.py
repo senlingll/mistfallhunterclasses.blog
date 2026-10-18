@@ -9,6 +9,7 @@ from crossplay_content import CROSSPLAY_KEYWORD_MAP, CROSSPLAY_PAGE_DATA, CROSSP
 from system_requirements_content import SYSTEM_REQUIREMENTS_KEYWORD_MAP, SYSTEM_REQUIREMENTS_PAGE_DATA
 from soul_coins_content import SOUL_COINS_KEYWORD_MAP, SOUL_COINS_PAGE_DATA
 from builds_content import BUILDS_KEYWORD_MAP, BUILDS_PAGE_DATA
+from character_creation_content import CHARACTER_CREATION_KEYWORD_MAP, CHARACTER_CREATION_PAGE_DATA
 
 
 app = Flask(__name__)
@@ -22,7 +23,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"build-planner": "2026-08-21", "builds": "2026-10-14", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23", "system-requirements": "2026-09-24", "soul-coins": "2026-10-02"}
+PAGE_LASTMOD = {"build-planner": "2026-08-21", "builds": "2026-10-14", "character-creation": "2026-10-18", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-09-23", "system-requirements": "2026-09-24", "soul-coins": "2026-10-02"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -41,6 +42,7 @@ PAGE_ORDER = [
     "classes",
     "build-planner",
     "builds",
+    "character-creation",
     "price",
     "soul-coins",
     "player-count",
@@ -64,6 +66,7 @@ PAGE_SLUGS = {
     "classes": "classes",
     "build-planner": "build-planner",
     "builds": "builds",
+    "character-creation": "character-creation",
     "price": "price",
     "soul-coins": "soul-coins",
     "player-count": "player-count",
@@ -2346,6 +2349,7 @@ for locale in LOCALE_ORDER:
     TEXT[locale]["pages"]["system-requirements"] = SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["soul-coins"] = SOUL_COINS_PAGE_DATA[locale]["page"]
     TEXT[locale]["pages"]["builds"] = BUILDS_PAGE_DATA[locale]["page"]
+    TEXT[locale]["pages"]["character-creation"] = CHARACTER_CREATION_PAGE_DATA[locale]["page"]
 
 
 def get_route_matrix():
@@ -2417,6 +2421,21 @@ def make_simple_sections(locale, page_key):
     primary = KEYWORD_MAP[locale]["primary"]
     if page_key == "builds":
         return BUILDS_PAGE_DATA[locale]["sections"]
+    if page_key == "character-creation":
+        page_data = CHARACTER_CREATION_PAGE_DATA[locale]
+        related_titles = {
+            "en": "Related Mistfall Hunter guides",
+            "es": "Guías relacionadas de Mistfall Hunter",
+            "ja": "関連するMistfall Hunterガイド",
+            "fr": "Guides Mistfall Hunter associés",
+            "de": "Verwandte Mistfall-Hunter-Guides",
+            "pt": "Guias relacionados de Mistfall Hunter",
+            "ko": "관련 Mistfall Hunter 가이드",
+            "it": "Guide Mistfall Hunter correlate",
+        }
+        related_keys = ["classes", "build-planner", "builds", "gameplay"]
+        related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
+        return page_data["sections"] + [{"type": "related", "title": related_titles[locale], "items": related_items}]
     if page_key == "soul-coins":
         page_data = SOUL_COINS_PAGE_DATA[locale]
         related_items = [
@@ -2431,7 +2450,7 @@ def make_simple_sections(locale, page_key):
             {"type": "rich", "title": simple.get("classes_title", text["pages"]["classes"]["h1"]), "paragraphs": simple.get("classes_paragraphs", [])},
             {"type": "table", "title": labels["class_table"], "headers": labels["class_headers"], "rows": [[c["name"], c["role"], c["best_for"]] for c in localized_classes(locale)]},
             {"type": "faq", "title": text["home"]["faq_title"], "items": text["home"]["faq"]},
-            {"type": "related", "title": TIER_LIST_RELATED_TITLES[locale], "items": [[text["pages"]["tier-list"]["h1"], get_page_path("tier-list", locale), text["pages"]["tier-list"]["description"]], [BUILDS_PAGE_DATA[locale]["page"]["h1"], get_page_path("builds", locale), BUILDS_PAGE_DATA[locale]["page"]["description"]]]},
+            {"type": "related", "title": TIER_LIST_RELATED_TITLES[locale], "items": [[text["pages"]["tier-list"]["h1"], get_page_path("tier-list", locale), text["pages"]["tier-list"]["description"]], [BUILDS_PAGE_DATA[locale]["page"]["h1"], get_page_path("builds", locale), BUILDS_PAGE_DATA[locale]["page"]["description"]], [CHARACTER_CREATION_PAGE_DATA[locale]["page"]["h1"], get_page_path("character-creation", locale), CHARACTER_CREATION_PAGE_DATA[locale]["page"]["description"]]]},
         ]
     if page_key == "build-planner":
         rich_section = {"type": "rich", "title": text["pages"]["build-planner"]["h1"], "paragraphs": simple.get("build_paragraphs", [])}
@@ -2442,7 +2461,7 @@ def make_simple_sections(locale, page_key):
             rich_section,
             {"type": "table", "title": labels["planner_table"], "headers": labels["planner_headers"], "rows": [[text["planner"]["options"]["experience"]["new"], text["planner"]["options"]["format"]["solo"] + ", " + text["planner"]["options"]["style"]["balanced"] + ", " + text["planner"]["options"]["risk"]["low"], localized_classes(locale)[0]["name"]], [text["planner"]["options"]["format"]["squad"], text["planner"]["options"]["style"]["control"] + ", " + text["planner"]["options"]["risk"]["medium"], localized_classes(locale)[4]["name"] + " / " + localized_classes(locale)[5]["name"]], [text["planner"]["options"]["format"]["duo"], text["planner"]["options"]["style"]["burst"] + ", " + text["planner"]["options"]["risk"]["high"], localized_classes(locale)[2]["name"] + " / " + localized_classes(locale)[3]["name"]]]},
             {"type": "faq", "title": labels["planner_faq"], "items": text["home"]["faq"][:4]},
-            {"type": "related", "title": BUILDS_PAGE_DATA[locale]["page"]["h1"], "items": [[BUILDS_PAGE_DATA[locale]["page"]["h1"], get_page_path("builds", locale), BUILDS_PAGE_DATA[locale]["page"]["description"]]]},
+            {"type": "related", "title": BUILDS_PAGE_DATA[locale]["page"]["h1"], "items": [[BUILDS_PAGE_DATA[locale]["page"]["h1"], get_page_path("builds", locale), BUILDS_PAGE_DATA[locale]["page"]["description"]], [CHARACTER_CREATION_PAGE_DATA[locale]["page"]["h1"], get_page_path("character-creation", locale), CHARACTER_CREATION_PAGE_DATA[locale]["page"]["description"]]]},
         ]
         if locale == "en":
             sections.insert(2, {"type": "video", **BUILD_GUIDE_VIDEO})
@@ -2516,7 +2535,7 @@ def make_simple_sections(locale, page_key):
             "ko": "관련 Mistfall Hunter 가이드",
             "it": "Risorse Mistfall Hunter correlate",
         }
-        related_keys = ["classes", "build-planner", "builds", "player-count", "map-guide", "boss-guide", "price", "review", "steam"]
+        related_keys = ["classes", "build-planner", "builds", "character-creation", "player-count", "map-guide", "boss-guide", "price", "review", "steam"]
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
         related_items.append([CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]])
         related_items.append([SOUL_COINS_PAGE_DATA[locale]["page"]["h1"], get_page_path("soul-coins", locale), SOUL_COINS_PAGE_DATA[locale]["page"]["description"]])
@@ -2545,7 +2564,7 @@ def build_site_data(page_key, locale="en"):
     text = get_locale_text(locale)
     page_source = CROSSPLAY_PAGE_DATA[locale]["page"] if page_key == "crossplay" else text["pages"][page_key]
     page = {**page_source, "path": get_page_path(page_key, locale), "key": page_key}
-    page_image = "images/mistfall/mistfall-hunter-build-paths.webp" if page_key == "builds" else "images/mistfall/mistfall-hunter-boss-encounter.webp" if page_key == "boss-guide" else "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-ps5-console-concept.webp" if page_key == "ps5" else "images/mistfall/mistfall-hunter-crossplay-platforms.webp" if page_key == "crossplay" else "images/mistfall/mistfall-hunter-steam-hero.webp"
+    page_image = "images/mistfall/mistfall-hunter-build-paths.webp" if page_key == "builds" else "images/mistfall/mistfall-hunter-character-fight.webp" if page_key == "character-creation" else "images/mistfall/mistfall-hunter-boss-encounter.webp" if page_key == "boss-guide" else "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-ps5-console-concept.webp" if page_key == "ps5" else "images/mistfall/mistfall-hunter-crossplay-platforms.webp" if page_key == "crossplay" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -2566,7 +2585,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": BUILDS_KEYWORD_MAP[locale] if page_key == "builds" else SOUL_COINS_KEYWORD_MAP[locale] if page_key == "soul-coins" else SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
+        "keyword_map": CHARACTER_CREATION_KEYWORD_MAP[locale] if page_key == "character-creation" else BUILDS_KEYWORD_MAP[locale] if page_key == "builds" else SOUL_COINS_KEYWORD_MAP[locale] if page_key == "soul-coins" else SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "regional_links": REGIONAL_LINKS.get((locale, page_key)),
         "sections": make_simple_sections(locale, page_key),

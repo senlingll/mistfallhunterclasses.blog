@@ -18,6 +18,9 @@ Dedicated planner page for build-intent searches. The page is implemented as cra
 ### [Builds guide](https://mistfallhunterclasses.blog/builds/)
 Practical class build directions for solo, duo, squad, and beginner runs. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Character creation guide](https://mistfallhunterclasses.blog/character-creation/)
+Class selection, first-build decisions, weapon switching, and verified limits around character customization. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Price guide](https://mistfallhunterclasses.blog/price/)
 Steam price snapshot, launch discount, buyer checks, and refund-source guidance. The page is implemented as crawlable static HTML and is included in the sitemap.
 
@@ -79,3 +82,6 @@ Added on 2026-10-14 after Similarweb phrase-match and related-keyword validation
 
 ### [System requirements update](https://mistfallhunterclasses.blog/system-requirements/)
 Added on 2026-09-24 from the official Steam app details response with minimum and recommended PC requirements, storage and SSD caveats, three official Steam visual points, localized FAQ content, and same-language related links.
+
+### [Character creation guide update](https://mistfallhunterclasses.blog/character-creation/)
+Added on 2026-10-18 after Similarweb phrase-match, related-keyword, and question-keyword review. The guide covers class selection, first-build decisions, weapon switching, verified source limits, three official media points, localized FAQ content, and same-language related links.

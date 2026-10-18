@@ -112,6 +112,7 @@ def write_llms_files(static_dir):
         ("Classes guide", get_page_path("classes"), "Class role profiles, risk notes, and beginner direction."),
         ("Build planner", get_page_path("build-planner"), "Dedicated planner page for build-intent searches."),
         ("Builds guide", get_page_path("builds"), "Practical class build directions for solo, duo, squad, and beginner runs."),
+        ("Character creation guide", get_page_path("character-creation"), "Class selection, first-build decisions, weapon switching, and verified limits around character customization."),
         ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
         ("Soul Coins guide", get_page_path("soul-coins"), "Current Soul Harvest/Mistchaser exchange, expired launch mail, currency distinctions, and dated official source checks."),
         ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
@@ -184,6 +185,9 @@ def write_llms_files(static_dir):
         "",
         f"### [System requirements update]({BASE_URL}{get_page_path('system-requirements')})",
         "Added on 2026-09-24 from the official Steam app details response with minimum and recommended PC requirements, storage and SSD caveats, three official Steam visual points, localized FAQ content, and same-language related links.",
+        "",
+        f"### [Character creation guide update]({BASE_URL}{get_page_path('character-creation')})",
+        "Added on 2026-10-18 after Similarweb phrase-match, related-keyword, and question-keyword review. The guide covers class selection, first-build decisions, weapon switching, verified source limits, three official media points, localized FAQ content, and same-language related links.",
     ])
     with open(os.path.join(static_dir, "llms-full.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(full_lines) + "\n")
@@ -232,6 +236,9 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-build-paths.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-solo-build.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-squad-build.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-character-fight.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-character-setup.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-character-loot.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-shenwood.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-brand-keep.webp"),
         os.path.join("videos", "mistfall-hunter-build-guide.mp4"),
