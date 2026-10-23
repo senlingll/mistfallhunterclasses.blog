@@ -36,6 +36,9 @@ Map markers, key-route decisions, community map references, and extraction plann
 ### [Boss guide](https://mistfallhunterclasses.blog/boss-guide/)
 Decision-first Mistfall Hunter boss guide for scouting, party-size planning, PvP risk, and extraction choices. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [PvP guide](https://mistfallhunterclasses.blog/pvp-guide/)
+Mistfall Hunter PvP guide for encounter risk, positioning, party-size choices, and extraction decisions. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Tier list guide](https://mistfallhunterclasses.blog/tier-list/)
 Mode-specific class tier list with solo, duo, squad, and beginner decisions. The page is implemented as crawlable static HTML and is included in the sitemap.
 
@@ -73,6 +76,9 @@ Updated on 2026-08-10 to add the multilingual Mistfall Hunter map guide, attribu
 
 ### [Multilingual boss guide update](https://mistfallhunterclasses.blog/boss-guide/)
 Added on 2026-09-23 with a decision-first boss encounter guide, official Steam screenshot gallery visuals, localized risk checklists and FAQ, attributed community database references, and explicit limits on unverified mechanics.
+
+### [Mistfall Hunter PvP guide](https://mistfallhunterclasses.blog/pvp-guide/)
+Added on 2026-10-24 with an informational PvPvE encounter guide, two attributed official Steam screenshots, a clearly labeled conceptual route-decision diagram, localized risk guidance, FAQ, and same-language links to gameplay, builds, classes, maps, and bosses.
 
 ### [Multilingual gameplay update](https://mistfallhunterclasses.blog/gameplay/)
 Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.

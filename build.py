@@ -118,6 +118,7 @@ def write_llms_files(static_dir):
         ("Player count guide", get_page_path("player-count"), "SteamDB chart interpretation, current-player signals, and queue-timing guidance."),
         ("Map guide", get_page_path("map-guide"), "Map markers, key-route decisions, community map references, and extraction planning."),
         ("Boss guide", get_page_path("boss-guide"), "Decision-first Mistfall Hunter boss guide for scouting, party-size planning, PvP risk, and extraction choices."),
+        ("PvP guide", get_page_path("pvp-guide"), "Mistfall Hunter PvP guide for encounter risk, positioning, party-size choices, and extraction decisions."),
         ("Tier list guide", get_page_path("tier-list"), "Mode-specific class tier list with solo, duo, squad, and beginner decisions."),
         ("PS5 guide", get_page_path("ps5"), "Official Mistfall Hunter PS5 availability, release, price, and platform comparison checks."),
         ("Crossplay guide", get_page_path("crossplay"), "PC, PS5, and Xbox crossplay checks, friend invites, progression limits, and source boundaries."),
@@ -143,7 +144,7 @@ def write_llms_files(static_dir):
     llms_lines.extend(["", "## Common Resources"])
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
     llms_lines.extend([f"- [PS5 guide]({BASE_URL}{get_page_path('ps5')}): Added on 2026-08-19 with official PlayStation, Xbox, and Steam checks, three visual points, localized FAQ content, and platform comparison guidance.", f"- [Crossplay guide]({BASE_URL}{get_page_path('crossplay')}): Added on 2026-08-19 with PC, PS5, and Xbox platform checks, crossplay versus progression boundaries, three visual points, localized FAQ content, and official source links."])
-    llms_lines.extend(["", "## Latest Updates", f"- [System requirements guide]({BASE_URL}{get_page_path('system-requirements')}): Added on 2026-09-24 with official Steam PC requirements, three first-party visual points, localized compatibility guidance, FAQ content, and same-language related links.", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
+    llms_lines.extend(["", "## Latest Updates", f"- [PvP guide]({BASE_URL}{get_page_path('pvp-guide')}): Added on 2026-10-24 with official Steam screenshots, a clearly labeled conceptual decision diagram, localized encounter guidance, FAQ content, and same-language related links.", f"- [System requirements guide]({BASE_URL}{get_page_path('system-requirements')}): Added on 2026-09-24 with official Steam PC requirements, three first-party visual points, localized compatibility guidance, FAQ content, and same-language related links.", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -176,6 +177,9 @@ def write_llms_files(static_dir):
         "",
         f"### [Multilingual boss guide update]({BASE_URL}{get_page_path('boss-guide')})",
         "Added on 2026-09-23 with a decision-first boss encounter guide, official Steam screenshot gallery visuals, localized risk checklists and FAQ, attributed community database references, and explicit limits on unverified mechanics.",
+        "",
+        f"### [Mistfall Hunter PvP guide]({BASE_URL}{get_page_path('pvp-guide')})",
+        "Added on 2026-10-24 with an informational PvPvE encounter guide, two attributed official Steam screenshots, a clearly labeled conceptual route-decision diagram, localized risk guidance, FAQ, and same-language links to gameplay, builds, classes, maps, and bosses.",
         "",
         f"### [Multilingual gameplay update]({BASE_URL}{get_page_path('gameplay')})",
         "Updated on 2026-08-08 to add the multilingual Mistfall Hunter gameplay guide, localized metadata, gameplay-loop media, source links, FAQ content, related class resources, sitemap entries, and language switching.",
@@ -233,6 +237,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-boss-arena.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-boss-encounter.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-boss-pvp-risk.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-pvp-route-decision.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-build-paths.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-solo-build.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-squad-build.webp"),
