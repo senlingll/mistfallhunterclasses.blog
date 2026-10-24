@@ -447,6 +447,12 @@ summary {
   background: rgba(8, 14, 22, 0.9);
   object-fit: contain;
 }
+.article-media img.concept-portrait {
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+  max-width: 640px;
+  object-fit: cover;
+}
 .article-media figcaption {
   color: var(--muted);
   font-size: 0.92rem;
