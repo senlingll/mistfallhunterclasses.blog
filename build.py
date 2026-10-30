@@ -112,6 +112,7 @@ def write_llms_files(static_dir):
         ("Classes guide", get_page_path("classes"), "Class role profiles, risk notes, and beginner direction."),
         ("Build planner", get_page_path("build-planner"), "Dedicated planner page for build-intent searches."),
         ("Builds guide", get_page_path("builds"), "Practical class build directions for solo, duo, squad, and beginner runs."),
+        ("Duo mode guide", get_page_path("duo-mode"), "Two-player route, role, communication, reset, and extraction decisions with explicit source limits."),
         ("Character creation guide", get_page_path("character-creation"), "Class selection, first-build decisions, weapon switching, and verified limits around character customization."),
         ("Price guide", get_page_path("price"), "Steam price snapshot, launch discount, buyer checks, and refund-source guidance."),
         ("Soul Coins guide", get_page_path("soul-coins"), "Current Soul Harvest/Mistchaser exchange, expired launch mail, currency distinctions, and dated official source checks."),
@@ -146,6 +147,7 @@ def write_llms_files(static_dir):
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
     llms_lines.extend([f"- [PS5 guide]({BASE_URL}{get_page_path('ps5')}): Added on 2026-08-19 with official PlayStation, Xbox, and Steam checks, three visual points, localized FAQ content, and platform comparison guidance.", f"- [Crossplay guide]({BASE_URL}{get_page_path('crossplay')}): Added on 2026-08-19 with PC, PS5, and Xbox platform checks, crossplay versus progression boundaries, three visual points, localized FAQ content, and official source links."])
     llms_lines.extend(["", "## Latest Updates", f"- [Harpy guide]({BASE_URL}{get_page_path('harpy-guide')}): Added on 2026-10-24 with a source-bounded enemy guide, official Steam context images, clearly labeled concept art, localized encounter planning, FAQ content, and same-language related links.", f"- [PvP guide]({BASE_URL}{get_page_path('pvp-guide')}): Added on 2026-10-24 with official Steam screenshots, a clearly labeled conceptual decision diagram, localized encounter guidance, FAQ content, and same-language related links.", f"- [System requirements guide]({BASE_URL}{get_page_path('system-requirements')}): Added on 2026-09-24 with official Steam PC requirements, three first-party visual points, localized compatibility guidance, FAQ content, and same-language related links.", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
+    llms_lines.append(f"- [Duo mode guide]({BASE_URL}{get_page_path('duo-mode')}): Added on 2026-10-30 with two-player role coverage, short call protocol, reset rules, extraction decisions, three visual points, localized FAQ content, and explicit source limits.")
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
 
@@ -243,6 +245,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-boss-pvp-risk.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-harpy-guide-concept.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-pvp-route-decision.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-duo-run-decision.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-build-paths.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-solo-build.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-squad-build.webp"),

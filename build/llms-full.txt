@@ -18,6 +18,9 @@ Dedicated planner page for build-intent searches. The page is implemented as cra
 ### [Builds guide](https://mistfallhunterclasses.blog/builds/)
 Practical class build directions for solo, duo, squad, and beginner runs. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Duo mode guide](https://mistfallhunterclasses.blog/duo-mode/)
+Two-player route, role, communication, reset, and extraction decisions with explicit source limits. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ### [Character creation guide](https://mistfallhunterclasses.blog/character-creation/)
 Class selection, first-build decisions, weapon switching, and verified limits around character customization. The page is implemented as crawlable static HTML and is included in the sitemap.
 

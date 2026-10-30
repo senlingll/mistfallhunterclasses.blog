@@ -15,6 +15,7 @@
 /de/classes /de/classes/ 301
 /de/contact /de/contact/ 301
 /de/crossplay /de/crossplay/ 301
+/de/duo-mode /de/duo-mode/ 301
 /de/gameplay /de/gameplay/ 301
 /de/harpy-guide /de/harpy-guide/ 301
 /de/map-guide /de/map-guide/ 301
@@ -29,6 +30,7 @@
 /de/system-requirements /de/system-requirements/ 301
 /de/terms-of-service /de/terms-of-service/ 301
 /de/tier-list /de/tier-list/ 301
+/duo-mode /duo-mode/ 301
 /es /es/ 301
 /es/about /es/about/ 301
 /es/boss-guide /es/boss-guide/ 301
@@ -38,6 +40,7 @@
 /es/classes /es/classes/ 301
 /es/contact /es/contact/ 301
 /es/crossplay /es/crossplay/ 301
+/es/duo-mode /es/duo-mode/ 301
 /es/gameplay /es/gameplay/ 301
 /es/harpy-guide /es/harpy-guide/ 301
 /es/map-guide /es/map-guide/ 301
@@ -61,6 +64,7 @@
 /fr/classes /fr/classes/ 301
 /fr/contact /fr/contact/ 301
 /fr/crossplay /fr/crossplay/ 301
+/fr/duo-mode /fr/duo-mode/ 301
 /fr/gameplay /fr/gameplay/ 301
 /fr/harpy-guide /fr/harpy-guide/ 301
 /fr/map-guide /fr/map-guide/ 301
@@ -86,6 +90,7 @@
 /it/classes /it/classes/ 301
 /it/contact /it/contact/ 301
 /it/crossplay /it/crossplay/ 301
+/it/duo-mode /it/duo-mode/ 301
 /it/gameplay /it/gameplay/ 301
 /it/harpy-guide /it/harpy-guide/ 301
 /it/map-guide /it/map-guide/ 301
@@ -109,6 +114,7 @@
 /ja/classes /ja/classes/ 301
 /ja/contact /ja/contact/ 301
 /ja/crossplay /ja/crossplay/ 301
+/ja/duo-mode /ja/duo-mode/ 301
 /ja/gameplay /ja/gameplay/ 301
 /ja/harpy-guide /ja/harpy-guide/ 301
 /ja/map-guide /ja/map-guide/ 301
@@ -132,6 +138,7 @@
 /ko/classes /ko/classes/ 301
 /ko/contact /ko/contact/ 301
 /ko/crossplay /ko/crossplay/ 301
+/ko/duo-mode /ko/duo-mode/ 301
 /ko/gameplay /ko/gameplay/ 301
 /ko/harpy-guide /ko/harpy-guide/ 301
 /ko/map-guide /ko/map-guide/ 301
@@ -160,6 +167,7 @@
 /pt/classes /pt/classes/ 301
 /pt/contact /pt/contact/ 301
 /pt/crossplay /pt/crossplay/ 301
+/pt/duo-mode /pt/duo-mode/ 301
 /pt/gameplay /pt/gameplay/ 301
 /pt/harpy-guide /pt/harpy-guide/ 301
 /pt/map-guide /pt/map-guide/ 301
