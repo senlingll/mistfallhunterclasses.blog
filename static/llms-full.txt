@@ -66,6 +66,9 @@ Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, c
 ### [System requirements guide](https://mistfallhunterclasses.blog/system-requirements/)
 Official Steam minimum and recommended PC requirements, storage, SSD notes, and a practical compatibility checklist. The page is implemented as crawlable static HTML and is included in the sitemap.
 
+### [Fatal error guide](https://mistfallhunterclasses.blog/fatal-error/)
+Mistfall Hunter fatal error troubleshooting for startup crashes, shader crashes, file checks, drivers, and safe reporting. The page is implemented as crawlable static HTML and is included in the sitemap.
+
 ## User Value
 The site helps users pick a practical class direction, compare role risk, understand when a recommendation should be treated as a tie, and verify safe official Steam availability without confusing guide content with downloads, keys, or unofficial mirrors.
 

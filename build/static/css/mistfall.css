@@ -538,7 +538,13 @@ summary {
   .planner-grid,
   .section-heading,
   .split-panel,
-  .class-grid {
+  .class-grid,
+  .simple-main,
+  .section-pad,
+  .article-media-section,
+  .article-media,
+  .prose {
+    min-width: 0;
     max-width: 100%;
     width: 100%;
   }
@@ -567,6 +573,7 @@ summary {
     flex-wrap: wrap;
     gap: 0.35rem 0.9rem;
     grid-area: nav;
+    min-width: 0;
     max-width: 100%;
     overflow: visible;
     padding: 0.35rem 0;

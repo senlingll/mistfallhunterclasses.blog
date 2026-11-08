@@ -128,6 +128,7 @@ def write_llms_files(static_dir):
         ("Review guide", get_page_path("review"), "Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs."),
         ("Gameplay guide", get_page_path("gameplay"), "Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes."),
         ("System requirements guide", get_page_path("system-requirements"), "Official Steam minimum and recommended PC requirements, storage, SSD notes, and a practical compatibility checklist."),
+        ("Fatal error guide", get_page_path("fatal-error"), "Mistfall Hunter fatal error troubleshooting for startup crashes, shader crashes, file checks, drivers, and safe reporting."),
     ]
     common_links = [
         ("About", get_page_path("about"), "Editorial policy and source handling."),
@@ -147,6 +148,7 @@ def write_llms_files(static_dir):
     llms_lines.extend([f"- [{title}]({BASE_URL}{path}): {description}" for title, path, description in common_links])
     llms_lines.extend([f"- [PS5 guide]({BASE_URL}{get_page_path('ps5')}): Added on 2026-08-19 with official PlayStation, Xbox, and Steam checks, three visual points, localized FAQ content, and platform comparison guidance.", f"- [Crossplay guide]({BASE_URL}{get_page_path('crossplay')}): Added on 2026-08-19 with PC, PS5, and Xbox platform checks, crossplay versus progression boundaries, three visual points, localized FAQ content, and official source links."])
     llms_lines.extend(["", "## Latest Updates", f"- [Harpy guide]({BASE_URL}{get_page_path('harpy-guide')}): Added on 2026-10-24 with a source-bounded enemy guide, official Steam context images, clearly labeled concept art, localized encounter planning, FAQ content, and same-language related links.", f"- [PvP guide]({BASE_URL}{get_page_path('pvp-guide')}): Added on 2026-10-24 with official Steam screenshots, a clearly labeled conceptual decision diagram, localized encounter guidance, FAQ content, and same-language related links.", f"- [System requirements guide]({BASE_URL}{get_page_path('system-requirements')}): Added on 2026-09-24 with official Steam PC requirements, three first-party visual points, localized compatibility guidance, FAQ content, and same-language related links.", f"- [Tier list guide]({BASE_URL}{get_page_path('tier-list')}): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.", f"- [Map guide]({BASE_URL}{get_page_path('map-guide')}): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.", f"- [Gameplay guide]({BASE_URL}{get_page_path('gameplay')}): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources."])
+    llms_lines.append(f"- [Fatal error guide]({BASE_URL}{get_page_path('fatal-error')}): Added on 2026-11-08 with a localized startup-crash troubleshooting flow, official Steam verification sources, three distinct visual points, FAQ coverage, and safe reporting guidance.")
     llms_lines.append(f"- [Duo mode guide]({BASE_URL}{get_page_path('duo-mode')}): Added on 2026-10-30 with two-player role coverage, short call protocol, reset rules, extraction decisions, three visual points, localized FAQ content, and explicit source limits.")
     with open(os.path.join(static_dir, "llms.txt"), "w", encoding="utf-8") as output:
         output.write("\n".join(llms_lines) + "\n")
@@ -254,6 +256,7 @@ def copy_static_assets(build_dir):
         os.path.join("images", "mistfall", "mistfall-hunter-character-loot.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-shenwood.webp"),
         os.path.join("images", "mistfall", "mistfall-hunter-map-brand-keep.webp"),
+        os.path.join("images", "mistfall", "mistfall-hunter-fatal-error-flow.webp"),
         os.path.join("videos", "mistfall-hunter-build-guide.mp4"),
         "logo.png",
         "favicon.ico",

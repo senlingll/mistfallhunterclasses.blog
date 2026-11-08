@@ -13,6 +13,7 @@ from character_creation_content import CHARACTER_CREATION_KEYWORD_MAP, CHARACTER
 from pvp_guide_content import PVP_GUIDE_KEYWORD_MAP, PVP_GUIDE_PAGE_DATA
 from harpy_guide_content import HARPY_GUIDE_KEYWORD_MAP, HARPY_GUIDE_PAGE_DATA
 from duo_mode_content import DUO_MODE_KEYWORD_MAP, DUO_MODE_PAGE_DATA
+from fatal_error_content import FATAL_ERROR_KEYWORD_MAP, FATAL_ERROR_PAGE_DATA
 
 
 app = Flask(__name__)
@@ -26,7 +27,7 @@ STEAMDB_EMBED_URL = "https://steamdb.info/embed/?appid=3282300"
 STEAMDB_CHARTS_URL = "https://steamdb.info/app/3282300/charts/"
 CURRENT_YEAR = "2026"
 LAST_UPDATED = "2026-07-30"
-PAGE_LASTMOD = {"build-planner": "2026-08-21", "builds": "2026-10-14", "character-creation": "2026-10-18", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-10-24", "harpy-guide": "2026-10-24", "system-requirements": "2026-09-24", "soul-coins": "2026-10-02", "pvp-guide": "2026-10-24", "duo-mode": "2026-10-30"}
+PAGE_LASTMOD = {"build-planner": "2026-08-21", "builds": "2026-10-14", "character-creation": "2026-10-18", "price": "2026-08-01", "player-count": "2026-08-01", "review": "2026-08-03", "gameplay": "2026-08-08", "map-guide": "2026-08-10", "tier-list": "2026-08-15", "ps5": "2026-08-19", "crossplay": "2026-08-19", "boss-guide": "2026-10-24", "harpy-guide": "2026-10-24", "system-requirements": "2026-09-24", "soul-coins": "2026-10-02", "pvp-guide": "2026-10-24", "duo-mode": "2026-10-30", "fatal-error": "2026-11-08"}
 
 LOCALE_ORDER = ["en", "es", "ja", "fr", "de", "pt", "ko", "it"]
 LOCALES = {
@@ -61,6 +62,7 @@ PAGE_ORDER = [
     "boss-guide",
     "harpy-guide",
     "system-requirements",
+    "fatal-error",
     "about",
     "contact",
     "privacy-policy",
@@ -88,6 +90,7 @@ PAGE_SLUGS = {
     "boss-guide": "boss-guide",
     "harpy-guide": "harpy-guide",
     "system-requirements": "system-requirements",
+    "fatal-error": "fatal-error",
     "about": "about",
     "contact": "contact",
     "privacy-policy": "privacy-policy",
@@ -2518,11 +2521,13 @@ def make_simple_sections(locale, page_key):
             sections.insert(2, {"type": "video", **BUILD_GUIDE_VIDEO})
         return sections
     if page_key == "steam":
+        steam_related = [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]], [text["pages"]["ps5"]["h1"], get_page_path("ps5", locale), text["pages"]["ps5"]["description"]], [CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]], [SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["h1"], get_page_path("system-requirements", locale), SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["description"]]]
+        steam_related.append([FATAL_ERROR_PAGE_DATA[locale]["page"]["h1"], get_page_path("fatal-error", locale), FATAL_ERROR_PAGE_DATA[locale]["page"]["description"]])
         return [
             {"type": "steam"},
             {"type": "rich", "title": text["pages"]["steam"]["h1"], "paragraphs": simple.get("steam_paragraphs", [])},
             {"type": "faq", "title": labels["steam_faq"], "items": text["home"]["faq"][:3]},
-            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": [[text["pages"]["player-count"]["h1"], get_page_path("player-count", locale), text["pages"]["player-count"]["description"]], [text["pages"]["price"]["h1"], get_page_path("price", locale), text["pages"]["price"]["description"]], [text["pages"]["ps5"]["h1"], get_page_path("ps5", locale), text["pages"]["ps5"]["description"]], [CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]], [SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["h1"], get_page_path("system-requirements", locale), SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["page"]["description"]]]},
+            {"type": "related", "title": text["pages"]["player-count"]["h1"], "items": steam_related},
         ]
     if page_key == "price":
         related = PRICE_RELATED_COPY[locale]
@@ -2582,7 +2587,10 @@ def make_simple_sections(locale, page_key):
         }
         related_keys = ["steam", "review", "classes", "player-count"]
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in related_keys]
+        related_items.append([FATAL_ERROR_PAGE_DATA[locale]["page"]["h1"], get_page_path("fatal-error", locale), FATAL_ERROR_PAGE_DATA[locale]["page"]["description"]])
         return SYSTEM_REQUIREMENTS_PAGE_DATA[locale]["sections"] + [{"type": "related", "title": related_titles[locale], "items": related_items}]
+    if page_key == "fatal-error":
+        return FATAL_ERROR_PAGE_DATA[locale]["sections"]
     if page_key == "ps5":
         related_items = [[text["pages"][key]["h1"], get_page_path(key, locale), text["pages"][key]["description"]] for key in ["steam", "price", "player-count", "review", "classes", "gameplay"]]
         related_items.append([CROSSPLAY_PAGE_DATA[locale]["page"]["h1"], get_page_path("crossplay", locale), CROSSPLAY_PAGE_DATA[locale]["page"]["description"]])
@@ -2632,9 +2640,9 @@ def build_site_data(page_key, locale="en"):
     if locale not in LOCALE_ORDER or page_key not in PAGE_ORDER:
         abort(404)
     text = get_locale_text(locale)
-    page_source = CROSSPLAY_PAGE_DATA[locale]["page"] if page_key == "crossplay" else text["pages"][page_key]
+    page_source = CROSSPLAY_PAGE_DATA[locale]["page"] if page_key == "crossplay" else FATAL_ERROR_PAGE_DATA[locale]["page"] if page_key == "fatal-error" else text["pages"][page_key]
     page = {**page_source, "path": get_page_path(page_key, locale), "key": page_key}
-    page_image = "images/mistfall/mistfall-hunter-harpy-guide-concept.webp" if page_key == "harpy-guide" else "images/mistfall/mistfall-hunter-pvp-route-decision.webp" if page_key == "pvp-guide" else "images/mistfall/mistfall-hunter-duo-run-decision.webp" if page_key == "duo-mode" else "images/mistfall/mistfall-hunter-build-paths.webp" if page_key == "builds" else "images/mistfall/mistfall-hunter-character-fight.webp" if page_key == "character-creation" else "images/mistfall/mistfall-hunter-boss-encounter.webp" if page_key == "boss-guide" else "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-ps5-console-concept.webp" if page_key == "ps5" else "images/mistfall/mistfall-hunter-crossplay-platforms.webp" if page_key == "crossplay" else "images/mistfall/mistfall-hunter-steam-hero.webp"
+    page_image = "images/mistfall/mistfall-hunter-harpy-guide-concept.webp" if page_key == "harpy-guide" else "images/mistfall/mistfall-hunter-pvp-route-decision.webp" if page_key == "pvp-guide" else "images/mistfall/mistfall-hunter-duo-run-decision.webp" if page_key == "duo-mode" else "images/mistfall/mistfall-hunter-build-paths.webp" if page_key == "builds" else "images/mistfall/mistfall-hunter-character-fight.webp" if page_key == "character-creation" else "images/mistfall/mistfall-hunter-boss-encounter.webp" if page_key == "boss-guide" else "images/mistfall/mistfall-hunter-review-verdict.webp" if page_key == "review" else "images/mistfall/mistfall-hunter-gameplay-loop.webp" if page_key == "gameplay" else "images/mistfall/mistfall-hunter-map-route-concept.webp" if page_key == "map-guide" else "images/mistfall/mistfall-hunter-tier-list-modes.webp" if page_key == "tier-list" else "images/mistfall/mistfall-hunter-ps5-console-concept.webp" if page_key == "ps5" else "images/mistfall/mistfall-hunter-crossplay-platforms.webp" if page_key == "crossplay" else "images/mistfall/mistfall-hunter-fatal-error-flow.webp" if page_key == "fatal-error" else "images/mistfall/mistfall-hunter-steam-hero.webp"
     return {
         "base_url": BASE_URL,
         "support_email": SUPPORT_EMAIL,
@@ -2655,7 +2663,7 @@ def build_site_data(page_key, locale="en"):
         "language_links": get_language_links(page_key),
         "classes": localized_classes(locale),
         "planner_config": {"classes": localized_classes(locale), "text": text["planner"]},
-        "keyword_map": HARPY_GUIDE_KEYWORD_MAP[locale] if page_key == "harpy-guide" else PVP_GUIDE_KEYWORD_MAP[locale] if page_key == "pvp-guide" else DUO_MODE_KEYWORD_MAP[locale] if page_key == "duo-mode" else CHARACTER_CREATION_KEYWORD_MAP[locale] if page_key == "character-creation" else BUILDS_KEYWORD_MAP[locale] if page_key == "builds" else SOUL_COINS_KEYWORD_MAP[locale] if page_key == "soul-coins" else SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
+        "keyword_map": HARPY_GUIDE_KEYWORD_MAP[locale] if page_key == "harpy-guide" else PVP_GUIDE_KEYWORD_MAP[locale] if page_key == "pvp-guide" else DUO_MODE_KEYWORD_MAP[locale] if page_key == "duo-mode" else CHARACTER_CREATION_KEYWORD_MAP[locale] if page_key == "character-creation" else BUILDS_KEYWORD_MAP[locale] if page_key == "builds" else SOUL_COINS_KEYWORD_MAP[locale] if page_key == "soul-coins" else SYSTEM_REQUIREMENTS_KEYWORD_MAP[locale] if page_key == "system-requirements" else FATAL_ERROR_KEYWORD_MAP[locale] if page_key == "fatal-error" else BOSS_GUIDE_KEYWORD_MAP[locale] if page_key == "boss-guide" else REVIEW_KEYWORD_MAP[locale] if page_key == "review" else GAMEPLAY_KEYWORD_MAP[locale] if page_key == "gameplay" else MAP_KEYWORD_MAP[locale] if page_key == "map-guide" else TIER_LIST_KEYWORD_MAP[locale] if page_key == "tier-list" else PS5_KEYWORD_MAP[locale] if page_key == "ps5" else CROSSPLAY_KEYWORD_MAP[locale] if page_key == "crossplay" else KEYWORD_MAP[locale],
         "labels": SIMPLE_LABELS[locale],
         "regional_links": REGIONAL_LINKS.get((locale, page_key)),
         "sections": make_simple_sections(locale, page_key),

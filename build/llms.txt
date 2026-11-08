@@ -23,6 +23,7 @@
 - [Review guide](https://mistfallhunterclasses.blog/review/): Independent Mistfall Hunter review covering the game loop, class fit, buyer checks, and tradeoffs.
 - [Gameplay guide](https://mistfallhunterclasses.blog/gameplay/): Mistfall Hunter gameplay guide covering the extraction loop, combat decisions, class rhythm, and beginner mistakes.
 - [System requirements guide](https://mistfallhunterclasses.blog/system-requirements/): Official Steam minimum and recommended PC requirements, storage, SSD notes, and a practical compatibility checklist.
+- [Fatal error guide](https://mistfallhunterclasses.blog/fatal-error/): Mistfall Hunter fatal error troubleshooting for startup crashes, shader crashes, file checks, drivers, and safe reporting.
 
 ## Common Resources
 - [About](https://mistfallhunterclasses.blog/about/): Editorial policy and source handling.
@@ -39,4 +40,5 @@
 - [Tier list guide](https://mistfallhunterclasses.blog/tier-list/): Added on 2026-08-15 with mode-specific class comparisons, three visual points, localized FAQ content, and related class resources.
 - [Map guide](https://mistfallhunterclasses.blog/map-guide/): Added on 2026-08-10 with map-route decisions, attributed community map references, a conceptual route diagram, localized FAQ content, and related class resources.
 - [Gameplay guide](https://mistfallhunterclasses.blog/gameplay/): Added on 2026-08-08 with an extraction-loop explanation, localized gameplay guidance, three visual points, FAQ content, and related class resources.
+- [Fatal error guide](https://mistfallhunterclasses.blog/fatal-error/): Added on 2026-11-08 with a localized startup-crash troubleshooting flow, official Steam verification sources, three distinct visual points, FAQ coverage, and safe reporting guidance.
 - [Duo mode guide](https://mistfallhunterclasses.blog/duo-mode/): Added on 2026-10-30 with two-player role coverage, short call protocol, reset rules, extraction decisions, three visual points, localized FAQ content, and explicit source limits.

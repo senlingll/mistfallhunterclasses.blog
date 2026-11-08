@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Erro fatal Mistfall Hunter: corrigir crash ao iniciar</title>
+  <meta name="description" content="Veja como investigar o erro fatal de Mistfall Hunter: arquivos, requisitos, drivers e overlays, sem inventar a causa.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistfallhunterclasses.blog/pt/fatal-error/">
+
+  <link rel="alternate" hreflang="en" href="https://mistfallhunterclasses.blog/fatal-error/">
+
+  <link rel="alternate" hreflang="es" href="https://mistfallhunterclasses.blog/es/fatal-error/">
+
+  <link rel="alternate" hreflang="ja" href="https://mistfallhunterclasses.blog/ja/fatal-error/">
+
+  <link rel="alternate" hreflang="fr" href="https://mistfallhunterclasses.blog/fr/fatal-error/">
+
+  <link rel="alternate" hreflang="de" href="https://mistfallhunterclasses.blog/de/fatal-error/">
+
+  <link rel="alternate" hreflang="pt" href="https://mistfallhunterclasses.blog/pt/fatal-error/">
+
+  <link rel="alternate" hreflang="ko" href="https://mistfallhunterclasses.blog/ko/fatal-error/">
+
+  <link rel="alternate" hreflang="it" href="https://mistfallhunterclasses.blog/it/fatal-error/">
+
+  <link rel="alternate" hreflang="x-default" href="https://mistfallhunterclasses.blog/fatal-error/">
+
+  <meta property="og:title" content="Erro fatal Mistfall Hunter: corrigir crash ao iniciar">
+  <meta property="og:description" content="Veja como investigar o erro fatal de Mistfall Hunter: arquivos, requisitos, drivers e overlays, sem inventar a causa.">
+  <meta property="og:url" content="https://mistfallhunterclasses.blog/pt/fatal-error/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Classes de Mistfall Hunter">
+  <meta property="og:image" content="https://mistfallhunterclasses.blog/static/images/mistfall/mistfall-hunter-fatal-error-flow.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Erro fatal Mistfall Hunter: corrigir crash ao iniciar">
+  <meta name="twitter:description" content="Veja como investigar o erro fatal de Mistfall Hunter: arquivos, requisitos, drivers e overlays, sem inventar a causa.">
+  <meta name="twitter:image" content="https://mistfallhunterclasses.blog/static/images/mistfall/mistfall-hunter-fatal-error-flow.webp">
+  <link rel="icon" href="/static/favicon.ico">
+  <link rel="stylesheet" href="/static/css/mistfall.css">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xuxe681seh");
+  </script>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Erro fatal Mistfall Hunter: crash ao iniciar",
+  "description": "Veja como investigar o erro fatal de Mistfall Hunter: arquivos, requisitos, drivers e overlays, sem inventar a causa.",
+  "url": "https://mistfallhunterclasses.blog/pt/fatal-error/",
+  "inLanguage": "pt",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Classes de Mistfall Hunter",
+    "url": "https://mistfallhunterclasses.blog"
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {"@type":"Question","name":"Por que fecha ao iniciar?","acceptedAnswer":{"@type":"Answer","text":"Arquivos, driver, espa\u00e7o, overlay ou servi\u00e7o podem estar envolvidos. A mensagem n\u00e3o basta."}},
+
+    {"@type":"Question","name":"Como tratar crash nos shaders?","acceptedAnswer":{"@type":"Answer","text":"Atualize Windows e GPU, feche overlays, mantenha espa\u00e7o e verifique arquivos. N\u00e3o \u00e9 garantia."}},
+
+    {"@type":"Question","name":"O que significa 0x4?","acceptedAnswer":{"@type":"Answer","text":"As fontes oficiais consultadas n\u00e3o explicam. Guarde o texto e relate."}},
+
+    {"@type":"Question","name":"Devo reinstalar?","acceptedAnswer":{"@type":"Answer","text":"Depois de verificar arquivos, espa\u00e7o e drivers. N\u00e3o corrige conta ou servidor."}},
+
+    {"@type":"Question","name":"Posso usar corre\u00e7\u00e3o da comunidade?","acceptedAnswer":{"@type":"Answer","text":"Use como hip\u00f3tese datada e evite DLL, execut\u00e1veis e desativar seguran\u00e7a."}},
+
+    {"@type":"Question","name":"Serve para Xbox ou PS5?","acceptedAnswer":{"@type":"Answer","text":"O foco \u00e9 PC/Steam. Use o suporte da plataforma no console."}},
+
+    {"@type":"Question","name":"Vou perder equipamento?","acceptedAnswer":{"@type":"Answer","text":"O erro n\u00e3o prova perda. Relate um caso reproduz\u00edvel com dados seguros."}}
+
+  ]
+}
+</script>
+
+
+
+
+
+
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6BBV9B108"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-N6BBV9B108");
+  </script>
+</head>
+<body class="img2grid-page guide-page">
+  <header class="site-header">
+    <a class="brand" href="/pt/fatal-error/">
+      <img src="/static/logo.png" alt="Classes de Mistfall Hunter" width="64" height="64">
+      <span>Mistfall Classes</span>
+    </a>
+    <nav aria-label="Navegacao principal">
+      <a href="/pt/">Planejador</a>
+      <a href="/pt/classes/">Classes</a>
+      <a href="/pt/build-planner/">Builds</a>
+      <a href="/pt/player-count/">Jogadores</a>
+      <a href="/pt/steam/">Steam</a>
+      <a href="/pt/contact/">Contato</a>
+    </nav>
+    <div class="header-tools">
+      <details class="language-switcher">
+        <summary aria-label="Escolher idioma">Português</summary>
+        <div class="language-menu">
+
+          <a href="/fatal-error/" hreflang="en" lang="en">English</a>
+
+          <a href="/es/fatal-error/" hreflang="es" lang="es">Español</a>
+
+          <a href="/ja/fatal-error/" hreflang="ja" lang="ja">日本語</a>
+
+          <a href="/fr/fatal-error/" hreflang="fr" lang="fr">Français</a>
+
+          <a href="/de/fatal-error/" hreflang="de" lang="de">Deutsch</a>
+
+          <a href="/pt/fatal-error/" hreflang="pt" lang="pt">Português</a>
+
+          <a href="/ko/fatal-error/" hreflang="ko" lang="ko">한국어</a>
+
+          <a href="/it/fatal-error/" hreflang="it" lang="it">Italiano</a>
+
+        </div>
+      </details>
+      <a class="header-cta" href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" rel="nofollow noopener" target="_blank">Steam</a>
+    </div>
+  </header>
+
+
+<main class="simple-main">
+  <section class="simple-hero">
+    <p class="kicker">Guia de solução | Revisado em novembro de 2026</p>
+    <h1>Erro fatal Mistfall Hunter: crash ao iniciar</h1>
+    <p>Veja como investigar o erro fatal de Mistfall Hunter: arquivos, requisitos, drivers e overlays, sem inventar a causa.</p>
+  </section>
+
+
+
+    <section class="section-pad prose">
+      <h2>Resposta rápida: use uma ordem segura</h2>
+
+
+      <p>Se Mistfall Hunter fecha antes do menu ou durante os shaders, reinicie Steam e Windows, verifique os arquivos, compare o PC com os requisitos do Steam e atualize Windows e driver gráfico. Mude uma variável por vez.</p>
+
+      <p>As buscas por erro 0x4 não provam o significado. As páginas oficiais consultadas não definem um código estável. Use-o como rótulo do relatório e evite DLL, limpador de registro e pacote de reparo não oficial.</p>
+
+      <p>Steam é a fonte para requisitos e verificação de arquivos; o site oficial confirma o jogo e a mídia. Reddit, Steam Community e vídeos são pistas, não prova de que o seu PC tem a mesma causa.</p>
+
+    </section>
+
+
+
+    <section class="section-pad article-media-section">
+      <figure class="article-media">
+        <img class="article-media-img" src="/static/images/mistfall/mistfall-hunter-fatal-error-flow.webp" alt="Ilustração editorial de um caçador de Mistfall Hunter junto a um monitor de alerta e quatro passos" width="1024" height="512">
+        <figcaption>Ilustração gerada para este guia; não é uma tela de erro real.</figcaption>
+      </figure>
+    </section>
+
+
+
+    <section class="section-pad comparison">
+      <h2>Relacione o sintoma ao próximo teste</h2>
+      <table>
+        <thead><tr><th>Sintoma</th><th>Primeiro teste</th><th>Não presuma</th></tr></thead>
+        <tbody>
+
+          <tr><td data-label="Sintoma">Erro antes do menu</td><td data-label="Primeiro teste">Reiniciar, verificar arquivos e guardar o texto</td><td data-label="Não presuma">O código identifica a causa.</td></tr>
+
+          <tr><td data-label="Sintoma">Crash nos shaders</td><td data-label="Primeiro teste">Liberar espaço, atualizar GPU e testar sem overlay</td><td data-label="Não presuma">É sempre problema de rede.</td></tr>
+
+          <tr><td data-label="Sintoma">Fecha durante a partida</td><td data-label="Primeiro teste">Comparar temperatura, estabilidade e mudanças</td><td data-label="Não presuma">A classe ou o mapa causaram.</td></tr>
+
+          <tr><td data-label="Sintoma">Erro 0x4</td><td data-label="Primeiro teste">Capturar texto, hora e plataforma</td><td data-label="Não presuma">Existe definição oficial.</td></tr>
+
+        </tbody>
+      </table>
+    </section>
+
+
+
+    <section class="section-pad route-flow-section">
+      <figure class="route-flow" aria-label="Ordem de quatro passos">
+        <figcaption>Ordem de quatro passos</figcaption>
+        <ol>
+
+          <li>
+            <span class="route-flow-number">1</span>
+            <strong>Reiniciar</strong>
+            <span>Feche jogo e Steam.</span>
+          </li>
+
+          <li>
+            <span class="route-flow-number">2</span>
+            <strong>Verificar</strong>
+            <span>Use a integridade de arquivos do Steam.</span>
+          </li>
+
+          <li>
+            <span class="route-flow-number">3</span>
+            <strong>Atualizar</strong>
+            <span>Atualize Windows e driver da GPU.</span>
+          </li>
+
+          <li>
+            <span class="route-flow-number">4</span>
+            <strong>Relatar</strong>
+            <span>Envie mensagem e passos reproduzíveis.</span>
+          </li>
+
+        </ol>
+        <p class="route-flow-caption">Anote o resultado de cada passo.</p>
+      </figure>
+    </section>
+
+
+
+    <section class="section-pad prose">
+      <h2>Investigação passo a passo</h2>
+
+
+      <p>1. Anote onde acontece: início, shader, carregamento, convite ou partida. Registre Windows, GPU, driver, RAM, espaço e overlays.</p>
+
+      <p>2. Feche jogo e Steam, aguarde os processos e abra novamente. Reinicie Windows antes de mudar arquivos.</p>
+
+      <p>3. Verifique a instalação pelo Steam. Não substitua DLL ou executável obtido fora de uma fonte oficial.</p>
+
+      <p>4. Compare a tabela Steam: Windows 10 64 bits, 12 GB RAM, GTX 1060/RX 580 como referência mínima, DirectX 12, banda larga e 45 GB livres. Isso não garante FPS.</p>
+
+      <p>5. Atualize Windows e driver, feche overlays e teste uma configuração conservadora. Uma mudança por vez.</p>
+
+      <p>6. Um fechamento antes do menu aponta primeiro para o PC; uma desconexão depois pode ser serviço ou rede.</p>
+
+    </section>
+
+
+
+    <section class="section-pad article-media-section">
+      <figure class="article-media">
+        <img class="article-media-img" src="/static/images/mistfall/mistfall-hunter-steam-header.webp" alt="Cabeçalho oficial do Steam para confirmar a página correta de Mistfall Hunter" width="460" height="215">
+        <figcaption>Fontes e limites</figcaption>
+      </figure>
+    </section>
+
+
+
+    <section class="section-pad prose">
+      <h2>Fatos confirmados e hipóteses</h2>
+
+
+      <p>Steam confirma requisitos e suporte; o site oficial confirma jogo e mídia. Nenhum define 0x4 universalmente ou garante que reinstalar resolverá tudo.</p>
+
+      <p>Relatos da comunidade são pistas. Compare versão, hardware e reprodução antes de testar.</p>
+
+      <p>Pare quando estiver estável ou quando o conselho arriscar arquivos e segurança. Guarde a mensagem.</p>
+
+    </section>
+
+
+
+    <section class="section-pad article-media-section">
+      <figure class="article-media">
+        <img class="article-media-img" src="/static/images/mistfall/mistfall-hunter-system-requirements-combat.webp" alt="Arte oficial de combate de Mistfall Hunter usada como contexto do guia para PC" width="960" height="540">
+        <figcaption>Steam oficial para requisitos e arquivos; site oficial para contexto; comunidade apenas como relato de usuário.</figcaption>
+      </figure>
+    </section>
+
+
+
+    <section class="section-pad prose">
+      <h2>Monte um relatório útil</h2>
+
+
+      <p>Inclua texto exato, hora, versão, Windows, CPU, GPU e driver, RAM, espaço, modo de tela e overlays.</p>
+
+      <p>Descreva o caminho mínimo e os passos oficiais já testados. Remova tokens e dados pessoais.</p>
+
+    </section>
+
+
+
+    <section class="section-pad prose">
+      <h2>Como fazer testes reproduzíveis e interpretar o resultado</h2>
+
+
+      <p>Antes de mudar qualquer configuração, monte um registro inicial. Anote o texto completo do erro, o horário, a versão do Windows, o modelo da placa de vídeo e a versão do driver. Diga se o fechamento acontece antes do menu, durante a preparação de shaders ou depois de entrar em uma sessão. Uma captura ajuda quando não expõe informações pessoais. Esse ponto de partida permite comparar tentativas sem depender da memória e evita atribuir a uma alteração um resultado que ocorreu por acaso.</p>
+
+      <p>Use o mesmo caminho para abrir o jogo nos testes seguintes. Inicie pela biblioteca do Steam e tente chegar à mesma etapa mantendo as opções gráficas. Altere somente uma variável por vez, como um programa de gravação ou uma sobreposição. Se o jogo abrir uma vez depois disso, repita a tentativa antes de considerar o problema resolvido. Um sucesso isolado é uma observação, não uma garantia de estabilidade. Registre também as tentativas sem melhora para que o suporte saiba quais hipóteses já foram verificadas.</p>
+
+      <p>Quando a verificação do Steam baixar arquivos novamente, espere a operação terminar e faça uma tentativa sem outras mudanças. Guarde o resultado da verificação e informe se o erro passou a acontecer em outra etapa. Se os mesmos arquivos forem substituídos repetidamente, examine as mensagens da plataforma e do software de segurança. Não copie uma DLL encontrada em um fórum: o nome do arquivo não comprova origem nem compatibilidade. A recuperação pelo cliente oficial mantém uma procedência que pode ser explicada e repetida.</p>
+
+      <p>Em notebooks, confira qual GPU o jogo realmente está usando pelos ajustes normais do Windows e do fabricante. O modelo anunciado do equipamento não mostra necessariamente a GPU ativa naquela sessão. Anote se o carregador estava conectado e qual modo de energia foi utilizado, pois isso torna a comparação mais clara. Não altere voltagens nem instale programas desconhecidos para otimizar o sistema. O objetivo dessa etapa é obter uma configuração conhecida, e não prometer desempenho extra ou recomendar ajustes de hardware arriscados.</p>
+
+      <p>Separe espaço de armazenamento, memória RAM e memória de vídeo. São recursos diferentes: um SSD com espaço não substitui a RAM necessária, e mais RAM não resolve automaticamente um disco de instalação lotado. Compare cada item com a tabela atual da página do Steam e considere os aplicativos que estavam abertos. Os requisitos mínimos são uma referência de compatibilidade. Eles não garantem uma taxa de quadros nem provam que qualquer falha em um computador mais potente seja um problema dos servidores.</p>
+
+      <p>Leia uma dica comunitária junto com a data, o hardware, o driver e a fase do erro relatados. Um teste antigo pode pertencer a outro cliente ou a outra etapa de desenvolvimento. Procure o texto completo da mensagem, não apenas a palavra crash. Ao preparar o relatório, descreva cada alteração e seu resultado, inclusive quando nada mudou. Revise os registros antes de publicar para esconder nomes, caminhos particulares e dados de conta. Pare quando a instrução exigir desligar permanentemente a segurança ou quando o caso depender de um serviço controlado pelo desenvolvedor.</p>
+
+    </section>
+
+
+
+    <section class="section-pad faq">
+      <h2>Perguntas frequentes sobre erro fatal</h2>
+
+      <details open><summary>Por que fecha ao iniciar?</summary><p>Arquivos, driver, espaço, overlay ou serviço podem estar envolvidos. A mensagem não basta.</p></details>
+
+      <details ><summary>Como tratar crash nos shaders?</summary><p>Atualize Windows e GPU, feche overlays, mantenha espaço e verifique arquivos. Não é garantia.</p></details>
+
+      <details ><summary>O que significa 0x4?</summary><p>As fontes oficiais consultadas não explicam. Guarde o texto e relate.</p></details>
+
+      <details ><summary>Devo reinstalar?</summary><p>Depois de verificar arquivos, espaço e drivers. Não corrige conta ou servidor.</p></details>
+
+      <details ><summary>Posso usar correção da comunidade?</summary><p>Use como hipótese datada e evite DLL, executáveis e desativar segurança.</p></details>
+
+      <details ><summary>Serve para Xbox ou PS5?</summary><p>O foco é PC/Steam. Use o suporte da plataforma no console.</p></details>
+
+      <details ><summary>Vou perder equipamento?</summary><p>O erro não prova perda. Relate um caso reproduzível com dados seguros.</p></details>
+
+    </section>
+
+
+
+    <section class="section-pad source-list">
+      <h2>Fontes e limites</h2>
+      <div class="source-grid">
+
+        <a href="https://store.steampowered.com/app/3282300/Mistfall_Hunter/" target="_blank" rel="noopener">
+          <strong>Página oficial de Mistfall Hunter no Steam</strong>
+          <span>Fontes e limites</span>
+        </a>
+
+        <a href="https://help.steampowered.com/en/faqs/view/0C48-FCBD-DA71-93EB" target="_blank" rel="noopener">
+          <strong>Suporte Steam: verificar arquivos</strong>
+          <span>Steam oficial para requisitos e arquivos; site oficial para contexto; comunidade apenas como relato de usuário.</span>
+        </a>
+
+        <a href="https://mistfallhunter.com/" target="_blank" rel="noopener">
+          <strong>Site oficial de Mistfall Hunter</strong>
+          <span>Steam oficial para requisitos e arquivos; site oficial para contexto; comunidade apenas como relato de usuário.</span>
+        </a>
+
+        <a href="https://steamcommunity.com/app/3282300/discussions/0/" target="_blank" rel="nofollow noopener">
+          <strong>Discussões da Steam Community</strong>
+          <span>Steam oficial para requisitos e arquivos; site oficial para contexto; comunidade apenas como relato de usuário.</span>
+        </a>
+
+      </div>
+    </section>
+
+
+
+    <section class="section-pad source-list">
+      <h2>Guias relacionados de Mistfall Hunter</h2>
+      <div class="source-grid">
+
+        <a href="/pt/system-requirements/">
+          <strong>Requisitos de sistema</strong>
+          <span>Compare a tabela oficial.</span>
+        </a>
+
+        <a href="/pt/steam/">
+          <strong>Mistfall Hunter no Steam</strong>
+          <span>Confira os dados da loja.</span>
+        </a>
+
+        <a href="/pt/crossplay/">
+          <strong>Guia de crossplay</strong>
+          <span>Separe rede e inicialização.</span>
+        </a>
+
+        <a href="/pt/contact/">
+          <strong>Contato</strong>
+          <span>Envie uma correção com fonte.</span>
+        </a>
+
+      </div>
+    </section>
+
+
+
+</main>
+
+
+  <div class="native-ad-slot">
+
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <a class="footer-brand" href="/pt/">
+        <img src="/static/logo.png" alt="Classes de Mistfall Hunter" width="48" height="48">
+        <span>Classes de Mistfall Hunter</span>
+      </a>
+      <p>Guia e planejador fan-made de Mistfall Hunter. Nao afiliado a Bellring Games, Skystone Games, Steam ou Valve.</p>
+    </div>
+    <nav aria-label="Navegacao do rodape">
+      <a href="/pt/about/">Sobre</a>
+      <a href="/pt/contact/">Contato</a>
+      <a href="/pt/privacy-policy/">Privacidade</a>
+      <a href="/pt/terms-of-service/">Termos</a>
+      <a href="/sitemap.xml">Mapa do site</a>
+    </nav>
+  </footer>
+  <script id="planner-config" type="application/json">{"classes": [{"best_for": "Para quem quer press\u00e3o corpo a corpo perdo\u00e1vel e extra\u00e7\u00f5es est\u00e1veis.", "burst": 60, "control": 54, "frontline": 92, "id": "mercenary", "name": "Mercenary", "risk": "low", "risk_label": "Risco baixo", "role": "Lutador de linha de frente", "solo": 86, "squad": 78}, {"best_for": "Para jogadores cuidadosos que preferem observar, cutucar e escolher lutas.", "burst": 78, "control": 64, "frontline": 58, "id": "blackarrow", "name": "Blackarrow", "risk": "medium", "risk_label": "Risco m\u00e9dio", "role": "Press\u00e3o \u00e0 dist\u00e2ncia", "solo": 74, "squad": 84}, {"best_for": "Para emboscadas, flancos e recuos r\u00e1pidos.", "burst": 90, "control": 58, "frontline": 62, "id": "shadowstrix", "name": "Shadowstrix", "risk": "high", "risk_label": "Risco alto", "role": "Assassino m\u00f3vel", "solo": 82, "squad": 70}, {"best_for": "Para explos\u00e3o m\u00e1gica, press\u00e3o de zona e impacto em grupo.", "burst": 92, "control": 82, "frontline": 40, "id": "sorcerer", "name": "Sorcerer", "risk": "high", "risk_label": "Risco alto", "role": "Conjurador de \u00e1rea", "solo": 66, "squad": 88}, {"best_for": "Para esquadr\u00f5es que valorizam rastreio, utilidade e decis\u00f5es seguras.", "burst": 42, "control": 86, "frontline": 38, "id": "seer", "name": "Seer", "risk": "medium", "risk_label": "Risco m\u00e9dio", "role": "Suporte e informa\u00e7\u00e3o", "solo": 58, "squad": 92}, {"best_for": "Para segurar espa\u00e7o, sobreviver trocas e proteger aliados.", "burst": 64, "control": 76, "frontline": 88, "id": "withered-knight", "name": "Withered Knight", "risk": "medium", "risk_label": "Risco m\u00e9dio", "role": "Iniciador resistente", "solo": 78, "squad": 86}], "text": {"calculating": "Calculando encaixe...", "description": "Responda quatro perguntas e a ferramenta ordena as classes para sua run. \u00c9 um modelo fan-made, n\u00e3o uma tier list oficial.", "empty": "Sua recomenda\u00e7\u00e3o aparecer\u00e1 aqui. Se estiver em d\u00favida, teste o solo padr\u00e3o.", "fit": "{name} combina com sua run {format} porque o modelo equilibra papel, ritmo, risco e experi\u00eancia.", "kicker": "Seletor interativo", "labels": {"experience": "Experi\u00eancia", "format": "Formato da run", "risk": "Toler\u00e2ncia a risco", "style": "Ritmo de combate"}, "note": "Nota: recomenda\u00e7\u00e3o fan-made que deve ser revisada quando o balanceamento mudar.", "options": {"experience": {"advanced": "Jogador avan\u00e7ado de extra\u00e7\u00e3o", "new": "Jogador novo", "returning": "Jogador de ARPG"}, "format": {"duo": "Escaramu\u00e7a em dupla", "solo": "Extra\u00e7\u00e3o solo", "squad": "Jogo em esquadr\u00e3o"}, "risk": {"high": "Risco alto", "low": "Risco baixo", "medium": "Risco m\u00e9dio"}, "style": {"balanced": "Sobreviv\u00eancia equilibrada", "burst": "Dano explosivo", "control": "Controle e utilidade", "frontline": "Press\u00e3o frontal"}}, "recommended": "Classe recomendada", "reset": "Redefinir", "score_label": "{score} de 100", "score_text": "{score}/100 - {role}", "short_empty": "Escolha ajustes para gerar uma dire\u00e7\u00e3o de build.", "submit": "Encontrar classe", "title": "Planejador de classes Mistfall Hunter"}}</script>
+  <script src="/static/js/mistfall-planner.js"></script>
+<script async="async" data-cfasync="false" src="https://pl30615732.profitableratecpmnetwork.com/deb73faea2a876d48b1634332f415cfe/invoke.js"></script>
+<div id="container-deb73faea2a876d48b1634332f415cfe"></div>
+</body>
+</html>
